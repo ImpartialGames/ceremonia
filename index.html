@@ -146,6 +146,16 @@ body.menu-open{overflow:hidden}
 .mm-link:active,.mm-link:hover{color:var(--gold)}
 .mm-cta{margin-top:22px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.25em;
   text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:13px 32px}
+/* language switch */
+.lang-switch{display:flex;align-items:center;gap:3px;margin-left:8px}
+.lang-btn{font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.12em;cursor:pointer;
+  background:none;border:none;padding:3px 2px;color:rgba(245,240,232,.42);transition:color .25s}
+.lang-btn:hover{color:var(--ivory)}
+.lang-btn.active{color:var(--gold)}
+.lang-sep{color:rgba(245,240,232,.2);font-size:8px}
+.lang-switch-m{margin:28px 0 0;gap:6px}
+.lang-switch-m .lang-btn{font-size:12px;letter-spacing:.18em;padding:6px 4px}
+.lang-switch-m .lang-sep{font-size:11px}
 
 /* ─── BUTTONS ────────────────────────────────────────────────────── */
 .btn{
@@ -224,6 +234,10 @@ body.menu-open{overflow:hidden}
 }
 .hero-leaf.left{left:7vw;transform-origin:bottom left}
 .hero-leaf.right{right:7vw;transform-origin:bottom right}
+.hero-leaf.center{
+  left:50%;width:96vw;max-width:1360px;z-index:7;top:-44%;bottom:auto;
+  transform:translateX(-50%) scaleY(-1);transform-origin:center center;
+}
 #hero-overlay{
   position:absolute;inset:0;z-index:2;
   background:
@@ -235,7 +249,7 @@ body.menu-open{overflow:hidden}
 #hero-content{position:relative;z-index:6;padding:0 8vw;max-width:760px;text-align:center;display:flex;flex-direction:column;align-items:center}
 .h-eyebrow{
   font-family:'Inter',sans-serif;color:var(--gold);font-size:10px;
-  letter-spacing:.55em;text-transform:uppercase;margin-bottom:24px;
+  letter-spacing:.55em;text-transform:uppercase;margin:46px 0 14px;
   clip-path:inset(0 100% 0 0);animation:clipReveal .9s var(--ease) .3s both;
 }
 .h-title{
@@ -368,6 +382,33 @@ body.menu-open{overflow:hidden}
   transform:translateY(100%);transition:transform .32s var(--ease);pointer-events:none;
 }
 .gal-item:hover .gal-caption{transform:translateY(0)}
+/* Blacki — guardian perched on the photo frame */
+.gal-blacki{overflow:visible;z-index:5}
+.blacki-wrap{
+  position:absolute;right:2px;bottom:calc(100% - 16px);
+  display:flex;flex-direction:column;align-items:center;
+  pointer-events:none;z-index:6;
+}
+.blacki-arc{
+  width:clamp(156px,15.5vw,222px);height:auto;overflow:visible;
+  margin-bottom:-34px;
+  filter:drop-shadow(0 1px 0 rgba(245,240,232,.9));
+  transition:transform .4s var(--ease);transform-origin:bottom center;
+}
+.blacki-arc text{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:27px;letter-spacing:.5px;fill:var(--umber);
+}
+.blacki-arc .arc-star{font-size:22px;fill:var(--gold)}
+.gal-blacki img.blacki-guard{
+  display:block;
+  width:auto!important;height:clamp(112px,12vw,184px)!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 9px 12px rgba(15,27,53,.34))!important;
+  transition:transform .4s var(--ease);
+}
+.gal-blacki:hover img.blacki-guard{transform:translateY(-5px) rotate(-2deg)}
+.gal-blacki:hover .blacki-arc{transform:scale(1.04)}
 
 /* ─── VISIT ──────────────────────────────────────────────────────── */
 #a-visit{
@@ -381,13 +422,15 @@ body.menu-open{overflow:hidden}
   background:var(--navy);
   background-image:radial-gradient(ellipse at 50% 80%,rgba(139,94,60,.09) 0%,transparent 65%);
   padding:0 8vw 48px;text-align:center;position:relative;
-  border-top:1px solid rgba(212,184,150,.07);
 }
-.ticker-wrap{overflow:hidden;white-space:nowrap;border-bottom:1px solid rgba(212,184,150,.08);padding:12px 0;margin-bottom:64px}
-.ticker-inner{display:inline-flex;animation:marquee 22s linear infinite}
-.ticker-inner span{
-  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.45em;
-  text-transform:uppercase;color:rgba(212,184,150,.3);padding:0 28px;
+.ticker-wave{width:100%;margin:0 0 48px;line-height:0}
+.ticker-wave svg{display:block;width:100%;height:140px;overflow:visible}
+.tw-band{fill:url(#tw-grad);stroke:rgba(212,184,150,.30);stroke-width:1}
+.tw-text{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:5px;
+  text-transform:uppercase;fill:rgba(245,240,232,.82)}
+@media(max-width:860px){
+  .ticker-wave svg{height:104px}
+  .tw-text{font-size:11px;letter-spacing:3px}
 }
 .soc-icon{
   width:40px;height:40px;border:1px solid rgba(212,184,150,.2);
@@ -479,6 +522,7 @@ body.menu-open{overflow:hidden}
   /* hero */
   #hero-pin{height:150vh}
   .hero-leaf{width:96vw;bottom:-12%}
+  .hero-leaf.center{width:96vw;top:-12%;bottom:auto}
   .h-logo{width:64vw!important}
   .h-eyebrow{font-size:9px;letter-spacing:.42em}
   .h-desc{font-size:14px;max-width:88vw}
@@ -533,21 +577,27 @@ body.menu-open{overflow:hidden}
     <span style="font-family:'Inter',sans-serif;color:var(--ivory);font-size:10px;letter-spacing:.4em;text-transform:uppercase;">Ceremonia</span>
   </a>
   <div class="d-nav" style="display:flex;gap:36px;align-items:center;">
-    <a href="#a-about" class="nav-link">Story</a>
-    <a href="#a-menu"  class="nav-link">Menu</a>
-    <a href="#a-gallery" class="nav-link">Gallery</a>
-    <a href="#a-reviews" class="nav-link">Reviews</a>
-    <a href="#a-visit" class="nav-link">Visit</a>
+    <a href="#a-about" class="nav-link" data-i18n="nav.story">Story</a>
+    <a href="#a-menu"  class="nav-link" data-i18n="nav.menu">Menu</a>
+    <a href="#a-gallery" class="nav-link" data-i18n="nav.gallery">Gallery</a>
+    <a href="#a-reviews" class="nav-link" data-i18n="nav.reviews">Reviews</a>
+    <a href="#a-visit" class="nav-link" data-i18n="nav.visit">Visit</a>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="fr">FR</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="id">ID</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="es">ES</button>
+    </div>
   </div>
   <button id="nav-burger" class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div id="mobile-menu">
-  <a href="#a-about"   class="mm-link">Story</a>
-  <a href="#a-menu"    class="mm-link">Menu</a>
-  <a href="#a-gallery" class="mm-link">Gallery</a>
-  <a href="#a-reviews" class="mm-link">Reviews</a>
-  <a href="#a-visit"   class="mm-link">Visit</a>
-  <a href="https://wa.me/6285337107649" target="_blank" class="mm-cta">Reserve a Table</a>
+  <a href="#a-about"   class="mm-link" data-i18n="nav.story">Story</a>
+  <a href="#a-menu"    class="mm-link" data-i18n="nav.menu">Menu</a>
+  <a href="#a-gallery" class="mm-link" data-i18n="nav.gallery">Gallery</a>
+  <a href="#a-reviews" class="mm-link" data-i18n="nav.reviews">Reviews</a>
+  <a href="#a-visit"   class="mm-link" data-i18n="nav.visit">Visit</a>
+  <a href="https://wa.me/6285337107649" target="_blank" class="mm-cta" data-i18n="nav.reserve">Reserve a Table</a>
+  <div class="lang-switch lang-switch-m">
+    <button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="fr">FR</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="id">ID</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="es">ES</button>
+  </div>
 </div>
 
 <!-- ═══ HERO ═══ -->
@@ -562,20 +612,21 @@ body.menu-open{overflow:hidden}
   </div>
   <canvas id="hero-canvas"></canvas>
   <div id="hero-overlay"></div>
-  <img class="hero-leaf left"  src="Feuille 1 cut.webp" alt="">
-  <img class="hero-leaf right" src="Feuille 2 cut.webp" alt="">
+  <img class="hero-leaf left"   src="Feuille 1 cut.webp" alt="">
+  <img class="hero-leaf right"  src="Feuille 2 cut.webp" alt="">
+  <img class="hero-leaf center" src="Feuille 3.webp" alt="">
   <div id="hero-content">
-    <p class="h-eyebrow">Rooftop Restaurant &amp; Bar · Ubud</p>
     <img class="h-logo" src="Logo.webp" alt="Ceremonia">
+    <p class="h-eyebrow" data-i18n="hero.eyebrow">Rooftop Restaurant &amp; Bar · Ubud</p>
 
-    <p class="h-desc">Open daily 9:00 AM – 11 PM. Local &amp; international tapas, crafted cocktails, Bali soul — under the open sky of Ubud.</p>
+    <p class="h-desc" data-i18n="hero.desc">Open daily 9:00 AM – 11 PM. Local &amp; international tapas, crafted cocktails, Bali soul — under the open sky of Ubud.</p>
     <div class="h-ctas">
       <a href="#a-menu" class="btn-leaf">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
           <path d="M2 21c0-3 1.85-5.36 5.08-6"/>
         </svg>
-        <span>View Menu</span>
+        <span data-i18n="hero.viewmenu">View Menu</span>
       </a>
     </div>
   </div>
@@ -610,28 +661,28 @@ body.menu-open{overflow:hidden}
     </div>
     <!-- story -->
     <div style="position:relative;padding-top:20px;">
-      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:18px;">Our Story</p>
-      <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,70px);color:var(--navy);line-height:.91;margin-bottom:30px;">
+      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:18px;" data-i18n="about.eyebrow">Our Story</p>
+      <h2 data-reveal data-i18n-html="about.title" style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,70px);color:var(--navy);line-height:.91;margin-bottom:30px;">
         Under<br>the Ubud<br><em style="color:var(--umber);font-weight:400;">Sky</em>
       </h2>
-      <p data-reveal style="font-family:'Inter',sans-serif;font-weight:300;color:rgba(15,27,53,.6);font-size:15px;line-height:1.85;margin-bottom:18px;">
+      <p data-reveal data-i18n="about.p1" style="font-family:'Inter',sans-serif;font-weight:300;color:rgba(15,27,53,.6);font-size:15px;line-height:1.85;margin-bottom:18px;">
         Ceremonia was born from a simple belief: that eating is sacred. Perched above the rooftops of Ubud, we've created a space where local ingredients meet international craft.
       </p>
-      <p data-reveal style="font-family:'Inter',sans-serif;font-weight:300;color:rgba(15,27,53,.6);font-size:15px;line-height:1.85;margin-bottom:44px;">
+      <p data-reveal data-i18n="about.p2" style="font-family:'Inter',sans-serif;font-weight:300;color:rgba(15,27,53,.6);font-size:15px;line-height:1.85;margin-bottom:44px;">
         From the first pour of Kintamani coffee at dawn to the last cocktail under the stars — unhurried, intentional, deeply Balinese.
       </p>
       <div data-reveal class="about-stats" style="display:flex;gap:40px;flex-wrap:wrap;">
         <div>
           <p style="font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:600;color:var(--navy);line-height:1;">9:00</p>
-          <p class="lbl" style="color:rgba(15,27,53,.4);font-size:9px;margin-top:4px;">Opens Daily</p>
+          <p class="lbl" style="color:rgba(15,27,53,.4);font-size:9px;margin-top:4px;" data-i18n="about.s1">Opens Daily</p>
         </div>
         <div>
           <p style="font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:600;color:var(--navy);line-height:1;">11<small style="font-size:26px;font-weight:400;">PM</small></p>
-          <p class="lbl" style="color:rgba(15,27,53,.4);font-size:9px;margin-top:4px;">Last Orders</p>
+          <p class="lbl" style="color:rgba(15,27,53,.4);font-size:9px;margin-top:4px;" data-i18n="about.s2">Last Orders</p>
         </div>
         <div>
           <p style="font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:600;color:var(--navy);line-height:1;">3<small style="font-size:26px;font-weight:400;">fl.</small></p>
-          <p class="lbl" style="color:rgba(15,27,53,.4);font-size:9px;margin-top:4px;">Rooftop</p>
+          <p class="lbl" style="color:rgba(15,27,53,.4);font-size:9px;margin-top:4px;" data-i18n="about.s3">Rooftop</p>
         </div>
       </div>
     </div>
@@ -650,8 +701,8 @@ body.menu-open{overflow:hidden}
 <section id="a-pillars" class="grain">
   <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
     <div style="text-align:center;margin-bottom:60px;">
-      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:16px;">The Experience</p>
-      <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,68px);color:var(--ivory);line-height:.92;">
+      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:16px;" data-i18n="pillars.eyebrow">The Experience</p>
+      <h2 data-reveal data-i18n-html="pillars.title" style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,68px);color:var(--ivory);line-height:.92;">
         Three <em style="color:var(--gold);font-weight:400;">Pillars</em>
       </h2>
     </div>
@@ -663,8 +714,8 @@ body.menu-open{overflow:hidden}
           <path d="M22 26 C16 20 10 18 9 22"/>
           <path d="M22 26 C28 20 34 18 35 22"/>
         </svg>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ivory);margin-bottom:14px;letter-spacing:.02em;">Cuisine</p>
-        <p style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:rgba(245,240,232,.45);line-height:1.78;">Local ingredients elevated through international technique. Every dish is a dialogue between Bali and the world.</p>
+        <p data-i18n="pil.cuisine.t" style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ivory);margin-bottom:14px;letter-spacing:.02em;">Cuisine</p>
+        <p data-i18n="pil.cuisine.d" style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:rgba(245,240,232,.45);line-height:1.78;">Local ingredients elevated through international technique. Every dish is a dialogue between Bali and the world.</p>
       </div>
       <div class="pillar-card" data-reveal style="transition-delay:.1s">
         <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
@@ -674,8 +725,8 @@ body.menu-open{overflow:hidden}
           <line x1="18" y1="3" x2="20" y2="6"/>
           <line x1="26" y1="3" x2="24" y2="6"/>
         </svg>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ivory);margin-bottom:14px;letter-spacing:.02em;">Cocktails</p>
-        <p style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:rgba(245,240,232,.45);line-height:1.78;">Crafted with Arak Bali, fresh tropical fruits, and the soul of Kintamani. Sip slowly — these are stories in a glass.</p>
+        <p data-i18n="pil.cocktails.t" style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ivory);margin-bottom:14px;letter-spacing:.02em;">Cocktails</p>
+        <p data-i18n="pil.cocktails.d" style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:rgba(245,240,232,.45);line-height:1.78;">Crafted with Arak Bali, fresh tropical fruits, and the soul of Kintamani. Sip slowly — these are stories in a glass.</p>
       </div>
       <div class="pillar-card" data-reveal style="transition-delay:.2s">
         <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
@@ -689,8 +740,8 @@ body.menu-open{overflow:hidden}
           <line x1="36" y1="8"  x2="32" y2="12"/>
           <line x1="12" y1="32" x2="8"  y2="36"/>
         </svg>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ivory);margin-bottom:14px;letter-spacing:.02em;">Atmosphere</p>
-        <p style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:rgba(245,240,232,.45);line-height:1.78;">Three floors open to the sky. Ubud's jungle canopy around you. The kind of peace that only arrives when you stop rushing.</p>
+        <p data-i18n="pil.atmos.t" style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ivory);margin-bottom:14px;letter-spacing:.02em;">Atmosphere</p>
+        <p data-i18n="pil.atmos.d" style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:rgba(245,240,232,.45);line-height:1.78;">Three floors open to the sky. Ubud's jungle canopy around you. The kind of peace that only arrives when you stop rushing.</p>
       </div>
     </div>
   </div>
@@ -706,17 +757,17 @@ body.menu-open{overflow:hidden}
 <section id="a-menu" class="grain batik">
   <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1;">
     <div style="margin-bottom:52px;">
-      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:16px;">The Menu</p>
+      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:16px;" data-i18n="menu.eyebrow">The Menu</p>
       <div data-reveal style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;">
-        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,72px);color:var(--ivory);line-height:.9;">
+        <h2 data-i18n-html="menu.title" style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,72px);color:var(--ivory);line-height:.9;">
           A Ritual<br><em style="color:var(--gold);font-weight:400;">of Taste</em>
         </h2>
         <!-- TABS -->
         <div class="tab-outer" id="tab-outer">
           <div class="tab-wrap" id="tab-wrap">
-            <button id="ta-bk" class="tab-btn active"   onclick="switchTab('breakfast',this)">Breakfast</button>
-            <button id="ta-fd" class="tab-btn"          onclick="switchTab('food',this)">Food</button>
-            <button id="ta-dr" class="tab-btn"          onclick="switchTab('drinks',this)">Drinks</button>
+            <button id="ta-bk" class="tab-btn active"   onclick="switchTab('breakfast',this)" data-i18n="tab.breakfast">Breakfast</button>
+            <button id="ta-fd" class="tab-btn"          onclick="switchTab('food',this)" data-i18n="tab.food">Food</button>
+            <button id="ta-dr" class="tab-btn"          onclick="switchTab('drinks',this)" data-i18n="tab.drinks">Drinks</button>
           </div>
           <div class="tab-line" id="tab-line"></div>
         </div>
@@ -744,9 +795,9 @@ body.menu-open{overflow:hidden}
   <div class="rv-stage"><div class="rv-stream" id="rv-stream"></div></div>
   <div class="rv-gate"><img src="Pura Lempuyang cut.webp" alt="Pura Lempuyang &amp; Mount Agung"></div>
   <div class="rv-head">
-    <p class="lbl" style="color:var(--gold);">Guest Reviews</p>
-    <h2>Words From<br>Our Guests</h2>
-    <div class="rv-stars-lg">★★★★<span style="opacity:.4">★</span><small>4.7 · Loved on Google</small></div>
+    <p class="lbl" style="color:var(--gold);" data-i18n="reviews.eyebrow">Guest Reviews</p>
+    <h2 data-i18n-html="reviews.title">Words From<br>Our Guests</h2>
+    <div class="rv-stars-lg" data-i18n-html="reviews.rating">★★★★<span style="opacity:.4">★</span><small>4.7 · Loved on Google</small></div>
   </div>
   <!-- decorative wave separator with floating botanicals -->
   <div class="rv-sep">
@@ -807,7 +858,7 @@ body.menu-open{overflow:hidden}
   <div id="jungle-overlay"></div>
   <div id="jungle-text" data-reveal>
     <p class="lbl" style="color:rgba(212,184,150,.65);margin-bottom:18px;letter-spacing:.6em;">Ubud · Bali</p>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(44px,7vw,96px);color:var(--ivory);line-height:.93;letter-spacing:-.01em;">
+    <h2 data-i18n-html="jungle.title" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(44px,7vw,96px);color:var(--ivory);line-height:.93;letter-spacing:-.01em;">
       In the heart<br>of Ubud
     </h2>
   </div>
@@ -823,54 +874,61 @@ body.menu-open{overflow:hidden}
 <!-- ═══ GALLERY ═══ -->
 <section id="a-gallery">
   <div style="max-width:1320px;margin:0 auto;">
-    <p data-reveal class="lbl" style="color:var(--umber);margin-bottom:12px;">Gallery</p>
-    <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,72px);color:var(--navy);line-height:.9;margin-bottom:56px;">
+    <p data-reveal class="lbl" style="color:var(--umber);margin-bottom:12px;" data-i18n="gallery.eyebrow">Gallery</p>
+    <h2 data-reveal data-i18n-html="gallery.title" style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,72px);color:var(--navy);line-height:.9;margin-bottom:56px;">
       Captured<br><em style="font-weight:400;color:var(--umber);">Moments</em>
     </h2>
     <div class="gal-grid" data-reveal>
       <div class="gal-item wide">
         <img src="IMG_0714.webp" alt="">
-        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:18px;">Evenings under the canopy</p></div>
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:18px;" data-i18n="cap.1">Evenings under the canopy</p></div>
       </div>
       <div class="gal-item">
         <img src="IMG_8591.webp" alt="">
-        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">The rooftop at golden hour</p></div>
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;" data-i18n="cap.2">The rooftop at golden hour</p></div>
       </div>
-      <div class="gal-item">
+      <div class="gal-item gal-blacki">
         <img src="IMG_8696.webp" alt="">
-        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">Where Bali meets the world</p></div>
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;" data-i18n="cap.3">Where Bali meets the world</p></div>
+        <div class="blacki-wrap">
+          <svg class="blacki-arc" viewBox="0 0 320 150" aria-hidden="true">
+            <defs><path id="blacki-curve" d="M14,140 C72,14 248,14 306,140" fill="none"/></defs>
+            <text text-anchor="middle"><textPath href="#blacki-curve" startOffset="50%">Guardian of Ceremonia</textPath></text>
+          </svg>
+          <img class="blacki-guard" src="Blacki-cut.webp" alt="Blacki, Guardian of Ceremonia">
+        </div>
       </div>
       <div class="gal-item">
         <img src="IMG_0118.webp" alt="">
-        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">An intimate corner</p></div>
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;" data-i18n="cap.4">An intimate corner</p></div>
       </div>
       <div class="gal-item">
         <img src="IMG_0717.webp" alt="">
-        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">Cocktails &amp; conversation</p></div>
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;" data-i18n="cap.5">Cocktails &amp; conversation</p></div>
       </div>
       <div class="gal-item">
         <img src="IMG_1741.webp" alt="">
-        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">The bar, after dark</p></div>
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;" data-i18n="cap.6">The bar, after dark</p></div>
       </div>
       <div class="gal-item">
         <img src="IMG_1752.webp" alt="">
-        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">Green &amp; glowing</p></div>
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;" data-i18n="cap.7">Green &amp; glowing</p></div>
       </div>
       <div class="gal-item">
         <img src="IMG_4803.webp" alt="">
-        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">Tables set for ceremony</p></div>
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;" data-i18n="cap.8">Tables set for ceremony</p></div>
       </div>
       <div class="gal-item">
         <img src="IMG_8592.webp" alt="">
-        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">Crafted details</p></div>
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;" data-i18n="cap.9">Crafted details</p></div>
       </div>
       <div class="gal-item">
         <img src="IMG_9565.webp" alt="">
-        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">Ubud by night</p></div>
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;" data-i18n="cap.10">Ubud by night</p></div>
       </div>
       <div class="gal-item">
         <img src="IMG_9639.webp" alt="">
-        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">The last cocktail</p></div>
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;" data-i18n="cap.11">The last cocktail</p></div>
       </div>
     </div>
     <div data-reveal style="text-align:right;margin-top:16px;">
@@ -889,25 +947,31 @@ body.menu-open{overflow:hidden}
 <section id="a-visit" class="grain">
   <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;position:relative;z-index:1;" class="two-col">
     <div>
-      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:20px;">Find Us</p>
-      <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,72px);color:var(--ivory);line-height:.9;margin-bottom:48px;">
+      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:20px;" data-i18n="visit.eyebrow">Find Us</p>
+      <h2 data-reveal data-i18n-html="visit.title" style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,72px);color:var(--ivory);line-height:.9;margin-bottom:48px;">
         Come<br>&amp; <em style="color:var(--gold);font-weight:400;">Visit</em>
       </h2>
       <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:44px;">
         <div>
-          <p class="lbl" style="color:var(--gold);font-size:9px;margin-bottom:10px;">Address</p>
+          <p class="lbl" style="color:var(--gold);font-size:9px;margin-bottom:10px;" data-i18n="visit.addr">Address</p>
           <p style="font-family:'Cormorant Garamond',serif;color:var(--ivory);font-size:20px;font-weight:400;line-height:1.5;">Jl. Raya Ubud No.26<br>Ubud, Bali</p>
         </div>
         <div>
-          <p class="lbl" style="color:var(--gold);font-size:9px;margin-bottom:10px;">Hours</p>
-          <p style="font-family:'Cormorant Garamond',serif;color:var(--ivory);font-size:20px;font-weight:400;line-height:1.5;">Daily<br>9:00 AM – 11 PM</p>
+          <p class="lbl" style="color:var(--gold);font-size:9px;margin-bottom:10px;" data-i18n="visit.hours">Hours</p>
+          <p data-i18n-html="visit.hoursv" style="font-family:'Cormorant Garamond',serif;color:var(--ivory);font-size:20px;font-weight:400;line-height:1.5;">Daily<br>9:00 AM – 11 PM</p>
         </div>
         <div>
-          <p class="lbl" style="color:var(--gold);font-size:9px;margin-bottom:10px;">Contact</p>
+          <p class="lbl" style="color:var(--gold);font-size:9px;margin-bottom:10px;" data-i18n="visit.contact">Contact</p>
           <a href="mailto:ceremoniaubud@gmail.com" style="font-family:'Inter',sans-serif;font-weight:300;color:rgba(245,240,232,.42);font-size:13px;transition:color .25s;" onmouseover="this.style.color='#D4B896'" onmouseout="this.style.color='rgba(245,240,232,.42)'">ceremoniaubud@gmail.com</a>
         </div>
         <div style="display:flex;align-items:flex-end;">
-          <a href="https://wa.me/6285337107649" target="_blank" class="btn"><span class="t">WhatsApp ↗</span></a>
+          <a href="https://wa.me/6285337107649" target="_blank" class="btn-leaf">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+              <path d="M2 21c0-3 1.85-5.36 5.08-6"/>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
         </div>
       </div>
     </div>
@@ -921,14 +985,22 @@ body.menu-open{overflow:hidden}
 
 <!-- ═══ FOOTER ═══ -->
 <footer id="a-footer" class="grain">
-  <div class="ticker-wrap">
-    <div class="ticker-inner">
-      <span>Open daily · 9:00 AM – 11 PM · Rooftop Restaurant &amp; Bar · Ubud · Bali ·&nbsp;&nbsp;</span>
-      <span>Open daily · 9:00 AM – 11 PM · Rooftop Restaurant &amp; Bar · Ubud · Bali ·&nbsp;&nbsp;</span>
-    </div>
+  <div class="ticker-wave">
+    <svg id="tw-svg" aria-hidden="true">
+      <defs>
+        <path id="tw-path" fill="none"/>
+        <linearGradient id="tw-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F5F0E8" stop-opacity=".14"/>
+          <stop offset=".5" stop-color="#D4B896" stop-opacity=".10"/>
+          <stop offset="1" stop-color="#D4B896" stop-opacity=".04"/>
+        </linearGradient>
+      </defs>
+      <path id="tw-band" class="tw-band"/>
+      <text class="tw-text" dy="4"><textPath id="twpath" href="#tw-path" startOffset="0"></textPath></text>
+    </svg>
   </div>
   <img src="Logo.webp" alt="Ceremonia" style="width:96px;margin:0 auto 18px;">
-  <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold);font-size:22px;margin-bottom:36px;letter-spacing:.02em;">Under the Ubud Sky</p>
+  <p data-i18n="footer.tagline" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold);font-size:22px;margin-bottom:36px;letter-spacing:.02em;">Under the Ubud Sky</p>
   <div style="display:flex;gap:14px;justify-content:center;margin-bottom:56px;">
     <a href="https://instagram.com/ceremonia_rooftop_ubud" target="_blank" class="soc-icon" title="Instagram">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -945,11 +1017,135 @@ body.menu-open{overflow:hidden}
   </div>
   <div style="border-top:1px solid rgba(212,184,150,.07);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
     <span class="lbl" style="color:rgba(245,240,232,.18);font-size:9px;">Ceremonia Rooftop Ubud</span>
-    <span style="font-family:'Inter',sans-serif;color:rgba(245,240,232,.14);font-size:10px;letter-spacing:.1em;">© 2025 · All rights reserved</span>
+    <span data-i18n="footer.rights" style="font-family:'Inter',sans-serif;color:rgba(245,240,232,.14);font-size:10px;letter-spacing:.1em;">© 2025 · All rights reserved</span>
   </div>
 </footer>
 
 <script>
+/* ─── I18N ────────────────────────────────────────────────────────── */
+const I18N={
+ "nav.story":{en:"Story",fr:"Histoire",id:"Cerita",es:"Historia"},
+ "nav.menu":{en:"Menu",fr:"Carte",id:"Menu",es:"Carta"},
+ "nav.gallery":{en:"Gallery",fr:"Galerie",id:"Galeri",es:"Galería"},
+ "nav.reviews":{en:"Reviews",fr:"Avis",id:"Ulasan",es:"Reseñas"},
+ "nav.visit":{en:"Visit",fr:"Visite",id:"Kunjungi",es:"Visítanos"},
+ "nav.reserve":{en:"Reserve a Table",fr:"Réserver une table",id:"Pesan Meja",es:"Reservar mesa"},
+ "hero.eyebrow":{en:"Rooftop Restaurant & Bar · Ubud",fr:"Restaurant & Bar Rooftop · Ubud",id:"Restoran & Bar Rooftop · Ubud",es:"Restaurante & Bar en la Azotea · Ubud"},
+ "hero.desc":{en:"Open daily 9:00 AM – 11 PM. Local & international tapas, crafted cocktails, Bali soul — under the open sky of Ubud.",fr:"Ouvert tous les jours de 9h00 à 23h00. Tapas locales & internationales, cocktails d'auteur, l'âme de Bali — sous le ciel ouvert d'Ubud.",id:"Buka setiap hari 09.00–23.00. Tapas lokal & internasional, koktail racikan, jiwa Bali — di bawah langit terbuka Ubud.",es:"Abierto todos los días de 9:00 a 23:00. Tapas locales e internacionales, cócteles de autor, alma balinesa — bajo el cielo abierto de Ubud."},
+ "hero.viewmenu":{en:"View Menu",fr:"Voir la carte",id:"Lihat Menu",es:"Ver la carta"},
+ "about.eyebrow":{en:"Our Story",fr:"Notre Histoire",id:"Kisah Kami",es:"Nuestra Historia"},
+ "about.title":{en:'Under<br>the Ubud<br><em style="color:var(--umber);font-weight:400;">Sky</em>',fr:'Sous<br>le ciel<br><em style="color:var(--umber);font-weight:400;">d\'Ubud</em>',id:'Di Bawah<br>Langit<br><em style="color:var(--umber);font-weight:400;">Ubud</em>',es:'Bajo<br>el Cielo<br><em style="color:var(--umber);font-weight:400;">de Ubud</em>'},
+ "about.p1":{en:"Ceremonia was born from a simple belief: that eating is sacred. Perched above the rooftops of Ubud, we've created a space where local ingredients meet international craft.",fr:"Ceremonia est né d'une conviction simple : manger est sacré. Perché au-dessus des toits d'Ubud, nous avons créé un lieu où les produits locaux rencontrent le savoir-faire international.",id:"Ceremonia lahir dari keyakinan sederhana: bahwa makan itu sakral. Berada di atas atap-atap Ubud, kami menciptakan ruang di mana bahan lokal berpadu dengan keahlian internasional.",es:"Ceremonia nació de una creencia simple: comer es sagrado. Encaramado sobre los tejados de Ubud, hemos creado un espacio donde los ingredientes locales se unen a la técnica internacional."},
+ "about.p2":{en:"From the first pour of Kintamani coffee at dawn to the last cocktail under the stars — unhurried, intentional, deeply Balinese.",fr:"Du premier café de Kintamani à l'aube au dernier cocktail sous les étoiles — sans hâte, avec intention, profondément balinais.",id:"Dari tuangan kopi Kintamani pertama saat fajar hingga koktail terakhir di bawah bintang — tanpa terburu-buru, penuh makna, sangat Bali.",es:"Desde el primer café de Kintamani al amanecer hasta el último cóctel bajo las estrellas — sin prisa, con intención, profundamente balinés."},
+ "about.s1":{en:"Opens Daily",fr:"Ouverture",id:"Buka",es:"Apertura"},
+ "about.s2":{en:"Last Orders",fr:"Dern. commandes",id:"Pesanan Terakhir",es:"Últimos pedidos"},
+ "about.s3":{en:"Rooftop",fr:"Rooftop",id:"Rooftop",es:"Azotea"},
+ "pillars.eyebrow":{en:"The Experience",fr:"L'Expérience",id:"Pengalaman",es:"La Experiencia"},
+ "pillars.title":{en:'Three <em style="color:var(--gold);font-weight:400;">Pillars</em>',fr:'Trois <em style="color:var(--gold);font-weight:400;">Piliers</em>',id:'Tiga <em style="color:var(--gold);font-weight:400;">Pilar</em>',es:'Tres <em style="color:var(--gold);font-weight:400;">Pilares</em>'},
+ "pil.cuisine.t":{en:"Cuisine",fr:"Cuisine",id:"Masakan",es:"Cocina"},
+ "pil.cuisine.d":{en:"Local ingredients elevated through international technique. Every dish is a dialogue between Bali and the world.",fr:"Des produits locaux sublimés par la technique internationale. Chaque plat est un dialogue entre Bali et le monde.",id:"Bahan lokal yang diangkat melalui teknik internasional. Setiap hidangan adalah dialog antara Bali dan dunia.",es:"Ingredientes locales realzados con técnica internacional. Cada plato es un diálogo entre Bali y el mundo."},
+ "pil.cocktails.t":{en:"Cocktails",fr:"Cocktails",id:"Koktail",es:"Cócteles"},
+ "pil.cocktails.d":{en:"Crafted with Arak Bali, fresh tropical fruits, and the soul of Kintamani. Sip slowly — these are stories in a glass.",fr:"Élaborés avec l'Arak Bali, des fruits tropicaux frais et l'âme de Kintamani. Sirotez lentement — ce sont des histoires dans un verre.",id:"Diracik dengan Arak Bali, buah tropis segar, dan jiwa Kintamani. Nikmati perlahan — ini kisah dalam gelas.",es:"Elaborados con Arak Bali, frutas tropicales frescas y el alma de Kintamani. Bebe despacio — son historias en una copa."},
+ "pil.atmos.t":{en:"Atmosphere",fr:"Atmosphère",id:"Suasana",es:"Ambiente"},
+ "pil.atmos.d":{en:"Three floors open to the sky. Ubud's jungle canopy around you. The kind of peace that only arrives when you stop rushing.",fr:"Trois étages ouverts sur le ciel. La canopée d'Ubud tout autour. Cette paix qui n'arrive que lorsqu'on cesse de courir.",id:"Tiga lantai terbuka ke langit. Kanopi hutan Ubud di sekeliling Anda. Kedamaian yang hanya datang saat Anda berhenti terburu-buru.",es:"Tres plantas abiertas al cielo. La selva de Ubud a tu alrededor. Esa paz que solo llega cuando dejas de correr."},
+ "menu.eyebrow":{en:"The Menu",fr:"La Carte",id:"Menu",es:"La Carta"},
+ "menu.title":{en:'A Ritual<br><em style="color:var(--gold);font-weight:400;">of Taste</em>',fr:'Un Rituel<br><em style="color:var(--gold);font-weight:400;">du Goût</em>',id:'Ritual<br><em style="color:var(--gold);font-weight:400;">Rasa</em>',es:'Un Ritual<br><em style="color:var(--gold);font-weight:400;">del Sabor</em>'},
+ "tab.breakfast":{en:"Breakfast",fr:"Petit-déj",id:"Sarapan",es:"Desayuno"},
+ "tab.food":{en:"Food",fr:"Plats",id:"Makanan",es:"Comida"},
+ "tab.drinks":{en:"Drinks",fr:"Boissons",id:"Minuman",es:"Bebidas"},
+ "jungle.title":{en:"In the heart<br>of Ubud",fr:"Au cœur<br>d'Ubud",id:"Di jantung<br>Ubud",es:"En el corazón<br>de Ubud"},
+ "gallery.eyebrow":{en:"Gallery",fr:"Galerie",id:"Galeri",es:"Galería"},
+ "gallery.title":{en:'Captured<br><em style="font-weight:400;color:var(--umber);">Moments</em>',fr:'Instants<br><em style="font-weight:400;color:var(--umber);">Capturés</em>',id:'Momen<br><em style="font-weight:400;color:var(--umber);">Terekam</em>',es:'Momentos<br><em style="font-weight:400;color:var(--umber);">Capturados</em>'},
+ "cap.1":{en:"Evenings under the canopy",fr:"Soirées sous la canopée",id:"Malam di bawah kanopi",es:"Noches bajo el dosel"},
+ "cap.2":{en:"The rooftop at golden hour",fr:"Le rooftop à l'heure dorée",id:"Rooftop saat golden hour",es:"La azotea a la hora dorada"},
+ "cap.3":{en:"Where Bali meets the world",fr:"Là où Bali rencontre le monde",id:"Tempat Bali bertemu dunia",es:"Donde Bali se encuentra con el mundo"},
+ "cap.4":{en:"An intimate corner",fr:"Un coin intime",id:"Sudut yang intim",es:"Un rincón íntimo"},
+ "cap.5":{en:"Cocktails & conversation",fr:"Cocktails & conversation",id:"Koktail & obrolan",es:"Cócteles & conversación"},
+ "cap.6":{en:"The bar, after dark",fr:"Le bar, à la nuit tombée",id:"Bar, saat malam",es:"La barra, al caer la noche"},
+ "cap.7":{en:"Green & glowing",fr:"Vert & lumineux",id:"Hijau & bercahaya",es:"Verde y luminoso"},
+ "cap.8":{en:"Tables set for ceremony",fr:"Tables dressées pour la cérémonie",id:"Meja tertata untuk perayaan",es:"Mesas dispuestas para la ceremonia"},
+ "cap.9":{en:"Crafted details",fr:"Détails travaillés",id:"Detail yang dirancang",es:"Detalles cuidados"},
+ "cap.10":{en:"Ubud by night",fr:"Ubud la nuit",id:"Ubud di malam hari",es:"Ubud de noche"},
+ "cap.11":{en:"The last cocktail",fr:"Le dernier cocktail",id:"Koktail terakhir",es:"El último cóctel"},
+ "reviews.eyebrow":{en:"Guest Reviews",fr:"Avis Clients",id:"Ulasan Tamu",es:"Reseñas de Clientes"},
+ "reviews.title":{en:"Words From<br>Our Guests",fr:"Les Mots de<br>Nos Hôtes",id:"Kata dari<br>Tamu Kami",es:"Palabras de<br>Nuestros Huéspedes"},
+ "reviews.rating":{en:'★★★★<span style="opacity:.4">★</span><small>4.7 · Loved on Google</small>',fr:'★★★★<span style="opacity:.4">★</span><small>4.7 · Apprécié sur Google</small>',id:'★★★★<span style="opacity:.4">★</span><small>4.7 · Disukai di Google</small>',es:'★★★★<span style="opacity:.4">★</span><small>4.7 · Querido en Google</small>'},
+ "visit.eyebrow":{en:"Find Us",fr:"Nous Trouver",id:"Temukan Kami",es:"Encuéntranos"},
+ "visit.title":{en:'Come<br>&amp; <em style="color:var(--gold);font-weight:400;">Visit</em>',fr:'Venez<br>nous <em style="color:var(--gold);font-weight:400;">voir</em>',id:'Datang<br>&amp; <em style="color:var(--gold);font-weight:400;">Berkunjung</em>',es:'Ven<br>a <em style="color:var(--gold);font-weight:400;">Visitarnos</em>'},
+ "visit.addr":{en:"Address",fr:"Adresse",id:"Alamat",es:"Dirección"},
+ "visit.hours":{en:"Hours",fr:"Horaires",id:"Jam Buka",es:"Horario"},
+ "visit.hoursv":{en:"Daily<br>9:00 AM – 11 PM",fr:"Tous les jours<br>9h00 – 23h00",id:"Setiap hari<br>09.00 – 23.00",es:"A diario<br>9:00 – 23:00"},
+ "visit.contact":{en:"Contact",fr:"Contact",id:"Kontak",es:"Contacto"},
+ "footer.tagline":{en:"Under the Ubud Sky",fr:"Sous le ciel d'Ubud",id:"Di Bawah Langit Ubud",es:"Bajo el Cielo de Ubud"},
+ "footer.rights":{en:"© 2025 · All rights reserved",fr:"© 2025 · Tous droits réservés",id:"© 2025 · Hak cipta dilindungi",es:"© 2025 · Todos los derechos reservados"},
+ "footer.ticker":{en:"Open daily · 9:00 AM – 11 PM · Rooftop Restaurant & Bar · Ubud · Bali ·   ",fr:"Ouvert tous les jours · 9h00 – 23h00 · Restaurant & Bar Rooftop · Ubud · Bali ·   ",id:"Buka setiap hari · 09.00 – 23.00 · Restoran & Bar Rooftop · Ubud · Bali ·   ",es:"Abierto a diario · 9:00 – 23:00 · Restaurante & Bar · Ubud · Bali ·   "},
+};
+const DTL={
+ "MORNING PLATES":{fr:"PLATS DU MATIN",id:"HIDANGAN PAGI",es:"PLATOS DE LA MAÑANA"},
+ "COFFEE":{fr:"CAFÉ",id:"KOPI",es:"CAFÉ"},
+ "TAPAS & STARTERS":{fr:"TAPAS & ENTRÉES",id:"TAPAS & PEMBUKA",es:"TAPAS & ENTRANTES"},
+ "MAINS & BOWLS":{fr:"PLATS & BOWLS",id:"HIDANGAN UTAMA & BOWL",es:"PRINCIPALES & BOWLS"},
+ "COCKTAILS":{fr:"COCKTAILS",id:"KOKTAIL",es:"CÓCTELES"},
+ "MOCKTAILS & MORE":{fr:"MOCKTAILS & PLUS",id:"MOCKTAIL & LAINNYA",es:"MOCKTAILS & MÁS"},
+ "Fragrant fried rice, crispy egg, sambal matah, kerupuk":{fr:"Riz frit parfumé, œuf croustillant, sambal matah, kerupuk",id:"Nasi goreng harum, telur renyah, sambal matah, kerupuk",es:"Arroz frito aromático, huevo crujiente, sambal matah, kerupuk"},
+ "Wild açaí, banana, granola, honey, seasonal fruits":{fr:"Açaí sauvage, banane, granola, miel, fruits de saison",id:"Açaí liar, pisang, granola, madu, buah musiman",es:"Açaí salvaje, plátano, granola, miel, frutas de temporada"},
+ "House sourdough, smashed avocado, poached egg, dukkah":{fr:"Pain au levain maison, avocat écrasé, œuf poché, dukkah",id:"Roti sourdough rumahan, alpukat, telur poach, dukkah",es:"Masa madre de la casa, aguacate, huevo poché, dukkah"},
+ "Poached eggs, hollandaise, brioche, smoked salmon":{fr:"Œufs pochés, hollandaise, brioche, saumon fumé",id:"Telur poach, saus hollandaise, brioche, salmon asap",es:"Huevos poché, holandesa, brioche, salmón ahumado"},
+ "Quinoa, sweet potato, egg, tahini drizzle":{fr:"Quinoa, patate douce, œuf, filet de tahini",id:"Quinoa, ubi, telur, siraman tahini",es:"Quinoa, batata, huevo, hilo de tahini"},
+ "Spiced tomato sauce, two eggs, toasted pita, herb oil":{fr:"Sauce tomate épicée, deux œufs, pita grillé, huile d'herbes",id:"Saus tomat berbumbu, dua telur, pita panggang, minyak herba",es:"Salsa de tomate especiada, dos huevos, pita tostada, aceite de hierbas"},
+ "Single origin Kintamani, slow filter brew":{fr:"Kintamani pure origine, filtre lent",id:"Kintamani single origin, seduhan filter lambat",es:"Kintamani de origen único, filtrado lento"},
+ "Local espresso, coconut milk, palm sugar":{fr:"Espresso local, lait de coco, sucre de palme",id:"Espresso lokal, santan, gula aren",es:"Espresso local, leche de coco, azúcar de palma"},
+ "12-hour cold extraction, black or oat milk":{fr:"Extraction à froid 12h, nature ou lait d'avoine",id:"Ekstraksi dingin 12 jam, hitam atau susu oat",es:"Extracción en frío 12 h, solo o con leche de avena"},
+ "Turmeric, ginger, coconut milk, honey":{fr:"Curcuma, gingembre, lait de coco, miel",id:"Kunyit, jahe, santan, madu",es:"Cúrcuma, jengibre, leche de coco, miel"},
+ "6 skewers, peanut sauce, lontong, pickles":{fr:"6 brochettes, sauce cacahuète, lontong, pickles",id:"6 tusuk, saus kacang, lontong, acar",es:"6 brochetas, salsa de cacahuete, lontong, encurtidos"},
+ "3 tacos, mango salsa, chipotle crema":{fr:"3 tacos, salsa de mangue, crème chipotle",id:"3 taco, salsa mangga, krim chipotle",es:"3 tacos, salsa de mango, crema de chipotle"},
+ "Sesame-seared, ponzu, cucumber, microgreens":{fr:"Saisi au sésame, ponzu, concombre, micro-pousses",id:"Sear wijen, ponzu, timun, microgreens",es:"Sellado al sésamo, ponzu, pepino, microvegetales"},
+ "Tomato basil · mushroom truffle · smoked salmon":{fr:"Tomate basilic · champignon truffe · saumon fumé",id:"Tomat basil · jamur truffle · salmon asap",es:"Tomate albahaca · champiñón trufa · salmón ahumado"},
+ "Mixed vegetables, tofu, tempeh, peanut dressing":{fr:"Légumes variés, tofu, tempeh, sauce cacahuète",id:"Aneka sayur, tahu, tempe, saus kacang",es:"Verduras variadas, tofu, tempeh, aderezo de cacahuete"},
+ "Fragrant rice, tempeh, egg, sambal matah":{fr:"Riz parfumé, tempeh, œuf, sambal matah",id:"Nasi harum, tempe, telur, sambal matah",es:"Arroz aromático, tempeh, huevo, sambal matah"},
+ "Cremini, truffle oil, aged parmesan":{fr:"Cremini, huile de truffe, parmesan affiné",id:"Jamur cremini, minyak truffle, parmesan tua",es:"Cremini, aceite de trufa, parmesano curado"},
+ "Charcuterie, cheese, fruits, crackers · 2–3 pax":{fr:"Charcuterie, fromage, fruits, crackers · 2–3 pers.",id:"Charcuterie, keju, buah, kraker · 2–3 orang",es:"Embutidos, queso, frutas, crackers · 2–3 pers."},
+ "Dark rum, passion fruit, coconut, lime":{fr:"Rhum ambré, fruit de la passion, coco, citron vert",id:"Rum gelap, markisa, kelapa, jeruk nipis",es:"Ron oscuro, maracuyá, coco, lima"},
+ "Gin, Campari, vermouth, orange zest":{fr:"Gin, Campari, vermouth, zeste d'orange",id:"Gin, Campari, vermouth, kulit jeruk",es:"Ginebra, Campari, vermut, ralladura de naranja"},
+ "Aperol, prosecco, blood orange, rosemary":{fr:"Aperol, prosecco, orange sanguine, romarin",id:"Aperol, prosecco, jeruk merah, rosemary",es:"Aperol, prosecco, naranja sanguina, romero"},
+ "Whisky, cold brew, coffee liqueur, smoked vanilla":{fr:"Whisky, cold brew, liqueur de café, vanille fumée",id:"Wiski, cold brew, liker kopi, vanila asap",es:"Whisky, cold brew, licor de café, vainilla ahumada"},
+ "Arak Bali, passion fruit, citrus, egg white":{fr:"Arak Bali, fruit de la passion, agrumes, blanc d'œuf",id:"Arak Bali, markisa, sitrus, putih telur",es:"Arak Bali, maracuyá, cítricos, clara de huevo"},
+ "Rum, Campari, pineapple, lime, falernum":{fr:"Rhum, Campari, ananas, citron vert, falernum",id:"Rum, Campari, nanas, jeruk nipis, falernum",es:"Ron, Campari, piña, lima, falernum"},
+ "Turmeric, ginger, lemon, honey, soda":{fr:"Curcuma, gingembre, citron, miel, soda",id:"Kunyit, jahe, lemon, madu, soda",es:"Cúrcuma, jengibre, limón, miel, soda"},
+ "Hibiscus, rose, lemongrass, coconut water":{fr:"Hibiscus, rose, citronnelle, eau de coco",id:"Rosela, mawar, serai, air kelapa",es:"Hibisco, rosa, hierba limón, agua de coco"},
+ "Red, White, or Rosé by the glass":{fr:"Rouge, blanc ou rosé au verre",id:"Merah, putih, atau rosé per gelas",es:"Tinto, blanco o rosado por copa"},
+ "Indonesia's local cold brew, 330ml":{fr:"La bière locale indonésienne, 330 ml",id:"Bir lokal Indonesia, 330 ml",es:"La cerveza local de Indonesia, 330 ml"},
+ "A real gem in the heart of Ubud. Refined local cuisine with delicious French touches — and the owner is a true cocktail expert. A must.":{fr:"Un vrai bijou au cœur d'Ubud. Cuisine locale raffinée aux délicieuses touches françaises — et le patron est un véritable expert en cocktails. À ne pas manquer.",id:"Permata sejati di jantung Ubud. Masakan lokal halus dengan sentuhan Prancis yang lezat — dan pemiliknya ahli koktail sejati. Wajib.",es:"Una auténtica joya en el corazón de Ubud. Cocina local refinada con deliciosos toques franceses — y el dueño es un verdadero experto en cócteles. Imprescindible."},
+ "Superb spot, warm and friendly staff. Lovely atmosphere with a beautiful rooftop, and the food is great too. Highly recommend in Ubud.":{fr:"Superbe endroit, personnel chaleureux et accueillant. Ambiance charmante avec un magnifique rooftop, et la cuisine est excellente. Je recommande vivement à Ubud.",id:"Tempat luar biasa, staf ramah dan hangat. Suasana indah dengan rooftop cantik, makanannya juga enak. Sangat direkomendasikan di Ubud.",es:"Lugar estupendo, personal cálido y amable. Ambiente encantador con una azotea preciosa, y la comida también es excelente. Muy recomendable en Ubud."},
+ "An exceptional address. Ceremonia is a real gem — refined cuisine, a sublime setting, and attentive, professional, kind service.":{fr:"Une adresse exceptionnelle. Ceremonia est une véritable pépite — cuisine raffinée, cadre sublime, et service attentionné, professionnel et bienveillant.",id:"Alamat luar biasa. Ceremonia benar-benar permata — masakan halus, suasana memukau, dan pelayanan penuh perhatian, profesional, dan ramah.",es:"Una dirección excepcional. Ceremonia es una verdadera joya — cocina refinada, un entorno sublime y un servicio atento, profesional y amable."},
+ "Three weeks in Bali and this is where we ate the best! Everything excellent and beautifully presented, with a superb rooftop. A must-visit.":{fr:"Trois semaines à Bali et c'est ici qu'on a le mieux mangé ! Tout est excellent et joliment présenté, avec un superbe rooftop. À visiter absolument.",id:"Tiga minggu di Bali dan di sinilah kami makan paling enak! Semua luar biasa dan disajikan cantik, dengan rooftop menawan. Wajib dikunjungi.",es:"Tres semanas en Bali y aquí es donde mejor comimos. Todo excelente y bellamente presentado, con una azotea magnífica. Visita obligada."},
+ "A wonderful find in the heart of Ubud. The dishes are as good as they are beautiful, the staff attentive, the owner adorable. Highly recommend!":{fr:"Une merveilleuse découverte au cœur d'Ubud. Les plats sont aussi bons que beaux, le personnel attentionné, le patron adorable. Je recommande vivement !",id:"Penemuan luar biasa di jantung Ubud. Hidangannya seenak penampilannya, staf penuh perhatian, pemiliknya menyenangkan. Sangat direkomendasikan!",es:"Un hallazgo maravilloso en el corazón de Ubud. Los platos son tan buenos como bonitos, el personal atento, el dueño encantador. ¡Muy recomendable!"},
+ "A superb spot in Bali — a little haven of peace, cosy and warm. Delicious food, wonderful cocktails, and simply impeccable service.":{fr:"Un superbe endroit à Bali — un petit havre de paix, cosy et chaleureux. Cuisine délicieuse, cocktails merveilleux, et service tout simplement impeccable.",id:"Tempat luar biasa di Bali — surga kecil yang nyaman dan hangat. Makanan lezat, koktail menakjubkan, dan pelayanan yang benar-benar sempurna.",es:"Un lugar magnífico en Bali — un pequeño remanso de paz, acogedor y cálido. Comida deliciosa, cócteles maravillosos y un servicio sencillamente impecable."},
+ "Magnificent restaurant on the main street. Warm welcome, friendly staff and food worthy of a gourmet table. The desserts are to die for!":{fr:"Restaurant magnifique sur la rue principale. Accueil chaleureux, personnel sympathique et cuisine digne d'une table gastronomique. Les desserts sont à tomber !",id:"Restoran megah di jalan utama. Sambutan hangat, staf ramah, dan makanan setara meja gourmet. Pencuci mulutnya luar biasa!",es:"Restaurante magnífico en la calle principal. Acogida cálida, personal amable y comida digna de una mesa gourmet. ¡Los postres son de muerte!"},
+ "Quite possibly the best restaurant in Ubud. Ideally located with an open terrace, warmth and delicious food. Highly recommend.":{fr:"Probablement le meilleur restaurant d'Ubud. Idéalement situé avec une terrasse ouverte, chaleur et cuisine délicieuse. Je recommande vivement.",id:"Mungkin restoran terbaik di Ubud. Lokasi ideal dengan teras terbuka, kehangatan, dan makanan lezat. Sangat direkomendasikan.",es:"Posiblemente el mejor restaurante de Ubud. Ubicación ideal con terraza abierta, calidez y comida deliciosa. Muy recomendable."},
+ "A beautiful discovery — such a friendly welcome. Everything is an explosion of flavor. A true haven of peace in the heart of Ubud.":{fr:"Une belle découverte — un accueil si chaleureux. Tout est une explosion de saveurs. Un véritable havre de paix au cœur d'Ubud.",id:"Penemuan indah — sambutan yang sangat ramah. Semuanya ledakan rasa. Surga kedamaian sejati di jantung Ubud.",es:"Un hermoso descubrimiento — una acogida tan amable. Todo es una explosión de sabor. Un verdadero remanso de paz en el corazón de Ubud."},
+ "Great address in Ubud. Every dish was a delight. Tasteful decor, attentive service, and a rooftop overlooking the street.":{fr:"Très bonne adresse à Ubud. Chaque plat était un régal. Déco soignée, service attentionné, et un rooftop qui surplombe la rue.",id:"Alamat hebat di Ubud. Setiap hidangan menyenangkan. Dekorasi berselera, pelayanan penuh perhatian, dan rooftop menghadap jalan.",es:"Gran dirección en Ubud. Cada plato fue un placer. Decoración con gusto, servicio atento y una azotea con vistas a la calle."},
+ "Excellent restaurant: elaborate cocktails, delicious and varied dishes in a chic, warm setting. I recommend it with my eyes closed.":{fr:"Excellent restaurant : cocktails élaborés, plats délicieux et variés dans un cadre chic et chaleureux. Je le recommande les yeux fermés.",id:"Restoran luar biasa: koktail rumit, hidangan lezat dan beragam dalam suasana chic nan hangat. Saya rekomendasikan dengan mata tertutup.",es:"Restaurante excelente: cócteles elaborados, platos deliciosos y variados en un entorno chic y cálido. Lo recomiendo con los ojos cerrados."},
+ "Great cocktails and tasty snacks! The place is gorgeous — you feel wonderful on this rooftop.":{fr:"Très bons cocktails et snacks savoureux ! Le lieu est magnifique — on se sent merveilleusement bien sur ce rooftop.",id:"Koktail enak dan camilan lezat! Tempatnya menawan — terasa nyaman sekali di rooftop ini.",es:"¡Cócteles geniales y aperitivos sabrosos! El lugar es precioso — se está de maravilla en esta azotea."},
+};
+let LANG=(typeof localStorage!=='undefined'&&localStorage.getItem('lang'))||'en';
+function tr(k){const o=I18N[k];return o?(o[LANG]||o.en):'';}
+function L(en){if(LANG==='en')return en;const o=DTL[en];return (o&&o[LANG])||en;}
+function applyLang(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const v=tr(el.getAttribute('data-i18n'));if(v)el.textContent=v;});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const v=tr(el.getAttribute('data-i18n-html'));if(v)el.innerHTML=v;});
+  document.documentElement.lang=LANG;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===LANG));
+  if(typeof activeTab!=='undefined')renderMenu(activeTab);
+  if(typeof initReviews==='function')initReviews();
+  if(window.__tickerBuild)window.__tickerBuild();
+}
+function setLang(l){LANG=l;try{localStorage.setItem('lang',l)}catch(e){}applyLang();}
+function initLang(){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+  applyLang();
+}
+
 /* ─── MENU DATA ───────────────────────────────────────────────────── */
 const MENU={
   breakfast:[
@@ -1007,7 +1203,7 @@ function renderMenu(tab){
   const c=document.getElementById('menu-content');
   c.innerHTML=MENU[tab].map(sec=>`
     <div style="margin-bottom:44px;">
-      <p style="font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.6em;text-transform:uppercase;color:rgba(212,184,150,.3);margin-bottom:14px;">${sec.label}</p>
+      <p style="font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.6em;text-transform:uppercase;color:rgba(212,184,150,.3);margin-bottom:14px;">${L(sec.label)}</p>
       <div class="menu-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
         ${sec.items.map((item,i)=>`
           <div class="menu-card" data-mi style="opacity:0;transform:translateY(14px);transition:opacity .4s ease ${i*40}ms,transform .4s ease ${i*40}ms;">
@@ -1015,7 +1211,7 @@ function renderMenu(tab){
               <span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:21px;font-weight:400;">${item.name}</span>
               <span style="font-family:'Inter',sans-serif;color:var(--gold);font-size:10px;letter-spacing:.1em;white-space:nowrap;padding-top:5px;font-weight:400;">IDR ${item.price}</span>
             </div>
-            <p style="font-family:'Inter',sans-serif;font-weight:300;color:rgba(245,240,232,.3);font-size:12px;line-height:1.65;">${item.desc}</p>
+            <p style="font-family:'Inter',sans-serif;font-weight:300;color:rgba(245,240,232,.3);font-size:12px;line-height:1.65;">${L(item.desc)}</p>
           </div>
         `).join('')}
       </div>
@@ -1149,7 +1345,7 @@ function initReviews(){
         <span class="rv-av" style="background:${r.c}">${r.i}</span>
         <div><div class="rv-name">${r.n}</div><div class="rv-stars-sm">★★★★★</div></div>
       </div>
-      <p class="rv-text">${r.t}</p>
+      <p class="rv-text">${L(r.t)}</p>
     </div>`;
   const html=REVIEWS.map(card).join('');
   s.innerHTML=html+html;   // duplicated for a seamless rise
@@ -1171,6 +1367,7 @@ function initHeroCarousel(){
 function initLeaves(){
   const lf=document.querySelector('.hero-leaf.left');
   const rf=document.querySelector('.hero-leaf.right');
+  const cf=document.querySelector('.hero-leaf.center');
   if(!lf||!rf)return;
   let ticking=false;
   function update(){
@@ -1179,6 +1376,10 @@ function initLeaves(){
     const rot=p*5;
     lf.style.transform=`translateX(${-shift}px) rotate(${-rot}deg)`;
     rf.style.transform=`translateX(${ shift}px) rotate(${ rot}deg)`;
+    if(cf){
+      const drop=p*window.innerHeight*2.1;
+      cf.style.transform=`translateX(-50%) translateY(${-drop}px) scaleY(-1) rotate(${p*3}deg)`;
+    }
     ticking=false;
   }
   window.addEventListener('scroll',()=>{
@@ -1212,6 +1413,61 @@ function initReveals(){
   setTimeout(()=>document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el)),300);
 }
 
+/* ─── TICKER WAVE (text scrolling along a wave) ───────────────────── */
+function initTickerWave(){
+  const svg=document.getElementById('tw-svg');
+  const path=document.getElementById('tw-path');
+  const band=document.getElementById('tw-band');
+  const tp=document.getElementById('twpath');
+  if(!svg||!path||!band||!tp)return;
+  const unit='Open daily · 9:00 AM – 11 PM · Rooftop Restaurant & Bar · Ubud · Bali ·   ';
+  let unitLen=600, off=0;
+  function build(){
+    const W=Math.ceil(svg.clientWidth||window.innerWidth);
+    const H=Math.round(svg.clientHeight||120);
+    const mid=H*0.50, amp=Math.min(22,H*0.18);
+    const half=Math.max(16,Math.min(24,H*0.22));   // band half-height
+    const seg=W/Math.max(2,Math.round(W/300));     // half-wavelength
+    // centerline (text runs along this) + collect anchors/controls for the band
+    const xs=[-seg]; const ctrls=[];
+    let d='M'+(-seg).toFixed(0)+' '+mid.toFixed(1), up=true;
+    for(let x=-seg;x<W+seg;x+=seg){
+      const cx=x+seg/2, cy=up?mid-amp:mid+amp;
+      d+=' Q '+cx.toFixed(1)+' '+cy.toFixed(1)+' '+(x+seg).toFixed(1)+' '+mid.toFixed(1);
+      xs.push(x+seg); ctrls.push({cx:cx,cy:cy});
+      up=!up;
+    }
+    path.setAttribute('d',d);
+    // filled wave ribbon: top edge forward, then bottom edge backward
+    let b='M'+xs[0].toFixed(1)+' '+(mid-half).toFixed(1);
+    for(let i=0;i<ctrls.length;i++)
+      b+=' Q '+ctrls[i].cx.toFixed(1)+' '+(ctrls[i].cy-half).toFixed(1)+' '+xs[i+1].toFixed(1)+' '+(mid-half).toFixed(1);
+    b+=' L '+xs[xs.length-1].toFixed(1)+' '+(mid+half).toFixed(1);
+    for(let i=ctrls.length-1;i>=0;i--)
+      b+=' Q '+ctrls[i].cx.toFixed(1)+' '+(ctrls[i].cy+half).toFixed(1)+' '+xs[i].toFixed(1)+' '+(mid+half).toFixed(1);
+    b+=' Z';
+    band.setAttribute('d',b);
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    const u=(typeof tr==='function'&&tr('footer.ticker'))||unit;
+    tp.textContent=u;
+    unitLen=tp.getComputedTextLength()||600;
+    const reps=Math.ceil((W+unitLen*2)/unitLen)+1;
+    tp.textContent=u.repeat(reps);
+    if(off<=-unitLen) off=0;
+  }
+  build();
+  window.__tickerBuild=build;
+  let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(build,160)});
+  window.addEventListener('load',build);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(build);
+  (function tick(){
+    off-=0.5;
+    if(off<=-unitLen) off+=unitLen;
+    tp.setAttribute('startOffset',off.toFixed(1));
+    requestAnimationFrame(tick);
+  })();
+}
+
 /* ─── MOBILE MENU ─────────────────────────────────────────────────── */
 function initMobileMenu(){
   const b=document.getElementById('nav-burger');
@@ -1232,6 +1488,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   initLeaves();
   initReviews();
   initMobileMenu();
+  initTickerWave();
+  initLang();
   requestAnimationFrame(()=>{
     const bk=document.getElementById('ta-bk');
     if(bk)moveTabLine(bk);
