@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Food Menu — Ceremonia Rooftop Ubud</title>
+<meta name="description" content="Food menu — Ceremonia Rooftop Ubud. Balinese & world tapas, sharing platters, main courses, Indonesian dishes, poke bowls, pasta, salads and desserts.">
+<meta name="theme-color" content="#0F1B35">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0F1B35;--navy-lt:#141F3A;--cream:#EDE8DF;--gold:#D4B896;--ivory:#F5F0E8;--umber:#8B6F47;--ease:cubic-bezier(0.16,1,0.3,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--navy);overflow-x:clip;font-family:'Inter',sans-serif;color:var(--ivory)}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--gold)}
+a{text-decoration:none;color:inherit}
+.grain::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.05}
+#bar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:16px 6vw;background:rgba(15,27,53,.82);backdrop-filter:blur(18px) saturate(150%);border-bottom:1px solid rgba(212,184,150,.12)}
+#bar .brand{display:flex;align-items:center;gap:10px}
+#bar img{width:30px;height:30px;object-fit:contain}
+#bar .brand span{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--ivory)}
+.back{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.6);transition:color .25s}
+.back:hover{color:var(--gold)}
+#cover{position:relative;text-align:center;padding:160px 7vw 64px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,rgba(139,94,60,.14) 0%,transparent 62%)}
+#cover .eyebrow{font-size:10px;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+#cover h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(48px,9vw,104px);line-height:.92;letter-spacing:-.01em}
+#cover h1 em{display:block;color:var(--gold);font-weight:400;font-style:italic}
+#cover .tag{max-width:560px;margin:28px auto 0;font-weight:300;font-size:13px;line-height:1.9;color:rgba(245,240,232,.55)}
+.legend{margin-top:18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(212,184,150,.6)}
+.cover-orn{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:30px}
+.cover-orn .l{width:60px;height:1px;background:rgba(212,184,150,.3)}
+.cover-orn span{color:rgba(212,184,150,.6);font-size:13px}
+.group{position:relative;padding:66px 7vw}
+.group.navy{background:var(--navy)}.group.lt{background:var(--navy-lt)}
+.group-head{text-align:center;margin-bottom:12px}
+.group-head h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,5vw,56px);color:var(--ivory)}
+.group-note{text-align:center;font-size:12px;font-weight:300;color:rgba(245,240,232,.45);margin-bottom:38px;letter-spacing:.02em}
+.inner{max-width:980px;margin:0 auto;position:relative;z-index:1}
+.sec{margin-bottom:42px}
+.sec-label{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.sec-label span{font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.sec-label .l{flex:1;height:1px;background:rgba(212,184,150,.12)}
+.sec-note{font-size:11px;font-weight:300;font-style:italic;color:rgba(245,240,232,.42);margin:0 0 18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:linear-gradient(135deg,rgba(15,27,53,.7),rgba(22,33,60,.85));border:1px solid rgba(212,184,150,.12);border-radius:13px;backdrop-filter:blur(8px);
+  box-shadow:0 6px 22px rgba(0,0,0,.28),inset 0 1px 0 rgba(212,184,150,.05);padding:16px 18px;transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
+.card:hover{border-color:rgba(212,184,150,.3);box-shadow:0 12px 30px rgba(0,0,0,.4);transform:translateY(-3px)}
+.card .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.card .name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:20px;color:var(--ivory)}
+.card .price{font-size:12px;letter-spacing:.06em;color:var(--gold);font-weight:500;white-space:nowrap}
+.card .desc{font-weight:300;font-size:12px;line-height:1.6;color:rgba(245,240,232,.42);margin-top:6px}
+.badge{display:inline-block;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);background:var(--gold);border-radius:20px;padding:2px 8px;margin-left:8px;vertical-align:middle;font-weight:600}
+.veg{color:rgba(120,180,110,.85);font-size:10px;margin-left:6px;font-style:normal}
+footer{text-align:center;padding:48px 7vw 60px;background:var(--navy);position:relative}
+footer .note{font-size:11px;font-weight:300;color:rgba(245,240,232,.4);line-height:1.8;max-width:540px;margin:0 auto 26px}
+footer .logo{width:84px;margin:0 auto 14px}
+footer .tagline{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:18px}
+footer .home{display:inline-block;margin-top:26px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:12px 28px;transition:background .3s,color .3s}
+footer .home:hover{background:var(--gold);color:var(--navy)}
+[data-rev]{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+[data-rev].in{opacity:1;transform:none}
+@media(max-width:760px){.grid{grid-template-columns:1fr}#cover{padding:130px 7vw 50px}.group{padding:54px 7vw}.card .name{font-size:19px}}
+</style>
+</head>
+<body>
+<nav id="bar">
+  <a class="brand" href="index.html"><img src="logo-ceremonia-beige.webp" alt="Ceremonia"><span>Ceremonia</span></a>
+  <a class="back" href="index.html">← Home</a>
+</nav>
+<header id="cover" class="grain">
+  <p class="eyebrow">The Menu</p>
+  <h1>Food<em>Menu</em></h1>
+  <p class="tag">Balinese soul, world flavours &amp; shared plates — homemade, cooked with care &amp; served with love.</p>
+  <p class="legend">(V) Vegetarian&nbsp;&nbsp;·&nbsp;&nbsp;(V&amp;VN) Vegetarian &amp; Vegan</p>
+  <div class="cover-orn"><span class="l"></span><span>✦</span><span class="l"></span></div>
+</header>
+<main id="menu"></main>
+<footer class="grain">
+  <p class="note" id="legal"></p>
+  <img class="logo" src="logo-ceremonia-beige.webp" alt="Ceremonia">
+  <p class="tagline">Under the Ubud Sky</p>
+  <a class="home" href="index.html">Back to Ceremonia</a>
+</footer>
+<script>
+const NOTE="Please inform us if you have any food allergies. All rates are in thousands (’000) IDR, subject to 11% government tax & 5% service.";
+const MENU=[
+ {group:"Tapas", cls:"navy", note:"Small plates to share — 50 / item", sections:[
+   {label:"Balinese Tapas", note:"50 / item", items:[
+     {name:"Ceremonia Spring Roll", veg:"V", desc:"Deep-fried vegetable spring rolls, crispy & golden"},
+     {name:"Veggie Fry Roll Risoles", veg:"V", desc:"Crispy Indonesian roll with vegetables and egg"},
+     {name:"Crispy Tempeh Kering", veg:"V&VN", desc:"Grilled fermented soy tempeh marinated with peanut sauce"},
+     {name:"Mini Nasi Goreng Ball", desc:"Indonesian fried rice, vegetables and chicken"},
+     {name:"Bali Crispy Chicken Koloke", tag:"Best seller", desc:"Crispy fried chicken coated with a sweet & sour sauce"},
+     {name:"Corn Fritter Perkedel", veg:"V&VN", desc:"Crispy corn fritters mixed with spices and herbs"},
+     {name:"Chicken Roll Lumpia Goreng Ayam", desc:"Fried roll filled with chicken, seasoned vegetables and spices"},
+     {name:"Grilled Chicken Stick — Satay Ayam", desc:"Marinated grilled chicken on a wood stick with peanut sauce"},
+   ]},
+   {label:"World Flavour Tapas", note:"50 / item", items:[
+     {name:"Crispy Homemade French Fries", veg:"V-VN", desc:"Golden, crispy hand-cut fries with spices"},
+     {name:"Hummus Platter", veg:"V&VN", desc:"Creamy hummus served with soft pita bread"},
+     {name:"Greek Feta Bruschetta", veg:"V", desc:"Grilled bread, feta, black olives, cucumber, cherry tomatoes, basil & olive oil"},
+     {name:"Spanish Tortilla", veg:"V", desc:"Classic Spanish omelette with pan-fried potatoes and onions"},
+     {name:"Pan Con Tomate", veg:"V", desc:"Grilled garlic bread topped with fresh tomato, olive oil & salt"},
+     {name:"Baby Beef Burger — set of 2", desc:"Mini burgers with beef patty, cheese and a soft bun"},
+     {name:"Chicken Nuggets", desc:"Crispy homemade & fresh chicken nuggets"},
+     {name:"Lebanese Hummus Bruschetta", veg:"V", desc:"Grilled bread, hummus, tomatoes, onion, coriander & mixed salad"},
+     {name:"Falafel Platter", veg:"V&VN", desc:"Homemade crispy falafel served with hummus"},
+     {name:"Avocado Cream Cheese Rice Cake", veg:"V", desc:"Crispy fried rice cake topped with homemade cream cheese & avocado"},
+     {name:"Spanish Patatas Bravas Bowl", veg:"V&VN", desc:"Crispy deep-fried potatoes with aioli or spicy tomato sauce"},
+   ]},
+ ]},
+ {group:"Sharing Platters", cls:"lt", note:"Tapas mix — made to share", sections:[
+   {label:"Tapas Mix", items:[
+     {name:"Mix Lebanese", price:"145", desc:"3 Lebanese tapas — creamy hummus with pita, crispy homemade falafels, hummus bruschetta with tomatoes, onions & coriander"},
+     {name:"Mix Spanish", price:"135", desc:"3 Spanish tapas — patatas bravas with aioli or spicy tomato, Spanish tortilla, pan con tomate"},
+     {name:"Mix Vegan", price:"110", desc:"3 vegan tapas — corn fritter (perkedel jagung), crispy tempeh (satay tempeh), crispy mushroom tempura"},
+     {name:"Mix Tuna", price:"149", desc:"Two ways with tuna — Balinese spice tuna stick (satay lilit) & aromatic tuna wrap (pepes ikan), with tempeh stick"},
+     {name:"Bali Vegetarian Mix", price:"135", desc:"4 vegetarian tapas — risoles, satay tempeh, perkedel jagung & lumpia goreng"},
+     {name:"Ceremonia Meat Lovers", price:"780", desc:"Generous premium beef platter (500g) with crispy homemade fries & red wine sauce — perfect for 2"},
+     {name:"More Sauces", price:"10", desc:"Tartar, sweet & sour, aioli, chili mayo, green sambal (medium), peanut sauce, red sambal (spicy)"},
+   ]},
+ ]},
+ {group:"Main Courses", cls:"navy", sections:[
+   {label:"Mains", items:[
+     {name:"Grilled Salmon", price:"225", desc:"Salmon filet, steamed potato & carrot, sautéed pak choi, edible flower, savory lemon cream sauce"},
+     {name:"Balinese Nasi Campur", tag:"Best seller", price:"105", desc:"Balinese rice with shredded chicken, vegetables, boiled egg, tempeh, peanuts, sambal matah & sambal ulek"},
+     {name:"Tuna Tataki", price:"135", desc:"Pan-seared tuna with sesame, vegetables, rice, edible flower — teriyaki sauce on the side"},
+     {name:"Ceremonia Pizza", price:"110", desc:"Homemade dough, tomato sauce, tomato, onion, bacon, mushroom, capsicum, basil, oregano, mozzarella"},
+     {name:"Ceremonia Margherita", veg:"Vegetarian", price:"95", desc:"Homemade dough, flavorful tomato sauce, fresh tomatoes, basil, oregano & melted mozzarella"},
+     {name:"Beef Burger", price:"115", desc:"Homemade buns, beef patty 150g, tomato, lettuce, caramelized onion, cheese, bacon — salad & fries"},
+     {name:"Chicken Creamy", tag:"Best seller", price:"125", desc:"Grilled chicken breast, sautéed vegetables, mashed potato, cherry tomato, red radish, mushroom cream sauce"},
+     {name:"Croque Monsieur with Salad", price:"115", desc:"Golden pan-seared bread filled with ham & melted Emmental — a flavorful twist on the French classic"},
+   ]},
+ ]},
+ {group:"Indonesian & Fresh", cls:"lt", sections:[
+   {label:"Indonesian", items:[
+     {name:"Chicken Mie Goreng", price:"80", desc:"Stir-fried noodle, chicken, soy sauce & sambal, cabbage, carrot, caisin, fried egg, prawn crackers, pickles"},
+     {name:"Mie Goreng — Vegetarian (tempeh)", price:"70"},
+     {name:"Ceremonia Nasi Goreng", tag:"Best seller", price:"75", desc:"Stir-fried rice, soy sauce & sambal, long bean, carrot, egg omelet, pickle and chicken"},
+     {name:"Nasi Goreng — Vegetarian (tempeh)", price:"65"},
+     {name:"Curry Chicken Soup", price:"85", desc:"Indonesian spices, chicken, vegetables, coconut milk, served with steamed rice (vegetarian option possible)"},
+   ]},
+   {label:"Pasta", note:"Choose your pasta: penne or fettuccini", items:[
+     {name:"Bolognese", veg:"Beef", price:"100", desc:"Bolognaise sauce, basil, parmesan & garlic bread"},
+     {name:"Carbonara", veg:"Pork", price:"95", desc:"Bacon, onion, carbonara sauce, basil, mushroom, parmesan, cherry tomato & garlic bread"},
+     {name:"Napolitana", veg:"Vegetarian", price:"85", desc:"Tomato sauce, cherry tomato, basil, parmesan & garlic bread"},
+   ]},
+   {label:"Poke Bowl", note:"All poke bowls served with passion-fruit sauce or honey-mustard", items:[
+     {name:"Avocado / Tempeh Poke Bowl", veg:"V&VN", price:"90", desc:"Rice, avocado, tempeh, red cabbage, chickpeas, tomatoes, sweet corn, carrot, cauliflower, broccoli, sesame, coriander, balsamic dressing"},
+     {name:"Salmon Poke Bowl", price:"125", desc:"Rice, salmon, edamame, red cabbage, mango, carrot, radish, sesame, coriander"},
+     {name:"Chicken Poke Bowl", tag:"Best seller", price:"90", desc:"Rice, chicken, red onion, radish, tomatoes, sweet corn, carrot, broccoli, green beans, sesame, coriander"},
+     {name:"Tuna Poke Bowl", price:"100", desc:"Rice, tuna, edamame, red cabbage, mango, carrot, radish, sesame, coriander"},
+   ]},
+   {label:"Salad", items:[
+     {name:"Caesar Salad", price:"95", desc:"Baby romaine, chicken, boiled egg, tomato, red radish, edible flower, Caesar dressing"},
+     {name:"Tuna Avocado Salad", price:"90", desc:"Mixed salad with tuna, onion, cucumber, tomato, red radish, edible flower, balsamic dressing"},
+     {name:"Greek Salad", veg:"Vegetarian", price:"90", desc:"Mixed salad, feta, cucumber, tomato, capsicum, black olive, Greek dressing"},
+   ]},
+ ]},
+ {group:"Desserts", cls:"navy", sections:[
+   {label:"Sweet", items:[
+     {name:"Lava Cake", tag:"Best seller 2024", price:"65", desc:"Chocolate fondant with chopped fruits & a scoop of vanilla ice cream"},
+     {name:"Dadar Gulung Bali", price:"45", desc:"Soft pandan crepes filled with sweet coconut & palm sugar"},
+     {name:"Tiramisu", price:"80", desc:"Fully homemade — coffee, biscuits, creamy mascarpone & cacao"},
+     {name:"Ice Cream Cup", price:"40", desc:"Vanilla, chocolate or strawberry"},
+     {name:"Crème Brûlée Vanilla", price:"65", desc:"Smooth & flavorful cream with a thin caramelized sugar crust"},
+     {name:"Fruit Salad", price:"45", desc:"Mixed fruit, banana, watermelon, pineapple"},
+     {name:"Pisang Goreng", price:"55", desc:"Deep-fried crispy banana, vanilla ice cream, brown sugar, strawberry, coco sugar & mint"},
+     {name:"Crepes", price:"55", desc:"Large crepes — banana choco / strawberry jam / Nutella +5"},
+   ]},
+ ]},
+];
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function itemCard(it){
+  return `<div class="card">
+    <div class="top">
+      <span class="name">${esc(it.name)}${it.veg?`<span class="veg">(${esc(it.veg)})</span>`:''}${it.tag?`<span class="badge">${esc(it.tag)}</span>`:''}</span>
+      ${it.price?`<span class="price">${esc(it.price)}<small style="opacity:.6">k</small></span>`:''}
+    </div>
+    ${it.desc?`<p class="desc">${esc(it.desc)}</p>`:''}
+  </div>`;
+}
+function render(){
+  document.getElementById('menu').innerHTML=MENU.map(g=>`
+    <section class="group ${g.cls} grain"><div class="inner">
+      <div class="group-head"><h2 data-rev>${esc(g.group)}</h2></div>
+      ${g.note?`<p class="group-note" data-rev>${esc(g.note)}</p>`:''}
+      ${g.sections.map(sec=>`
+        <div class="sec">
+          <div class="sec-label" data-rev><span>${esc(sec.label)}</span><span class="l"></span></div>
+          ${sec.note?`<p class="sec-note" data-rev>${esc(sec.note)}</p>`:''}
+          <div class="grid">${sec.items.map(it=>`<span data-rev>${itemCard(it)}</span>`).join('')}</div>
+        </div>`).join('')}
+    </div></section>`).join('');
+  document.getElementById('legal').textContent=NOTE;
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.06,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-rev]').forEach((el,i)=>{el.style.transitionDelay=((i%6)*45)+'ms';io.observe(el)});
+}
+render();
+</script>
+</body>
+</html>
