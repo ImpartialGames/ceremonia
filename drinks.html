@@ -62,6 +62,11 @@ a{text-decoration:none;color:inherit}
 .card .desc{font-weight:300;font-size:12px;line-height:1.6;color:rgba(245,240,232,.42);margin-top:6px}
 .badge{display:inline-block;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);background:var(--gold);border-radius:20px;padding:2px 8px;margin-left:8px;vertical-align:middle;font-weight:600}
 .veg{color:rgba(212,184,150,.7);font-size:10px;margin-left:6px;font-style:italic}
+.card .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13.5px;color:var(--gold);margin-top:3px}
+.card .btl{font-size:11px;font-weight:300;color:rgba(245,240,232,.5);margin-top:9px;letter-spacing:.04em}
+.card .btl b{color:var(--gold);font-weight:600}
+.price .pl{font-size:8px;letter-spacing:.12em;text-transform:uppercase;opacity:.55;margin-left:2px}
+.grid.wide{grid-template-columns:1fr}
 footer{text-align:center;padding:48px 7vw 60px;background:var(--navy);position:relative}
 footer .note{font-size:11px;font-weight:300;color:rgba(245,240,232,.4);line-height:1.8;max-width:540px;margin:0 auto 26px}
 footer .logo{width:84px;margin:0 auto 14px}
@@ -159,15 +164,123 @@ const MENU=[
      {name:"Gin Daisy", price:"120", desc:"Gin, triple sec, grenadine, lime juice, topped with tonic"},
    ]},
  ]},
+ {group:"Fresh Drinks", cls:"lt", sections:[
+   {label:"Mocktails", items:[
+     {name:"Mint & Lemon", price:"55", desc:"Mint leaf, fresh lemon, topped with Sprite & soda"},
+     {name:"Lemongrass Fizz", price:"50", desc:"Lemongrass, lime, ginger, simple syrup, topped with soda water"},
+     {name:"Virgin Mojito", price:"55", desc:"Fresh mint, sugar, lime, topped with soda water"},
+     {name:"Virgin Strawberry Mojito", price:"70", desc:"Fresh strawberry, mint leaf, sugar, topped with soda water"},
+     {name:"Virgin Colada", price:"65", desc:"Fresh pineapple blended with coconut cream"},
+     {name:"Watermelon Breeze", price:"65", desc:"Watermelon, rosella tea extract, mint syrup, Sprite"},
+     {name:"Strawberry Fusion", price:"70", desc:"Fresh strawberry, pineapple juice, lime juice, mint leaf, Sprite"},
+     {name:"Passion Fruit Sweet & Sour", price:"70", desc:"Passion fruit, lime, honey, orange juice, topped with Sprite"},
+     {name:"Secret Ginger Booster", veg:"spicy", price:"75", desc:"Hand-grated ginger, lime, secret infused tea, sugar & other spices"},
+   ]},
+   {label:"Elixirs of Ceremonia", items:[
+     {name:"Skincare", price:"55", desc:"Fresh carrot, orange, ginger"},
+     {name:"Golden", price:"50", desc:"Fresh turmeric, lime & honey"},
+     {name:"Violette", price:"55", desc:"Dragon fruit, ginger, lime & honey"},
+     {name:"Garden", price:"55", desc:"Cucumber, celery, lime & honey"},
+     {name:"Bali", price:"60", desc:"Pineapple, green apple, spinach, celery, lime"},
+     {name:"Ceremonia Green Juice", price:"60", desc:"Spinach, cucumber, celery, lime, ginger, apple"},
+   ]},
+ ]},
+ {group:"More Drinks", cls:"navy", sections:[
+   {label:"Pure Fresh Juices", items:[
+     {name:"Single Fruit Juice", price:"50", desc:"One of your choice — watermelon, pineapple, dragon fruit or papaya (if available)"},
+     {name:"Mixed Juice", price:"55", desc:"Please choose 2"},
+     {name:"Fresh Orange Juice", price:"60"},
+     {name:"Fresh Strawberry Blend", price:"60"},
+     {name:"Banana Juice", price:"50", desc:"Blended with milk"},
+   ]},
+   {label:"Milkshakes", note:"Each milkshake is ice cream blended with regular milk & ice", items:[
+     {name:"Vanilla", price:"45"},
+     {name:"Choco", price:"50"},
+     {name:"Banana", price:"55", desc:"Vanilla ice cream + fresh banana"},
+     {name:"Coffee", price:"60", desc:"Vanilla ice cream + double espresso"},
+     {name:"Matcha", price:"60", desc:"Vanilla ice cream + matcha powder"},
+   ]},
+   {label:"Squash", items:[
+     {name:"Ginger Lemon Mint Squash", price:"55", desc:"Ginger & lemon juice, topped with soda water"},
+     {name:"Passion Fruit Squash", price:"80", desc:"Passion fruit juice, topped with soda water"},
+   ]},
+   {label:"Softs", items:[
+     {name:"Coca-Cola — Normal / Zero", price:"35"},
+     {name:"Sprite", price:"35"},
+     {name:"Tonic Water / Ginger Ale 250ml", price:"35"},
+     {name:"Flavored Syrup", price:"30", desc:"Grenadine, strawberry, passion fruit, lychee, vanilla, melon or peach"},
+     {name:"Mineral Water Pitcher 1L", price:"25"},
+     {name:"Sparkling Water — Polaris 330ml", price:"30"},
+   ]},
+   {label:"Beers", items:[
+     {name:"Small / Radler 330ml", price:"45"},
+     {name:"San Miguel — Pale Pilsner 330ml", price:"50"},
+     {name:"Large Bintang 620ml", price:"75"},
+     {name:"Sharing Bucket — 5 Bintang", tag:"Deal", price:"180", desc:"Five Bintang to share — special offer (regularly 225)"},
+   ]},
+ ]},
+ {group:"Spirits", cls:"lt", note:"All Ceremonia spirits are 45 ml — on the rocks or in a shooter glass · +15 to add a soft (Coca-Cola, Sprite, Indian tonic, ginger ale or sparkling water)", sections:[
+   {label:"Rhum", items:[
+     {name:"Bacardi White Rhum", price:"75"},
+     {name:"Manta Dark Rhum", price:"95"},
+     {name:"Captain Morgan Spiced Rhum", price:"75"},
+     {name:"Havana Club 3 Años — Cuba", price:"95"},
+     {name:"Barceló Gran Añejo — Dominican", price:"105"},
+   ]},
+   {label:"Gin", items:[
+     {name:"Gordon’s Gin", price:"75"},
+     {name:"Bombay Sapphire", price:"115"},
+   ]},
+   {label:"Tequila", items:[
+     {name:"Tequila Jose Cuervo", price:"120"},
+     {name:"Tequila Ranchitos Oro", price:"90"},
+   ]},
+   {label:"Vodka", items:[
+     {name:"Smirnoff Vodka", price:"75"},
+     {name:"Grey Goose", price:"135"},
+   ]},
+   {label:"Liquor & Bitters", items:[
+     {name:"Campari", price:"120"},
+     {name:"Amaretto — Disaronno", price:"120"},
+     {name:"Jägermeister", price:"95"},
+     {name:"Angostura Bitters — extra (2 dash)", price:"15"},
+   ]},
+   {label:"Whiskey & Bourbon", items:[
+     {name:"Jim Beam", price:"100"},
+     {name:"Jack Daniel’s", price:"130"},
+     {name:"Johnnie Walker — Red Label", price:"105"},
+     {name:"Johnnie Walker — Black Label", price:"140"},
+   ]},
+   {label:"Vermouth", items:[
+     {name:"Martini — Extra Dry", price:"90"},
+     {name:"Martini — Bianco", price:"90"},
+     {name:"Martini — Rosso", price:"90"},
+   ]},
+ ]},
+ {group:"Wines", cls:"navy", note:"All wine selections are 150 ml servings · prices shown per glass, with the full 750 ml bottle (about 5–6 glasses)", sections:[
+   {label:"Premium — Isola, Bali (Cantine Balita)", wide:true, items:[
+     {name:"Isola Syrah Riserva", tag:"N°1 best seller 2024", sub:"Syrah · 13.5% · gentle & soft in the mouth", glass:"135", bottle:"595", desc:"Aged in oak barrels to enrich flavour & texture. Elegant aromas of cherry, blackberry, blueberry & chocolate. Perfect with grilled meats & vegetarian dishes."},
+   ]},
+   {label:"Classic — Hatten, Bali", wide:true, items:[
+     {name:"Aga White", tag:"N°2 best seller 2024", sub:"Muscat St Vallier · 11.5%", glass:"90", bottle:"425", desc:"Lemon zest, green apple, apricots, vanilla custard & fresh herb. Perfect for seafood, vegetarian food & salads."},
+     {name:"Aga Rosé", sub:"Muscat St Vallier, Alphonse Lavallée · 11.5%", glass:"95", bottle:"435", desc:"Fresh & fruity — notes of strawberry, tropical fruit & a hint of citrus. Perfect with salads, grilled seafood & chicken."},
+     {name:"Aga Red", sub:"Alphonse Lavallée · 11.5%", glass:"95", bottle:"435", desc:"Fruity & refreshing — hints of orange zest, strawberry, tropical fruit, melon & plum. Perfect with grilled dishes & relax time."},
+   ]},
+ ]},
 ];
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function itemCard(it){
+  const price = it.glass!=null
+    ? `<span class="price">${esc(it.glass)}<small style="opacity:.6">k</small><span class="pl">glass</span></span>`
+    : (it.price!=null?`<span class="price">${esc(it.price)}<small style="opacity:.6">k</small></span>`:'');
   return `<div class="card">
     <div class="top">
       <span class="name">${esc(it.name)}${it.veg?`<span class="veg">(${esc(it.veg)})</span>`:''}${it.tag?`<span class="badge">${esc(it.tag)}</span>`:''}</span>
-      ${it.price?`<span class="price">${esc(it.price)}<small style="opacity:.6">k</small></span>`:''}
+      ${price}
     </div>
+    ${it.sub?`<p class="sub">${esc(it.sub)}</p>`:''}
     ${it.desc?`<p class="desc">${esc(it.desc)}</p>`:''}
+    ${it.bottle!=null?`<p class="btl">Bottle 750ml · <b>${esc(it.bottle)}k</b></p>`:''}
   </div>`;
 }
 let SECTIONS=[],io;
@@ -180,7 +293,7 @@ function render(){
         <div class="sec">
           <div class="sec-label" data-rev><span>${esc(sec.label)}</span><span class="l"></span></div>
           ${sec.note?`<p class="sec-note" data-rev>${esc(sec.note)}</p>`:''}
-          <div class="grid">${sec.items.map(it=>`<span data-rev>${itemCard(it)}</span>`).join('')}</div>
+          <div class="grid${sec.wide?' wide':''}">${sec.items.map(it=>`<span data-rev>${itemCard(it)}</span>`).join('')}</div>
         </div>`).join('')}
     </div></section>`).join('');
   document.getElementById('legal').textContent=NOTE;
