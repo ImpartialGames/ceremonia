@@ -437,6 +437,7 @@ body.menu-open{overflow:hidden}
 }
 .gal-blacki:hover img.blacki-guard{transform:translateY(-5px) rotate(-2deg)}
 .gal-blacki:hover .blacki-arc{transform:scale(1.04)}
+.blacki-m{display:none}  /* mobile-only Blacki, hidden on desktop */
 
 /* ─── VISIT ──────────────────────────────────────────────────────── */
 #a-visit{
@@ -539,8 +540,11 @@ body.menu-open{overflow:hidden}
   .gal-grid{grid-template-columns:1fr 1fr!important;grid-auto-rows:150px!important}
   .gal-item.wide{grid-column:span 2!important}
   .gal-item.tall2{grid-row:auto!important}
+  .blacki-d{display:none!important}
+  .blacki-m{display:flex;right:4%;bottom:-6px;top:auto}
   /* section spacing */
-  #a-about{padding:64px 7vw 120px;margin-top:-1px}
+  #a-about{padding:64px 7vw 120px}
+  .photo-stack img{display:block}
   #a-pillars{padding:64px 7vw 80px}
   #a-menu{padding:64px 7vw 60px}
   #a-gallery{padding:64px 7vw 60px}
@@ -569,7 +573,7 @@ body.menu-open{overflow:hidden}
   /* menu tabs */
   .tab-btn{padding:10px 16px;font-size:9px;letter-spacing:.18em}
   #a-menu .lbl{text-align:center}
-  .menu-head{flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .menu-head{flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center}
   /* reviews */
   #a-reviews{height:92vh;min-height:560px}
   .rv-head h2{font-size:clamp(34px,9vw,46px)}
@@ -917,18 +921,25 @@ body.menu-open{overflow:hidden}
       Captured<br><em style="font-weight:400;color:var(--umber);">Moments</em>
     </h2>
     <div class="gal-grid" data-reveal>
-      <div class="gal-item wide">
+      <div class="gal-item wide gal-blacki gal-blacki-m">
         <img src="IMG_0714.webp" alt="">
         <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:18px;" data-i18n="cap.1">Evenings under the canopy</p></div>
+        <div class="blacki-wrap blacki-m">
+          <svg class="blacki-arc" viewBox="0 0 320 150" aria-hidden="true">
+            <defs><path id="blacki-curve-m" d="M14,140 C72,14 248,14 306,140" fill="none"/></defs>
+            <text text-anchor="middle"><textPath href="#blacki-curve-m" startOffset="50%">Guardian of Ceremonia</textPath></text>
+          </svg>
+          <img class="blacki-guard" src="Blacki-cut.webp" alt="Blacki, Guardian of Ceremonia">
+        </div>
       </div>
       <div class="gal-item">
         <img src="IMG_8591.webp" alt="">
         <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;" data-i18n="cap.2">The rooftop at golden hour</p></div>
       </div>
-      <div class="gal-item gal-blacki">
+      <div class="gal-item gal-blacki gal-blacki-d">
         <img src="IMG_8696.webp" alt="">
         <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;" data-i18n="cap.3">Where Bali meets the world</p></div>
-        <div class="blacki-wrap">
+        <div class="blacki-wrap blacki-d">
           <svg class="blacki-arc" viewBox="0 0 320 150" aria-hidden="true">
             <defs><path id="blacki-curve" d="M14,140 C72,14 248,14 306,140" fill="none"/></defs>
             <text text-anchor="middle"><textPath href="#blacki-curve" startOffset="50%">Guardian of Ceremonia</textPath></text>
