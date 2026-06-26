@@ -241,6 +241,10 @@ body.menu-open{overflow:hidden}
   transition:opacity .85s var(--ease),transform .85s var(--ease);
 }
 [data-reveal].visible{opacity:1;transform:translateY(0) scale(1)}
+/* staggered reveal for grids */
+.reveal-stagger>*{opacity:0;transform:translateY(32px) scale(.985);
+  transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-stagger.in>*{opacity:1;transform:none}
 
 /* ─── HERO ───────────────────────────────────────────────────────── */
 #hero-pin{position:relative;height:170vh}
@@ -948,7 +952,7 @@ body.menu-open{overflow:hidden}
     <h2 data-reveal data-i18n-html="gallery.title" style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,72px);color:var(--navy);line-height:.9;margin-bottom:56px;">
       Captured<br><em style="font-weight:400;color:var(--umber);">Moments</em>
     </h2>
-    <div class="gal-grid" data-reveal>
+    <div class="gal-grid reveal-stagger">
       <div class="gal-item wide gal-blacki gal-blacki-m">
         <img src="IMG_0714.webp" alt="">
         <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:18px;" data-i18n="cap.1">Evenings under the canopy</p></div>
@@ -1076,9 +1080,9 @@ body.menu-open{overflow:hidden}
       <text class="tw-text" dy="4"><textPath id="twpath" href="#tw-path" startOffset="0"></textPath></text>
     </svg>
   </div>
-  <img src="logo-ceremonia-beige.webp" alt="Ceremonia" style="width:96px;margin:0 auto 18px;">
-  <p data-i18n="footer.tagline" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold);font-size:22px;margin-bottom:36px;letter-spacing:.02em;">Under the Ubud Sky</p>
-  <div style="display:flex;gap:14px;justify-content:center;margin-bottom:56px;">
+  <img data-reveal src="logo-ceremonia-beige.webp" alt="Ceremonia" style="width:96px;margin:0 auto 18px;">
+  <p data-reveal data-i18n="footer.tagline" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold);font-size:22px;margin-bottom:36px;letter-spacing:.02em;">Under the Ubud Sky</p>
+  <div data-reveal style="display:flex;gap:14px;justify-content:center;margin-bottom:56px;">
     <a href="https://instagram.com/ceremonia_rooftop_ubud" target="_blank" class="soc-icon" title="Instagram">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <rect x="2" y="2" width="20" height="20" rx="5"/>
@@ -1490,9 +1494,18 @@ function initParallax(){
 /* ─── REVEALS ─────────────────────────────────────────────────────── */
 function initReveals(){
   const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+    entries.forEach(e=>{if(e.isIntersecting){
+      const t=e.target;
+      if(t.classList.contains('reveal-stagger')){
+        t.classList.add('in');
+        [...t.children].forEach((c,i)=>{c.style.transitionDelay=(i*70)+'ms';});
+      } else {
+        t.classList.add('visible');
+      }
+      io.unobserve(t);
+    }});
   },{threshold:.07,rootMargin:'0px 0px -40px 0px'});
-  setTimeout(()=>document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el)),300);
+  setTimeout(()=>document.querySelectorAll('[data-reveal],.reveal-stagger').forEach(el=>io.observe(el)),300);
 }
 
 /* ─── TICKER WAVE (text scrolling along a wave) ───────────────────── */
