@@ -155,6 +155,24 @@ body.cursor-active{cursor:none}
   transition:color .25s;
 }
 .nav-link:hover{color:var(--gold)}
+/* menu dropdown */
+.nav-drop{position:relative;display:flex;align-items:center}
+.nav-sub{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:16px;
+  opacity:0;visibility:hidden;transition:opacity .25s var(--ease),visibility .25s;z-index:1001}
+.nav-drop:hover .nav-sub{opacity:1;visibility:visible}
+.nav-sub-inner{display:flex;flex-direction:column;gap:1px;min-width:210px;
+  background:rgba(15,27,53,.97);backdrop-filter:blur(18px) saturate(150%);
+  border:1px solid rgba(212,184,150,.14);border-radius:11px;padding:8px;
+  box-shadow:0 16px 38px rgba(0,0,0,.45)}
+.nav-sub-inner a,.nav-sub-inner span{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;padding:11px 16px;border-radius:7px;text-align:center;transition:color .2s,background .2s}
+.nav-sub-inner a{color:rgba(245,240,232,.72)}
+.nav-sub-inner a:hover{color:var(--gold);background:rgba(212,184,150,.08)}
+.nav-sub-inner .soon{color:rgba(245,240,232,.28);cursor:default;position:relative}
+.nav-sub-inner .soon::after{content:'Soon';font-size:7px;letter-spacing:.1em;opacity:.65;margin-left:6px;
+  border:1px solid rgba(245,240,232,.2);border-radius:10px;padding:1px 6px}
+.mm-sub{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-top:-6px;padding:6px 0}
 /* mobile menu */
 .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;
   width:36px;height:36px;background:none;border:none;cursor:pointer;padding:6px;z-index:1002}
@@ -640,7 +658,14 @@ body.menu-open{overflow:hidden}
   </a>
   <div class="d-nav" style="display:flex;gap:36px;align-items:center;">
     <a href="#a-about" class="nav-link" data-i18n="nav.story">Story</a>
-    <a href="#a-menu"  class="nav-link" data-i18n="nav.menu">Menu</a>
+    <div class="nav-drop">
+      <a href="#a-menu" class="nav-link" data-i18n="nav.menu">Menu</a>
+      <div class="nav-sub"><div class="nav-sub-inner">
+        <a href="breakfast-coffee.html">Breakfast &amp; Coffee</a>
+        <span class="soon">Food</span>
+        <span class="soon">Drinks</span>
+      </div></div>
+    </div>
     <a href="#a-gallery" class="nav-link" data-i18n="nav.gallery">Gallery</a>
     <a href="#a-reviews" class="nav-link" data-i18n="nav.reviews">Reviews</a>
     <a href="#a-visit" class="nav-link" data-i18n="nav.visit">Visit</a>
@@ -653,6 +678,7 @@ body.menu-open{overflow:hidden}
 <div id="mobile-menu">
   <a href="#a-about"   class="mm-link" data-i18n="nav.story">Story</a>
   <a href="#a-menu"    class="mm-link" data-i18n="nav.menu">Menu</a>
+  <a href="breakfast-coffee.html" class="mm-sub">Breakfast &amp; Coffee</a>
   <a href="#a-gallery" class="mm-link" data-i18n="nav.gallery">Gallery</a>
   <a href="#a-reviews" class="mm-link" data-i18n="nav.reviews">Reviews</a>
   <a href="#a-visit"   class="mm-link" data-i18n="nav.visit">Visit</a>
