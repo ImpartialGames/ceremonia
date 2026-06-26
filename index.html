@@ -102,6 +102,36 @@ body.cursor-active{cursor:none}
   font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.55em;
   text-transform:uppercase;color:rgba(212,184,150,.38);margin-top:-6px;
 }
+#loader-bird{
+  position:absolute;top:50%;left:0;width:46px;height:auto;z-index:3;
+  pointer-events:none;will-change:transform;
+  animation:birdFly 2.35s cubic-bezier(.4,.05,.6,.95) .2s forwards;
+}
+@keyframes birdFly{
+  0%{transform:translate(-16vw,42px) rotate(9deg);opacity:0}
+  9%{opacity:1}
+  30%{transform:translate(20vw,-46px) rotate(-3deg)}
+  52%{transform:translate(50vw,-142px) rotate(-8deg)}
+  74%{transform:translate(80vw,-38px) rotate(3deg)}
+  90%{opacity:1}
+  100%{transform:translate(118vw,34px) rotate(10deg);opacity:0}
+}
+.bird-w{transform-box:fill-box}
+.bird-wl{transform-origin:100% 100%;animation:flapL .26s ease-in-out infinite alternate}
+.bird-wr{transform-origin:0% 100%;animation:flapR .26s ease-in-out infinite alternate}
+@keyframes flapL{from{transform:rotate(12deg)}to{transform:rotate(-26deg)}}
+@keyframes flapR{from{transform:rotate(-12deg)}to{transform:rotate(26deg)}}
+/* extra birds (different directions) */
+.lbird{position:absolute;top:50%;left:0;height:auto;z-index:3;pointer-events:none;
+  will-change:transform;fill:none;stroke:var(--gold);stroke-width:2.4;stroke-linecap:round}
+.lbird.b2{width:30px;animation:birdFly2 2.2s cubic-bezier(.4,.05,.6,.95) .1s forwards}
+.lbird.b3{width:26px;animation:birdFly3 2.05s cubic-bezier(.4,.05,.6,.95) .35s forwards}
+.lbird.b4{width:20px;animation:birdFly4 2.3s cubic-bezier(.4,.05,.6,.95) 0s forwards}
+.lbird.b5{width:16px;animation:birdFly5 2.15s cubic-bezier(.4,.05,.6,.95) .5s forwards}
+@keyframes birdFly2{0%{transform:translate(120vw,-30px) rotate(-9deg);opacity:0}10%{opacity:1}50%{transform:translate(48vw,-178px) rotate(6deg)}90%{opacity:1}100%{transform:translate(-18vw,-60px) rotate(-9deg);opacity:0}}
+@keyframes birdFly3{0%{transform:translate(-16vw,118px) rotate(7deg);opacity:0}12%{opacity:1}50%{transform:translate(50vw,58px) rotate(-4deg)}88%{opacity:1}100%{transform:translate(118vw,108px) rotate(8deg);opacity:0}}
+@keyframes birdFly4{0%{transform:translate(120vw,-120px) rotate(-7deg);opacity:0}16%{opacity:.85}50%{transform:translate(50vw,-92px) rotate(5deg)}84%{opacity:.85}100%{transform:translate(-18vw,-150px) rotate(-7deg);opacity:0}}
+@keyframes birdFly5{0%{transform:translate(-16vw,-8px) rotate(8deg);opacity:0}15%{opacity:.7}50%{transform:translate(50vw,-66px) rotate(-5deg)}85%{opacity:.7}100%{transform:translate(118vw,-18px) rotate(9deg);opacity:0}}
 
 /* ─── NAV ────────────────────────────────────────────────────────── */
 #a-nav{
@@ -563,6 +593,14 @@ body.menu-open{overflow:hidden}
 
 <!-- LOADER -->
 <div id="loader">
+  <svg id="loader-bird" viewBox="0 0 60 26" aria-hidden="true" fill="none" stroke="var(--gold)" stroke-width="2.4" stroke-linecap="round">
+    <path class="bird-w bird-wl" d="M30 15 Q16 3 3 12"/>
+    <path class="bird-w bird-wr" d="M30 15 Q44 3 57 12"/>
+  </svg>
+  <svg class="lbird b2" viewBox="0 0 60 26" aria-hidden="true"><path class="bird-w bird-wl" d="M30 15 Q16 3 3 12"/><path class="bird-w bird-wr" d="M30 15 Q44 3 57 12"/></svg>
+  <svg class="lbird b3" viewBox="0 0 60 26" aria-hidden="true"><path class="bird-w bird-wl" d="M30 15 Q16 3 3 12"/><path class="bird-w bird-wr" d="M30 15 Q44 3 57 12"/></svg>
+  <svg class="lbird b4" viewBox="0 0 60 26" aria-hidden="true"><path class="bird-w bird-wl" d="M30 15 Q16 3 3 12"/><path class="bird-w bird-wr" d="M30 15 Q44 3 57 12"/></svg>
+  <svg class="lbird b5" viewBox="0 0 60 26" aria-hidden="true"><path class="bird-w bird-wl" d="M30 15 Q16 3 3 12"/><path class="bird-w bird-wr" d="M30 15 Q44 3 57 12"/></svg>
   <img id="loader-logo" src="Logo.webp" alt="Ceremonia">
   <div id="loader-letters">
     <span>C</span><span>E</span><span>R</span><span>E</span><span>M</span><span>O</span><span>N</span><span>I</span><span>A</span>
