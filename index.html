@@ -267,19 +267,19 @@ body.menu-open{overflow:hidden}
   transform:translateX(-50%);transform-origin:center center;
 }
 /* steam rising from the hot tapas */
-.hero-steam{position:absolute;left:50%;top:18%;width:min(44vw,520px);height:30%;
+.hero-steam{position:absolute;left:50%;top:34%;width:min(28vw,320px);height:42%;
   transform:translateX(-50%);z-index:7;pointer-events:none;}
-.steam{position:absolute;bottom:0;width:16px;height:62%;border-radius:50%;
-  background:linear-gradient(to top,rgba(255,255,255,0) 0%,rgba(255,255,255,.5) 45%,rgba(255,255,255,0) 100%);
-  filter:blur(7px);opacity:0;will-change:transform,opacity;
-  animation:steamRise var(--d,5.5s) ease-out var(--dl,0s) infinite;}
+.steam{position:absolute;bottom:0;width:24px;height:58%;border-radius:50%;
+  background:linear-gradient(to top,rgba(255,255,255,0) 0%,rgba(255,255,255,.85) 45%,rgba(255,255,255,0) 100%);
+  filter:blur(6px);opacity:0;will-change:transform,opacity;
+  animation:steamRise var(--d,5s) ease-out var(--dl,0s) infinite;}
 @keyframes steamRise{
-  0%{opacity:0;transform:translateY(10px) translateX(0) scaleX(1) scaleY(.7)}
-  18%{opacity:.5}
-  60%{opacity:.32}
-  100%{opacity:0;transform:translateY(-130px) translateX(10px) scaleX(1.9) scaleY(1.35)}
+  0%{opacity:0;transform:translateY(20px) translateX(0) scaleX(1) scaleY(.6)}
+  22%{opacity:.75}
+  65%{opacity:.45}
+  100%{opacity:0;transform:translateY(-160px) translateX(14px) scaleX(2) scaleY(1.45)}
 }
-@media(max-width:860px){.hero-steam{width:62vw;top:16%;height:26%}}
+@media(max-width:860px){.hero-steam{width:58vw;top:30%;height:38%}}
 #hero-overlay{
   position:absolute;inset:0;z-index:2;
   background:
