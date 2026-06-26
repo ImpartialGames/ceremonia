@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Breakfast &amp; Coffee — Ceremonia Rooftop Ubud</title>
+<meta name="description" content="Breakfast &amp; Coffee menu — Ceremonia Rooftop Ubud. Homemade smoothie bowls, eggs, pancakes, desserts, signature lattes, fresh juices and more.">
+<meta name="theme-color" content="#0F1B35">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0F1B35;--navy-lt:#141F3A;--cream:#EDE8DF;--gold:#D4B896;--ivory:#F5F0E8;--umber:#8B6F47;--ease:cubic-bezier(0.16,1,0.3,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--navy);overflow-x:clip;font-family:'Inter',sans-serif;color:var(--ivory)}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--gold)}
+a{text-decoration:none;color:inherit}
+.grain::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.05}
+
+/* nav */
+#bar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:16px 6vw;background:rgba(15,27,53,.82);backdrop-filter:blur(18px) saturate(150%);
+  border-bottom:1px solid rgba(212,184,150,.12)}
+#bar .brand{display:flex;align-items:center;gap:10px}
+#bar img{width:30px;height:30px;object-fit:contain}
+#bar .brand span{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--ivory)}
+.back{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.6);transition:color .25s}
+.back:hover{color:var(--gold)}
+
+/* cover */
+#cover{position:relative;text-align:center;padding:160px 7vw 70px;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 30%,rgba(139,94,60,.14) 0%,transparent 62%)}
+#cover .eyebrow{font-size:10px;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+#cover h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(48px,9vw,104px);line-height:.92;letter-spacing:-.01em}
+#cover h1 em{display:block;color:var(--gold);font-weight:400;font-style:italic}
+#cover .tag{max-width:520px;margin:30px auto 0;font-weight:300;font-size:14px;line-height:1.9;color:rgba(245,240,232,.55)}
+.cover-orn{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:34px}
+.cover-orn .l{width:60px;height:1px;background:rgba(212,184,150,.3)}
+.cover-orn span{color:rgba(212,184,150,.6);font-size:13px}
+
+/* groups */
+.group{position:relative;padding:70px 7vw}
+.group.navy{background:var(--navy)}
+.group.lt{background:var(--navy-lt)}
+.group-head{text-align:center;margin-bottom:14px}
+.group-head h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,5vw,56px);color:var(--ivory)}
+.group-note{text-align:center;font-size:12px;font-weight:300;color:rgba(245,240,232,.45);margin-bottom:40px;letter-spacing:.02em}
+.inner{max-width:980px;margin:0 auto;position:relative;z-index:1}
+
+.sec{margin-bottom:44px}
+.sec-label{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.sec-label span{font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.sec-label .l{flex:1;height:1px;background:rgba(212,184,150,.12)}
+.sec-note{font-size:11px;font-weight:300;font-style:italic;color:rgba(245,240,232,.4);margin:-10px 0 18px}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:linear-gradient(135deg,rgba(15,27,53,.7),rgba(22,33,60,.85));
+  border:1px solid rgba(212,184,150,.12);border-radius:13px;backdrop-filter:blur(8px);
+  box-shadow:0 6px 22px rgba(0,0,0,.28),inset 0 1px 0 rgba(212,184,150,.05);
+  padding:16px 18px;transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
+.card:hover{border-color:rgba(212,184,150,.3);box-shadow:0 12px 30px rgba(0,0,0,.4);transform:translateY(-3px)}
+.card .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.card .name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:20px;color:var(--ivory)}
+.card .price{font-size:12px;letter-spacing:.06em;color:var(--gold);font-weight:500;white-space:nowrap}
+.card .desc{font-weight:300;font-size:12px;line-height:1.6;color:rgba(245,240,232,.42);margin-top:6px}
+.badge{display:inline-block;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);
+  background:var(--gold);border-radius:20px;padding:2px 8px;margin-left:8px;vertical-align:middle;font-weight:600}
+.veg{color:rgba(120,180,110,.8);font-size:10px;margin-left:6px}
+
+/* extras list */
+.extras{display:flex;flex-wrap:wrap;gap:8px 26px;border:1px dashed rgba(212,184,150,.2);border-radius:13px;padding:18px 22px}
+.extras li{list-style:none;font-size:12.5px;font-weight:300;color:rgba(245,240,232,.6)}
+.extras li b{color:var(--gold);font-weight:500;margin-left:4px}
+
+/* footer */
+footer{text-align:center;padding:48px 7vw 60px;background:var(--navy);position:relative}
+footer .note{font-size:11px;font-weight:300;color:rgba(245,240,232,.4);line-height:1.8;max-width:520px;margin:0 auto 26px}
+footer .logo{width:84px;margin:0 auto 14px}
+footer .tagline{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:18px}
+footer .home{display:inline-block;margin-top:26px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  border:1px solid var(--gold);color:var(--gold);padding:12px 28px;transition:background .3s,color .3s}
+footer .home:hover{background:var(--gold);color:var(--navy)}
+
+[data-rev]{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+[data-rev].in{opacity:1;transform:none}
+
+@media(max-width:760px){
+  .grid{grid-template-columns:1fr}
+  #cover{padding:130px 7vw 56px}
+  .group{padding:56px 7vw}
+  .card .name{font-size:19px}
+}
+</style>
+</head>
+<body>
+
+<nav id="bar">
+  <a class="brand" href="index.html">
+    <img src="logo-ceremonia-beige.webp" alt="Ceremonia">
+    <span>Ceremonia</span>
+  </a>
+  <a class="back" href="index.html">← Home</a>
+</nav>
+
+<header id="cover" class="grain">
+  <p class="eyebrow">The Menu</p>
+  <h1>Breakfast<em>&amp; Coffee</em></h1>
+  <p class="tag">In our house everything is fresh — homemade, cooked with care &amp; served with love.<br>Relax and enjoy your time in our place.</p>
+  <div class="cover-orn"><span class="l"></span><span>✦</span><span class="l"></span></div>
+</header>
+
+<main id="menu"></main>
+
+<footer class="grain">
+  <p class="note" id="legal"></p>
+  <img class="logo" src="logo-ceremonia-beige.webp" alt="Ceremonia">
+  <p class="tagline">Under the Ubud Sky</p>
+  <a class="home" href="index.html">Back to Ceremonia</a>
+</footer>
+
+<script>
+const NOTE="Please inform us if you have any food allergies. All rates are in thousands (’000) IDR, subject to 11% government tax & 5% service.";
+const MENU=[
+ {group:"Breakfast", cls:"navy", note:"Start your day fresh with our homemade breakfast — served until 2 PM", sections:[
+   {label:"Smoothie Bowls", items:[
+     {name:"Ceremonia Smoothie Bowl", veg:true, tag:"Best seller", price:"95", desc:"Banana, dragon fruit, milk — granola, strawberry, pineapple, chia seeds, blueberries, goji berries, mint & edible flowers"},
+     {name:"Chocolate Smoothie Bowl", veg:true, price:"100", desc:"Chocolate, banana, milk, honey, peanut butter — granola, chia seeds, mint, cashew nut & edible flower"},
+     {name:"Tropical Smoothie Bowl", veg:true, price:"90", desc:"Banana, pineapple, papaya, coconut milk — granola, coconut flakes, chia seeds, mint & edible flowers"},
+   ]},
+   {label:"Morning Plates", items:[
+     {name:"Pancakes", price:"60", desc:"3 pancakes — choose your topping: banana, strawberry jam, chocolate or sugar honey"},
+     {name:"Ceremonia Poached Egg", tag:"Best seller", price:"65", desc:"2 poached eggs on home-made toast, hummus, tomatoes, mashed avocado, mixed salad, black sesame"},
+     {name:"French Omelette Salad", price:"60", desc:"2-egg omelette, salad, braised tomatoes & honey mustard sauce + home-made toast"},
+     {name:"French Breakfast", price:"70", desc:"French baguette with unsalted butter & homemade strawberry jam"},
+     {name:"Scrambled on Toast", price:"60", desc:"2 scrambled eggs, tomatoes, cheese, mushrooms, salad, honey mustard sauce + home-made toast"},
+   ]},
+   {label:"Add Extra", extras:[["2 home-made grilled toast","15"],["Sautéed garlic mushroom","20"],["Roast tomato","15"],["Half avocado","20"],["2 slices pork bacon","25"],["1 more egg, your style","7"],["Mozzarella cheese 50g","20"]]},
+ ]},
+ {group:"Desserts", cls:"lt", sections:[
+   {label:"Sweet", items:[
+     {name:"Lava Cake", price:"65", desc:"Chocolate fondant with fruits & a scoop of vanilla ice cream"},
+     {name:"Tiramisu", price:"75", desc:"Fully homemade — coffee, biscuits, creamy mascarpone & cacao"},
+     {name:"Crème Brûlée Vanilla", price:"60", desc:"Smooth & flavorful cream with a thin caramelized sugar crust"},
+     {name:"Pisang Goreng", tag:"Best seller", price:"60", desc:"Deep-fried crispy banana, vanilla ice cream, brown sugar, strawberry, coconut sugar & mint"},
+     {name:"Dadar Gulung Bali", price:"45", desc:"Soft pandan crepes filled with sweet coconut & palm sugar"},
+     {name:"Ice Cream Cup", price:"30", desc:"Vanilla, chocolate or strawberry"},
+     {name:"Crepes Nutella", price:"60", desc:"Crepes filled with Nutella, topped with fresh fruit"},
+     {name:"Crepes", price:"55", desc:"Large crepes — banana & chocolate or strawberry jam, topped with fresh fruit"},
+   ]},
+ ]},
+ {group:"Coffee & More", cls:"navy", sections:[
+   {label:"Classic Coffees", note:"Replace cow's milk with oat milk +10 · Ice +5", items:[
+     {name:"Espresso / Double", price:"30/40"},
+     {name:"Café Latte", price:"37"},
+     {name:"Flat White", price:"37"},
+     {name:"Americano", price:"35"},
+     {name:"Cold Brew Americano", price:"45"},
+     {name:"Cappuccino / Double", price:"39/49"},
+     {name:"Mochaccino", price:"35"},
+     {name:"Kopi Bali", price:"30"},
+   ]},
+   {label:"Signature Lattes", note:"Replace cow's milk with oat milk +10", items:[
+     {name:"Speculos Ice Latte", price:"65", desc:"Espresso, speculos, vanilla syrup, milk"},
+     {name:"Caramel Latte", price:"50", desc:"Espresso, speculos, caramel syrup, milk"},
+     {name:"Matcha Green Latte", price:"55", desc:"Matcha, milk, sugar"},
+     {name:"Hot Choco Latte", price:"50", desc:"Chocolate, milk, sugar"},
+     {name:"Golden Latte", price:"55", desc:"Espresso, turmeric, cinnamon, pepper, milk, honey"},
+   ]},
+   {label:"Teas & Infusions", items:[
+     {name:"Black Hot Tea Pot", price:"35"},
+     {name:"Jasmine / Green Tea Pot", price:"35"},
+     {name:"Fresh Infusion", price:"40", desc:"Choose 2–3: ginger, mint, lemon, lemongrass, blue butterfly pea, rosella"},
+     {name:"Peach Ice Tea", price:"40"},
+     {name:"Famous Black Ice Tea", price:"35"},
+   ]},
+   {label:"Smoothies & Energy", note:"Fresh blended for Bali mornings", items:[
+     {name:"Ceremonia Mix Berry", tag:"Best seller", price:"75", desc:"Strawberry, blueberry, yogurt, milk, honey"},
+     {name:"Gary's Smoothie", price:"65", desc:"Dates, pineapple, banana, milk, honey"},
+     {name:"Strawberry Smoothie", price:"85", desc:"Fresh strawberry, yogurt, milk, honey, strawberry syrup"},
+     {name:"Choco Banana Smoothie", price:"85", desc:"Chocolate, banana, milk, honey"},
+     {name:"Morning Coffee Smoothie", price:"70", desc:"Banana, espresso, oat milk, oat seeds"},
+   ]},
+   {label:"Ceremonial Boosters", items:[
+     {name:"Secret Ginger Booster", tag:"Spicy", price:"75", desc:"Hand-grated ginger, lime, honey-infused tea & secret spices"},
+     {name:"Golden Shooter", price:"50", desc:"Fresh blend turmeric, lime, honey"},
+   ]},
+   {label:"Milkshakes", note:"Ice cream blended with regular milk & ice", items:[
+     {name:"Vanilla", price:"45"},
+     {name:"Choco", price:"50"},
+     {name:"Banana", price:"55"},
+     {name:"Coffee", price:"60"},
+     {name:"Matcha", price:"60"},
+   ]},
+   {label:"Pure Fresh Juice", items:[
+     {name:"Single Fruit", price:"50", desc:"Watermelon, pineapple, dragon fruit, papaya or soursop"},
+     {name:"Mixed Juice", price:"55", desc:"Choose 2"},
+     {name:"Fresh Orange Juice", price:"60"},
+     {name:"Banana Juice", price:"50", desc:"Blended with milk"},
+   ]},
+   {label:"Elixirs of Ceremonia", items:[
+     {name:"Violette", price:"55", desc:"Dragon fruit, ginger, lime & honey"},
+     {name:"Bali", price:"60", desc:"Pineapple, green apple, spinach, celery, lime"},
+     {name:"Ceremonia Green Juice", price:"60", desc:"Spinach, cucumber, celery, lime, ginger, apple"},
+     {name:"Skincare", price:"55", desc:"Fresh carrot, orange, ginger"},
+   ]},
+   {label:"Squash", items:[
+     {name:"Ginger Lemon Mint Squash", price:"55", desc:"Ginger & lemon juice topped with soda water"},
+     {name:"Passion Fruit Squash", price:"80", desc:"Passion fruit juice topped with soda water"},
+   ]},
+   {label:"Softs", items:[
+     {name:"Coca-Cola — Normal / Zero 330ml", price:"35"},
+     {name:"Sprite 330ml", price:"35"},
+     {name:"Flavored Syrup", price:"30", desc:"Grenadine, strawberry, passion fruit, vanilla or peach"},
+     {name:"Mineral Water Pitcher 1L", price:"25"},
+     {name:"Sparkling Water — Polaris 330ml", price:"30"},
+   ]},
+   {label:"Beer", items:[
+     {name:"Small / Radler 330ml", price:"45"},
+     {name:"San Miguel — Pale Pilsner 330ml", price:"50"},
+   ]},
+ ]},
+];
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function itemCard(it){
+  return `<div class="card">
+    <div class="top">
+      <span class="name">${esc(it.name)}${it.veg?'<span class="veg" title="Vegetarian">(V)</span>':''}${it.tag?`<span class="badge">${esc(it.tag)}</span>`:''}</span>
+      <span class="price">${esc(it.price)}<small style="opacity:.6">k</small></span>
+    </div>
+    ${it.desc?`<p class="desc">${esc(it.desc)}</p>`:''}
+  </div>`;
+}
+function render(){
+  const m=document.getElementById('menu');
+  m.innerHTML=MENU.map(g=>`
+    <section class="group ${g.cls} grain">
+      <div class="inner">
+        <div class="group-head"><h2 data-rev>${esc(g.group)}</h2></div>
+        ${g.note?`<p class="group-note" data-rev>${esc(g.note)}</p>`:''}
+        ${g.sections.map(sec=>`
+          <div class="sec">
+            <div class="sec-label" data-rev><span>${esc(sec.label)}</span><span class="l"></span></div>
+            ${sec.note?`<p class="sec-note" data-rev>${esc(sec.note)}</p>`:''}
+            ${sec.extras
+              ? `<ul class="extras" data-rev>${sec.extras.map(e=>`<li>${esc(e[0])}<b>${esc(e[1])}k</b></li>`).join('')}</ul>`
+              : `<div class="grid">${sec.items.map(it=>`<span data-rev>${itemCard(it)}</span>`).join('')}</div>`}
+          </div>
+        `).join('')}
+      </div>
+    </section>
+  `).join('');
+  document.getElementById('legal').textContent=NOTE;
+  // reveals
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.06,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-rev]').forEach((el,i)=>{el.style.transitionDelay=((i%6)*45)+'ms';io.observe(el)});
+}
+render();
+</script>
+</body>
+</html>
