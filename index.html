@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ceremonia — Rooftop Restaurant &amp; Bar · Ubud</title>
+<meta name="description" content="Ceremonia — rooftop restaurant &amp; bar in the heart of Ubud, Bali. Local &amp; international tapas, crafted cocktails, open daily 9:00 AM – 11 PM.">
+<meta name="theme-color" content="#0F1B35">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/webp" href="Logo.webp">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- Open Graph / link preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ceremonia Rooftop Ubud">
+<meta property="og:title" content="Ceremonia — Rooftop Restaurant &amp; Bar · Ubud">
+<meta property="og:description" content="In the heart of Ubud, Bali. Local &amp; international tapas, crafted cocktails, Bali soul — under the open sky.">
+<meta property="og:image" content="og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://ceremonia-ubud.com/">
+
+<!-- Twitter card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ceremonia — Rooftop Restaurant &amp; Bar · Ubud">
+<meta name="twitter:description" content="In the heart of Ubud, Bali. Local &amp; international tapas, crafted cocktails, Bali soul — under the open sky.">
+<meta name="twitter:image" content="og-image.jpg">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── VARS ─────────────────────────────────────────────────────── */
+:root{
+  --navy:#0F1B35; --navy-lt:#141F3A; --cream:#EDE8DF;
+  --gold:#D4B896;  --ivory:#F5F0E8;  --umber:#8B6F47;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+/* ─── RESET ────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--navy);overflow-x:clip}
+img{display:block}
+a{text-decoration:none}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* ─── GRAIN OVERLAY ────────────────────────────────────────────── */
+.grain{position:relative}
+.grain::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.05;
+}
+
+/* ─── BATIK MICRO-PATTERN ───────────────────────────────────────── */
+.batik{position:relative}
+.batik::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M20 1L39 20L20 39L1 20Z' fill='none' stroke='%23D4B896' stroke-width='0.4'/%3E%3Ccircle cx='20' cy='20' r='2.5' fill='none' stroke='%23D4B896' stroke-width='0.4'/%3E%3Ccircle cx='0' cy='0' r='1.2' fill='none' stroke='%23D4B896' stroke-width='0.3'/%3E%3Ccircle cx='40' cy='0' r='1.2' fill='none' stroke='%23D4B896' stroke-width='0.3'/%3E%3Ccircle cx='0' cy='40' r='1.2' fill='none' stroke='%23D4B896' stroke-width='0.3'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='none' stroke='%23D4B896' stroke-width='0.3'/%3E%3C/svg%3E");
+  opacity:.032;
+}
+
+/* ─── KEYFRAMES ─────────────────────────────────────────────────── */
+@keyframes celestial-spin{to{transform:rotate(360deg)}}
+@keyframes kenBurns{from{transform:scale(1)}to{transform:scale(1.08)}}
+@keyframes loaderLogo{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+@keyframes loaderLetter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes clipReveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0% 0 0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── CURSOR ────────────────────────────────────────────────────── */
+#cdot{
+  position:fixed;left:0;top:0;width:6px;height:6px;
+  background:var(--gold);border-radius:50%;pointer-events:none;
+  z-index:10001;transform:translate(-50%,-50%);
+  transition:transform .1s var(--ease),width .2s,height .2s;
+}
+#cring{
+  position:fixed;left:0;top:0;width:24px;height:24px;
+  border:1px solid rgba(212,184,150,.3);border-radius:50%;
+  pointer-events:none;z-index:10000;transform:translate(-50%,-50%);
+  transition:width .25s var(--ease),height .25s var(--ease),border-color .25s;
+}
+body.cursor-active{cursor:none}
+#cdot.clicked{transform:translate(-50%,-50%) scale(.65)}
+
+/* ─── LOADER ────────────────────────────────────────────────────── */
+#loader{
+  position:fixed;inset:0;background:var(--navy);z-index:9600;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+}
+#loader-logo{width:130px;animation:loaderLogo 1s var(--ease) both}
+#loader-letters{display:flex;gap:4px}
+#loader-letters span{
+  font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:400;
+  letter-spacing:.28em;color:var(--gold);opacity:0;
+  animation:loaderLetter .5s var(--ease) both;
+}
+#loader-tag{
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.55em;
+  text-transform:uppercase;color:rgba(212,184,150,.38);margin-top:-6px;
+}
+
+/* ─── NAV ────────────────────────────────────────────────────────── */
+#a-nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:18px 56px;display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s,backdrop-filter .4s,box-shadow .4s,border-color .4s;
+  border-bottom:1px solid transparent;
+}
+#a-nav.scrolled{
+  background:rgba(15,27,53,.88);
+  backdrop-filter:blur(20px) saturate(150%);
+  box-shadow:0 1px 30px rgba(0,0,0,.3);
+  border-bottom-color:rgba(212,184,150,.1);
+}
+.nav-logo{
+  width:32px;height:32px;object-fit:contain;
+  animation:celestial-spin 80s linear infinite;
+}
+.nav-logo:hover{animation-play-state:paused}
+.nav-link{
+  font-family:'Inter',sans-serif;color:rgba(245,240,232,.65);
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+  transition:color .25s;
+}
+.nav-link:hover{color:var(--gold)}
+
+/* ─── BUTTONS ────────────────────────────────────────────────────── */
+.btn{
+  position:relative;overflow:hidden;z-index:0;
+  font-family:'Inter',sans-serif;font-size:10px;
+  letter-spacing:.22em;text-transform:uppercase;
+  padding:12px 32px;border:1px solid var(--gold);
+  color:var(--gold);display:inline-block;cursor:pointer;
+}
+.btn .t{position:relative;z-index:1;transition:color .35s var(--ease)}
+.btn::after{
+  content:'';position:absolute;inset:0;background:var(--gold);
+  transform:translateY(101%);transition:transform .35s var(--ease);z-index:0;
+}
+.btn:hover::after{transform:translateY(0)}
+.btn:hover .t{color:var(--navy)}
+.btn-ghost{border-color:rgba(245,240,232,.25);color:rgba(245,240,232,.65)}
+.btn-ghost::after{background:rgba(245,240,232,.12)}
+.btn-ghost:hover .t{color:var(--ivory)}
+.btn-solid{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.btn-solid .t{color:var(--navy)}
+.btn-solid::after{background:var(--navy)}
+.btn-solid:hover .t{color:var(--gold)}
+
+/* leaf button */
+.btn-leaf{
+  position:relative;overflow:hidden;z-index:0;cursor:pointer;
+  display:inline-flex;align-items:center;gap:11px;
+  font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  padding:17px 42px;color:var(--navy);
+  background:linear-gradient(135deg,#e9d3ad 0%,var(--gold) 55%,#c4a578 100%);
+  border:1px solid rgba(212,184,150,.7);
+  border-radius:0 100% 0 100%/0 100% 0 100%;
+  box-shadow:0 12px 34px rgba(212,184,150,.28),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),
+             border-radius .55s var(--ease),color .4s var(--ease);
+}
+.btn-leaf>*{position:relative;z-index:1}
+.btn-leaf::after{
+  content:'';position:absolute;inset:0;z-index:0;background:var(--navy);
+  transform:translateY(101%);transition:transform .45s var(--ease);
+}
+.btn-leaf:hover{
+  transform:translateY(-4px);color:var(--gold);
+  border-radius:100% 0 100% 0/100% 0 100% 0;
+  box-shadow:0 18px 46px rgba(212,184,150,.42),inset 0 1px 0 rgba(255,255,255,.15);
+}
+.btn-leaf:hover::after{transform:translateY(0)}
+.btn-leaf svg{transition:transform .45s var(--ease)}
+.btn-leaf:hover svg{transform:rotate(-12deg) scale(1.08)}
+
+/* ─── REVEAL ─────────────────────────────────────────────────────── */
+[data-reveal]{
+  opacity:0;transform:translateY(40px) scale(.98);
+  transition:opacity .85s var(--ease),transform .85s var(--ease);
+}
+[data-reveal].visible{opacity:1;transform:translateY(0) scale(1)}
+
+/* ─── HERO ───────────────────────────────────────────────────────── */
+#hero-pin{position:relative;height:170vh}
+#hero{position:sticky;top:0;height:100vh;min-height:660px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+#hero-slides{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-slide{
+  position:absolute;inset:0;width:100%;height:110%;
+  object-fit:cover;object-position:center 30%;
+  filter:brightness(.85) saturate(1.05) sepia(.04);
+  opacity:0;transition:opacity 2.4s ease-in-out;z-index:0;
+}
+.hero-slide.active{opacity:1;z-index:1;animation:kenBurns 9s ease-out forwards}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.hero-leaf{
+  position:absolute;bottom:-16%;width:84vw;max-width:1160px;height:auto;
+  z-index:7;pointer-events:none;
+  will-change:transform;
+  filter:saturate(1.12) brightness(1.02) drop-shadow(0 18px 38px rgba(0,0,0,.4));
+}
+.hero-leaf.left{left:7vw;transform-origin:bottom left}
+.hero-leaf.right{right:7vw;transform-origin:bottom right}
+#hero-overlay{
+  position:absolute;inset:0;z-index:2;
+  background:
+    repeating-linear-gradient(0deg,rgba(0,0,0,.018) 0px,transparent 1px,transparent 2px),
+    radial-gradient(ellipse at 30% 60%,rgba(139,94,60,.12) 0%,transparent 62%),
+    linear-gradient(to right,rgba(15,27,53,.8) 0%,rgba(15,27,53,.35) 50%,rgba(15,27,53,.05) 100%),
+    linear-gradient(to bottom,rgba(15,27,53,.05) 0%,rgba(15,27,53,.6) 100%);
+}
+#hero-content{position:relative;z-index:6;padding:0 8vw;max-width:760px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.h-eyebrow{
+  font-family:'Inter',sans-serif;color:var(--gold);font-size:10px;
+  letter-spacing:.55em;text-transform:uppercase;margin-bottom:24px;
+  clip-path:inset(0 100% 0 0);animation:clipReveal .9s var(--ease) .3s both;
+}
+.h-title{
+  font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-size:clamp(52px,8.5vw,118px);color:var(--ivory);
+  line-height:.9;letter-spacing:-.015em;margin-bottom:18px;white-space:nowrap;
+  clip-path:inset(0 100% 0 0);animation:clipReveal .9s var(--ease) .55s both;
+}
+.h-logo{
+  width:clamp(280px,38vw,480px);height:auto;margin-bottom:-32px;
+  opacity:0;animation:fadeUp .9s var(--ease) .55s both;
+}
+.h-desc{
+  font-family:'Inter',sans-serif;font-weight:300;color:rgba(245,240,232,.6);
+  font-size:15px;line-height:1.78;max-width:420px;margin:0 auto 48px;
+  opacity:0;animation:fadeUp .8s var(--ease) 1.1s both;
+}
+.h-ctas{opacity:0;animation:fadeUp .8s var(--ease) 1.4s both;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+/* ─── ABOUT ──────────────────────────────────────────────────────── */
+#a-about{background:var(--cream);padding:96px 8vw 140px;position:relative;overflow:hidden}
+.about-qmark{
+  position:absolute;top:-60px;left:-10px;
+  font-family:'Cormorant Garamond',serif;font-size:clamp(16rem,30vw,28rem);line-height:1;
+  color:var(--navy);opacity:.045;user-select:none;pointer-events:none;z-index:0;
+}
+.about-leaf{
+  position:absolute;bottom:90px;right:32px;
+  opacity:.07;pointer-events:none;user-select:none;z-index:0;
+}
+.about-bamboo{
+  position:absolute;right:6%;bottom:-44px;width:880px;max-width:62vw;height:auto;
+  opacity:.95;pointer-events:none;user-select:none;z-index:1;
+  transform-origin:bottom center;animation:bambooSway 7s ease-in-out infinite;
+}
+@keyframes bambooSway{0%,100%{transform:rotate(-1.8deg)}50%{transform:rotate(1.8deg)}}
+@media(max-width:860px){
+  .about-bamboo{width:92vw;max-width:none;right:4vw;bottom:-30px}
+}
+.photo-stack{position:relative;z-index:1;padding-bottom:130px}
+.photo-stack img:first-child{width:100%;aspect-ratio:3/4;object-fit:cover;position:relative;z-index:1}
+.photo-stack img:last-child{
+  position:absolute;top:calc(100% - 150px);left:36px;
+  width:62%;aspect-ratio:1/1;object-fit:cover;
+  transform:rotate(-2.2deg);
+  box-shadow:0 24px 64px rgba(0,0,0,.38);z-index:2;
+}
+
+/* ─── PILLARS ────────────────────────────────────────────────────── */
+#a-pillars{
+  background:var(--navy);
+  background-image:radial-gradient(ellipse at 50% 40%,rgba(139,94,60,.09) 0%,transparent 65%);
+  padding:96px 8vw 120px;position:relative;overflow:hidden;
+}
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
+.pillar-card{
+  background:linear-gradient(135deg,rgba(15,27,53,.95) 0%,rgba(24,16,44,.98) 100%);
+  border:1px solid rgba(212,184,150,.12);
+  box-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(212,184,150,.08);
+  backdrop-filter:blur(12px);
+  padding:44px 32px;text-align:center;position:relative;overflow:hidden;
+  transition:border-color .4s,box-shadow .4s,transform .4s var(--ease);
+}
+.pillar-card:hover{
+  border-color:rgba(212,184,150,.38);
+  box-shadow:0 20px 52px rgba(0,0,0,.5),inset 0 1px 0 rgba(212,184,150,.14),0 0 40px rgba(212,184,150,.04);
+  transform:translateY(-7px);
+}
+.pillar-icon{width:44px;height:44px;color:var(--gold);margin:0 auto 28px}
+
+/* ─── MENU ───────────────────────────────────────────────────────── */
+#a-menu{
+  background:var(--navy-lt);
+  background-image:radial-gradient(ellipse at 50% 40%,rgba(139,94,60,.06) 0%,transparent 65%);
+  padding:96px 8vw 80px;position:relative;overflow:hidden;
+}
+.tab-outer{position:relative}
+.tab-wrap{display:flex;border-bottom:1px solid rgba(212,184,150,.1)}
+.tab-btn{
+  cursor:pointer;font-family:'Inter',sans-serif;font-size:10px;
+  letter-spacing:.3em;text-transform:uppercase;
+  padding:12px 28px;border:none;background:transparent;
+  color:rgba(212,184,150,.3);transition:color .3s;position:relative;z-index:1;
+}
+.tab-btn.active{color:var(--gold)}
+.tab-line{
+  position:absolute;bottom:0;left:0;height:1px;background:var(--gold);
+  transition:left .3s var(--ease),width .3s var(--ease);
+}
+.menu-card{
+  background:linear-gradient(135deg,rgba(15,27,53,.88) 0%,rgba(20,31,58,.94) 100%);
+  border:1px solid rgba(212,184,150,.09);
+  box-shadow:0 4px 24px rgba(0,0,0,.28),inset 0 1px 0 rgba(212,184,150,.05);
+  backdrop-filter:blur(8px);
+  padding:20px 22px;
+  transition:border-color .3s,box-shadow .3s;
+}
+.menu-card:hover{border-color:rgba(212,184,150,.2);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+#menu-content{transition:opacity .22s ease,transform .3s var(--ease)}
+
+/* ─── JUNGLE STRIP ───────────────────────────────────────────────── */
+#jungle-strip{position:relative;height:60vh;min-height:380px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+#jungle-img{
+  position:absolute;inset:0;width:100%;height:120%;
+  object-fit:cover;object-position:center 40%;
+  filter:brightness(.52) saturate(1.25);will-change:transform;
+}
+#jungle-overlay{position:absolute;inset:0;z-index:1;background:rgba(15,27,53,.38)}
+#jungle-text{position:relative;z-index:2;text-align:center;padding:0 8vw}
+
+/* ─── GALLERY ────────────────────────────────────────────────────── */
+#a-gallery{background:var(--cream);padding:96px 8vw 80px;position:relative}
+.gal-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:232px;gap:8px;
+}
+.gal-item{overflow:hidden;position:relative}
+.gal-item.wide{grid-column:span 2}
+.gal-item.tall2{grid-row:span 2}
+.gal-item img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:brightness(.84) saturate(.88) sepia(.09);
+  transition:filter .5s,transform .5s var(--ease);
+}
+.gal-item:hover img{filter:brightness(1.02) saturate(1.05) sepia(0);transform:scale(1.04)}
+.gal-caption{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(15,27,53,.82) 0%,transparent 55%);
+  display:flex;align-items:flex-end;padding:20px;
+  transform:translateY(100%);transition:transform .32s var(--ease);pointer-events:none;
+}
+.gal-item:hover .gal-caption{transform:translateY(0)}
+
+/* ─── VISIT ──────────────────────────────────────────────────────── */
+#a-visit{
+  background:var(--navy);
+  background-image:radial-gradient(ellipse at 30% 50%,rgba(139,94,60,.07) 0%,transparent 65%);
+  padding:96px 8vw 72px;position:relative;overflow:hidden;
+}
+
+/* ─── FOOTER ─────────────────────────────────────────────────────── */
+#a-footer{
+  background:var(--navy);
+  background-image:radial-gradient(ellipse at 50% 80%,rgba(139,94,60,.09) 0%,transparent 65%);
+  padding:0 8vw 48px;text-align:center;position:relative;
+  border-top:1px solid rgba(212,184,150,.07);
+}
+.ticker-wrap{overflow:hidden;white-space:nowrap;border-bottom:1px solid rgba(212,184,150,.08);padding:12px 0;margin-bottom:64px}
+.ticker-inner{display:inline-flex;animation:marquee 22s linear infinite}
+.ticker-inner span{
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.45em;
+  text-transform:uppercase;color:rgba(212,184,150,.3);padding:0 28px;
+}
+.soc-icon{
+  width:40px;height:40px;border:1px solid rgba(212,184,150,.2);
+  border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  color:rgba(212,184,150,.45);transition:background .3s,border-color .3s,color .3s;
+}
+.soc-icon:hover{background:rgba(212,184,150,.1);border-color:var(--gold);color:var(--gold)}
+
+/* ─── WAVE HELPERS ───────────────────────────────────────────────── */
+.wave-box{position:relative;line-height:0}
+.wave-star{
+  position:absolute;left:50%;transform:translateX(-50%);
+  color:rgba(212,184,150,.38);font-size:13px;z-index:2;pointer-events:none;
+}
+
+/* ─── LABEL ──────────────────────────────────────────────────────── */
+.lbl{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.5em;text-transform:uppercase;font-weight:400}
+
+/* ─── REVIEWS / AVIS (eruption from Mount Agung) ──────────────────── */
+#a-reviews{position:relative;overflow:hidden;height:118vh;min-height:860px;background:#0b1428}
+.rv-sky{position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg,#0b1428 0%,#13213c 25%,#2b2a48 46%,#5a4250 64%,#9c6f54 82%,#d49b67 100%);}
+.rv-sky::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 56% 40% at 50% 70%,rgba(212,184,150,.30),transparent 70%);}
+.rv-stage{position:absolute;inset:0;z-index:1;display:flex;justify-content:center;align-items:flex-start;
+  -webkit-mask-image:linear-gradient(180deg,transparent 28%,#000 37%,#000 84%,transparent 95%);
+          mask-image:linear-gradient(180deg,transparent 28%,#000 37%,#000 84%,transparent 95%);}
+.rv-stream{display:flex;flex-direction:column;width:min(248px,74vw);
+  animation:rvRise 42s linear infinite;will-change:transform;}
+.rv-stage:hover .rv-stream{animation-play-state:paused}
+@keyframes rvRise{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.rv-card{background:linear-gradient(135deg,rgba(15,27,53,.84),rgba(22,33,60,.92));
+  border:1px solid rgba(212,184,150,.22);border-radius:12px;backdrop-filter:blur(8px);
+  box-shadow:0 10px 26px rgba(0,0,0,.45),inset 0 1px 0 rgba(212,184,150,.08);
+  padding:12px 14px;margin-bottom:14px;}
+.rv-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.rv-av{width:26px;height:26px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:500;color:#0f1b35;}
+.rv-name{font-family:'Inter',sans-serif;font-size:11px;color:var(--ivory);letter-spacing:.03em}
+.rv-stars-sm{color:var(--gold);font-size:8px;letter-spacing:1.5px;margin-top:2px}
+.rv-text{font-family:'Inter',sans-serif;font-weight:300;font-size:11px;line-height:1.55;color:rgba(245,240,232,.66)}
+.rv-gate{position:absolute;left:0;right:0;bottom:-2px;height:76%;z-index:2;pointer-events:none;}
+.rv-gate img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 16%;
+  filter:drop-shadow(0 -6px 34px rgba(11,20,40,.55));}
+.rv-head{position:absolute;top:8vh;left:0;right:0;z-index:3;text-align:center;pointer-events:none;padding:0 6vw}
+.rv-head h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(40px,5vw,66px);
+  color:var(--ivory);line-height:.95;margin:14px 0 14px}
+.rv-stars-lg{color:var(--gold);font-size:15px;letter-spacing:4px}
+.rv-stars-lg small{display:block;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.3em;
+  text-transform:uppercase;color:rgba(245,240,232,.5);margin-top:9px}
+/* decorative wave separator */
+.rv-sep{position:absolute;left:0;right:0;bottom:-1px;z-index:5;pointer-events:none;line-height:0}
+.rv-sep svg.rv-wave{display:block;width:100%;height:130px}
+.rv-floats{position:absolute;left:0;right:0;bottom:0;height:130px}
+.rvf{position:absolute;bottom:26px;will-change:transform;
+  filter:drop-shadow(0 5px 9px rgba(0,0,0,.4));
+  animation:rvFloat var(--d,6s) ease-in-out var(--dl,0s) infinite;}
+@keyframes rvFloat{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-16px) rotate(7deg)}}
+.rvf-leaf{display:block;fill:none;stroke:rgba(212,184,150,.6);stroke-width:3.4}
+@media(max-width:860px){.rv-sep svg.rv-wave{height:80px}.rvf{transform:scale(.7)}}
+@media(max-width:860px){
+  #a-reviews{height:96vh;min-height:620px}
+  .rv-gate{height:60%}
+  .rv-gate img{object-position:50% 22%}
+  .rv-stream{width:74vw}
+}
+
+/* ─── MOBILE ─────────────────────────────────────────────────────── */
+@media(max-width:860px){
+  #cdot,#cring{display:none!important}
+  #a-nav{padding:14px 20px}
+  .d-nav{display:none!important}
+  .two-col{grid-template-columns:1fr!important;gap:48px!important}
+  .pillar-grid{grid-template-columns:1fr!important}
+  .menu-grid{grid-template-columns:1fr!important}
+  .gal-grid{grid-template-columns:1fr 1fr!important;grid-auto-rows:150px!important}
+  .gal-item.wide{grid-column:span 2!important}
+  .gal-item.tall2{grid-row:auto!important}
+  .hero-leaf{width:84vw}
+  .photo-stack img:last-child{display:none}
+  .photo-stack{padding-bottom:0}
+  #jungle-strip{height:40vh}
+  .about-qmark{font-size:10rem!important}
+  .h-title{font-size:clamp(52px,14vw,80px)!important}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cdot" style="display:none"></div>
+<div id="cring" style="display:none"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <img id="loader-logo" src="Logo.webp" alt="Ceremonia">
+  <div id="loader-letters">
+    <span>C</span><span>E</span><span>R</span><span>E</span><span>M</span><span>O</span><span>N</span><span>I</span><span>A</span>
+  </div>
+  <div id="loader-tag">Rooftop · Ubud · Bali</div>
+</div>
+
+<!-- NAV -->
+<nav id="a-nav">
+  <a href="#" style="display:flex;align-items:center;gap:11px;">
+    <img class="nav-logo" src="Logo.webp" alt="">
+    <span style="font-family:'Inter',sans-serif;color:var(--ivory);font-size:10px;letter-spacing:.4em;text-transform:uppercase;">Ceremonia</span>
+  </a>
+  <div class="d-nav" style="display:flex;gap:36px;align-items:center;">
+    <a href="#a-about" class="nav-link">Story</a>
+    <a href="#a-menu"  class="nav-link">Menu</a>
+    <a href="#a-gallery" class="nav-link">Gallery</a>
+    <a href="#a-visit" class="nav-link">Visit</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<div id="hero-pin">
+<section id="hero">
+  <div id="hero-slides">
+    <img class="hero-slide active" src="Hero 1.jpeg" alt="">
+    <img class="hero-slide" src="Hero 2.webp" alt="">
+    <img class="hero-slide" src="Hero 3.webp" alt="">
+    <img class="hero-slide" src="Hero 4.webp" alt="">
+    <img class="hero-slide" src="Hero 5.webp" alt="">
+  </div>
+  <canvas id="hero-canvas"></canvas>
+  <div id="hero-overlay"></div>
+  <img class="hero-leaf left"  src="Feuille 1 cut.webp" alt="">
+  <img class="hero-leaf right" src="Feuille 2 cut.webp" alt="">
+  <div id="hero-content">
+    <p class="h-eyebrow">Rooftop Restaurant &amp; Bar · Ubud</p>
+    <img class="h-logo" src="Logo.webp" alt="Ceremonia">
+
+    <p class="h-desc">Open daily 9:00 AM – 11 PM. Local &amp; international tapas, crafted cocktails, Bali soul — under the open sky of Ubud.</p>
+    <div class="h-ctas">
+      <a href="#a-menu" class="btn-leaf">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+          <path d="M2 21c0-3 1.85-5.36 5.08-6"/>
+        </svg>
+        <span>View Menu</span>
+      </a>
+    </div>
+  </div>
+  <!-- wave → cream -->
+  <div class="wave-box" style="position:absolute;bottom:-1px;left:0;width:100%;z-index:8;">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="display:block;width:100%;height:80px;">
+      <path d="M0,40 Q240,80 480,32 Q720,-8 960,48 Q1200,82 1440,24 L1440,80 L0,80 Z" fill="#EDE8DF"/>
+    </svg>
+    <span class="wave-star" style="bottom:72px;">✦</span>
+  </div>
+</section>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="a-about" class="batik">
+  <div class="about-qmark">"</div>
+  <!-- Monstera watermark -->
+  <svg class="about-leaf" width="200" height="260" viewBox="0 0 200 260" fill="none">
+    <path d="M100 18 C100 18 34 58 26 138 C18 218 72 258 100 248 C128 258 182 218 174 138 C166 58 100 18 100 18Z" stroke="#0F1B35" stroke-width="1.4"/>
+    <line x1="100" y1="18" x2="100" y2="248" stroke="#0F1B35" stroke-width=".9"/>
+    <path d="M100 72 C82 84 46 96 36 122" stroke="#0F1B35" stroke-width=".7"/>
+    <path d="M100 102 C82 118 50 134 44 158" stroke="#0F1B35" stroke-width=".7"/>
+    <path d="M100 72 C118 84 154 96 164 122" stroke="#0F1B35" stroke-width=".7"/>
+    <path d="M100 102 C118 118 150 134 156 158" stroke="#0F1B35" stroke-width=".7"/>
+  </svg>
+
+  <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;max-width:1280px;margin:0 auto;position:relative;z-index:1;">
+    <!-- stacked photos -->
+    <div class="photo-stack" data-reveal>
+      <img src="Story 1.webp" alt="">
+      <img src="Story 2.webp" alt="">
+    </div>
+    <!-- story -->
+    <div style="position:relative;padding-top:20px;">
+      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:18px;">Our Story</p>
+      <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,70px);color:var(--navy);line-height:.91;margin-bottom:30px;">
+        Under<br>the Ubud<br><em style="color:var(--umber);font-weight:400;">Sky</em>
+      </h2>
+      <p data-reveal style="font-family:'Inter',sans-serif;font-weight:300;color:rgba(15,27,53,.6);font-size:15px;line-height:1.85;margin-bottom:18px;">
+        Ceremonia was born from a simple belief: that eating is sacred. Perched above the rooftops of Ubud, we've created a space where local ingredients meet international craft.
+      </p>
+      <p data-reveal style="font-family:'Inter',sans-serif;font-weight:300;color:rgba(15,27,53,.6);font-size:15px;line-height:1.85;margin-bottom:44px;">
+        From the first pour of Kintamani coffee at dawn to the last cocktail under the stars — unhurried, intentional, deeply Balinese.
+      </p>
+      <div data-reveal style="display:flex;gap:40px;">
+        <div>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:600;color:var(--navy);line-height:1;">9:00</p>
+          <p class="lbl" style="color:rgba(15,27,53,.4);font-size:9px;margin-top:4px;">Opens Daily</p>
+        </div>
+        <div>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:600;color:var(--navy);line-height:1;">11<small style="font-size:26px;font-weight:400;">PM</small></p>
+          <p class="lbl" style="color:rgba(15,27,53,.4);font-size:9px;margin-top:4px;">Last Orders</p>
+        </div>
+        <div>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:600;color:var(--navy);line-height:1;">3<small style="font-size:26px;font-weight:400;">fl.</small></p>
+          <p class="lbl" style="color:rgba(15,27,53,.4);font-size:9px;margin-top:4px;">Rooftop</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- wave → navy -->
+  <div class="wave-box" style="margin:80px -8vw -140px;position:relative;z-index:2;">
+    <img class="about-bamboo" src="Bambou.webp" alt="">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="display:block;width:100%;height:80px;position:relative;z-index:2;">
+      <path d="M0,58 Q240,4 480,44 Q720,78 960,32 Q1200,-2 1440,52 L1440,80 L0,80 Z" fill="#0F1B35"/>
+    </svg>
+    <span class="wave-star" style="bottom:72px;color:rgba(212,184,150,.3);">✦</span>
+  </div>
+</section>
+
+<!-- ═══ PILLARS ═══ -->
+<section id="a-pillars" class="grain">
+  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:60px;">
+      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:16px;">The Experience</p>
+      <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,68px);color:var(--ivory);line-height:.92;">
+        Three <em style="color:var(--gold);font-weight:400;">Pillars</em>
+      </h2>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar-card" data-reveal>
+        <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+          <path d="M22 4C22 4 8 14 8 28C8 37 14.5 42 22 42C29.5 42 36 37 36 28C36 14 22 4 22 4Z"/>
+          <line x1="22" y1="42" x2="22" y2="26"/>
+          <path d="M22 26 C16 20 10 18 9 22"/>
+          <path d="M22 26 C28 20 34 18 35 22"/>
+        </svg>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ivory);margin-bottom:14px;letter-spacing:.02em;">Cuisine</p>
+        <p style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:rgba(245,240,232,.45);line-height:1.78;">Local ingredients elevated through international technique. Every dish is a dialogue between Bali and the world.</p>
+      </div>
+      <div class="pillar-card" data-reveal style="transition-delay:.1s">
+        <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+          <path d="M22 6C22 6 10 18 10 28C10 36 15.4 40 22 40C28.6 40 34 36 34 28C34 18 22 6 22 6Z"/>
+          <path d="M16 16 C14 20 13 24 13 28"/>
+          <line x1="22" y1="2" x2="22" y2="6"/>
+          <line x1="18" y1="3" x2="20" y2="6"/>
+          <line x1="26" y1="3" x2="24" y2="6"/>
+        </svg>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ivory);margin-bottom:14px;letter-spacing:.02em;">Cocktails</p>
+        <p style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:rgba(245,240,232,.45);line-height:1.78;">Crafted with Arak Bali, fresh tropical fruits, and the soul of Kintamani. Sip slowly — these are stories in a glass.</p>
+      </div>
+      <div class="pillar-card" data-reveal style="transition-delay:.2s">
+        <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+          <circle cx="22" cy="22" r="5"/>
+          <line x1="22" y1="3"  x2="22" y2="9"/>
+          <line x1="22" y1="35" x2="22" y2="41"/>
+          <line x1="3"  y1="22" x2="9"  y2="22"/>
+          <line x1="35" y1="22" x2="41" y2="22"/>
+          <line x1="8"  y1="8"  x2="12" y2="12"/>
+          <line x1="32" y1="32" x2="36" y2="36"/>
+          <line x1="36" y1="8"  x2="32" y2="12"/>
+          <line x1="12" y1="32" x2="8"  y2="36"/>
+        </svg>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ivory);margin-bottom:14px;letter-spacing:.02em;">Atmosphere</p>
+        <p style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:rgba(245,240,232,.45);line-height:1.78;">Three floors open to the sky. Ubud's jungle canopy around you. The kind of peace that only arrives when you stop rushing.</p>
+      </div>
+    </div>
+  </div>
+  <!-- wave → menu navy-lt -->
+  <div class="wave-box" style="margin:80px -8vw -120px;position:relative;z-index:2;">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="display:block;width:100%;height:80px;">
+      <path d="M0,22 Q360,80 720,28 Q1080,-14 1440,52 L1440,80 L0,80 Z" fill="#141F3A"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ MENU ═══ -->
+<section id="a-menu" class="grain batik">
+  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1;">
+    <div style="margin-bottom:52px;">
+      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:16px;">The Menu</p>
+      <div data-reveal style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,72px);color:var(--ivory);line-height:.9;">
+          A Ritual<br><em style="color:var(--gold);font-weight:400;">of Taste</em>
+        </h2>
+        <!-- TABS -->
+        <div class="tab-outer" id="tab-outer">
+          <div class="tab-wrap" id="tab-wrap">
+            <button id="ta-bk" class="tab-btn active"   onclick="switchTab('breakfast',this)">Breakfast</button>
+            <button id="ta-fd" class="tab-btn"          onclick="switchTab('food',this)">Food</button>
+            <button id="ta-dr" class="tab-btn"          onclick="switchTab('drinks',this)">Drinks</button>
+          </div>
+          <div class="tab-line" id="tab-line"></div>
+        </div>
+      </div>
+      <!-- ornament divider -->
+      <div style="display:flex;align-items:center;gap:14px;margin-top:32px;">
+        <div style="flex:1;height:1px;background:rgba(212,184,150,.1)"></div>
+        <span style="color:rgba(212,184,150,.35);font-size:12px;">✦</span>
+        <div style="flex:1;height:1px;background:rgba(212,184,150,.1)"></div>
+      </div>
+    </div>
+    <div id="menu-content"></div>
+  </div>
+  <!-- wave → image -->
+  <div class="wave-box" style="margin:80px -8vw -80px;position:relative;z-index:2;">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="display:block;width:100%;height:80px;">
+      <path d="M0,50 Q360,0 720,42 Q1080,76 1440,18 L1440,80 L0,80 Z" fill="#0F1B35"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ REVIEWS / AVIS ═══ -->
+<section id="a-reviews">
+  <div class="rv-sky"></div>
+  <div class="rv-stage"><div class="rv-stream" id="rv-stream"></div></div>
+  <div class="rv-gate"><img src="Pura Lempuyang cut.webp" alt="Pura Lempuyang &amp; Mount Agung"></div>
+  <div class="rv-head">
+    <p class="lbl" style="color:var(--gold);">Guest Reviews</p>
+    <h2>Words From<br>Our Guests</h2>
+    <div class="rv-stars-lg">★★★★<span style="opacity:.4">★</span><small>4.7 · Loved on Google</small></div>
+  </div>
+  <!-- decorative wave separator with floating botanicals -->
+  <div class="rv-sep">
+    <svg class="rv-wave" viewBox="0 0 1440 130" preserveAspectRatio="none">
+      <path d="M0,66 C220,18 470,96 720,64 C980,30 1220,104 1440,52 L1440,130 L0,130 Z" fill="rgba(15,27,53,.5)"/>
+      <path d="M0,86 C240,48 520,114 720,82 C980,46 1220,112 1440,72 L1440,130 L0,130 Z" fill="#0F1B35"/>
+    </svg>
+    <div class="rv-floats">
+      <span class="rvf" style="left:12%;bottom:30px;--d:6.6s;--dl:0s">
+        <svg class="rvf-leaf" width="42" viewBox="0 0 200 260" style="transform:rotate(-18deg)">
+          <path d="M100 18 C100 18 34 58 26 138 C18 218 72 258 100 248 C128 258 182 218 174 138 C166 58 100 18 100 18Z"/>
+          <line x1="100" y1="18" x2="100" y2="248"/>
+          <path d="M100 72 C82 84 46 96 36 122"/><path d="M100 102 C82 118 50 134 44 158"/>
+          <path d="M100 72 C118 84 154 96 164 122"/><path d="M100 102 C118 118 150 134 156 158"/></svg>
+      </span>
+      <span class="rvf" style="left:28%;bottom:22px;--d:7.8s;--dl:.6s">
+        <svg class="rvf-leaf" width="30" viewBox="0 0 200 260" style="transform:rotate(16deg)">
+          <path d="M100 18 C100 18 34 58 26 138 C18 218 72 258 100 248 C128 258 182 218 174 138 C166 58 100 18 100 18Z"/>
+          <line x1="100" y1="18" x2="100" y2="248"/>
+          <path d="M100 72 C82 84 46 96 36 122"/><path d="M100 102 C82 118 50 134 44 158"/>
+          <path d="M100 72 C118 84 154 96 164 122"/><path d="M100 102 C118 118 150 134 156 158"/></svg>
+      </span>
+      <span class="rvf" style="left:42%;bottom:36px;--d:6s;--dl:.3s">
+        <svg class="rvf-leaf" width="50" viewBox="0 0 200 260" style="transform:rotate(-7deg)">
+          <path d="M100 18 C100 18 34 58 26 138 C18 218 72 258 100 248 C128 258 182 218 174 138 C166 58 100 18 100 18Z"/>
+          <line x1="100" y1="18" x2="100" y2="248"/>
+          <path d="M100 72 C82 84 46 96 36 122"/><path d="M100 102 C82 118 50 134 44 158"/>
+          <path d="M100 72 C118 84 154 96 164 122"/><path d="M100 102 C118 118 150 134 156 158"/></svg>
+      </span>
+      <span class="rvf" style="left:58%;bottom:24px;--d:7.2s;--dl:1.1s">
+        <svg class="rvf-leaf" width="34" viewBox="0 0 200 260" style="transform:rotate(23deg)">
+          <path d="M100 18 C100 18 34 58 26 138 C18 218 72 258 100 248 C128 258 182 218 174 138 C166 58 100 18 100 18Z"/>
+          <line x1="100" y1="18" x2="100" y2="248"/>
+          <path d="M100 72 C82 84 46 96 36 122"/><path d="M100 102 C82 118 50 134 44 158"/>
+          <path d="M100 72 C118 84 154 96 164 122"/><path d="M100 102 C118 118 150 134 156 158"/></svg>
+      </span>
+      <span class="rvf" style="left:73%;bottom:34px;--d:5.6s;--dl:.4s">
+        <svg class="rvf-leaf" width="44" viewBox="0 0 200 260" style="transform:rotate(-25deg)">
+          <path d="M100 18 C100 18 34 58 26 138 C18 218 72 258 100 248 C128 258 182 218 174 138 C166 58 100 18 100 18Z"/>
+          <line x1="100" y1="18" x2="100" y2="248"/>
+          <path d="M100 72 C82 84 46 96 36 122"/><path d="M100 102 C82 118 50 134 44 158"/>
+          <path d="M100 72 C118 84 154 96 164 122"/><path d="M100 102 C118 118 150 134 156 158"/></svg>
+      </span>
+      <span class="rvf" style="left:87%;bottom:20px;--d:8.3s;--dl:1.5s">
+        <svg class="rvf-leaf" width="28" viewBox="0 0 200 260" style="transform:rotate(11deg)">
+          <path d="M100 18 C100 18 34 58 26 138 C18 218 72 258 100 248 C128 258 182 218 174 138 C166 58 100 18 100 18Z"/>
+          <line x1="100" y1="18" x2="100" y2="248"/>
+          <path d="M100 72 C82 84 46 96 36 122"/><path d="M100 102 C82 118 50 134 44 158"/>
+          <path d="M100 72 C118 84 154 96 164 122"/><path d="M100 102 C118 118 150 134 156 158"/></svg>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ JUNGLE STRIP ═══ -->
+<section id="jungle-strip">
+  <img id="jungle-img" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1920&q=85" alt="">
+  <div id="jungle-overlay"></div>
+  <div id="jungle-text" data-reveal>
+    <p class="lbl" style="color:rgba(212,184,150,.65);margin-bottom:18px;letter-spacing:.6em;">Ubud · Bali</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(44px,7vw,96px);color:var(--ivory);line-height:.93;letter-spacing:-.01em;">
+      In the heart<br>of Ubud
+    </h2>
+  </div>
+  <!-- wave → cream -->
+  <div class="wave-box" style="position:absolute;bottom:-1px;left:0;width:100%;z-index:4;">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="display:block;width:100%;height:80px;">
+      <path d="M0,28 Q360,82 720,22 Q1080,-12 1440,58 L1440,80 L0,80 Z" fill="#EDE8DF"/>
+    </svg>
+    <span class="wave-star" style="bottom:72px;color:rgba(212,184,150,.38);">✦</span>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══ -->
+<section id="a-gallery">
+  <div style="max-width:1320px;margin:0 auto;">
+    <p data-reveal class="lbl" style="color:var(--umber);margin-bottom:12px;">Gallery</p>
+    <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,72px);color:var(--navy);line-height:.9;margin-bottom:56px;">
+      Captured<br><em style="font-weight:400;color:var(--umber);">Moments</em>
+    </h2>
+    <div class="gal-grid" data-reveal>
+      <div class="gal-item wide">
+        <img src="IMG_0714.webp" alt="">
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:18px;">Evenings under the canopy</p></div>
+      </div>
+      <div class="gal-item">
+        <img src="IMG_8591.webp" alt="">
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">The rooftop at golden hour</p></div>
+      </div>
+      <div class="gal-item">
+        <img src="IMG_8696.webp" alt="">
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">Where Bali meets the world</p></div>
+      </div>
+      <div class="gal-item">
+        <img src="IMG_0118.webp" alt="">
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">An intimate corner</p></div>
+      </div>
+      <div class="gal-item">
+        <img src="IMG_0717.webp" alt="">
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">Cocktails &amp; conversation</p></div>
+      </div>
+      <div class="gal-item">
+        <img src="IMG_1741.webp" alt="">
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">The bar, after dark</p></div>
+      </div>
+      <div class="gal-item">
+        <img src="IMG_1752.webp" alt="">
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">Green &amp; glowing</p></div>
+      </div>
+      <div class="gal-item">
+        <img src="IMG_4803.webp" alt="">
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">Tables set for ceremony</p></div>
+      </div>
+      <div class="gal-item">
+        <img src="IMG_8592.webp" alt="">
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">Crafted details</p></div>
+      </div>
+      <div class="gal-item">
+        <img src="IMG_9565.webp" alt="">
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">Ubud by night</p></div>
+      </div>
+      <div class="gal-item">
+        <img src="IMG_9639.webp" alt="">
+        <div class="gal-caption"><p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:16px;">The last cocktail</p></div>
+      </div>
+    </div>
+    <div data-reveal style="text-align:right;margin-top:16px;">
+      <a href="https://instagram.com/ceremonia_rooftop_ubud" target="_blank" class="lbl" style="color:rgba(15,27,53,.38);font-size:9px;transition:color .25s;" onmouseover="this.style.color='#8B6F47'" onmouseout="this.style.color='rgba(15,27,53,.38)'">@ceremonia_rooftop_ubud ↗</a>
+    </div>
+  </div>
+  <!-- wave → navy -->
+  <div class="wave-box" style="margin:80px -8vw -80px;position:relative;z-index:2;">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="display:block;width:100%;height:80px;">
+      <path d="M0,12 Q360,72 720,18 Q1080,-18 1440,62 L1440,80 L0,80 Z" fill="#0F1B35"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ VISIT ═══ -->
+<section id="a-visit" class="grain">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;position:relative;z-index:1;" class="two-col">
+    <div>
+      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:20px;">Find Us</p>
+      <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,5vw,72px);color:var(--ivory);line-height:.9;margin-bottom:48px;">
+        Come<br>&amp; <em style="color:var(--gold);font-weight:400;">Visit</em>
+      </h2>
+      <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:44px;">
+        <div>
+          <p class="lbl" style="color:var(--gold);font-size:9px;margin-bottom:10px;">Address</p>
+          <p style="font-family:'Cormorant Garamond',serif;color:var(--ivory);font-size:20px;font-weight:400;line-height:1.5;">Jl. Raya Ubud No.26<br>Ubud, Bali</p>
+        </div>
+        <div>
+          <p class="lbl" style="color:var(--gold);font-size:9px;margin-bottom:10px;">Hours</p>
+          <p style="font-family:'Cormorant Garamond',serif;color:var(--ivory);font-size:20px;font-weight:400;line-height:1.5;">Daily<br>9:00 AM – 11 PM</p>
+        </div>
+        <div>
+          <p class="lbl" style="color:var(--gold);font-size:9px;margin-bottom:10px;">Contact</p>
+          <a href="mailto:ceremoniaubud@gmail.com" style="font-family:'Inter',sans-serif;font-weight:300;color:rgba(245,240,232,.42);font-size:13px;transition:color .25s;" onmouseover="this.style.color='#D4B896'" onmouseout="this.style.color='rgba(245,240,232,.42)'">ceremoniaubud@gmail.com</a>
+        </div>
+        <div style="display:flex;align-items:flex-end;">
+          <a href="https://wa.me/6285337107649" target="_blank" class="btn"><span class="t">WhatsApp ↗</span></a>
+        </div>
+      </div>
+    </div>
+    <div data-reveal style="overflow:hidden;">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.09!2d115.2625!3d-8.5069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23d4d52b503b7%3A0xfdee987f52d78f4a!2sJl.%20Raya%20Ubud!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+        width="100%" height="420" style="border:0;display:block;filter:invert(88%) hue-rotate(180deg) saturate(0.6);"
+        allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="a-footer" class="grain">
+  <div class="ticker-wrap">
+    <div class="ticker-inner">
+      <span>Open daily · 9:00 AM – 11 PM · Rooftop Restaurant &amp; Bar · Ubud · Bali ·&nbsp;&nbsp;</span>
+      <span>Open daily · 9:00 AM – 11 PM · Rooftop Restaurant &amp; Bar · Ubud · Bali ·&nbsp;&nbsp;</span>
+    </div>
+  </div>
+  <img src="Logo.webp" alt="Ceremonia" style="width:96px;margin:0 auto 18px;">
+  <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold);font-size:22px;margin-bottom:36px;letter-spacing:.02em;">Under the Ubud Sky</p>
+  <div style="display:flex;gap:14px;justify-content:center;margin-bottom:56px;">
+    <a href="https://instagram.com/ceremonia_rooftop_ubud" target="_blank" class="soc-icon" title="Instagram">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="5"/>
+        <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="https://wa.me/6285337107649" target="_blank" class="soc-icon" title="WhatsApp">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </a>
+  </div>
+  <div style="border-top:1px solid rgba(212,184,150,.07);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <span class="lbl" style="color:rgba(245,240,232,.18);font-size:9px;">Ceremonia Rooftop Ubud</span>
+    <span style="font-family:'Inter',sans-serif;color:rgba(245,240,232,.14);font-size:10px;letter-spacing:.1em;">© 2025 · All rights reserved</span>
+  </div>
+</footer>
+
+<script>
+/* ─── MENU DATA ───────────────────────────────────────────────────── */
+const MENU={
+  breakfast:[
+    {label:'MORNING PLATES',items:[
+      {name:'Nasi Goreng Bowl',    desc:'Fragrant fried rice, crispy egg, sambal matah, kerupuk',   price:'75.000'},
+      {name:'Açaí Sunrise Bowl',   desc:'Wild açaí, banana, granola, honey, seasonal fruits',       price:'85.000'},
+      {name:'Avocado Sourdough',   desc:'House sourdough, smashed avocado, poached egg, dukkah',    price:'82.000'},
+      {name:'Eggs Benedict',       desc:'Poached eggs, hollandaise, brioche, smoked salmon',        price:'92.000'},
+      {name:'Morning Ritual Bowl', desc:'Quinoa, sweet potato, egg, tahini drizzle',                price:'88.000'},
+      {name:'Shakshuka',           desc:'Spiced tomato sauce, two eggs, toasted pita, herb oil',    price:'85.000'},
+    ]},
+    {label:'COFFEE',items:[
+      {name:'Bali Drip',            desc:'Single origin Kintamani, slow filter brew',               price:'40.000'},
+      {name:'Balinese Latte',       desc:'Local espresso, coconut milk, palm sugar',                price:'48.000'},
+      {name:'Cold Brew',            desc:'12-hour cold extraction, black or oat milk',              price:'55.000'},
+      {name:'Golden Turmeric Latte',desc:'Turmeric, ginger, coconut milk, honey',                  price:'50.000'},
+    ]},
+  ],
+  food:[
+    {label:'TAPAS & STARTERS',items:[
+      {name:'Beef Satay Skewers',  desc:'6 skewers, peanut sauce, lontong, pickles',               price:'98.000'},
+      {name:'Crispy Tempeh Tacos', desc:'3 tacos, mango salsa, chipotle crema',                    price:'92.000'},
+      {name:'Tuna Tataki',         desc:'Sesame-seared, ponzu, cucumber, microgreens',             price:'125.000'},
+      {name:'Bruschetta Trio',     desc:'Tomato basil · mushroom truffle · smoked salmon',         price:'88.000'},
+    ]},
+    {label:'MAINS & BOWLS',items:[
+      {name:'Gado Gado',           desc:'Mixed vegetables, tofu, tempeh, peanut dressing',         price:'88.000'},
+      {name:'Ceremonial Rice Bowl',desc:'Fragrant rice, tempeh, egg, sambal matah',                price:'88.000'},
+      {name:'Mushroom Fettuccine', desc:'Cremini, truffle oil, aged parmesan',                     price:'108.000'},
+      {name:'Sharing Platter',     desc:'Charcuterie, cheese, fruits, crackers · 2–3 pax',         price:'195.000'},
+    ]},
+  ],
+  drinks:[
+    {label:'COCKTAILS',items:[
+      {name:'Bali Sunset',         desc:'Dark rum, passion fruit, coconut, lime',                  price:'95.000'},
+      {name:'Ceremonial Negroni',  desc:'Gin, Campari, vermouth, orange zest',                     price:'105.000'},
+      {name:'Ubud Spritz',         desc:'Aperol, prosecco, blood orange, rosemary',                price:'98.000'},
+      {name:'The Kintamani',       desc:'Whisky, cold brew, coffee liqueur, smoked vanilla',       price:'118.000'},
+      {name:'Sacred Sour',         desc:'Arak Bali, passion fruit, citrus, egg white',             price:'98.000'},
+      {name:'Jungle Bird',         desc:'Rum, Campari, pineapple, lime, falernum',                 price:'108.000'},
+    ]},
+    {label:'MOCKTAILS & MORE',items:[
+      {name:'Golden Hour',         desc:'Turmeric, ginger, lemon, honey, soda',                   price:'68.000'},
+      {name:'Bali Botanics',       desc:'Hibiscus, rose, lemongrass, coconut water',               price:'65.000'},
+      {name:'House Wine',          desc:'Red, White, or Rosé by the glass',                        price:'75.000'},
+      {name:'Bintang Beer',        desc:"Indonesia's local cold brew, 330ml",                      price:'45.000'},
+    ]},
+  ],
+};
+
+/* ─── MENU RENDER ─────────────────────────────────────────────────── */
+let activeTab='breakfast';
+
+function renderMenu(tab){
+  const c=document.getElementById('menu-content');
+  c.innerHTML=MENU[tab].map(sec=>`
+    <div style="margin-bottom:44px;">
+      <p style="font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.6em;text-transform:uppercase;color:rgba(212,184,150,.3);margin-bottom:14px;">${sec.label}</p>
+      <div class="menu-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        ${sec.items.map((item,i)=>`
+          <div class="menu-card" data-mi style="opacity:0;transform:translateY(14px);transition:opacity .4s ease ${i*40}ms,transform .4s ease ${i*40}ms;">
+            <div style="display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;">
+              <span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:21px;font-weight:400;">${item.name}</span>
+              <span style="font-family:'Inter',sans-serif;color:var(--gold);font-size:10px;letter-spacing:.1em;white-space:nowrap;padding-top:5px;font-weight:400;">IDR ${item.price}</span>
+            </div>
+            <p style="font-family:'Inter',sans-serif;font-weight:300;color:rgba(245,240,232,.3);font-size:12px;line-height:1.65;">${item.desc}</p>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    document.querySelectorAll('[data-mi]').forEach(el=>{
+      el.style.opacity='1';el.style.transform='translateY(0)';
+    });
+  }));
+}
+
+function switchTab(tab,btn){
+  if(tab===activeTab)return;
+  const mc=document.getElementById('menu-content');
+  mc.style.opacity='0';mc.style.transform='translateY(-10px)';
+  mc.style.transition='opacity .2s ease,transform .2s ease';
+  setTimeout(()=>{
+    activeTab=tab;
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    moveTabLine(btn);
+    renderMenu(tab);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      mc.style.transition='opacity .32s ease,transform .38s var(--ease)';
+      mc.style.opacity='1';mc.style.transform='translateY(0)';
+    }));
+  },210);
+}
+
+function moveTabLine(activeBtn){
+  const line=document.getElementById('tab-line');
+  const wrap=document.getElementById('tab-wrap');
+  if(!line||!wrap||!activeBtn)return;
+  const wr=wrap.getBoundingClientRect();
+  const br=activeBtn.getBoundingClientRect();
+  line.style.left=(br.left-wr.left)+'px';
+  line.style.width=br.width+'px';
+}
+
+/* ─── LOADER ──────────────────────────────────────────────────────── */
+function initLoader(){
+  document.querySelectorAll('#loader-letters span').forEach((s,i)=>{
+    s.style.animationDelay=(.65+i*.06)+'s';
+  });
+  setTimeout(()=>{
+    const l=document.getElementById('loader');
+    l.style.transition='opacity .45s ease,transform .45s ease';
+    l.style.opacity='0';l.style.transform='scale(1.04)';
+    setTimeout(()=>l.style.display='none',460);
+  },2600);
+}
+
+/* ─── PARTICLES ───────────────────────────────────────────────────── */
+function initParticles(){
+  const cv=document.getElementById('hero-canvas');
+  if(!cv)return;
+  const ctx=cv.getContext('2d');
+  let W,H,pts;
+  function resize(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight}
+  function make(){
+    return{x:Math.random()*W,y:H+Math.random()*H,
+      r:.7+Math.random()*1.8,spd:H/((8+Math.random()*13)*60),
+      dx:(Math.random()-.5)*.35,ph:Math.random()*Math.PI*2,
+      a:.25+Math.random()*.45};
+  }
+  function init(){resize();pts=Array.from({length:40},()=>{const p=make();p.y=Math.random()*H;return p})}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.y-=p.spd;p.x+=Math.sin(p.ph+p.y*.009)*p.dx;p.ph+=.004;
+      if(p.y<-8){Object.assign(p,make());p.x=Math.random()*W}
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(212,184,150,${p.a})`;ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  init();draw();
+  window.addEventListener('resize',resize);
+}
+
+/* ─── CURSOR ──────────────────────────────────────────────────────── */
+function initCursor(){
+  if(!window.matchMedia('(pointer:fine)').matches)return;
+  const dot=document.getElementById('cdot');
+  const ring=document.getElementById('cring');
+  dot.style.display=ring.style.display='block';
+  document.body.classList.add('cursor-active');
+  let mx=-200,my=-200,rx=-200,ry=-200;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    dot.style.left=mx+'px';dot.style.top=my+'px';
+  });
+  document.addEventListener('mousedown',()=>dot.classList.add('clicked'));
+  document.addEventListener('mouseup',()=>dot.classList.remove('clicked'));
+  document.querySelectorAll('a,button,.btn').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px';ring.style.borderColor='rgba(212,184,150,.7)'});
+    el.addEventListener('mouseleave',()=>{ring.style.width='24px';ring.style.height='24px';ring.style.borderColor='rgba(212,184,150,.3)'});
+  });
+  (function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
+}
+
+/* ─── NAV ─────────────────────────────────────────────────────────── */
+function initNav(){
+  const nav=document.getElementById('a-nav');
+  const mob=document.getElementById('mob-cta');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>80),{passive:true});
+  if(window.innerWidth<=860&&mob)mob.style.display='inline-block';
+}
+
+/* ─── REVIEWS (rising eruption) ───────────────────────────────────── */
+const REVIEWS=[
+  {n:'Pierre H.',  i:'P', c:'#c98a3c', t:'A real gem in the heart of Ubud. Refined local cuisine with delicious French touches — and the owner is a true cocktail expert. A must.'},
+  {n:'Calista R.', i:'C', c:'#7d9a59', t:'Superb spot, warm and friendly staff. Lovely atmosphere with a beautiful rooftop, and the food is great too. Highly recommend in Ubud.'},
+  {n:'Mathilde F.',i:'M', c:'#8b6f47', t:'An exceptional address. Ceremonia is a real gem — refined cuisine, a sublime setting, and attentive, professional, kind service.'},
+  {n:'Andaine S.', i:'A', c:'#5a8f74', t:'Three weeks in Bali and this is where we ate the best! Everything excellent and beautifully presented, with a superb rooftop. A must-visit.'},
+  {n:'Vana L.',    i:'V', c:'#d4b896', t:'A wonderful find in the heart of Ubud. The dishes are as good as they are beautiful, the staff attentive, the owner adorable. Highly recommend!'},
+  {n:'Barbara A.', i:'B', c:'#6d894c', t:'A superb spot in Bali — a little haven of peace, cosy and warm. Delicious food, wonderful cocktails, and simply impeccable service.'},
+  {n:'Emilia C.',  i:'E', c:'#c98a3c', t:'Magnificent restaurant on the main street. Warm welcome, friendly staff and food worthy of a gourmet table. The desserts are to die for!'},
+  {n:'Louis D.',   i:'L', c:'#7d9a59', t:'Quite possibly the best restaurant in Ubud. Ideally located with an open terrace, warmth and delicious food. Highly recommend.'},
+  {n:'Kina L.',    i:'K', c:'#8b6f47', t:'A beautiful discovery — such a friendly welcome. Everything is an explosion of flavor. A true haven of peace in the heart of Ubud.'},
+  {n:'Céline R.',  i:'C', c:'#5a8f74', t:'Great address in Ubud. Every dish was a delight. Tasteful decor, attentive service, and a rooftop overlooking the street.'},
+  {n:'Rose H.',    i:'R', c:'#d4b896', t:'Excellent restaurant: elaborate cocktails, delicious and varied dishes in a chic, warm setting. I recommend it with my eyes closed.'},
+  {n:'Arnaud D.',  i:'A', c:'#6d894c', t:'Great cocktails and tasty snacks! The place is gorgeous — you feel wonderful on this rooftop.'},
+];
+function initReviews(){
+  const s=document.getElementById('rv-stream');
+  if(!s)return;
+  const card=r=>`<div class="rv-card">
+      <div class="rv-top">
+        <span class="rv-av" style="background:${r.c}">${r.i}</span>
+        <div><div class="rv-name">${r.n}</div><div class="rv-stars-sm">★★★★★</div></div>
+      </div>
+      <p class="rv-text">${r.t}</p>
+    </div>`;
+  const html=REVIEWS.map(card).join('');
+  s.innerHTML=html+html;   // duplicated for a seamless rise
+}
+
+/* ─── HERO CAROUSEL ───────────────────────────────────────────────── */
+function initHeroCarousel(){
+  const slides=[...document.querySelectorAll('.hero-slide')];
+  if(slides.length<2)return;
+  let i=0;
+  setInterval(()=>{
+    slides[i].classList.remove('active');
+    i=(i+1)%slides.length;
+    slides[i].classList.add('active');
+  },7000);
+}
+
+/* ─── LEAF GATE (scroll opening) ──────────────────────────────────── */
+function initLeaves(){
+  const lf=document.querySelector('.hero-leaf.left');
+  const rf=document.querySelector('.hero-leaf.right');
+  if(!lf||!rf)return;
+  let ticking=false;
+  function update(){
+    const p=Math.min(1,scrollY/(window.innerHeight*0.7));
+    const shift=p*window.innerWidth*0.24;
+    const rot=p*5;
+    lf.style.transform=`translateX(${-shift}px) rotate(${-rot}deg)`;
+    rf.style.transform=`translateX(${ shift}px) rotate(${ rot}deg)`;
+    ticking=false;
+  }
+  window.addEventListener('scroll',()=>{
+    if(!ticking){requestAnimationFrame(update);ticking=true;}
+  },{passive:true});
+  update();
+}
+
+/* ─── PARALLAX ────────────────────────────────────────────────────── */
+function initParallax(){
+  if(window.matchMedia('(max-width:860px)').matches)return;
+  const hs=document.querySelectorAll('.hero-slide');
+  const ji=document.getElementById('jungle-img');
+  const js=document.getElementById('jungle-strip');
+  window.addEventListener('scroll',()=>{
+    const y=scrollY;
+    const op=`center ${Math.max(0,30-y*.025)}%`;
+    hs.forEach(s=>s.style.objectPosition=op);
+    if(ji&&js){
+      const off=js.getBoundingClientRect().top+y;
+      ji.style.transform=`translateY(${(y-off)*.18}px)`;
+    }
+  },{passive:true});
+}
+
+/* ─── REVEALS ─────────────────────────────────────────────────────── */
+function initReveals(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+  },{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+  setTimeout(()=>document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el)),300);
+}
+
+/* ─── MOBILE NAV CTA ──────────────────────────────────────────────── */
+function initMobileNav(){
+  const mob=document.getElementById('mob-cta');
+  if(mob&&window.innerWidth<=860)mob.style.display='inline-block';
+}
+
+/* ─── INIT ────────────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded',()=>{
+  initLoader();
+  renderMenu('breakfast');
+  initNav();
+  initReveals();
+  initCursor();
+  initHeroCarousel();
+  initLeaves();
+  initReviews();
+  requestAnimationFrame(()=>{
+    const bk=document.getElementById('ta-bk');
+    if(bk)moveTabLine(bk);
+  });
+  const isMobile=window.matchMedia('(max-width:860px)').matches;
+  if(!isMobile){initParticles();initParallax();}
+});
+</script>
+</body>
+</html>
