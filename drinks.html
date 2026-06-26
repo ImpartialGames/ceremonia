@@ -25,6 +25,12 @@ a{text-decoration:none;color:inherit}
 #bar .brand span{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--ivory)}
 .back{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.6);transition:color .25s}
 .back:hover{color:var(--gold)}
+.bar-right{display:flex;align-items:center;gap:18px}
+.lang-switch{display:flex;align-items:center;gap:6px}
+.lang-btn{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.12em;color:rgba(245,240,232,.5);padding:2px;transition:color .25s}
+.lang-btn:hover{color:var(--gold)}
+.lang-btn.active{color:var(--gold);font-weight:600}
+.lang-sep{color:rgba(212,184,150,.3);font-size:10px}
 #cover{position:relative;text-align:center;padding:160px 7vw 64px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,rgba(139,94,60,.14) 0%,transparent 62%)}
 #cover .eyebrow{font-size:10px;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
 #cover h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(48px,9vw,104px);line-height:.92;letter-spacing:-.01em}
@@ -82,12 +88,17 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
 <body>
 <nav id="bar">
   <a class="brand" href="index.html"><img src="logo-ceremonia-beige.webp" alt="Ceremonia"><span>Ceremonia</span></a>
-  <a class="back" href="index.html">← Home</a>
+  <div class="bar-right">
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="fr">FR</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="id">ID</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="es">ES</button>
+    </div>
+    <a class="back" href="index.html" data-t="← Home">← Home</a>
+  </div>
 </nav>
 <header id="cover" class="grain">
-  <p class="eyebrow">The Bar</p>
+  <p class="eyebrow" data-t="The Bar">The Bar</p>
   <h1>Drinks<em>Menu</em></h1>
-  <p class="tag">Specialty coffees, ceremonial boosters &amp; crafted cocktails — every Ceremonia cocktail is poured with 60 ml of alcohol, when the Ubud standard is just 45 ml.</p>
+  <p class="tag" data-t="Specialty coffees, ceremonial boosters &amp; crafted cocktails — every Ceremonia cocktail is poured with 60 ml of alcohol, when the Ubud standard is just 45 ml.">Specialty coffees, ceremonial boosters &amp; crafted cocktails — every Ceremonia cocktail is poured with 60 ml of alcohol, when the Ubud standard is just 45 ml.</p>
   <div class="cover-orn"><span class="l"></span><span>✦</span><span class="l"></span></div>
 </header>
 <nav id="tabs"></nav>
@@ -95,9 +106,10 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
 <footer class="grain">
   <p class="note" id="legal"></p>
   <img class="logo" src="logo-ceremonia-beige.webp" alt="Ceremonia">
-  <p class="tagline">Under the Ubud Sky</p>
-  <a class="home" href="index.html">Back to Ceremonia</a>
+  <p class="tagline" data-t="Under the Ubud Sky">Under the Ubud Sky</p>
+  <a class="home" href="index.html" data-t="Back to Ceremonia">Back to Ceremonia</a>
 </footer>
+<script src="menu-i18n.js"></script>
 <script>
 const NOTE="Please inform us if you have any allergies. All rates are in thousands (’000) IDR, subject to 11% government tax & 5% service.";
 const MENU=[
@@ -275,41 +287,44 @@ function itemCard(it){
     : (it.price!=null?`<span class="price">${esc(it.price)}<small style="opacity:.6">k</small></span>`:'');
   return `<div class="card">
     <div class="top">
-      <span class="name">${esc(it.name)}${it.veg?`<span class="veg">(${esc(it.veg)})</span>`:''}${it.tag?`<span class="badge">${esc(it.tag)}</span>`:''}</span>
+      <span class="name">${esc(it.name)}${it.veg?`<span class="veg">(${esc(t(it.veg))})</span>`:''}${it.tag?`<span class="badge">${esc(t(it.tag))}</span>`:''}</span>
       ${price}
     </div>
-    ${it.sub?`<p class="sub">${esc(it.sub)}</p>`:''}
-    ${it.desc?`<p class="desc">${esc(it.desc)}</p>`:''}
+    ${it.sub?`<p class="sub">${esc(t(it.sub))}</p>`:''}
+    ${it.desc?`<p class="desc">${esc(t(it.desc))}</p>`:''}
     ${it.bottle!=null?`<p class="btl">Bottle 750ml · <b>${esc(it.bottle)}k</b></p>`:''}
   </div>`;
 }
-let SECTIONS=[],io;
+let SECTIONS=[],io,CUR=0;
 function render(){
   document.getElementById('menu').innerHTML=MENU.map((g,gi)=>`
     <section class="group ${g.cls} grain" data-g="${gi}"><div class="inner">
-      <div class="group-head"><h2 data-rev>${esc(g.group)}</h2></div>
-      ${g.note?`<p class="group-note" data-rev>${esc(g.note)}</p>`:''}
+      <div class="group-head"><h2 data-rev>${esc(t(g.group))}</h2></div>
+      ${g.note?`<p class="group-note" data-rev>${esc(t(g.note))}</p>`:''}
       ${g.sections.map(sec=>`
         <div class="sec">
-          <div class="sec-label" data-rev><span>${esc(sec.label)}</span><span class="l"></span></div>
-          ${sec.note?`<p class="sec-note" data-rev>${esc(sec.note)}</p>`:''}
+          <div class="sec-label" data-rev><span>${esc(t(sec.label))}</span><span class="l"></span></div>
+          ${sec.note?`<p class="sec-note" data-rev>${esc(t(sec.note))}</p>`:''}
           <div class="grid${sec.wide?' wide':''}">${sec.items.map(it=>`<span data-rev>${itemCard(it)}</span>`).join('')}</div>
         </div>`).join('')}
     </div></section>`).join('');
-  document.getElementById('legal').textContent=NOTE;
-  document.getElementById('tabs').innerHTML=MENU.map((g,gi)=>`<button class="tab" data-g="${gi}">${esc(g.group)}</button>`).join('');
+  document.getElementById('legal').textContent=t(NOTE);
+  document.getElementById('tabs').innerHTML=MENU.map((g,gi)=>`<button class="tab" data-g="${gi}">${esc(t(g.group))}</button>`).join('');
   SECTIONS=[...document.querySelectorAll('.group')];
   io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.06,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('#tabs .tab').forEach(b=>b.addEventListener('click',()=>showGroup(+b.dataset.g,true)));
-  showGroup(0,false);
+  showGroup(Math.min(CUR,MENU.length-1),false);
 }
 function showGroup(idx,scroll){
+  CUR=idx;
   document.querySelectorAll('#tabs .tab').forEach((b,i)=>b.classList.toggle('active',i===idx));
   SECTIONS.forEach((s,i)=>{s.hidden=i!==idx});
   SECTIONS[idx].querySelectorAll('[data-rev]').forEach((el,i)=>{el.classList.remove('in');el.style.transitionDelay=((i%6)*45)+'ms';io.observe(el)});
   if(scroll){const y=document.getElementById('menu').offsetTop-110;window.scrollTo({top:Math.max(0,y),behavior:'smooth'})}
 }
+window.__render=render;
 render();
+if(window.initI18n)initI18n();
 </script>
 </body>
 </html>
