@@ -266,6 +266,20 @@ body.menu-open{overflow:hidden}
   left:50%;width:62vw;max-width:840px;z-index:7;top:-12%;bottom:auto;
   transform:translateX(-50%);transform-origin:center center;
 }
+/* steam rising from the hot tapas */
+.hero-steam{position:absolute;left:50%;top:18%;width:min(44vw,520px);height:30%;
+  transform:translateX(-50%);z-index:7;pointer-events:none;}
+.steam{position:absolute;bottom:0;width:16px;height:62%;border-radius:50%;
+  background:linear-gradient(to top,rgba(255,255,255,0) 0%,rgba(255,255,255,.5) 45%,rgba(255,255,255,0) 100%);
+  filter:blur(7px);opacity:0;will-change:transform,opacity;
+  animation:steamRise var(--d,5.5s) ease-out var(--dl,0s) infinite;}
+@keyframes steamRise{
+  0%{opacity:0;transform:translateY(10px) translateX(0) scaleX(1) scaleY(.7)}
+  18%{opacity:.5}
+  60%{opacity:.32}
+  100%{opacity:0;transform:translateY(-130px) translateX(10px) scaleX(1.9) scaleY(1.35)}
+}
+@media(max-width:860px){.hero-steam{width:62vw;top:16%;height:26%}}
 #hero-overlay{
   position:absolute;inset:0;z-index:2;
   background:
@@ -658,6 +672,12 @@ body.menu-open{overflow:hidden}
   <img class="hero-leaf left"   src="Feuille 1 cut.webp" alt="">
   <img class="hero-leaf right"  src="Feuille 2 cut.webp" alt="">
   <img class="hero-leaf center" src="Feuille 3 cut.webp" alt="">
+  <div class="hero-steam" aria-hidden="true">
+    <span class="steam" style="left:30%;--d:5.5s;--dl:0s"></span>
+    <span class="steam" style="left:46%;--d:6.4s;--dl:1.1s"></span>
+    <span class="steam" style="left:58%;--d:5s;--dl:.6s"></span>
+    <span class="steam" style="left:70%;--d:6s;--dl:1.8s"></span>
+  </div>
   <div id="hero-content">
     <img class="h-logo" src="logo-ceremonia-beige.webp" alt="Ceremonia">
     <p class="h-eyebrow" data-i18n="hero.eyebrow">Rooftop Restaurant &amp; Bar · Ubud</p>
@@ -1418,6 +1438,7 @@ function initLeaves(){
   const lf=document.querySelector('.hero-leaf.left');
   const rf=document.querySelector('.hero-leaf.right');
   const cf=document.querySelector('.hero-leaf.center');
+  const st=document.querySelector('.hero-steam');
   if(!lf||!rf)return;
   let ticking=false;
   function update(){
@@ -1429,6 +1450,7 @@ function initLeaves(){
     if(cf){
       const drop=p*window.innerHeight*2.1;
       cf.style.transform=`translateX(-50%) translateY(${-drop}px) rotate(${p*3}deg)`;
+      if(st){st.style.transform=`translateX(-50%) translateY(${-drop}px)`;st.style.opacity=Math.max(0,1-p*2.2);}
     }
     ticking=false;
   }
