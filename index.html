@@ -263,8 +263,8 @@ body.menu-open{overflow:hidden}
 .hero-leaf.left{left:7vw;transform-origin:bottom left}
 .hero-leaf.right{right:7vw;transform-origin:bottom right}
 .hero-leaf.center{
-  left:50%;width:96vw;max-width:1360px;z-index:7;top:-44%;bottom:auto;
-  transform:translateX(-50%) scaleY(-1);transform-origin:center center;
+  left:50%;width:62vw;max-width:840px;z-index:7;top:-12%;bottom:auto;
+  transform:translateX(-50%);transform-origin:center center;
 }
 #hero-overlay{
   position:absolute;inset:0;z-index:2;
@@ -488,7 +488,6 @@ body.menu-open{overflow:hidden}
           mask-image:linear-gradient(180deg,transparent 28%,#000 37%,#000 84%,transparent 95%);}
 .rv-stream{display:flex;flex-direction:column;width:min(248px,74vw);
   animation:rvRise 42s linear infinite;will-change:transform;}
-.rv-stage:hover .rv-stream{animation-play-state:paused}
 @keyframes rvRise{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 .rv-card{background:linear-gradient(135deg,rgba(15,27,53,.84),rgba(22,33,60,.92));
   border:1px solid rgba(212,184,150,.22);border-radius:12px;backdrop-filter:blur(8px);
@@ -550,7 +549,7 @@ body.menu-open{overflow:hidden}
   /* hero */
   #hero-pin{height:150vh}
   .hero-leaf{width:96vw;bottom:-12%}
-  .hero-leaf.center{width:96vw;top:-12%;bottom:auto}
+  .hero-leaf.center{width:86vw;max-width:none;top:-8%;bottom:auto}
   .h-logo{width:64vw!important}
   .h-eyebrow{font-size:9px;letter-spacing:.42em}
   .h-desc{font-size:14px;max-width:88vw}
@@ -1411,7 +1410,7 @@ function initLeaves(){
     rf.style.transform=`translateX(${ shift}px) rotate(${ rot}deg)`;
     if(cf){
       const drop=p*window.innerHeight*2.1;
-      cf.style.transform=`translateX(-50%) translateY(${-drop}px) scaleY(-1) rotate(${p*3}deg)`;
+      cf.style.transform=`translateX(-50%) translateY(${-drop}px) rotate(${p*3}deg)`;
     }
     ticking=false;
   }
