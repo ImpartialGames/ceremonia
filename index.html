@@ -587,6 +587,11 @@ body.menu-open{overflow:hidden}
   #a-menu{padding:64px 7vw 60px}
   #a-gallery{padding:64px 7vw 60px}
   #a-visit{padding:64px 7vw 56px}
+  /* visit: center text block + map */
+  #a-visit .two-col>div:first-child{text-align:center}
+  #a-visit .two-col>div:first-child>div[style*="grid"]{justify-items:center;max-width:380px;margin-left:auto;margin-right:auto}
+  #a-visit .two-col>div:last-child{order:2;width:100%;max-width:480px;margin:0 auto;border-radius:4px}
+  #a-visit iframe{height:300px;border-radius:4px}
   #a-footer{padding:0 7vw 40px}
   /* hero */
   #hero-pin{height:150vh}
