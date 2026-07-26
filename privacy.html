@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="consent.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QKQ0R6NVG"></script>
 <script>
@@ -72,6 +73,9 @@ footer .tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-we
 footer .home{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.55);transition:color .25s}
 footer .home:hover{color:var(--gold)}
 @media(max-width:640px){#bar{padding:14px 5vw}.doc h2{margin-top:40px}}
+.manage-cookies{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--gold);color:var(--gold);border-radius:30px;padding:10px 22px;cursor:pointer;transition:background .25s,color .25s}
+.manage-cookies:hover{background:var(--gold);color:var(--navy)}
 </style>
 </head>
 <body>
@@ -99,7 +103,7 @@ footer .home:hover{color:var(--gold)}
 
   <!-- ═══════════════ ENGLISH ═══════════════ -->
   <div class="doc lang-block" data-lang="en">
-    <p class="updated">Last updated — 26 July 2026</p>
+    <p class="updated">Last updated — 27 July 2026</p>
 
     <h2>Legal Notice</h2>
     <p><strong>Owner &amp; operator:</strong> Ceremonia Ubud<br>
@@ -118,7 +122,7 @@ footer .home:hover{color:var(--gold)}
     <ul>
       <li><strong>Contact:</strong> if you write to us by email or WhatsApp, we receive the data you choose to send us.</li>
       <li><strong>Job applications:</strong> our careers form collects identity and contact details, address, education, work experience, availability, compensation expectations, your CV and an optional motivation letter. Questions about family situation and religion are <strong>optional</strong> and have no influence on selection.</li>
-      <li><strong>No tracking:</strong> this website does not use analytics, advertising trackers or profiling.</li>
+      <li><strong>Audience measurement:</strong> we use Google Analytics to understand how the site is used. Cookies are only set with your consent; if you decline, visits are counted anonymously, without cookies (Google Consent Mode).</li>
     </ul>
 
     <h3>3 · Why we process it</h3>
@@ -129,6 +133,7 @@ footer .home:hover{color:var(--gold)}
       <li><strong>FormSubmit.co</strong> — transmits your application to our email inbox. Data passes through their servers only for delivery.</li>
       <li><strong>OpenStreetMap / Nominatim &amp; routing.openstreetmap.de</strong> — when you fill in the application form, the address you enter is sent to these services to estimate your travel time to the restaurant. Nothing else is transmitted.</li>
       <li><strong>Google Maps</strong> — the map on our homepage is loaded from Google only if you click to display it; before that, no request is sent to Google.</li>
+      <li><strong>Google Analytics</strong> — audience statistics (pages viewed, country, device type). Measurement cookies are only set after you accept them in the cookie banner; otherwise measurement stays anonymous and cookieless.</li>
     </ul>
     <p>We never sell or share your data for marketing purposes.</p>
 
@@ -139,7 +144,8 @@ footer .home:hover{color:var(--gold)}
     <p>You may at any time request access to, correction or deletion of your data, withdraw your consent, or object to processing, by writing to <a href="mailto:ceremoniaubud@gmail.com">ceremoniaubud@gmail.com</a>. We reply within 30 days. EEA residents may also lodge a complaint with their local supervisory authority.</p>
 
     <h3>7 · Cookies &amp; local storage</h3>
-    <p>This site sets <strong>no advertising or analytics cookies</strong>. Your browser's local storage is used only to remember your language preference — this is strictly functional and requires no consent. The fonts of this site are hosted on our own server — browsing sends no request to Google. Third-party cookies can only be set by the Google Map, and only if you choose to load it.</p>
+    <p>On your first visit, a banner lets you <strong>accept or decline</strong> analytics cookies (Google Analytics). If you accept, Google sets measurement cookies (prefixed <strong>_ga</strong>, kept for up to 13 months). If you decline, no analytics cookie is set and only anonymous, cookieless statistics are collected. Your browser's local storage also remembers your language and your cookie choice — strictly functional. The fonts of this site are hosted on our own server. The Google Map can only set third-party cookies if you choose to load it.</p>
+    <p><button type="button" class="manage-cookies">Change my cookie choice</button></p>
 
     <h3>8 · Security</h3>
     <p>The site is served over HTTPS and application data is delivered directly to our private inbox, accessible only to the people involved in recruitment.</p>
@@ -147,7 +153,7 @@ footer .home:hover{color:var(--gold)}
 
   <!-- ═══════════════ FRANÇAIS ═══════════════ -->
   <div class="doc lang-block" data-lang="fr">
-    <p class="updated">Dernière mise à jour — 26 juillet 2026</p>
+    <p class="updated">Dernière mise à jour — 27 juillet 2026</p>
 
     <h2>Mentions légales</h2>
     <p><strong>Propriétaire &amp; exploitant :</strong> Ceremonia Ubud<br>
@@ -166,7 +172,7 @@ footer .home:hover{color:var(--gold)}
     <ul>
       <li><strong>Contact :</strong> si vous nous écrivez par email ou WhatsApp, nous recevons les données que vous choisissez de nous transmettre.</li>
       <li><strong>Candidatures :</strong> notre formulaire de recrutement collecte identité et coordonnées, adresse, formation, expérience professionnelle, disponibilité, attentes de rémunération, votre CV et une lettre de motivation optionnelle. Les questions sur la situation familiale et la religion sont <strong>optionnelles</strong> et n'ont aucune influence sur la sélection.</li>
-      <li><strong>Aucun traçage :</strong> ce site n'utilise ni outil d'analyse d'audience, ni traceur publicitaire, ni profilage.</li>
+      <li><strong>Mesure d'audience :</strong> nous utilisons Google Analytics pour comprendre l'usage du site. Les cookies ne sont déposés qu'avec votre consentement ; si vous refusez, les visites sont comptées anonymement, sans cookies (Google Consent Mode).</li>
     </ul>
 
     <h3>3 · Finalités du traitement</h3>
@@ -177,6 +183,7 @@ footer .home:hover{color:var(--gold)}
       <li><strong>FormSubmit.co</strong> — achemine votre candidature vers notre boîte email. Les données ne transitent par leurs serveurs que pour la livraison.</li>
       <li><strong>OpenStreetMap / Nominatim &amp; routing.openstreetmap.de</strong> — lors du remplissage du formulaire, l'adresse que vous saisissez est envoyée à ces services pour estimer votre temps de trajet jusqu'au restaurant. Rien d'autre n'est transmis.</li>
       <li><strong>Google Maps</strong> — la carte de notre page d'accueil n'est chargée depuis Google que si vous cliquez pour l'afficher ; avant cela, aucune requête n'est envoyée à Google.</li>
+      <li><strong>Google Analytics</strong> — statistiques de fréquentation (pages vues, pays, type d'appareil). Les cookies de mesure ne sont déposés qu'après votre accord via le bandeau cookies ; sinon, la mesure reste anonyme et sans cookies.</li>
     </ul>
     <p>Nous ne vendons ni ne partageons jamais vos données à des fins commerciales.</p>
 
@@ -187,7 +194,8 @@ footer .home:hover{color:var(--gold)}
     <p>Vous pouvez à tout moment demander l'accès, la rectification ou la suppression de vos données, retirer votre consentement ou vous opposer au traitement, en écrivant à <a href="mailto:ceremoniaubud@gmail.com">ceremoniaubud@gmail.com</a>. Nous répondons sous 30 jours. Les résidents de l'EEE peuvent également saisir leur autorité de contrôle locale (la CNIL en France).</p>
 
     <h3>7 · Cookies &amp; stockage local</h3>
-    <p>Ce site ne dépose <strong>aucun cookie publicitaire ou d'analyse</strong>. Le stockage local de votre navigateur sert uniquement à mémoriser votre langue — usage strictement fonctionnel, exempté de consentement. Les polices du site sont hébergées sur notre propre serveur — la navigation n'envoie aucune requête à Google. Seule la carte Google Maps peut déposer des cookies tiers, et uniquement si vous choisissez de la charger.</p>
+    <p>Lors de votre première visite, un bandeau vous permet d'<strong>accepter ou de refuser</strong> les cookies de mesure d'audience (Google Analytics). Si vous acceptez, Google dépose des cookies de mesure (préfixe <strong>_ga</strong>, conservés jusqu'à 13 mois). Si vous refusez, aucun cookie d'analyse n'est déposé et seules des statistiques anonymes, sans cookies, sont collectées. Le stockage local du navigateur mémorise aussi votre langue et votre choix cookies — usage strictement fonctionnel. Les polices du site sont hébergées sur notre propre serveur. La carte Google Maps ne peut déposer des cookies tiers que si vous choisissez de la charger.</p>
+    <p><button type="button" class="manage-cookies">Modifier mon choix cookies</button></p>
 
     <h3>8 · Sécurité</h3>
     <p>Le site est servi en HTTPS et les données de candidature sont livrées directement dans notre boîte privée, accessible aux seules personnes impliquées dans le recrutement.</p>
@@ -195,7 +203,7 @@ footer .home:hover{color:var(--gold)}
 
   <!-- ═══════════════ BAHASA INDONESIA ═══════════════ -->
   <div class="doc lang-block" data-lang="id">
-    <p class="updated">Terakhir diperbarui — 26 Juli 2026</p>
+    <p class="updated">Terakhir diperbarui — 27 Juli 2026</p>
 
     <h2>Pemberitahuan Hukum</h2>
     <p><strong>Pemilik &amp; pengelola:</strong> Ceremonia Ubud<br>
@@ -214,7 +222,7 @@ footer .home:hover{color:var(--gold)}
     <ul>
       <li><strong>Kontak:</strong> jika Anda menghubungi kami lewat email atau WhatsApp, kami menerima data yang Anda kirimkan.</li>
       <li><strong>Lamaran kerja:</strong> formulir karier kami mengumpulkan identitas dan kontak, alamat, pendidikan, pengalaman kerja, ketersediaan, ekspektasi gaji, CV, dan surat motivasi (opsional). Pertanyaan tentang status keluarga dan agama bersifat <strong>opsional</strong> dan tidak memengaruhi seleksi.</li>
-      <li><strong>Tanpa pelacakan:</strong> situs ini tidak menggunakan analitik, pelacak iklan, atau pemrofilan.</li>
+      <li><strong>Pengukuran pengunjung:</strong> kami menggunakan Google Analytics untuk memahami penggunaan situs. Cookie hanya dipasang dengan persetujuan Anda; jika Anda menolak, kunjungan dihitung secara anonim, tanpa cookie (Google Consent Mode).</li>
     </ul>
 
     <h3>3 · Tujuan pemrosesan</h3>
@@ -225,6 +233,7 @@ footer .home:hover{color:var(--gold)}
       <li><strong>FormSubmit.co</strong> — meneruskan lamaran Anda ke email kami. Data hanya melewati server mereka untuk pengiriman.</li>
       <li><strong>OpenStreetMap / Nominatim &amp; routing.openstreetmap.de</strong> — saat mengisi formulir, alamat yang Anda masukkan dikirim ke layanan ini untuk memperkirakan waktu tempuh Anda ke restoran. Tidak ada data lain yang dikirim.</li>
       <li><strong>Google Maps</strong> — peta di beranda hanya dimuat dari Google jika Anda mengklik untuk menampilkannya; sebelum itu, tidak ada permintaan yang dikirim ke Google.</li>
+      <li><strong>Google Analytics</strong> — statistik kunjungan (halaman dilihat, negara, jenis perangkat). Cookie pengukuran hanya dipasang setelah Anda menyetujuinya lewat banner cookie; jika tidak, pengukuran tetap anonim dan tanpa cookie.</li>
     </ul>
     <p>Kami tidak pernah menjual atau membagikan data Anda untuk tujuan pemasaran.</p>
 
@@ -235,7 +244,8 @@ footer .home:hover{color:var(--gold)}
     <p>Anda dapat kapan saja meminta akses, koreksi, atau penghapusan data, menarik persetujuan, atau menolak pemrosesan dengan menulis ke <a href="mailto:ceremoniaubud@gmail.com">ceremoniaubud@gmail.com</a>. Kami menjawab dalam 30 hari.</p>
 
     <h3>7 · Cookie &amp; penyimpanan lokal</h3>
-    <p>Situs ini <strong>tidak memasang cookie iklan atau analitik</strong>. Penyimpanan lokal peramban hanya digunakan untuk mengingat pilihan bahasa Anda — murni fungsional. Font situs ini dihosting di server kami sendiri — menjelajah tidak mengirim permintaan apa pun ke Google. Cookie pihak ketiga hanya dapat dipasang oleh peta Google Maps, dan hanya jika Anda memilih memuatnya.</p>
+    <p>Saat kunjungan pertama, sebuah banner memungkinkan Anda <strong>menerima atau menolak</strong> cookie analitik (Google Analytics). Jika menerima, Google memasang cookie pengukuran (awalan <strong>_ga</strong>, disimpan hingga 13 bulan). Jika menolak, tidak ada cookie analitik yang dipasang dan hanya statistik anonim tanpa cookie yang dikumpulkan. Penyimpanan lokal peramban juga mengingat bahasa dan pilihan cookie Anda — murni fungsional. Font situs dihosting di server kami sendiri. Peta Google Maps hanya dapat memasang cookie pihak ketiga jika Anda memilih memuatnya.</p>
+    <p><button type="button" class="manage-cookies">Ubah pilihan cookie saya</button></p>
 
     <h3>8 · Keamanan</h3>
     <p>Situs disajikan melalui HTTPS dan data lamaran dikirim langsung ke kotak masuk pribadi kami, yang hanya dapat diakses oleh tim rekrutmen.</p>
@@ -243,7 +253,7 @@ footer .home:hover{color:var(--gold)}
 
   <!-- ═══════════════ ESPAÑOL ═══════════════ -->
   <div class="doc lang-block" data-lang="es">
-    <p class="updated">Última actualización — 26 de julio de 2026</p>
+    <p class="updated">Última actualización — 27 de julio de 2026</p>
 
     <h2>Aviso Legal</h2>
     <p><strong>Propietario &amp; operador:</strong> Ceremonia Ubud<br>
@@ -262,7 +272,7 @@ footer .home:hover{color:var(--gold)}
     <ul>
       <li><strong>Contacto:</strong> si nos escribes por email o WhatsApp, recibimos los datos que decidas enviarnos.</li>
       <li><strong>Candidaturas:</strong> nuestro formulario de empleo recoge identidad y datos de contacto, dirección, formación, experiencia laboral, disponibilidad, expectativas salariales, tu CV y una carta de motivación opcional. Las preguntas sobre situación familiar y religión son <strong>opcionales</strong> y no influyen en la selección.</li>
-      <li><strong>Sin rastreo:</strong> este sitio no utiliza analítica, rastreadores publicitarios ni elaboración de perfiles.</li>
+      <li><strong>Medición de audiencia:</strong> usamos Google Analytics para entender el uso del sitio. Las cookies solo se instalan con tu consentimiento; si las rechazas, las visitas se cuentan de forma anónima, sin cookies (Google Consent Mode).</li>
     </ul>
 
     <h3>3 · Finalidad del tratamiento</h3>
@@ -273,6 +283,7 @@ footer .home:hover{color:var(--gold)}
       <li><strong>FormSubmit.co</strong> — entrega tu candidatura en nuestro buzón de correo. Los datos solo pasan por sus servidores para la entrega.</li>
       <li><strong>OpenStreetMap / Nominatim &amp; routing.openstreetmap.de</strong> — al rellenar el formulario, la dirección que introduces se envía a estos servicios para estimar tu tiempo de trayecto al restaurante. No se transmite nada más.</li>
       <li><strong>Google Maps</strong> — el mapa de la página de inicio solo se carga desde Google si haces clic para mostrarlo; antes de eso, no se envía ninguna solicitud a Google.</li>
+      <li><strong>Google Analytics</strong> — estadísticas de visitas (páginas vistas, país, tipo de dispositivo). Las cookies de medición solo se instalan tras tu aceptación en el banner de cookies; de lo contrario, la medición es anónima y sin cookies.</li>
     </ul>
     <p>Nunca vendemos ni compartimos tus datos con fines comerciales.</p>
 
@@ -283,7 +294,8 @@ footer .home:hover{color:var(--gold)}
     <p>Puedes solicitar en cualquier momento el acceso, la rectificación o la supresión de tus datos, retirar tu consentimiento u oponerte al tratamiento escribiendo a <a href="mailto:ceremoniaubud@gmail.com">ceremoniaubud@gmail.com</a>. Respondemos en un plazo de 30 días. Los residentes del EEE también pueden reclamar ante su autoridad de control local.</p>
 
     <h3>7 · Cookies &amp; almacenamiento local</h3>
-    <p>Este sitio <strong>no instala cookies publicitarias ni de análisis</strong>. El almacenamiento local del navegador solo se usa para recordar tu idioma — uso estrictamente funcional, exento de consentimiento. Las fuentes del sitio están alojadas en nuestro propio servidor — la navegación no envía ninguna solicitud a Google. Solo el mapa de Google Maps puede instalar cookies de terceros, y únicamente si decides cargarlo.</p>
+    <p>En tu primera visita, un banner te permite <strong>aceptar o rechazar</strong> las cookies de análisis (Google Analytics). Si aceptas, Google instala cookies de medición (prefijo <strong>_ga</strong>, conservadas hasta 13 meses). Si rechazas, no se instala ninguna cookie de análisis y solo se recogen estadísticas anónimas, sin cookies. El almacenamiento local del navegador también recuerda tu idioma y tu elección de cookies — uso estrictamente funcional. Las fuentes del sitio están alojadas en nuestro propio servidor. El mapa de Google Maps solo puede instalar cookies de terceros si decides cargarlo.</p>
+    <p><button type="button" class="manage-cookies">Cambiar mi elección de cookies</button></p>
 
     <h3>8 · Seguridad</h3>
     <p>El sitio se sirve mediante HTTPS y los datos de candidatura llegan directamente a nuestro buzón privado, accesible solo para las personas implicadas en la selección.</p>
