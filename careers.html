@@ -1545,11 +1545,27 @@ function loadPdfLib(){
     document.head.appendChild(s);
   });
 }
-async function mergePdfs(parts){
-  const {PDFDocument}=window.PDFLib;
+async function mergePdfs(parts,name){
+  const {PDFDocument,StandardFonts,rgb}=window.PDFLib;
   const out=await PDFDocument.create();
-  for(const src of parts){
-    const doc=await PDFDocument.load(await src.arrayBuffer(),{ignoreEncryption:true});
+  const bold=await out.embedFont(StandardFonts.HelveticaBold);
+  const reg=await out.embedFont(StandardFonts.Helvetica);
+  const NAVY=rgb(15/255,27/255,53/255),GOLD=rgb(168/255,132/255,92/255),GRAY=rgb(.5,.52,.56);
+  for(const part of parts){
+    if(part.label){
+      /* divider page so the employer sees exactly where the CV / letter starts */
+      const p=out.addPage([595.28,841.89]);
+      p.drawRectangle({x:0,y:771.89,width:595.28,height:70,color:NAVY});
+      p.drawText('C E R E M O N I A',{x:48,y:806,size:13,font:bold,color:rgb(212/255,184/255,150/255)});
+      p.drawText('ROOFTOP  ·  UBUD  ·  BALI',{x:48,y:788,size:7,font:reg,color:rgb(.78,.78,.8)});
+      const lw=bold.widthOfTextAtSize(part.label,21);
+      p.drawText(part.label,{x:(595.28-lw)/2,y:432,size:21,font:bold,color:NAVY});
+      p.drawLine({start:{x:247,y:456},end:{x:347,y:456},thickness:.8,color:GOLD});
+      const sub=name+'  ·  Ceremonia job application';
+      const sw=reg.widthOfTextAtSize(sub,10.5);
+      p.drawText(sub,{x:(595.28-sw)/2,y:406,size:10.5,font:reg,color:GRAY});
+    }
+    const doc=await PDFDocument.load(await part.blob.arrayBuffer(),{ignoreEncryption:true});
     (await out.copyPages(doc,doc.getPageIndices())).forEach(p=>out.addPage(p));
   }
   return new Blob([await out.save()],{type:'application/pdf'});
@@ -1601,12 +1617,12 @@ form.addEventListener('submit',async e=>{
   try{
     await loadPdfLib();
     const parts=[];
-    if(appBlob)parts.push(appBlob);
-    if(cv.files[0])parts.push(cv.files[0]);
-    if(letter.files[0])parts.push(letter.files[0]);
+    if(appBlob)parts.push({blob:appBlob});
+    if(cv.files[0])parts.push({blob:cv.files[0],label:'CURRICULUM  VITAE'});
+    if(letter.files[0])parts.push({blob:letter.files[0],label:'MOTIVATION  LETTER'});
     if(!parts.length)throw new Error('nothing to merge');
-    files=[new File([await mergePdfs(parts)],'Ceremonia Application - '+safe+'.pdf',{type:'application/pdf'})];
-    attachedDesc='One PDF — '+[appBlob?'application form':'',cv.files[0]?'CV':'',letter.files[0]?'motivation letter':''].filter(Boolean).join(' + ');
+    files=[new File([await mergePdfs(parts,data.name)],'Ceremonia Application - '+safe+'.pdf',{type:'application/pdf'})];
+    attachedDesc='One PDF — '+[appBlob?'application form':'',cv.files[0]?'CV (after its divider page)':'',letter.files[0]?'motivation letter (after its divider page)':''].filter(Boolean).join(' + ');
   }catch(err){
     /* merge failed: attach the files separately */
     files=[cv.files[0],letter.files[0]].filter(Boolean);
