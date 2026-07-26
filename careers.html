@@ -1535,61 +1535,89 @@ function makePdf(data){
   return doc.output('blob');
 }
 /* ── email: compact triage summary when the PDF is attached, full table otherwise ── */
-function buildEmail(data,compact){
-  const fd=new FormData();
-  const add=(k,val)=>{if(val&&String(val).trim())fd.append(k,val)};
-  fd.append('_subject',document.getElementById('f-subject').value);
-  fd.append('_template','table');
-  fd.append('_captcha','false');
-  add('✦ Position applied',data.position);
-  if(compact){
-    add('👤 Candidate',data.name);
-    add('📱 WhatsApp',data.quick.wa);
-    add('📧 Email',data.quick.email);
-    add('🇬🇧 English level',data.quick.english);
-    add('⏳ Experience',data.quick.exp);
-    add('⏱ Travel time',data.quick.travel);
-    add('🗓 Availability',data.quick.avail);
-    if(data.quick.threshold)add('💰 Would seriously consider from',data.quick.threshold+' IDR / month');
-    add('🌐 Form filled in',data.lang);
-    fd.append('📎 Attached','Full application (PDF) · CV'+(letter.files[0]?' · Motivation letter':''));
-  }else{
-    add('🌐 Form filled in',data.lang);
-    data.sections.forEach(sec=>{
-      if(!sec.rows.length)return;
-      fd.append('— '+sec.title.toUpperCase()+' —','⸻');
-      sec.rows.forEach(r=>add(r.e+' '+r.l,r.val));
-    });
+/* pdf-lib — merges the generated application PDF with the CV & letter into ONE file */
+function loadPdfLib(){
+  if(window.PDFLib)return Promise.resolve();
+  return new Promise((res,rej)=>{
+    const s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js';
+    s.onload=res;s.onerror=rej;
+    document.head.appendChild(s);
+  });
+}
+async function mergePdfs(parts){
+  const {PDFDocument}=window.PDFLib;
+  const out=await PDFDocument.create();
+  for(const src of parts){
+    const doc=await PDFDocument.load(await src.arrayBuffer(),{ignoreEncryption:true});
+    (await out.copyPages(doc,doc.getPageIndices())).forEach(p=>out.addPage(p));
   }
-  if(cv.files[0])fd.append('attachment',cv.files[0]);
-  if(letter.files[0])fd.append('attachment',letter.files[0]);
-  return fd;
+  return new Blob([await out.save()],{type:'application/pdf'});
+}
+/* classic POST through a hidden form — FormSubmit only forwards attachments on
+   the non-AJAX endpoint; _next redirects straight back to /careers?sent=1 */
+function postClassic(data,files,attachedDesc){
+  const f=document.createElement('form');
+  f.method='POST';
+  f.action='https://formsubmit.co/ceremoniaubud@gmail.com';
+  f.enctype='multipart/form-data';
+  f.style.display='none';
+  const hid=(k,v)=>{const i=document.createElement('input');i.type='hidden';i.name=k;i.value=v;f.appendChild(i)};
+  hid('_subject',document.getElementById('f-subject').value);
+  hid('_template','table');
+  hid('_captcha','false');
+  hid('_next',document.getElementById('next-url').value);
+  hid('✦ Position applied',data.position);
+  hid('🌐 Form filled in',data.lang);
+  data.sections.forEach(sec=>{
+    if(!sec.rows.length)return;
+    hid('— '+sec.title.toUpperCase()+' —','⸻');
+    sec.rows.forEach(r=>{if(r.val&&String(r.val).trim())hid(r.e+' '+r.l,r.val)});
+  });
+  if(attachedDesc)hid('📎 Attached',attachedDesc);
+  files.forEach(file=>{
+    const i=document.createElement('input');
+    i.type='file';i.name='attachment';
+    const dt=new DataTransfer();
+    dt.items.add(file);
+    i.files=dt.files;
+    f.appendChild(i);
+  });
+  document.body.appendChild(f);
+  f.submit();
 }
 form.addEventListener('submit',async e=>{
   e.preventDefault();
   if(!stepValid())return;
   btnSubmit.disabled=true;
   btnSubmit.textContent=t('Sending…');
+  const data=collectApplication();
+  const safe=(data.name||'candidate').replace(/[^\w\- ]/g,'').trim()||'candidate';
+  /* 1 · generate the clean application document */
+  let appBlob=null;
+  try{await loadJsPDF();appBlob=makePdf(data)}catch(err){appBlob=null}
+  /* 2 · merge application + CV + letter into a single PDF (most reliable attachment) */
+  let files=[],attachedDesc='';
   try{
-    const data=collectApplication();
-    /* clean application document (PDF) — skipped silently if the library can't load */
-    let pdfBlob=null;
-    try{
-      await loadJsPDF();
-      pdfBlob=makePdf(data);
-    }catch(err){pdfBlob=null}
-    const fd=buildEmail(data,!!pdfBlob);
-    if(pdfBlob){
-      const safe=(data.name||'candidate').replace(/[^\w\- ]/g,'').trim()||'candidate';
-      fd.append('attachment',new File([pdfBlob],'Ceremonia Application - '+safe+'.pdf',{type:'application/pdf'}));
-    }
-    const res=await fetch('https://formsubmit.co/ajax/ceremoniaubud@gmail.com',{
-      method:'POST',body:fd,headers:{'Accept':'application/json'}
-    });
-    if(!res.ok)throw new Error('send failed');
-    showSent();
+    await loadPdfLib();
+    const parts=[];
+    if(appBlob)parts.push(appBlob);
+    if(cv.files[0])parts.push(cv.files[0]);
+    if(letter.files[0])parts.push(letter.files[0]);
+    if(!parts.length)throw new Error('nothing to merge');
+    files=[new File([await mergePdfs(parts)],'Ceremonia Application - '+safe+'.pdf',{type:'application/pdf'})];
+    attachedDesc='One PDF — '+[appBlob?'application form':'',cv.files[0]?'CV':'',letter.files[0]?'motivation letter':''].filter(Boolean).join(' + ');
   }catch(err){
-    /* fallback: classic POST with the raw fields — _next redirects back to this page */
+    /* merge failed: attach the files separately */
+    files=[cv.files[0],letter.files[0]].filter(Boolean);
+    if(appBlob)files.push(new File([appBlob],'Ceremonia Application - '+safe+'.pdf',{type:'application/pdf'}));
+    attachedDesc=files.length+' separate file(s)';
+  }
+  /* 3 · classic POST (attachments only work on this endpoint) */
+  try{
+    postClassic(data,files,attachedDesc);
+  }catch(err){
+    /* last resort: submit the real form — raw fields + the user's own file inputs */
     if(!letter.files.length)letter.disabled=true;
     form.submit();
   }
