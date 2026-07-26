@@ -28,7 +28,7 @@
 <meta name="twitter:description" content="In the heart of Ubud, Bali. Local &amp; international tapas, crafted cocktails, Bali soul — under the open sky.">
 <meta name="twitter:image" content="og-image.jpg">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
 <style>
 /* ─── VARS ─────────────────────────────────────────────────────── */
 :root{
@@ -592,6 +592,7 @@ body.menu-open{overflow:hidden}
   #a-visit .two-col>div:first-child>div[style*="grid"]{justify-items:center;max-width:380px;margin-left:auto;margin-right:auto}
   #a-visit .two-col>div:last-child{order:2;width:100%;max-width:480px;margin:0 auto;border-radius:4px}
   #a-visit iframe{height:300px;border-radius:4px}
+  #map-shield{height:300px}
   #a-footer{padding:0 7vw 40px}
   /* hero */
   #hero-pin{height:150vh}
@@ -633,6 +634,13 @@ body.menu-open{overflow:hidden}
   .mm-link{font-size:27px}
   .about-stats>div>p:not(.lbl){font-size:34px!important}
 }
+/* ─── Google Maps click-to-load (no third-party cookies before consent) ─── */
+#map-shield{height:420px;border-radius:4px;border:1px dashed rgba(212,184,150,.35);background:rgba(20,31,58,.5);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;cursor:pointer;padding:24px}
+#map-shield .map-txt{font-family:'Inter',sans-serif;font-weight:300;font-size:12px;line-height:1.8;color:rgba(245,240,232,.5);max-width:340px}
+#map-shield .map-btn{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  border:1px solid var(--gold);color:var(--gold);padding:10px 22px;border-radius:30px;transition:all .25s}
+#map-shield:hover .map-btn{background:var(--gold);color:var(--navy)}
 </style>
 </head>
 <body>
@@ -669,6 +677,7 @@ body.menu-open{overflow:hidden}
     <a href="#a-gallery" class="nav-link" data-i18n="nav.gallery">Gallery</a>
     <a href="#a-reviews" class="nav-link" data-i18n="nav.reviews">Reviews</a>
     <a href="#a-visit" class="nav-link" data-i18n="nav.visit">Visit</a>
+    <a href="careers.html" class="nav-link" data-i18n="nav.careers">Careers</a>
     <div class="lang-switch">
       <button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="fr">FR</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="id">ID</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="es">ES</button>
     </div>
@@ -683,6 +692,7 @@ body.menu-open{overflow:hidden}
   <a href="#a-gallery" class="mm-link" data-i18n="nav.gallery">Gallery</a>
   <a href="#a-reviews" class="mm-link" data-i18n="nav.reviews">Reviews</a>
   <a href="#a-visit"   class="mm-link" data-i18n="nav.visit">Visit</a>
+  <a href="careers.html" class="mm-link" data-i18n="nav.careers">Careers</a>
   <a href="https://wa.me/6285337107649" target="_blank" class="mm-cta" data-i18n="nav.reserve">Reserve a Table</a>
   <div class="lang-switch lang-switch-m">
     <button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="fr">FR</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="id">ID</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="es">ES</button>
@@ -1049,9 +1059,10 @@ body.menu-open{overflow:hidden}
       </div>
     </div>
     <div data-reveal style="overflow:hidden;">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.09!2d115.2625!3d-8.5069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23d4d52b503b7%3A0xfdee987f52d78f4a!2sJl.%20Raya%20Ubud!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
-        width="100%" height="420" style="border:0;display:block;filter:invert(88%) hue-rotate(180deg) saturate(0.6);"
-        allowfullscreen="" loading="lazy"></iframe>
+      <div id="map-shield" role="button" tabindex="0">
+        <p class="map-txt" data-i18n="visit.mapnote">To display the map, we load it from Google Maps — Google may set cookies at that moment.</p>
+        <span class="map-btn" data-i18n="visit.mapload">Load the map ✦</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1090,6 +1101,7 @@ body.menu-open{overflow:hidden}
   </div>
   <div style="border-top:1px solid rgba(212,184,150,.07);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
     <span class="lbl" style="color:rgba(245,240,232,.18);font-size:9px;">Ceremonia Rooftop Ubud</span>
+    <a href="privacy.html" data-i18n="footer.legal" style="font-family:'Inter',sans-serif;color:rgba(245,240,232,.3);font-size:10px;letter-spacing:.1em;text-decoration:underline;text-underline-offset:3px;transition:color .25s;" onmouseover="this.style.color='#D4B896'" onmouseout="this.style.color='rgba(245,240,232,.3)'">Privacy &amp; Legal Notice</a>
     <span data-i18n="footer.rights" style="font-family:'Inter',sans-serif;color:rgba(245,240,232,.14);font-size:10px;letter-spacing:.1em;">© 2025 · All rights reserved</span>
   </div>
   <div style="text-align:center;margin-top:20px;">
@@ -1105,6 +1117,10 @@ const I18N={
  "nav.gallery":{en:"Gallery",fr:"Galerie",id:"Galeri",es:"Galería"},
  "nav.reviews":{en:"Reviews",fr:"Avis",id:"Ulasan",es:"Reseñas"},
  "nav.visit":{en:"Visit",fr:"Visite",id:"Kunjungi",es:"Visítanos"},
+ "nav.careers":{en:"Careers",fr:"Carrières",id:"Karier",es:"Empleo"},
+ "footer.legal":{en:"Privacy & Legal Notice",fr:"Confidentialité & Mentions légales",id:"Privasi & Pemberitahuan Hukum",es:"Privacidad & Aviso legal"},
+ "visit.mapnote":{en:"To display the map, we load it from Google Maps — Google may set cookies at that moment.",fr:"Pour afficher la carte, nous la chargeons depuis Google Maps — Google peut alors déposer des cookies.",id:"Untuk menampilkan peta, kami memuatnya dari Google Maps — Google mungkin menyimpan cookie saat itu.",es:"Para mostrar el mapa, lo cargamos desde Google Maps — Google puede instalar cookies en ese momento."},
+ "visit.mapload":{en:"Load the map ✦",fr:"Charger la carte ✦",id:"Muat peta ✦",es:"Cargar el mapa ✦"},
  "nav.reserve":{en:"Reserve a Table",fr:"Réserver une table",id:"Pesan Meja",es:"Reservar mesa"},
  "hero.eyebrow":{en:"Rooftop Restaurant & Bar · Ubud",fr:"Restaurant & Bar Rooftop · Ubud",id:"Restoran & Bar Rooftop · Ubud",es:"Restaurante & Bar en la Azotea · Ubud"},
  "hero.desc":{en:"Open daily 9:00 AM – 11 PM. Local & international tapas, crafted cocktails, Bali soul — under the open sky of Ubud.",fr:"Ouvert tous les jours de 9h00 à 23h00. Tapas locales & internationales, cocktails d'auteur, l'âme de Bali — sous le ciel ouvert d'Ubud.",id:"Buka setiap hari 09.00–23.00. Tapas lokal & internasional, koktail racikan, jiwa Bali — di bawah langit terbuka Ubud.",es:"Abierto todos los días de 9:00 a 23:00. Tapas locales e internacionales, cócteles de autor, alma balinesa — bajo el cielo abierto de Ubud."},
@@ -1583,6 +1599,21 @@ document.addEventListener('DOMContentLoaded',()=>{
   const isMobile=window.matchMedia('(max-width:860px)').matches;
   if(!isMobile){initParticles();initParallax();}
 });
+
+/* ─── Google Maps click-to-load (privacy: no Google request before the visitor asks for the map) ─── */
+(function(){
+  const shield=document.getElementById('map-shield');
+  if(!shield)return;
+  function loadMap(){
+    const f=document.createElement('iframe');
+    f.src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.09!2d115.2625!3d-8.5069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23d4d52b503b7%3A0xfdee987f52d78f4a!2sJl.%20Raya%20Ubud!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid';
+    f.width='100%';f.height='420';f.allowFullscreen=true;f.loading='lazy';
+    f.style.cssText='border:0;display:block;filter:invert(88%) hue-rotate(180deg) saturate(0.6);';
+    shield.replaceWith(f);
+  }
+  shield.addEventListener('click',loadMap);
+  shield.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();loadMap()}});
+})();
 </script>
 </body>
 </html>
