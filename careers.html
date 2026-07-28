@@ -14,7 +14,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Careers — Ceremonia Rooftop Ubud</title>
-<meta name="description" content="Join the Ceremonia Rooftop Ubud team — open positions and job application form. Supervisor, waiter, bartender & service support under the Ubud sky.">
+<meta name="description" content="Join the Ceremonia Rooftop Ubud team — open positions and job application form. Bartender with barista skills & waiter/waitress under the Ubud sky.">
 <meta name="theme-color" content="#0F1B35">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -214,24 +214,6 @@ a{text-decoration:none;color:inherit}
 #deck-restart{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
   color:rgba(245,240,232,.4);text-decoration:underline;text-underline-offset:3px;margin-top:14px}
 #deck-restart:hover{color:var(--gold)}
-/* ---- premium salary ---- */
-.sal-intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:19px;line-height:1.6;color:rgba(245,240,232,.8);
-  text-align:center;max-width:480px;margin:0 auto 28px}
-#sal-b{opacity:0;transform:translateY(16px);pointer-events:none;height:0;overflow:hidden;transition:opacity .7s var(--ease),transform .7s var(--ease)}
-#sal-b.show{opacity:1;transform:none;pointer-events:auto;height:auto;overflow:visible;margin-top:30px}
-.sal-divider{display:flex;align-items:center;gap:14px;margin:0 auto 26px;max-width:340px}
-.sal-divider .l{flex:1;height:1px;background:rgba(212,184,150,.2)}
-.sal-divider span{color:rgba(212,184,150,.55);font-size:12px}
-.sal-transition{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:19px;line-height:1.6;color:rgba(245,240,232,.8);text-align:center;max-width:440px;margin:0 auto 30px}
-.sal-q{font-size:13px;font-weight:400;letter-spacing:.02em;color:var(--ivory);text-align:center;max-width:440px;margin:0 auto 24px;line-height:1.7}
-.sal-amount{max-width:340px;margin:0 auto;text-align:center}
-.sal-amount input{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(212,184,150,.35);border-radius:0;
-  color:var(--ivory);font-family:'Inter',sans-serif;font-weight:300;font-size:32px;text-align:center;padding:8px 4px 12px;outline:none;
-  transition:border-color .3s;letter-spacing:.02em}
-.sal-amount input:focus{border-color:var(--gold)}
-.sal-amount input::placeholder{color:rgba(245,240,232,.18)}
-.sal-amount .sal-cur{display:block;margin-top:10px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(212,184,150,.65)}
-.sal-note-d{font-size:10.5px;font-weight:300;color:rgba(245,240,232,.32);text-align:center;max-width:400px;margin:24px auto 0;line-height:1.8}
 /* ---- file inputs ---- */
 .field input[type=file]{width:100%;background:rgba(15,27,53,.55);border:1px dashed rgba(212,184,150,.35);border-radius:9px;padding:16px 15px;cursor:pointer;font-size:12px;color:rgba(245,240,232,.55);font-family:'Inter',sans-serif}
 .field input[type=file]::file-selector-button{background:transparent;border:1px solid rgba(212,184,150,.4);border-radius:20px;color:var(--gold);
@@ -300,16 +282,16 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
     <div class="group-head"><h2 data-rev data-t>Open Positions</h2></div>
     <p class="group-note" data-rev data-t>Select the position you want to apply for — the application form will open below.</p>
     <div class="jobs-grid">
-      <div class="job" data-rev data-pos="Supervisor">
-        <p class="name" data-t>Supervisor</p>
-        <div class="meta"><span class="pill">Ubud · Bali</span></div>
-        <p class="desc" data-t>Lead the floor team, keep the service smooth, support and train the staff, handle busy moments with calm.</p>
-        <button type="button" class="apply" data-t>Apply →</button>
-      </div>
       <div class="job" data-rev data-pos="Bartender with barista skills">
         <p class="name"><span data-t>Bartender</span> <span style="font-size:16px;opacity:.7" data-t>with barista skills</span></p>
         <div class="meta"><span class="pill">Ubud · Bali</span></div>
         <p class="desc" data-t>Make our signature cocktails and coffees — from espresso and lattes to crafted drinks at the rooftop bar.</p>
+        <button type="button" class="apply" data-t>Apply →</button>
+      </div>
+      <div class="job" data-rev data-pos="Waiter / Waitress – Floor Operational">
+        <p class="name"><span data-t>Waiter / Waitress</span> <span style="font-size:16px;opacity:.7" data-t>– Floor Operational</span></p>
+        <div class="meta"><span class="pill">Ubud · Bali</span></div>
+        <p class="desc" data-t>Welcome guests, take orders, explain the menu in English and keep the floor running smoothly — service with warmth and attention.</p>
         <button type="button" class="apply" data-t>Apply →</button>
       </div>
     </div>
@@ -367,7 +349,11 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
         <p class="s-note" data-t>Please write your information exactly as on your official documents.</p>
         <div class="field"><label for="f-name" data-t>Full name (as on your KTP)</label><input id="f-name" type="text" name="Full Name (KTP)" required autocomplete="name"></div>
         <div class="two-f">
-          <div class="field"><label for="f-pob" data-t>Place of birth</label><input id="f-pob" type="text" name="Place of Birth" required></div>
+          <div class="field">
+            <label for="f-pob" data-t>Place of birth</label>
+            <div class="school-wrap"><input id="f-pob" type="text" name="Place of Birth" required autocomplete="off"><div class="school-dd" id="dd-pob" hidden></div></div>
+            <p class="hint" data-t>Start typing, then choose from the suggestions.</p>
+          </div>
           <div class="field"><label for="f-dob" data-t>Date of birth</label><input id="f-dob" type="date" name="Date of Birth" required></div>
         </div>
         <div class="field">
@@ -377,7 +363,11 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
             <label class="opt"><input type="radio" name="Gender" value="Female" required><span data-t>Female</span></label>
           </div>
         </div>
-        <div class="field"><label for="f-addr" data-t>Current address (banjar / village, district)</label><input id="f-addr" type="text" name="Current Address" required></div>
+        <div class="field">
+          <label for="f-addr" data-t>Current address (banjar / village, district)</label>
+          <div class="school-wrap"><input id="f-addr" type="text" name="Current Address" required autocomplete="off"><div class="school-dd" id="dd-addr" hidden></div></div>
+          <p class="hint" data-t>Start typing, then choose your address from the suggestions — it will be used to calculate your travel time.</p>
+        </div>
         <div class="two-f">
           <div class="field"><label for="f-email" data-t>Email</label><input id="f-email" type="email" name="Email" required autocomplete="email"></div>
           <div class="field"><label for="f-wa" data-t>Active WhatsApp number</label><input id="f-wa" type="tel" name="WhatsApp Number" required placeholder="08…" autocomplete="tel"></div>
@@ -514,21 +504,7 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
         <p class="step-err"></p>
       </fieldset>
 
-      <!-- 6 · Application Type -->
-      <fieldset class="step" id="s6" data-name="Application Type">
-        <h3 data-t>Application Type</h3>
-        <p class="s-note" data-t>Tell us what you are looking for — there is no wrong answer.</p>
-        <div class="field">
-          <span class="g-label" data-t>Are you looking for a long-term or short-term position?</span>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="Application Type" value="Long-term position" required><span data-t>Long-term position — stable work, grow with the team</span></label>
-            <label class="opt"><input type="radio" name="Application Type" value="Short-term position" required><span data-t>Short-term position — temporary or seasonal work</span></label>
-          </div>
-        </div>
-        <p class="step-err"></p>
-      </fieldset>
-
-      <!-- 7 · Education & Experience -->
+      <!-- Education & Experience -->
       <fieldset class="step" id="s7" data-name="Education &amp; Experience">
         <h3 data-t>Education &amp; Experience</h3>
         <div class="field">
@@ -617,79 +593,31 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
             <label class="opt"><input type="checkbox" name="Why Join Ceremonia" value="Ceremonia has a good reputation in Ubud"><span data-t>Ceremonia has a good reputation in Ubud</span></label>
             <label class="opt"><input type="checkbox" name="Why Join Ceremonia" value="I am looking for a stable job near my home"><span data-t>I am looking for a stable job near my home</span></label>
             <label class="opt"><input type="checkbox" name="Why Join Ceremonia" value="Someone from the team recommended Ceremonia to me"><span data-t>Someone from the team recommended Ceremonia to me</span></label>
+            <label class="opt"><input type="checkbox" name="Why Join Ceremonia" value="Other" id="f-whyother"><span data-t>Other</span></label>
+          </div>
+          <div class="cond" id="cond-whyother">
+            <div class="field" style="margin-top:10px">
+              <label for="f-whyother-txt" data-t>Tell us more</label>
+              <input id="f-whyother-txt" type="text" name="Why Join — Other" data-tp placeholder="Your own reason, in a few words">
+            </div>
           </div>
         </div>
         <p class="step-err"></p>
       </fieldset>
 
-      <!-- 10 · Compensation (premium, progressive) -->
-      <fieldset class="step" id="s10" data-name="Compensation">
-        <h3 data-t>Compensation</h3>
-        <div id="sal-a">
-          <p class="sal-intro" data-t>Before we talk about compensation, we would simply like to understand if this opportunity matches your expectations.</p>
-          <div class="two-f">
-            <div class="field">
-              <label for="f-c-avail" data-t>Availability</label>
-              <select id="f-c-avail" name="Compensation — Availability" required class="sal-sel">
-                <option value="" disabled selected data-t>Select…</option>
-                <option value="Immediately" data-t>Immediately</option>
-                <option value="Within 7 days" data-t>Within 7 days</option>
-                <option value="Within 14 days" data-t>Within 14 days</option>
-                <option value="Within 1 month" data-t>Within 1 month</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="f-c-contract" data-t>Preferred contract type</label>
-              <select id="f-c-contract" name="Compensation — Preferred Contract" required class="sal-sel">
-                <option value="" disabled selected data-t>Select…</option>
-                <option value="Long-term" data-t>Long-term</option>
-                <option value="Short-term" data-t>Short-term</option>
-                <option value="Open to both" data-t>Open to both</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="f-c-dist" data-t>Maximum home ↔ work travel time</label>
-              <select id="f-c-dist" name="Compensation — Max Travel Accepted" required class="sal-sel">
-                <option value="" disabled selected data-t>Select…</option>
-                <option value="Up to 15 minutes" data-t>Up to 15 minutes</option>
-                <option value="Up to 30 minutes" data-t>Up to 30 minutes</option>
-                <option value="Up to 45 minutes" data-t>Up to 45 minutes</option>
-                <option value="More than 45 minutes" data-t>More than 45 minutes</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="f-c-hours" data-t>Preferred working hours</label>
-              <select id="f-c-hours" name="Compensation — Preferred Hours" required class="sal-sel">
-                <option value="" disabled selected data-t>Select…</option>
-                <option value="Morning shift" data-t>Morning shift</option>
-                <option value="Afternoon / evening shift" data-t>Afternoon / evening shift</option>
-                <option value="Split shift" data-t>Split shift</option>
-                <option value="Flexible — any schedule" data-t>Flexible — any schedule</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div id="sal-b">
-          <div class="sal-divider"><span class="l"></span><span>✦</span><span class="l"></span></div>
-          <p class="sal-transition" data-t>Thank you. One last question to check that our expectations are aligned.</p>
-          <p class="sal-q" data-t>From what compensation level would you seriously consider this opportunity?</p>
-          <div class="sal-amount">
-            <input id="f-threshold" type="text" name="Compensation Threshold" inputmode="numeric" autocomplete="off" placeholder="0">
-            <span class="sal-cur"><span data-t>IDR / month</span></span>
-          </div>
-          <p class="sal-note-d" data-t>This information simply helps us check that our expectations are compatible before continuing the recruitment process.</p>
-        </div>
-        <p class="step-err"></p>
-      </fieldset>
-
-      <!-- 11 · CV Upload -->
+      <!-- CV Upload -->
       <fieldset class="step" id="s11" data-name="CV Upload">
         <h3 data-t>CV Upload</h3>
-        <p class="s-note" data-t>Upload your CV in PDF format. You can also add a motivation letter — this is the last step.</p>
+        <p class="s-note" data-t>Upload your CV in PDF format and a professional photo. You can also add a motivation letter — this is the last step.</p>
         <div class="field">
           <label for="f-cv" data-t>Your CV (PDF only)</label>
           <input id="f-cv" type="file" name="attachment" accept=".pdf,application/pdf" required>
           <p class="hint" data-t>Max 5 MB. Make sure your name and WhatsApp number are on your CV.</p>
+        </div>
+        <div class="field">
+          <label for="f-photo" data-t>Professional photo (JPG or PNG)</label>
+          <input id="f-photo" type="file" name="attachment" accept=".jpg,.jpeg,.png,image/jpeg,image/png" required>
+          <p class="hint" data-t>A clear, recent photo of you — plain background if possible. Max 5 MB.</p>
         </div>
         <div class="field">
           <label for="f-letter" data-t>Motivation letter (PDF — recommended)</label>
@@ -740,10 +668,22 @@ const T={
 "Please read carefully. The way you apply already shows us who you are.":{fr:"Lisez attentivement. Votre façon de postuler nous montre déjà qui vous êtes.",id:"Baca dengan teliti. Cara Anda melamar sudah menunjukkan siapa Anda.",es:"Lee con atención. Tu forma de postular ya nos muestra quién eres."},
 "Open Positions":{fr:"Postes ouverts",id:"Lowongan Tersedia",es:"Puestos abiertos"},
 "Select the position you want to apply for — the application form will open below.":{fr:"Sélectionnez le poste qui vous intéresse — le formulaire de candidature s'ouvrira en dessous.",id:"Pilih posisi yang ingin Anda lamar — formulir lamaran akan terbuka di bawah.",es:"Selecciona el puesto que te interesa — el formulario se abrirá abajo."},
-"Supervisor":{fr:"Superviseur",id:"Supervisor",es:"Supervisor/a"},
 "Bartender":{fr:"Barman / Barmaid",id:"Bartender",es:"Bartender"},
 "Bartender with barista skills":{fr:"Barman / Barmaid avec compétences barista",id:"Bartender dengan keahlian barista",es:"Bartender con habilidades de barista"},
-"Lead the floor team, keep the service smooth, support and train the staff, handle busy moments with calm.":{fr:"Encadrer l'équipe de salle, garantir un service fluide, soutenir et former le staff, gérer les coups de feu avec calme.",id:"Memimpin tim lantai, menjaga layanan tetap lancar, mendukung dan melatih staf, menangani jam sibuk dengan tenang.",es:"Liderar el equipo de sala, mantener un servicio fluido, apoyar y formar al personal, gestionar los momentos de mayor actividad con calma."},
+"Waiter / Waitress":{fr:"Serveur / Serveuse",id:"Pramusaji",es:"Camarero / Camarera"},
+"– Floor Operational":{fr:"– opérationnel de salle",id:"– operasional lantai",es:"– operativo de sala"},
+"Waiter / Waitress – Floor Operational":{fr:"Serveur / Serveuse – opérationnel de salle",id:"Pramusaji – operasional lantai",es:"Camarero/a – operativo de sala"},
+"Welcome guests, take orders, explain the menu in English and keep the floor running smoothly — service with warmth and attention.":{fr:"Accueillir les clients, prendre les commandes, expliquer la carte en anglais et assurer la fluidité du service en salle — avec chaleur et attention.",id:"Menyambut tamu, menerima pesanan, menjelaskan menu dalam bahasa Inggris, dan menjaga kelancaran operasional lantai — melayani dengan hangat dan penuh perhatian.",es:"Recibir a los clientes, tomar los pedidos, explicar la carta en inglés y mantener la sala funcionando con fluidez — servicio con calidez y atención."},
+"Start typing, then choose from the suggestions.":{fr:"Commencez à écrire, puis choisissez dans les suggestions.",id:"Mulai ketik, lalu pilih dari saran.",es:"Empieza a escribir y elige entre las sugerencias."},
+"Start typing, then choose your address from the suggestions — it will be used to calculate your travel time.":{fr:"Commencez à écrire, puis choisissez votre adresse dans les suggestions — elle servira à calculer votre temps de trajet.",id:"Mulai ketik, lalu pilih alamat Anda dari saran — alamat ini dipakai untuk menghitung waktu tempuh.",es:"Empieza a escribir y elige tu dirección entre las sugerencias — se usará para calcular tu tiempo de trayecto."},
+"Tell us more":{fr:"Dites-nous en plus",id:"Ceritakan lebih lanjut",es:"Cuéntanos más"},
+"Your own reason, in a few words":{fr:"Votre propre raison, en quelques mots",id:"Alasan Anda sendiri, dalam beberapa kata",es:"Tu propia razón, en pocas palabras"},
+"Upload your CV in PDF format and a professional photo. You can also add a motivation letter — this is the last step.":{fr:"Téléchargez votre CV au format PDF et une photo professionnelle. Vous pouvez aussi ajouter une lettre de motivation — c'est la dernière étape.",id:"Unggah CV Anda dalam format PDF dan foto profesional. Anda juga bisa menambahkan surat lamaran — ini langkah terakhir.",es:"Sube tu CV en formato PDF y una foto profesional. También puedes añadir una carta de motivación — es el último paso."},
+"Professional photo (JPG or PNG)":{fr:"Photo professionnelle (JPG ou PNG)",id:"Foto profesional (JPG atau PNG)",es:"Foto profesional (JPG o PNG)"},
+"A clear, recent photo of you — plain background if possible. Max 5 MB.":{fr:"Une photo récente et nette de vous — fond neutre si possible. 5 Mo max.",id:"Foto Anda yang jelas dan terbaru — latar polos jika memungkinkan. Maks 5 MB.",es:"Una foto tuya clara y reciente — fondo liso si es posible. Máx. 5 MB."},
+"Please upload a JPG or PNG photo.":{fr:"Merci de télécharger une photo JPG ou PNG.",id:"Mohon unggah foto JPG atau PNG.",es:"Sube una foto JPG o PNG."},
+"Kitchen basic":{fr:"Cuisine (bases)",id:"Dapur dasar",es:"Cocina (básico)"},
+"Bartender basic":{fr:"Bartender (bases)",id:"Bartender dasar",es:"Bartender (básico)"},
 "Make our signature cocktails and coffees — from espresso and lattes to crafted drinks at the rooftop bar.":{fr:"Réaliser nos cocktails signature et nos cafés — de l'espresso aux lattes et cocktails du bar rooftop.",id:"Membuat koktail signature dan kopi kami — dari espresso dan latte hingga minuman racikan di bar rooftop.",es:"Preparar nuestros cócteles de autor y cafés — del espresso y los lattes a las bebidas de la barra del rooftop."},
 "with barista skills":{fr:"avec compétences barista",id:"dengan keahlian barista",es:"con habilidades de barista"},
 "Apply →":{fr:"Postuler →",id:"Lamar →",es:"Postular →"},
@@ -816,11 +756,6 @@ const T={
 "Yes, easily":{fr:"Oui, facilement",id:"Ya, dengan mudah",es:"Sí, fácilmente"},
 "Yes, with simple English":{fr:"Oui, avec un anglais simple",id:"Ya, dengan bahasa Inggris sederhana",es:"Sí, con inglés sencillo"},
 "Not yet":{fr:"Pas encore",id:"Belum",es:"Todavía no"},
-"Application Type":{fr:"Type de candidature",id:"Jenis Lamaran",es:"Tipo de candidatura"},
-"Tell us what you are looking for — there is no wrong answer.":{fr:"Dites-nous ce que vous cherchez — il n'y a pas de mauvaise réponse.",id:"Beri tahu kami apa yang Anda cari — tidak ada jawaban yang salah.",es:"Dinos qué buscas — no hay respuesta incorrecta."},
-"Are you looking for a long-term or short-term position?":{fr:"Cherchez-vous un poste long terme ou court terme ?",id:"Apakah Anda mencari pekerjaan jangka panjang atau jangka pendek?",es:"¿Buscas un puesto a largo plazo o a corto plazo?"},
-"Long-term position — stable work, grow with the team":{fr:"Poste long terme — un emploi stable, évoluer avec l'équipe",id:"Jangka panjang — kerja tetap, berkembang bersama tim",es:"Largo plazo — trabajo estable, crecer con el equipo"},
-"Short-term position — temporary or seasonal work":{fr:"Poste court terme — mission temporaire ou saisonnière",id:"Jangka pendek — kerja sementara / musiman",es:"Corto plazo — trabajo temporal o de temporada"},
 "Which position are you applying for?":{fr:"Pour quel poste postulez-vous ?",id:"Posisi apa yang Anda lamar?",es:"¿A qué puesto postulas?"},
 "Tell us the position you have in mind":{fr:"Dites-nous le poste auquel vous pensez",id:"Beri tahu posisi yang Anda inginkan",es:"Dinos el puesto que tienes en mente"},
 "Continue →":{fr:"Continuer →",id:"Lanjut →",es:"Continuar →"},
@@ -865,16 +800,9 @@ const T={
 "Explaining menu":{fr:"Explication de la carte",id:"Menjelaskan menu",es:"Explicar la carta"},
 "English service":{fr:"Service en anglais",id:"Layanan dalam bahasa Inggris",es:"Servicio en inglés"},
 "POS / cashier system":{fr:"Caisse / système POS",id:"Sistem POS / kasir",es:"Sistema POS / caja"},
-"Food runner":{fr:"Food runner",id:"Food runner",es:"Food runner"},
 "Table service":{fr:"Service à table",id:"Layanan meja",es:"Servicio de mesa"},
-"Table-side service":{fr:"Service au guéridon",id:"Layanan di samping meja",es:"Servicio junto a la mesa"},
 "Barista basic":{fr:"Barista (bases)",id:"Barista dasar",es:"Barista básico"},
-"Coffee machine":{fr:"Machine à café",id:"Mesin kopi",es:"Máquina de café"},
 "Latte art basic":{fr:"Latte art (bases)",id:"Latte art dasar",es:"Latte art básico"},
-"Cocktail basic":{fr:"Cocktails (bases)",id:"Koktail dasar",es:"Cócteles (básico)"},
-"Mocktail basic":{fr:"Mocktails (bases)",id:"Mocktail dasar",es:"Mocktails (básico)"},
-"Wine basic":{fr:"Vin (bases)",id:"Pengetahuan wine dasar",es:"Vino (básico)"},
-"Wine service":{fr:"Service du vin",id:"Layanan wine",es:"Servicio de vino"},
 "Upselling":{fr:"Vente additionnelle",id:"Upselling",es:"Venta adicional"},
 "Handling complaints":{fr:"Gestion des réclamations",id:"Menangani keluhan",es:"Gestión de quejas"},
 "Stock control":{fr:"Gestion des stocks",id:"Kontrol stok",es:"Control de stock"},
@@ -897,34 +825,7 @@ const T={
 "I am looking for a stable job near my home":{fr:"Je cherche un emploi stable près de chez moi",id:"Saya mencari pekerjaan stabil dekat rumah",es:"Busco un trabajo estable cerca de casa"},
 "Someone from the team recommended Ceremonia to me":{fr:"Quelqu'un de l'équipe m'a recommandé Ceremonia",id:"Seseorang dari tim merekomendasikan Ceremonia kepada saya",es:"Alguien del equipo me recomendó Ceremonia"},
 "Please select at least one answer.":{fr:"Merci de sélectionner au moins une réponse.",id:"Pilih minimal satu jawaban.",es:"Selecciona al menos una respuesta."},
-"Compensation":{fr:"Rémunération",id:"Kompensasi",es:"Remuneración"},
-"Before we talk about compensation, we would simply like to understand if this opportunity matches your expectations.":{fr:"Avant de parler rémunération, nous aimerions simplement comprendre si cette opportunité correspond à vos attentes.",id:"Sebelum berbicara soal kompensasi, kami hanya ingin memahami apakah kesempatan ini sesuai dengan harapan Anda.",es:"Antes de hablar de remuneración, simplemente nos gustaría entender si esta oportunidad corresponde a tus expectativas."},
-"Availability":{fr:"Disponibilité",id:"Ketersediaan",es:"Disponibilidad"},
-"Immediately":{fr:"Immédiatement",id:"Segera",es:"Inmediatamente"},
-"Within 7 days":{fr:"Sous 7 jours",id:"Dalam 7 hari",es:"En 7 días"},
-"Within 14 days":{fr:"Sous 14 jours",id:"Dalam 14 hari",es:"En 14 días"},
-"Within 1 month":{fr:"Sous 1 mois",id:"Dalam 1 bulan",es:"En 1 mes"},
-"Preferred contract type":{fr:"Type de contrat souhaité",id:"Jenis kontrak yang diinginkan",es:"Tipo de contrato deseado"},
-"Long-term":{fr:"Long terme",id:"Jangka panjang",es:"Largo plazo"},
-"Short-term":{fr:"Court terme",id:"Jangka pendek",es:"Corto plazo"},
-"Open to both":{fr:"Ouvert aux deux",id:"Terbuka untuk keduanya",es:"Abierto a ambos"},
-"Maximum home ↔ work travel time":{fr:"Distance maximale domicile ↔ travail",id:"Waktu tempuh maksimal rumah ↔ kerja",es:"Distancia máxima casa ↔ trabajo"},
-"Up to 15 minutes":{fr:"Jusqu'à 15 minutes",id:"Hingga 15 menit",es:"Hasta 15 minutos"},
-"Up to 30 minutes":{fr:"Jusqu'à 30 minutes",id:"Hingga 30 menit",es:"Hasta 30 minutos"},
-"Up to 45 minutes":{fr:"Jusqu'à 45 minutes",id:"Hingga 45 menit",es:"Hasta 45 minutos"},
-"More than 45 minutes":{fr:"Plus de 45 minutes",id:"Lebih dari 45 menit",es:"Más de 45 minutos"},
-"Preferred working hours":{fr:"Horaires souhaités",id:"Jam kerja yang diinginkan",es:"Horario deseado"},
-"Morning shift":{fr:"Service du matin",id:"Shift pagi",es:"Turno de mañana"},
-"Afternoon / evening shift":{fr:"Service après-midi / soir",id:"Shift sore / malam",es:"Turno de tarde / noche"},
-"Split shift":{fr:"Horaires coupés",id:"Shift terpisah (split)",es:"Turno partido"},
-"Flexible — any schedule":{fr:"Flexible — tout horaire",id:"Fleksibel — jadwal apa saja",es:"Flexible — cualquier horario"},
-"Thank you. One last question to check that our expectations are aligned.":{fr:"Merci. Dernière question afin de vérifier que nos attentes sont alignées.",id:"Terima kasih. Satu pertanyaan terakhir untuk memastikan harapan kita sejalan.",es:"Gracias. Una última pregunta para comprobar que nuestras expectativas están alineadas."},
-"From what compensation level would you seriously consider this opportunity?":{fr:"À partir de quelle rémunération considéreriez-vous sérieusement cette opportunité ?",id:"Mulai dari tingkat kompensasi berapa Anda akan mempertimbangkan kesempatan ini dengan serius?",es:"¿A partir de qué remuneración considerarías seriamente esta oportunidad?"},
-"IDR / month":{fr:"IDR / mois",id:"IDR / bulan",es:"IDR / mes"},
-"This information simply helps us check that our expectations are compatible before continuing the recruitment process.":{fr:"Cette information nous permet simplement de vérifier que nos attentes sont compatibles avant de poursuivre le processus de recrutement.",id:"Informasi ini hanya membantu kami memastikan bahwa harapan kita cocok sebelum melanjutkan proses rekrutmen.",es:"Esta información simplemente nos permite comprobar que nuestras expectativas son compatibles antes de continuar el proceso de selección."},
-"Please answer all questions above to continue.":{fr:"Merci de répondre à toutes les questions ci-dessus pour continuer.",id:"Mohon jawab semua pertanyaan di atas untuk melanjutkan.",es:"Responde todas las preguntas de arriba para continuar."},
 "CV Upload":{fr:"CV",id:"Unggah CV",es:"Subir CV"},
-"Upload your CV in PDF format. You can also add a motivation letter — this is the last step.":{fr:"Téléchargez votre CV au format PDF. Vous pouvez aussi ajouter une lettre de motivation — c'est la dernière étape.",id:"Unggah CV Anda dalam format PDF. Anda juga bisa menambahkan surat lamaran — ini langkah terakhir.",es:"Sube tu CV en formato PDF. También puedes añadir una carta de motivación — es el último paso."},
 "Your CV (PDF only)":{fr:"Votre CV (PDF uniquement)",id:"CV Anda (hanya PDF)",es:"Tu CV (solo PDF)"},
 "Max 5 MB. Make sure your name and WhatsApp number are on your CV.":{fr:"Max 5 Mo. Vérifiez que votre nom et votre numéro WhatsApp figurent sur votre CV.",id:"Maks 5 MB. Pastikan nama dan nomor WhatsApp Anda tercantum di CV.",es:"Máx. 5 MB. Asegúrate de que tu nombre y tu WhatsApp estén en el CV."},
 "Motivation letter (PDF — recommended)":{fr:"Lettre de motivation (PDF — recommandée)",id:"Surat lamaran (PDF — disarankan)",es:"Carta de motivación (PDF — recomendada)"},
@@ -1048,7 +949,6 @@ function goTo(i){
     addr2.value=document.getElementById('f-addr').value;
     if(transportLocked&&addr2.value.trim()!==lastCalcAddr)calcTravel();
   }
-  if(steps[i].id==='s10'){prefillContract()}
 }
 /* custom per-step validators (run after native validation) */
 const validators={
@@ -1059,10 +959,6 @@ const validators={
   s9(){
     const any=[...document.querySelectorAll('input[name="Why Join Ceremonia"]')].some(c=>c.checked);
     if(!any){stepErr('Please select at least one answer.');return false}
-    return true;
-  },
-  s10(){
-    if(!salB.classList.contains('show')){stepErr('Please answer all questions above to continue.');return false}
     return true;
   },
 };
@@ -1131,12 +1027,18 @@ async function calcTravel(){
   condManual.classList.remove('show');
   loading.style.display='block';
   try{
-    let q=addr2.value.trim();
-    if(!/bali|indonesia/i.test(q))q+=', Bali, Indonesia';
-    const geo=await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=id&q='+encodeURIComponent(q)).then(r=>r.json());
-    if(!geo.length)throw new Error('not found');
+    let q=addr2.value.trim(),lon,lat;
+    if(pickedHome&&pickedHome.text===q){
+      /* the candidate picked their address from the suggestions — exact coordinates, no geocoding */
+      lon=pickedHome.lon;lat=pickedHome.lat;
+    }else{
+      if(!/bali|indonesia/i.test(q))q+=', Bali, Indonesia';
+      const geo=await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=id&q='+encodeURIComponent(q)).then(r=>r.json());
+      if(!geo.length)throw new Error('not found');
+      lon=geo[0].lon;lat=geo[0].lat;
+    }
     const profile=mode.dataset.profile; /* car | bike | foot */
-    const url='https://routing.openstreetmap.de/routed-'+profile+'/route/v1/driving/'+geo[0].lon+','+geo[0].lat+';'+CEREMONIA[0]+','+CEREMONIA[1]+'?overview=false';
+    const url='https://routing.openstreetmap.de/routed-'+profile+'/route/v1/driving/'+lon+','+lat+';'+CEREMONIA[0]+','+CEREMONIA[1]+'?overview=false';
     const route=await fetch(url).then(r=>r.json());
     if(!route.routes||!route.routes.length)throw new Error('no route');
     const mins=Math.max(1,Math.round(route.routes[0].duration/60));
@@ -1151,6 +1053,62 @@ async function calcTravel(){
     loading.style.display='none';
   }
 }
+
+/* ── section 2 · address autocomplete (OpenStreetMap suggestions) ── */
+let pickedHome=null; /* {text,lat,lon} when the address was picked from the suggestions */
+function attachGeoComplete(input,dd,opts){
+  opts=opts||{};
+  let timer=null,sel=-1,items=[];
+  const escT=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  function hide(){dd.hidden=true;dd.innerHTML='';sel=-1;items=[]}
+  function pick(p){
+    input.value=p.display_name;
+    hide();
+    if(opts.onPick)opts.onPick(p);
+  }
+  function render(list){
+    items=list;sel=-1;
+    if(!list.length){hide();return}
+    dd.innerHTML=list.map((p,i)=>'<div class="sd-item" data-i="'+i+'">'+escT(p.display_name)+'</div>').join('');
+    dd.hidden=false;
+    [...dd.querySelectorAll('.sd-item')].forEach(el=>{
+      el.addEventListener('pointerdown',e=>{e.preventDefault();pick(items[+el.dataset.i])});
+    });
+  }
+  input.addEventListener('input',()=>{
+    if(opts.onType)opts.onType();
+    clearTimeout(timer);
+    const q=input.value.trim();
+    if(q.length<3){hide();return}
+    timer=setTimeout(async()=>{
+      try{
+        const url='https://nominatim.openstreetmap.org/search?format=json&limit=6&countrycodes=id'+(opts.extra||'')+'&q='+encodeURIComponent(q);
+        render(await fetch(url).then(r=>r.json()));
+      }catch(e){hide()}
+    },400);
+  });
+  input.addEventListener('blur',()=>setTimeout(hide,200));
+  input.addEventListener('keydown',e=>{
+    if(dd.hidden)return;
+    const els=[...dd.querySelectorAll('.sd-item')];
+    if(e.key==='ArrowDown'){e.preventDefault();sel=Math.min(sel+1,els.length-1)}
+    else if(e.key==='ArrowUp'){e.preventDefault();sel=Math.max(sel-1,0)}
+    else if(e.key==='Enter'){if(sel>=0&&items[sel]){e.preventDefault();pick(items[sel])}return}
+    else if(e.key==='Escape'){hide();return}
+    else return;
+    els.forEach((el,i)=>el.classList.toggle('sel',i===sel));
+    if(els[sel])els[sel].scrollIntoView({block:'nearest'});
+  });
+}
+attachGeoComplete(document.getElementById('f-pob'),document.getElementById('dd-pob'),{
+  extra:'&featuretype=city'
+});
+attachGeoComplete(document.getElementById('f-addr'),document.getElementById('dd-addr'),{
+  /* bias results toward Bali without excluding the rest of Indonesia */
+  extra:'&viewbox=114.35,-7.95,115.85,-8.95&bounded=0',
+  onPick:p=>{pickedHome={text:p.display_name,lat:p.lat,lon:p.lon}},
+  onType:()=>{pickedHome=null}
+});
 
 /* ── section 4 · children ── */
 const condChildren=document.getElementById('cond-children');
@@ -1251,14 +1209,12 @@ document.querySelectorAll('input[name="Availability"]').forEach(r=>r.addEventLis
 /* ── section 8 · skills swipe deck ── */
 const SKILLS=[
  {v:"Customer service",e:"🤝"},{v:"Taking orders",e:"📝"},{v:"Explaining menu",e:"📖"},
- {v:"English service",e:"🗣️"},{v:"POS / cashier system",e:"💳"},{v:"Food runner",e:"🏃"},
- {v:"Table service",e:"🍽️"},{v:"Table-side service",e:"🫖"},{v:"Barista basic",e:"☕"},
- {v:"Coffee machine",e:"⚙️"},{v:"Latte art basic",e:"🎨"},{v:"Cocktail basic",e:"🍸"},
- {v:"Mocktail basic",e:"🍹"},{v:"Wine basic",e:"🍷"},{v:"Wine service",e:"🍾"},
- {v:"Upselling",e:"📈"},{v:"Handling complaints",e:"😌"},{v:"Stock control",e:"📦"},
- {v:"Cleaning standard",e:"✨"},{v:"Social media",e:"📱"},{v:"Canva basic",e:"🖌️"},
- {v:"Photo / video content",e:"📸"},{v:"Marketing basic",e:"💡"},{v:"Team leadership",e:"👑"},
- {v:"Training new staff",e:"🎓"},
+ {v:"English service",e:"🗣️"},{v:"POS / cashier system",e:"💳"},{v:"Table service",e:"🍽️"},
+ {v:"Barista basic",e:"☕"},{v:"Latte art basic",e:"🎨"},{v:"Bartender basic",e:"🍸"},
+ {v:"Kitchen basic",e:"🍳"},{v:"Upselling",e:"📈"},{v:"Handling complaints",e:"😌"},
+ {v:"Stock control",e:"📦"},{v:"Cleaning standard",e:"✨"},{v:"Social media",e:"📱"},
+ {v:"Canva basic",e:"🖌️"},{v:"Photo / video content",e:"📸"},{v:"Marketing basic",e:"💡"},
+ {v:"Team leadership",e:"👑"},{v:"Training new staff",e:"🎓"},
 ];
 const skillsInputs=document.getElementById('skills-inputs');
 skillsInputs.innerHTML=SKILLS.map(s=>'<input type="checkbox" name="Skills" value="'+s.v+'">').join('');
@@ -1359,30 +1315,17 @@ document.getElementById('deck-restart').addEventListener('click',()=>{
 });
 renderDeck();
 
-/* ── section 10 · premium compensation ── */
-const salB=document.getElementById('sal-b');
-const salSelects=[...document.querySelectorAll('.sal-sel')];
-const threshold=document.getElementById('f-threshold');
-function checkSalA(){
-  const done=salSelects.every(s=>s.value);
-  salB.classList.toggle('show',done);
-  threshold.required=done;
-}
-salSelects.forEach(s=>s.addEventListener('change',checkSalA));
-function prefillContract(){
-  const c=document.getElementById('f-c-contract');
-  if(c.value)return;
-  const type=(document.querySelector('input[name="Application Type"]:checked')||{}).value;
-  if(type==='Long-term position')c.value='Long-term';
-  else if(type==='Short-term position')c.value='Short-term';
-  checkSalA();
-}
-threshold.addEventListener('input',()=>{
-  const digits=threshold.value.replace(/\D/g,'').slice(0,10);
-  threshold.value=digits?digits.replace(/\B(?=(\d{3})+(?!\d))/g,'.'):'';
+/* ── motivation · "Other" reason ── */
+const whyOther=document.getElementById('f-whyother');
+const condWhyOther=document.getElementById('cond-whyother');
+const whyOtherTxt=document.getElementById('f-whyother-txt');
+whyOther.addEventListener('change',()=>{
+  condWhyOther.classList.toggle('show',whyOther.checked);
+  whyOtherTxt.required=whyOther.checked;
+  if(!whyOther.checked)whyOtherTxt.value='';
 });
 
-/* ── section 11 · files ── */
+/* ── last section · files ── */
 function checkPdf(input){
   input.setCustomValidity('');
   const f=input.files[0];
@@ -1391,10 +1334,20 @@ function checkPdf(input){
   else if(f.size>5*1024*1024)input.setCustomValidity(t('Your file is too big — maximum 5 MB.'));
   input.reportValidity();
 }
+function checkImg(input){
+  input.setCustomValidity('');
+  const f=input.files[0];
+  if(!f)return;
+  if(!/\.(jpe?g|png)$/i.test(f.name))input.setCustomValidity(t('Please upload a JPG or PNG photo.'));
+  else if(f.size>5*1024*1024)input.setCustomValidity(t('Your file is too big — maximum 5 MB.'));
+  input.reportValidity();
+}
 const cv=document.getElementById('f-cv');
 const letter=document.getElementById('f-letter');
+const photo=document.getElementById('f-photo');
 cv.addEventListener('change',()=>checkPdf(cv));
 letter.addEventListener('change',()=>checkPdf(letter));
+photo.addEventListener('change',()=>checkImg(photo));
 
 /* ── submit (AJAX — the applicant stays on the site) ── */
 function showSent(){
@@ -1447,7 +1400,6 @@ function collectApplication(){
     {title:'Language & Experience',rows:[
       row('🇬🇧','English level',rad('English Level')),
       row('🗣','Menu & orders in English',rad('Menu in English')),
-      row('📋','Looking for',rad('Application Type')),
       row('🎓','Education / training',edu),
       row('⏳','Experience (restaurant / bar)',rad('Experience')),
       row('🗓','Availability',avail),
@@ -1455,23 +1407,12 @@ function collectApplication(){
     {title:'Skills & Motivation',rows:[
       row('⭐','Skills ('+sk.length+'/'+SKILLS.length+')',sk.join(' · ')||'none selected'),
       row('➕','Other skills',v('f-otherskill')),
-      row('💬','Why join Ceremonia',checks('Why Join Ceremonia').map(x=>'• '+x).join('\n')),
-    ]},
-    {title:'Compensation',rows:[
-      row('🗓','Can start',v('f-c-avail')),
-      row('📋','Contract wished',v('f-c-contract')),
-      row('🚗','Max travel accepted',v('f-c-dist')),
-      row('🕐','Preferred hours',v('f-c-hours')),
-      row('💰','Would seriously consider from',v('f-threshold')?v('f-threshold')+' IDR / month':''),
+      row('💬','Why join Ceremonia',
+        checks('Why Join Ceremonia').map(x=>'• '+(x==='Other'?(v('f-whyother-txt')||'Other'):x)).join('\n')),
     ]},
   ];
   sections.forEach(s=>s.rows=s.rows.filter(r=>r.val&&String(r.val).trim()));
-  return {
-    position:posInput.value,lang:LANG.toUpperCase(),name:v('f-name'),
-    quick:{wa:v('f-wa'),email:v('f-email'),english:rad('English Level'),exp:rad('Experience'),
-           travel:tt,avail,threshold:v('f-threshold')},
-    sections,
-  };
+  return {position:posInput.value,lang:LANG.toUpperCase(),name:v('f-name'),sections};
 }
 /* ── clean branded PDF of the application ── */
 function loadJsPDF(){
@@ -1575,8 +1516,19 @@ async function mergePdfs(parts,name){
       const sw=reg.widthOfTextAtSize(sub,10.5);
       p.drawText(sub,{x:(595.28-sw)/2,y:406,size:10.5,font:reg,color:GRAY});
     }
-    const doc=await PDFDocument.load(await part.blob.arrayBuffer(),{ignoreEncryption:true});
-    (await out.copyPages(doc,doc.getPageIndices())).forEach(p=>out.addPage(p));
+    if(part.image){
+      /* professional photo: embedded on its own page */
+      const bytes=await part.blob.arrayBuffer();
+      const img=/png$/i.test(part.blob.type)||/\.png$/i.test(part.blob.name||'')
+        ?await out.embedPng(bytes):await out.embedJpg(bytes);
+      const p=out.addPage([595.28,841.89]);
+      const sc=Math.min(455/img.width,600/img.height,1);
+      const w=img.width*sc,h=img.height*sc;
+      p.drawImage(img,{x:(595.28-w)/2,y:(841.89-h)/2,width:w,height:h});
+    }else{
+      const doc=await PDFDocument.load(await part.blob.arrayBuffer(),{ignoreEncryption:true});
+      (await out.copyPages(doc,doc.getPageIndices())).forEach(p=>out.addPage(p));
+    }
   }
   return new Blob([await out.save()],{type:'application/pdf'});
 }
@@ -1628,14 +1580,15 @@ form.addEventListener('submit',async e=>{
     await loadPdfLib();
     const parts=[];
     if(appBlob)parts.push({blob:appBlob});
+    if(photo.files[0])parts.push({blob:photo.files[0],label:'PROFESSIONAL  PHOTO',image:true});
     if(cv.files[0])parts.push({blob:cv.files[0],label:'CURRICULUM  VITAE'});
     if(letter.files[0])parts.push({blob:letter.files[0],label:'MOTIVATION  LETTER'});
     if(!parts.length)throw new Error('nothing to merge');
     files=[new File([await mergePdfs(parts,data.name)],'Ceremonia Application - '+safe+'.pdf',{type:'application/pdf'})];
-    attachedDesc='One PDF — '+[appBlob?'application form':'',cv.files[0]?'CV (after its divider page)':'',letter.files[0]?'motivation letter (after its divider page)':''].filter(Boolean).join(' + ');
+    attachedDesc='One PDF — '+[appBlob?'application form':'',photo.files[0]?'photo':'',cv.files[0]?'CV':'',letter.files[0]?'motivation letter':''].filter(Boolean).join(' + ')+' (each after its divider page)';
   }catch(err){
     /* merge failed: attach the files separately */
-    files=[cv.files[0],letter.files[0]].filter(Boolean);
+    files=[cv.files[0],photo.files[0],letter.files[0]].filter(Boolean);
     if(appBlob)files.push(new File([appBlob],'Ceremonia Application - '+safe+'.pdf',{type:'application/pdf'}));
     attachedDesc=files.length+' separate file(s)';
   }
