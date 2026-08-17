@@ -29,19 +29,6 @@ body{background:var(--navy);overflow-x:clip;font-family:'Inter',sans-serif;color
 a{text-decoration:none;color:inherit}
 .grain::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.05}
-#bar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
-  padding:16px 6vw;background:rgba(15,27,53,.82);backdrop-filter:blur(18px) saturate(150%);border-bottom:1px solid rgba(212,184,150,.12)}
-#bar .brand{display:flex;align-items:center;gap:10px}
-#bar img{width:30px;height:30px;object-fit:contain}
-#bar .brand span{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--ivory)}
-.back{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.6);transition:color .25s}
-.back:hover{color:var(--gold)}
-.bar-right{display:flex;align-items:center;gap:18px}
-.lang-switch{display:flex;align-items:center;gap:6px}
-.lang-btn{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.12em;color:rgba(245,240,232,.5);padding:2px;transition:color .25s}
-.lang-btn:hover{color:var(--gold)}
-.lang-btn.active{color:var(--gold);font-weight:600}
-.lang-sep{color:rgba(212,184,150,.3);font-size:10px}
 #cover{position:relative;text-align:center;padding:160px 7vw 64px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,rgba(139,94,60,.14) 0%,transparent 62%)}
 #cover .eyebrow{font-size:10px;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
 #cover h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(48px,9vw,104px);line-height:.92;letter-spacing:-.01em}
@@ -244,15 +231,7 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
 </style>
 </head>
 <body>
-<nav id="bar">
-  <a class="brand" href="/"><img src="logo-ceremonia-beige.webp" alt="Ceremonia"><span>Ceremonia</span></a>
-  <div class="bar-right">
-    <div class="lang-switch">
-      <button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="fr">FR</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="id">ID</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="es">ES</button>
-    </div>
-    <a class="back" href="/" data-t>← Home</a>
-  </div>
-</nav>
+<script src="nav.js"></script>
 
 <header id="cover" class="grain">
   <p class="eyebrow" data-t>Join the Team</p>

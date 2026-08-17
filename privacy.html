@@ -30,19 +30,6 @@ body{background:var(--navy);overflow-x:clip;font-family:'Inter',sans-serif;color
 a{text-decoration:none;color:inherit}
 .grain::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.05}
-#bar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
-  padding:16px 6vw;background:rgba(15,27,53,.82);backdrop-filter:blur(18px) saturate(150%);border-bottom:1px solid rgba(212,184,150,.12)}
-#bar .brand{display:flex;align-items:center;gap:10px}
-#bar img{width:30px;height:30px;object-fit:contain}
-#bar .brand span{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--ivory)}
-.back{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.6);transition:color .25s}
-.back:hover{color:var(--gold)}
-.bar-right{display:flex;align-items:center;gap:18px}
-.lang-switch{display:flex;align-items:center;gap:6px}
-.lang-btn{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.12em;color:rgba(245,240,232,.5);padding:2px;transition:color .25s}
-.lang-btn:hover{color:var(--gold)}
-.lang-btn.active{color:var(--gold);font-weight:600}
-.lang-sep{color:rgba(212,184,150,.3);font-size:10px}
 #cover{position:relative;text-align:center;padding:150px 7vw 40px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,rgba(139,94,60,.14) 0%,transparent 62%)}
 #cover .eyebrow{font-size:10px;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
 #cover h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(38px,7vw,76px);line-height:.96;letter-spacing:-.01em}
@@ -72,7 +59,7 @@ footer .logo{width:84px;margin:0 auto 14px;display:block}
 footer .tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold);font-size:19px;margin-bottom:22px}
 footer .home{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.55);transition:color .25s}
 footer .home:hover{color:var(--gold)}
-@media(max-width:640px){#bar{padding:14px 5vw}.doc h2{margin-top:40px}}
+@media(max-width:640px){.doc h2{margin-top:40px}}
 .manage-cookies{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
   background:transparent;border:1px solid var(--gold);color:var(--gold);border-radius:30px;padding:10px 22px;cursor:pointer;transition:background .25s,color .25s}
 .manage-cookies:hover{background:var(--gold);color:var(--navy)}
@@ -80,18 +67,7 @@ footer .home:hover{color:var(--gold)}
 </head>
 <body>
 
-<nav id="bar">
-  <a class="back" href="/" data-home>← Home</a>
-  <div class="brand"><img src="logo-ceremonia-beige.webp" alt=""><span>Ceremonia</span></div>
-  <div class="bar-right">
-    <div class="lang-switch">
-      <button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">·</span>
-      <button class="lang-btn" data-lang="fr">FR</button><span class="lang-sep">·</span>
-      <button class="lang-btn" data-lang="id">ID</button><span class="lang-sep">·</span>
-      <button class="lang-btn" data-lang="es">ES</button>
-    </div>
-  </div>
-</nav>
+<script src="nav.js"></script>
 
 <header id="cover" class="grain">
   <p class="eyebrow">Ceremonia Rooftop Ubud</p>
@@ -313,7 +289,6 @@ footer .home:hover{color:var(--gold)}
 const KEY='lang';
 let LANG=localStorage.getItem(KEY)||'en';
 const UI={
-  home:{en:'← Home',fr:'← Accueil',id:'← Beranda',es:'← Inicio'},
   title:{en:'Privacy<em>&amp; Legal Notice</em>',fr:'Confidentialité<em>&amp; Mentions légales</em>',id:'Privasi<em>&amp; Pemberitahuan Hukum</em>',es:'Privacidad<em>&amp; Aviso Legal</em>'},
   tagline:{en:'Under the Ubud Sky',fr:"Sous le ciel d'Ubud",id:'Di bawah langit Ubud',es:'Bajo el cielo de Ubud'},
   back:{en:'Back to Ceremonia',fr:'Retour à Ceremonia',id:'Kembali ke Ceremonia',es:'Volver a Ceremonia'},
@@ -321,7 +296,6 @@ const UI={
 function applyLang(){
   if(!UI.title[LANG])LANG='en';
   document.querySelectorAll('.lang-block').forEach(b=>b.classList.toggle('show',b.dataset.lang===LANG));
-  document.querySelector('[data-home]').textContent=UI.home[LANG];
   document.querySelector('[data-title]').innerHTML=UI.title[LANG];
   document.querySelector('[data-tagline]').textContent=UI.tagline[LANG];
   document.querySelector('[data-back]').textContent=UI.back[LANG];
