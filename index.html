@@ -166,24 +166,6 @@ body.cursor-active{cursor:none}
   transition:color .25s;
 }
 .nav-link:hover{color:var(--gold)}
-/* menu dropdown */
-.nav-drop{position:relative;display:flex;align-items:center}
-.nav-sub{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:16px;
-  opacity:0;visibility:hidden;transition:opacity .25s var(--ease),visibility .25s;z-index:1001}
-.nav-drop:hover .nav-sub{opacity:1;visibility:visible}
-.nav-sub-inner{display:flex;flex-direction:column;gap:1px;min-width:210px;
-  background:rgba(15,27,53,.97);backdrop-filter:blur(18px) saturate(150%);
-  border:1px solid rgba(212,184,150,.14);border-radius:11px;padding:8px;
-  box-shadow:0 16px 38px rgba(0,0,0,.45)}
-.nav-sub-inner a,.nav-sub-inner span{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.18em;
-  text-transform:uppercase;padding:11px 16px;border-radius:7px;text-align:center;transition:color .2s,background .2s}
-.nav-sub-inner a{color:rgba(245,240,232,.72)}
-.nav-sub-inner a:hover{color:var(--gold);background:rgba(212,184,150,.08)}
-.nav-sub-inner .soon{color:rgba(245,240,232,.28);cursor:default;position:relative}
-.nav-sub-inner .soon::after{content:'Soon';font-size:7px;letter-spacing:.1em;opacity:.65;margin-left:6px;
-  border:1px solid rgba(245,240,232,.2);border-radius:10px;padding:1px 6px}
-.mm-sub{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--gold);margin-top:-6px;padding:6px 0}
 /* mobile menu */
 .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;
   width:36px;height:36px;background:none;border:none;cursor:pointer;padding:6px;z-index:1002}
@@ -395,36 +377,6 @@ body.menu-open{overflow:hidden}
 }
 .pillar-icon{width:44px;height:44px;color:var(--gold);margin:0 auto 28px}
 
-/* ─── MENU ───────────────────────────────────────────────────────── */
-#a-menu{
-  background:var(--navy-lt);
-  background-image:radial-gradient(ellipse at 50% 40%,rgba(139,94,60,.06) 0%,transparent 65%);
-  padding:96px 8vw 80px;position:relative;overflow:hidden;
-}
-.tab-outer{position:relative}
-.tab-wrap{display:flex;border-bottom:1px solid rgba(212,184,150,.1)}
-.tab-btn{
-  cursor:pointer;font-family:'Inter',sans-serif;font-size:10px;
-  letter-spacing:.3em;text-transform:uppercase;
-  padding:12px 28px;border:none;background:transparent;
-  color:rgba(212,184,150,.3);transition:color .3s;position:relative;z-index:1;
-}
-.tab-btn.active{color:var(--gold)}
-.tab-line{
-  position:absolute;bottom:0;left:0;height:1px;background:var(--gold);
-  transition:left .3s var(--ease),width .3s var(--ease);
-}
-.menu-card{
-  background:linear-gradient(135deg,rgba(15,27,53,.88) 0%,rgba(20,31,58,.94) 100%);
-  border:1px solid rgba(212,184,150,.09);
-  box-shadow:0 4px 24px rgba(0,0,0,.28),inset 0 1px 0 rgba(212,184,150,.05);
-  backdrop-filter:blur(8px);
-  padding:20px 22px;
-  transition:border-color .3s,box-shadow .3s;
-}
-.menu-card:hover{border-color:rgba(212,184,150,.2);box-shadow:0 8px 32px rgba(0,0,0,.4)}
-#menu-content{transition:opacity .22s ease,transform .3s var(--ease)}
-
 /* ─── JUNGLE STRIP ───────────────────────────────────────────────── */
 #jungle-strip{position:relative;height:60vh;min-height:380px;overflow:hidden;display:flex;align-items:center;justify-content:center}
 #jungle-img{
@@ -585,7 +537,6 @@ body.menu-open{overflow:hidden}
   /* layout stacks */
   .two-col{grid-template-columns:1fr!important;gap:40px!important}
   .pillar-grid{grid-template-columns:1fr!important;gap:14px}
-  .menu-grid{grid-template-columns:1fr!important}
   .gal-grid{grid-template-columns:1fr 1fr!important;grid-auto-rows:150px!important}
   .gal-item.wide{grid-column:span 2!important}
   .gal-item.tall2{grid-row:auto!important}
@@ -595,7 +546,6 @@ body.menu-open{overflow:hidden}
   #a-about{padding:64px 7vw 120px}
   .photo-stack img{display:block}
   #a-pillars{padding:64px 7vw 80px}
-  #a-menu{padding:64px 7vw 60px}
   #a-gallery{padding:64px 7vw 60px}
   #a-visit{padding:64px 7vw 56px}
   /* visit: center text block + map */
@@ -625,10 +575,6 @@ body.menu-open{overflow:hidden}
   .about-stats small{font-size:20px!important}
   .about-bamboo{width:58vw!important;right:2vw!important;bottom:-22px!important}
   .about-leaf{width:116px;height:auto;top:calc(150px + 106vw);bottom:auto;right:4px}
-  /* menu tabs */
-  .tab-btn{padding:10px 16px;font-size:9px;letter-spacing:.18em}
-  #a-menu .lbl{text-align:center}
-  .menu-head{flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center}
   /* reviews */
   #a-reviews{height:92vh;min-height:560px}
   .rv-head h2{font-size:clamp(34px,9vw,46px)}
@@ -682,9 +628,7 @@ body.menu-open{overflow:hidden}
   </a>
   <div class="d-nav" style="display:flex;gap:36px;align-items:center;">
     <a href="#a-about" class="nav-link" data-i18n="nav.story">Story</a>
-    <a href="/breakfast-coffee" class="nav-link">Breakfast &amp; Coffee</a>
-    <a href="/food" class="nav-link">Food</a>
-    <a href="/drinks" class="nav-link">Drinks</a>
+    <a href="/menu" class="nav-link" data-i18n="nav.menu">Menu</a>
     <a href="#a-gallery" class="nav-link" data-i18n="nav.gallery">Gallery</a>
     <a href="#a-reviews" class="nav-link" data-i18n="nav.reviews">Reviews</a>
     <a href="#a-visit" class="nav-link" data-i18n="nav.visit">Visit</a>
@@ -697,9 +641,7 @@ body.menu-open{overflow:hidden}
 </nav>
 <div id="mobile-menu">
   <a href="#a-about"   class="mm-link" data-i18n="nav.story">Story</a>
-  <a href="/breakfast-coffee" class="mm-link">Breakfast &amp; Coffee</a>
-  <a href="/food" class="mm-link">Food</a>
-  <a href="/drinks" class="mm-link">Drinks</a>
+  <a href="/menu" class="mm-link" data-i18n="nav.menu">Menu</a>
   <a href="#a-gallery" class="mm-link" data-i18n="nav.gallery">Gallery</a>
   <a href="#a-reviews" class="mm-link" data-i18n="nav.reviews">Reviews</a>
   <a href="#a-visit"   class="mm-link" data-i18n="nav.visit">Visit</a>
@@ -744,7 +686,7 @@ body.menu-open{overflow:hidden}
 
     <p class="h-desc" data-i18n="hero.desc">Open daily 9:00 AM – 11 PM. Local &amp; international tapas, crafted cocktails, Bali soul — under the open sky of Ubud.</p>
     <div class="h-ctas">
-      <a href="/breakfast-coffee" class="btn-leaf">
+      <a href="/menu" class="btn-leaf">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
           <path d="M2 21c0-3 1.85-5.36 5.08-6"/>
@@ -1151,11 +1093,6 @@ const I18N={
  "pil.cocktails.d":{en:"Crafted with Arak Bali, fresh tropical fruits, and the soul of Kintamani. Sip slowly — these are stories in a glass.",fr:"Élaborés avec l'Arak Bali, des fruits tropicaux frais et l'âme de Kintamani. Sirotez lentement — ce sont des histoires dans un verre.",id:"Diracik dengan Arak Bali, buah tropis segar, dan jiwa Kintamani. Nikmati perlahan — ini kisah dalam gelas.",es:"Elaborados con Arak Bali, frutas tropicales frescas y el alma de Kintamani. Bebe despacio — son historias en una copa."},
  "pil.atmos.t":{en:"Atmosphere",fr:"Atmosphère",id:"Suasana",es:"Ambiente"},
  "pil.atmos.d":{en:"Three floors open to the sky. Ubud's jungle canopy around you. The kind of peace that only arrives when you stop rushing.",fr:"Trois étages ouverts sur le ciel. La canopée d'Ubud tout autour. Cette paix qui n'arrive que lorsqu'on cesse de courir.",id:"Tiga lantai terbuka ke langit. Kanopi hutan Ubud di sekeliling Anda. Kedamaian yang hanya datang saat Anda berhenti terburu-buru.",es:"Tres plantas abiertas al cielo. La selva de Ubud a tu alrededor. Esa paz que solo llega cuando dejas de correr."},
- "menu.eyebrow":{en:"The Menu",fr:"La Carte",id:"Menu",es:"La Carta"},
- "menu.title":{en:'A Ritual<br><em style="color:var(--gold);font-weight:400;">of Taste</em>',fr:'Un Rituel<br><em style="color:var(--gold);font-weight:400;">du Goût</em>',id:'Ritual<br><em style="color:var(--gold);font-weight:400;">Rasa</em>',es:'Un Ritual<br><em style="color:var(--gold);font-weight:400;">del Sabor</em>'},
- "tab.breakfast":{en:"Breakfast",fr:"Petit-déj",id:"Sarapan",es:"Desayuno"},
- "tab.food":{en:"Food",fr:"Plats",id:"Makanan",es:"Comida"},
- "tab.drinks":{en:"Drinks",fr:"Boissons",id:"Minuman",es:"Bebidas"},
  "jungle.title":{en:"In the heart<br>of Ubud",fr:"Au cœur<br>d'Ubud",id:"Di jantung<br>Ubud",es:"En el corazón<br>de Ubud"},
  "gallery.eyebrow":{en:"Gallery",fr:"Galerie",id:"Galeri",es:"Galería"},
  "gallery.title":{en:'Captured<br><em style="font-weight:400;color:var(--umber);">Moments</em>',fr:'Instants<br><em style="font-weight:400;color:var(--umber);">Capturés</em>',id:'Momen<br><em style="font-weight:400;color:var(--umber);">Terekam</em>',es:'Momentos<br><em style="font-weight:400;color:var(--umber);">Capturados</em>'},
@@ -1184,40 +1121,6 @@ const I18N={
  "footer.ticker":{en:"Open daily · 9:00 AM – 11 PM · Rooftop Restaurant & Bar · Ubud · Bali ·   ",fr:"Ouvert tous les jours · 9h00 – 23h00 · Restaurant & Bar Rooftop · Ubud · Bali ·   ",id:"Buka setiap hari · 09.00 – 23.00 · Restoran & Bar Rooftop · Ubud · Bali ·   ",es:"Abierto a diario · 9:00 – 23:00 · Restaurante & Bar · Ubud · Bali ·   "},
 };
 const DTL={
- "MORNING PLATES":{fr:"PLATS DU MATIN",id:"HIDANGAN PAGI",es:"PLATOS DE LA MAÑANA"},
- "COFFEE":{fr:"CAFÉ",id:"KOPI",es:"CAFÉ"},
- "TAPAS & STARTERS":{fr:"TAPAS & ENTRÉES",id:"TAPAS & PEMBUKA",es:"TAPAS & ENTRANTES"},
- "MAINS & BOWLS":{fr:"PLATS & BOWLS",id:"HIDANGAN UTAMA & BOWL",es:"PRINCIPALES & BOWLS"},
- "COCKTAILS":{fr:"COCKTAILS",id:"KOKTAIL",es:"CÓCTELES"},
- "MOCKTAILS & MORE":{fr:"MOCKTAILS & PLUS",id:"MOCKTAIL & LAINNYA",es:"MOCKTAILS & MÁS"},
- "Fragrant fried rice, crispy egg, sambal matah, kerupuk":{fr:"Riz frit parfumé, œuf croustillant, sambal matah, kerupuk",id:"Nasi goreng harum, telur renyah, sambal matah, kerupuk",es:"Arroz frito aromático, huevo crujiente, sambal matah, kerupuk"},
- "Wild açaí, banana, granola, honey, seasonal fruits":{fr:"Açaí sauvage, banane, granola, miel, fruits de saison",id:"Açaí liar, pisang, granola, madu, buah musiman",es:"Açaí salvaje, plátano, granola, miel, frutas de temporada"},
- "House sourdough, smashed avocado, poached egg, dukkah":{fr:"Pain au levain maison, avocat écrasé, œuf poché, dukkah",id:"Roti sourdough rumahan, alpukat, telur poach, dukkah",es:"Masa madre de la casa, aguacate, huevo poché, dukkah"},
- "Poached eggs, hollandaise, brioche, smoked salmon":{fr:"Œufs pochés, hollandaise, brioche, saumon fumé",id:"Telur poach, saus hollandaise, brioche, salmon asap",es:"Huevos poché, holandesa, brioche, salmón ahumado"},
- "Quinoa, sweet potato, egg, tahini drizzle":{fr:"Quinoa, patate douce, œuf, filet de tahini",id:"Quinoa, ubi, telur, siraman tahini",es:"Quinoa, batata, huevo, hilo de tahini"},
- "Spiced tomato sauce, two eggs, toasted pita, herb oil":{fr:"Sauce tomate épicée, deux œufs, pita grillé, huile d'herbes",id:"Saus tomat berbumbu, dua telur, pita panggang, minyak herba",es:"Salsa de tomate especiada, dos huevos, pita tostada, aceite de hierbas"},
- "Single origin Kintamani, slow filter brew":{fr:"Kintamani pure origine, filtre lent",id:"Kintamani single origin, seduhan filter lambat",es:"Kintamani de origen único, filtrado lento"},
- "Local espresso, coconut milk, palm sugar":{fr:"Espresso local, lait de coco, sucre de palme",id:"Espresso lokal, santan, gula aren",es:"Espresso local, leche de coco, azúcar de palma"},
- "12-hour cold extraction, black or oat milk":{fr:"Extraction à froid 12h, nature ou lait d'avoine",id:"Ekstraksi dingin 12 jam, hitam atau susu oat",es:"Extracción en frío 12 h, solo o con leche de avena"},
- "Turmeric, ginger, coconut milk, honey":{fr:"Curcuma, gingembre, lait de coco, miel",id:"Kunyit, jahe, santan, madu",es:"Cúrcuma, jengibre, leche de coco, miel"},
- "6 skewers, peanut sauce, lontong, pickles":{fr:"6 brochettes, sauce cacahuète, lontong, pickles",id:"6 tusuk, saus kacang, lontong, acar",es:"6 brochetas, salsa de cacahuete, lontong, encurtidos"},
- "3 tacos, mango salsa, chipotle crema":{fr:"3 tacos, salsa de mangue, crème chipotle",id:"3 taco, salsa mangga, krim chipotle",es:"3 tacos, salsa de mango, crema de chipotle"},
- "Sesame-seared, ponzu, cucumber, microgreens":{fr:"Saisi au sésame, ponzu, concombre, micro-pousses",id:"Sear wijen, ponzu, timun, microgreens",es:"Sellado al sésamo, ponzu, pepino, microvegetales"},
- "Tomato basil · mushroom truffle · smoked salmon":{fr:"Tomate basilic · champignon truffe · saumon fumé",id:"Tomat basil · jamur truffle · salmon asap",es:"Tomate albahaca · champiñón trufa · salmón ahumado"},
- "Mixed vegetables, tofu, tempeh, peanut dressing":{fr:"Légumes variés, tofu, tempeh, sauce cacahuète",id:"Aneka sayur, tahu, tempe, saus kacang",es:"Verduras variadas, tofu, tempeh, aderezo de cacahuete"},
- "Fragrant rice, tempeh, egg, sambal matah":{fr:"Riz parfumé, tempeh, œuf, sambal matah",id:"Nasi harum, tempe, telur, sambal matah",es:"Arroz aromático, tempeh, huevo, sambal matah"},
- "Cremini, truffle oil, aged parmesan":{fr:"Cremini, huile de truffe, parmesan affiné",id:"Jamur cremini, minyak truffle, parmesan tua",es:"Cremini, aceite de trufa, parmesano curado"},
- "Charcuterie, cheese, fruits, crackers · 2–3 pax":{fr:"Charcuterie, fromage, fruits, crackers · 2–3 pers.",id:"Charcuterie, keju, buah, kraker · 2–3 orang",es:"Embutidos, queso, frutas, crackers · 2–3 pers."},
- "Dark rum, passion fruit, coconut, lime":{fr:"Rhum ambré, fruit de la passion, coco, citron vert",id:"Rum gelap, markisa, kelapa, jeruk nipis",es:"Ron oscuro, maracuyá, coco, lima"},
- "Gin, Campari, vermouth, orange zest":{fr:"Gin, Campari, vermouth, zeste d'orange",id:"Gin, Campari, vermouth, kulit jeruk",es:"Ginebra, Campari, vermut, ralladura de naranja"},
- "Aperol, prosecco, blood orange, rosemary":{fr:"Aperol, prosecco, orange sanguine, romarin",id:"Aperol, prosecco, jeruk merah, rosemary",es:"Aperol, prosecco, naranja sanguina, romero"},
- "Whisky, cold brew, coffee liqueur, smoked vanilla":{fr:"Whisky, cold brew, liqueur de café, vanille fumée",id:"Wiski, cold brew, liker kopi, vanila asap",es:"Whisky, cold brew, licor de café, vainilla ahumada"},
- "Arak Bali, passion fruit, citrus, egg white":{fr:"Arak Bali, fruit de la passion, agrumes, blanc d'œuf",id:"Arak Bali, markisa, sitrus, putih telur",es:"Arak Bali, maracuyá, cítricos, clara de huevo"},
- "Rum, Campari, pineapple, lime, falernum":{fr:"Rhum, Campari, ananas, citron vert, falernum",id:"Rum, Campari, nanas, jeruk nipis, falernum",es:"Ron, Campari, piña, lima, falernum"},
- "Turmeric, ginger, lemon, honey, soda":{fr:"Curcuma, gingembre, citron, miel, soda",id:"Kunyit, jahe, lemon, madu, soda",es:"Cúrcuma, jengibre, limón, miel, soda"},
- "Hibiscus, rose, lemongrass, coconut water":{fr:"Hibiscus, rose, citronnelle, eau de coco",id:"Rosela, mawar, serai, air kelapa",es:"Hibisco, rosa, hierba limón, agua de coco"},
- "Red, White, or Rosé by the glass":{fr:"Rouge, blanc ou rosé au verre",id:"Merah, putih, atau rosé per gelas",es:"Tinto, blanco o rosado por copa"},
- "Indonesia's local cold brew, 330ml":{fr:"La bière locale indonésienne, 330 ml",id:"Bir lokal Indonesia, 330 ml",es:"La cerveza local de Indonesia, 330 ml"},
  "A real gem in the heart of Ubud. Refined local cuisine with delicious French touches — and the owner is a true cocktail expert. A must.":{en:"A <strong>real</strong> gem in the heart of Ubud. <strong>Refined</strong> <strong>local</strong> cuisine with <strong>delicious</strong> <strong>French</strong> touches — and the owner is a <strong>true</strong> cocktail expert. A must.",fr:"Un <strong>vrai</strong> bijou au cœur d'Ubud. Cuisine <strong>locale</strong> <strong>raffinée</strong> aux <strong>délicieuses</strong> touches <strong>françaises</strong> — et le patron est un <strong>véritable</strong> expert en cocktails. À ne pas manquer.",id:"Permata <strong>sejati</strong> di jantung Ubud. Masakan <strong>lokal</strong> <strong>halus</strong> dengan sentuhan <strong>Prancis</strong> yang <strong>lezat</strong> — dan pemiliknya ahli koktail <strong>sejati</strong>. Wajib.",es:"Una <strong>auténtica</strong> joya en el corazón de Ubud. Cocina <strong>local</strong> <strong>refinada</strong> con <strong>deliciosos</strong> toques <strong>franceses</strong> — y el dueño es un <strong>verdadero</strong> experto en cócteles. Imprescindible."},
  "Superb spot, warm and friendly staff. Lovely atmosphere with a beautiful rooftop, and the food is great too. Highly recommend in Ubud.":{en:"<strong>Superb</strong> spot, <strong>warm</strong> and <strong>friendly</strong> staff. <strong>Lovely</strong> atmosphere with a <strong>beautiful</strong> rooftop, and the food is <strong>great</strong> too. Highly recommend in Ubud.",fr:"<strong>Superbe</strong> endroit, personnel <strong>chaleureux</strong> et <strong>accueillant</strong>. Ambiance <strong>charmante</strong> avec un <strong>magnifique</strong> rooftop, et la cuisine est <strong>excellente</strong>. Je recommande vivement à Ubud.",id:"Tempat <strong>luar biasa</strong>, staf <strong>ramah</strong> dan <strong>hangat</strong>. Suasana <strong>indah</strong> dengan rooftop <strong>cantik</strong>, makanannya juga <strong>enak</strong>. Sangat direkomendasikan di Ubud.",es:"Lugar <strong>estupendo</strong>, personal <strong>cálido</strong> y <strong>amable</strong>. Ambiente <strong>encantador</strong> con una azotea <strong>preciosa</strong>, y la comida también es <strong>excelente</strong>. Muy recomendable en Ubud."},
  "An exceptional address. Ceremonia is a real gem — refined cuisine, a sublime setting, and attentive, professional, kind service.":{en:"An <strong>exceptional</strong> address. Ceremonia is a <strong>real</strong> gem — <strong>refined</strong> cuisine, a <strong>sublime</strong> setting, and <strong>attentive</strong>, <strong>professional</strong>, <strong>kind</strong> service.",fr:"Une adresse <strong>exceptionnelle</strong>. Ceremonia est une <strong>véritable</strong> pépite — cuisine <strong>raffinée</strong>, cadre <strong>sublime</strong>, et service <strong>attentionné</strong>, <strong>professionnel</strong> et <strong>bienveillant</strong>.",id:"Alamat <strong>luar biasa</strong>. Ceremonia benar-benar permata — masakan <strong>halus</strong>, suasana <strong>memukau</strong>, dan pelayanan <strong>penuh perhatian</strong>, <strong>profesional</strong>, dan <strong>ramah</strong>.",es:"Una dirección <strong>excepcional</strong>. Ceremonia es una <strong>verdadera</strong> joya — cocina <strong>refinada</strong>, un entorno <strong>sublime</strong> y un servicio <strong>atento</strong>, <strong>profesional</strong> y <strong>amable</strong>."},
@@ -1239,7 +1142,6 @@ function applyLang(){
   document.querySelectorAll('[data-i18n-html]').forEach(el=>{const v=tr(el.getAttribute('data-i18n-html'));if(v)el.innerHTML=v;});
   document.documentElement.lang=LANG;
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===LANG));
-  if(typeof activeTab!=='undefined')renderMenu(activeTab);
   if(typeof initReviews==='function')initReviews();
   if(window.__tickerBuild)window.__tickerBuild();
 }
@@ -1247,113 +1149,6 @@ function setLang(l){LANG=l;try{localStorage.setItem('lang',l)}catch(e){}applyLan
 function initLang(){
   document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
   applyLang();
-}
-
-/* ─── MENU DATA ───────────────────────────────────────────────────── */
-const MENU={
-  breakfast:[
-    {label:'MORNING PLATES',items:[
-      {name:'Nasi Goreng Bowl',    desc:'Fragrant fried rice, crispy egg, sambal matah, kerupuk',   price:'75.000'},
-      {name:'Açaí Sunrise Bowl',   desc:'Wild açaí, banana, granola, honey, seasonal fruits',       price:'85.000'},
-      {name:'Avocado Sourdough',   desc:'House sourdough, smashed avocado, poached egg, dukkah',    price:'82.000'},
-      {name:'Eggs Benedict',       desc:'Poached eggs, hollandaise, brioche, smoked salmon',        price:'92.000'},
-      {name:'Morning Ritual Bowl', desc:'Quinoa, sweet potato, egg, tahini drizzle',                price:'88.000'},
-      {name:'Shakshuka',           desc:'Spiced tomato sauce, two eggs, toasted pita, herb oil',    price:'85.000'},
-    ]},
-    {label:'COFFEE',items:[
-      {name:'Bali Drip',            desc:'Single origin Kintamani, slow filter brew',               price:'40.000'},
-      {name:'Balinese Latte',       desc:'Local espresso, coconut milk, palm sugar',                price:'48.000'},
-      {name:'Cold Brew',            desc:'12-hour cold extraction, black or oat milk',              price:'55.000'},
-      {name:'Golden Turmeric Latte',desc:'Turmeric, ginger, coconut milk, honey',                  price:'50.000'},
-    ]},
-  ],
-  food:[
-    {label:'TAPAS & STARTERS',items:[
-      {name:'Beef Satay Skewers',  desc:'6 skewers, peanut sauce, lontong, pickles',               price:'98.000'},
-      {name:'Crispy Tempeh Tacos', desc:'3 tacos, mango salsa, chipotle crema',                    price:'92.000'},
-      {name:'Tuna Tataki',         desc:'Sesame-seared, ponzu, cucumber, microgreens',             price:'125.000'},
-      {name:'Bruschetta Trio',     desc:'Tomato basil · mushroom truffle · smoked salmon',         price:'88.000'},
-    ]},
-    {label:'MAINS & BOWLS',items:[
-      {name:'Gado Gado',           desc:'Mixed vegetables, tofu, tempeh, peanut dressing',         price:'88.000'},
-      {name:'Ceremonial Rice Bowl',desc:'Fragrant rice, tempeh, egg, sambal matah',                price:'88.000'},
-      {name:'Mushroom Fettuccine', desc:'Cremini, truffle oil, aged parmesan',                     price:'108.000'},
-      {name:'Sharing Platter',     desc:'Charcuterie, cheese, fruits, crackers · 2–3 pax',         price:'195.000'},
-    ]},
-  ],
-  drinks:[
-    {label:'COCKTAILS',items:[
-      {name:'Bali Sunset',         desc:'Dark rum, passion fruit, coconut, lime',                  price:'95.000'},
-      {name:'Ceremonial Negroni',  desc:'Gin, Campari, vermouth, orange zest',                     price:'105.000'},
-      {name:'Ubud Spritz',         desc:'Aperol, prosecco, blood orange, rosemary',                price:'98.000'},
-      {name:'The Kintamani',       desc:'Whisky, cold brew, coffee liqueur, smoked vanilla',       price:'118.000'},
-      {name:'Sacred Sour',         desc:'Arak Bali, passion fruit, citrus, egg white',             price:'98.000'},
-      {name:'Jungle Bird',         desc:'Rum, Campari, pineapple, lime, falernum',                 price:'108.000'},
-    ]},
-    {label:'MOCKTAILS & MORE',items:[
-      {name:'Golden Hour',         desc:'Turmeric, ginger, lemon, honey, soda',                   price:'68.000'},
-      {name:'Bali Botanics',       desc:'Hibiscus, rose, lemongrass, coconut water',               price:'65.000'},
-      {name:'House Wine',          desc:'Red, White, or Rosé by the glass',                        price:'75.000'},
-      {name:'Bintang Beer',        desc:"Indonesia's local cold brew, 330ml",                      price:'45.000'},
-    ]},
-  ],
-};
-
-/* ─── MENU RENDER ─────────────────────────────────────────────────── */
-let activeTab='breakfast';
-
-function renderMenu(tab){
-  const c=document.getElementById('menu-content');
-  if(!c)return;
-  c.innerHTML=MENU[tab].map(sec=>`
-    <div style="margin-bottom:44px;">
-      <p style="font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.6em;text-transform:uppercase;color:rgba(212,184,150,.3);margin-bottom:14px;">${L(sec.label)}</p>
-      <div class="menu-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        ${sec.items.map((item,i)=>`
-          <div class="menu-card" data-mi style="opacity:0;transform:translateY(14px);transition:opacity .4s ease ${i*40}ms,transform .4s ease ${i*40}ms;">
-            <div style="display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;">
-              <span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:21px;font-weight:400;">${item.name}</span>
-              <span style="font-family:'Inter',sans-serif;color:var(--gold);font-size:10px;letter-spacing:.1em;white-space:nowrap;padding-top:5px;font-weight:400;">IDR ${item.price}</span>
-            </div>
-            <p style="font-family:'Inter',sans-serif;font-weight:300;color:rgba(245,240,232,.3);font-size:12px;line-height:1.65;">${L(item.desc)}</p>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `).join('');
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    document.querySelectorAll('[data-mi]').forEach(el=>{
-      el.style.opacity='1';el.style.transform='translateY(0)';
-    });
-  }));
-}
-
-function switchTab(tab,btn){
-  if(tab===activeTab)return;
-  const mc=document.getElementById('menu-content');
-  mc.style.opacity='0';mc.style.transform='translateY(-10px)';
-  mc.style.transition='opacity .2s ease,transform .2s ease';
-  setTimeout(()=>{
-    activeTab=tab;
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    moveTabLine(btn);
-    renderMenu(tab);
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{
-      mc.style.transition='opacity .32s ease,transform .38s var(--ease)';
-      mc.style.opacity='1';mc.style.transform='translateY(0)';
-    }));
-  },210);
-}
-
-function moveTabLine(activeBtn){
-  const line=document.getElementById('tab-line');
-  const wrap=document.getElementById('tab-wrap');
-  if(!line||!wrap||!activeBtn)return;
-  const wr=wrap.getBoundingClientRect();
-  const br=activeBtn.getBoundingClientRect();
-  line.style.left=(br.left-wr.left)+'px';
-  line.style.width=br.width+'px';
 }
 
 /* ─── LOADER ──────────────────────────────────────────────────────── */
@@ -1623,10 +1418,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   initCleanAnchors();
   initTickerWave();
   initLang();
-  requestAnimationFrame(()=>{
-    const bk=document.getElementById('ta-bk');
-    if(bk)moveTabLine(bk);
-  });
   const isMobile=window.matchMedia('(max-width:860px)').matches;
   if(!isMobile){initParticles();initParallax();}
 });

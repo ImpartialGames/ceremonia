@@ -9,6 +9,11 @@
   /* ---- UI / cover / footer ---- */
   "The Menu":{fr:"La Carte",id:"Menu",es:"La Carta"},
   "The Bar":{fr:"Le Bar",id:"Bar",es:"El Bar"},
+  "Choose your menu":{fr:"Choisissez votre carte",id:"Pilih menu Anda",es:"Elige tu carta"},
+  "View the menu":{fr:"Voir la carte",id:"Lihat menu",es:"Ver la carta"},
+  "Breakfast & Coffee":{fr:"Petit-déjeuner & Café",id:"Sarapan & Kopi",es:"Desayuno y Café"},
+  "Food":{fr:"Plats",id:"Makanan",es:"Comida"},
+  "Drinks":{fr:"Boissons",id:"Minuman",es:"Bebidas"},
   "In our house everything is fresh — homemade, cooked with care & served with love.":{fr:"Chez nous, tout est frais — fait maison, cuisiné avec soin & servi avec amour.",id:"Di rumah kami semuanya segar — buatan sendiri, dimasak dengan penuh perhatian & disajikan dengan cinta.",es:"En nuestra casa todo es fresco — casero, cocinado con cariño y servido con amor."},
   "Relax and enjoy your time in our place.":{fr:"Détendez-vous et profitez de votre moment chez nous.",id:"Bersantai dan nikmati waktu Anda di tempat kami.",es:"Relájate y disfruta tu tiempo en nuestro lugar."},
   "Balinese soul, world flavours & shared plates — homemade, cooked with care & served with love.":{fr:"Âme balinaise, saveurs du monde & plats à partager — fait maison, cuisiné avec soin & servi avec amour.",id:"Jiwa Bali, cita rasa dunia & hidangan untuk dibagi — buatan sendiri, dimasak dengan penuh perhatian & disajikan dengan cinta.",es:"Alma balinesa, sabores del mundo y platos para compartir — casero, cocinado con cariño y servido con amor."},

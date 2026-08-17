@@ -1,4 +1,9 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/breakfast-coffee", "destination": "/menu#breakfast-coffee", "permanent": true },
+    { "source": "/food", "destination": "/menu#food", "permanent": true },
+    { "source": "/drinks", "destination": "/menu#drinks", "permanent": true }
+  ]
 }
