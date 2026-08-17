@@ -24,6 +24,7 @@
   "Under the Ubud Sky":{fr:"Sous le ciel d'Ubud",id:"Di bawah langit Ubud",es:"Bajo el cielo de Ubud"},
   "← Home":{fr:"← Accueil",id:"← Beranda",es:"← Inicio"},
   "Back to Ceremonia":{fr:"Retour à Ceremonia",id:"Kembali ke Ceremonia",es:"Volver a Ceremonia"},
+  "Privacy & Legal Notice":{fr:"Confidentialité & Mentions légales",id:"Privasi & Pemberitahuan Hukum",es:"Privacidad & Aviso legal"},
 
   /* ---- group names ---- */
   "Breakfast":{fr:"Petit-déjeuner",id:"Sarapan",es:"Desayuno"},

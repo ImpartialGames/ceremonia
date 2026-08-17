@@ -183,8 +183,10 @@ body.menu-open{overflow:hidden}
 .mm-link{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;
   color:var(--ivory);letter-spacing:.02em;padding:9px 0;transition:color .25s}
 .mm-link:active,.mm-link:hover{color:var(--gold)}
-.mm-cta{margin-top:22px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.25em;
-  text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:13px 32px}
+.mm-cta{margin-top:22px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:13px 32px;border-radius:30px;
+  transition:background .3s,color .3s}
+.mm-cta:hover{background:var(--gold);color:var(--navy)}
 /* language switch */
 .lang-switch{display:flex;align-items:center;gap:3px;margin-left:8px}
 .lang-btn{font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.12em;cursor:pointer;
@@ -197,27 +199,6 @@ body.menu-open{overflow:hidden}
 .lang-switch-m .lang-sep{font-size:11px}
 
 /* ─── BUTTONS ────────────────────────────────────────────────────── */
-.btn{
-  position:relative;overflow:hidden;z-index:0;
-  font-family:'Inter',sans-serif;font-size:10px;
-  letter-spacing:.22em;text-transform:uppercase;
-  padding:12px 32px;border:1px solid var(--gold);
-  color:var(--gold);display:inline-block;cursor:pointer;
-}
-.btn .t{position:relative;z-index:1;transition:color .35s var(--ease)}
-.btn::after{
-  content:'';position:absolute;inset:0;background:var(--gold);
-  transform:translateY(101%);transition:transform .35s var(--ease);z-index:0;
-}
-.btn:hover::after{transform:translateY(0)}
-.btn:hover .t{color:var(--navy)}
-.btn-ghost{border-color:rgba(245,240,232,.25);color:rgba(245,240,232,.65)}
-.btn-ghost::after{background:rgba(245,240,232,.12)}
-.btn-ghost:hover .t{color:var(--ivory)}
-.btn-solid{background:var(--gold);border-color:var(--gold);color:var(--navy)}
-.btn-solid .t{color:var(--navy)}
-.btn-solid::after{background:var(--navy)}
-.btn-solid:hover .t{color:var(--gold)}
 
 /* leaf button */
 .btn-leaf{
@@ -533,17 +514,20 @@ body.menu-open{overflow:hidden}
   #a-visit{padding:64px 7vw 56px}
   /* visit: center text block + map */
   #a-visit .two-col>div:first-child{text-align:center}
-  #a-visit .two-col>div:first-child>div[style*="grid"]{justify-items:center;max-width:380px;margin-left:auto;margin-right:auto}
+  #a-visit .two-col>div:first-child>div[style*="grid"]{justify-items:center;max-width:380px;margin-left:auto;margin-right:auto;
+    grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:28px 20px}
+  #a-visit .two-col>div:first-child>div[style*="grid"]>div:nth-child(n+3){grid-column:1/-1}
   #a-visit .two-col>div:last-child{order:2;width:100%;max-width:480px;margin:0 auto;border-radius:4px}
   #a-visit iframe{height:300px;border-radius:4px}
   #map-shield{height:300px}
   #a-footer{padding:0 7vw 40px}
   /* hero */
   #hero-pin{height:150vh}
-  .hero-leaf{width:128vw;bottom:-3%}
-  .hero-leaf.left{left:-16vw}
-  .hero-leaf.right{right:-16vw}
-  .hero-leaf.center{width:96vw;max-width:none;top:-5%;bottom:auto}
+  .hero-leaf{width:min(96vw,440px);max-width:none;bottom:-9%}
+  .hero-leaf.left{left:max(-32vw,-150px)}
+  .hero-leaf.right{right:max(-32vw,-150px)}
+  .hero-leaf.center{display:none}
+  .hero-steam{display:none}
   .h-logo{width:64vw!important}
   .h-eyebrow{font-size:9px;letter-spacing:.42em}
   .h-desc{font-size:14px;max-width:88vw}
@@ -579,7 +563,7 @@ body.menu-open{overflow:hidden}
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;cursor:pointer;padding:24px}
 #map-shield .map-txt{font-family:'Inter',sans-serif;font-weight:300;font-size:12px;line-height:1.8;color:rgba(245,240,232,.5);max-width:340px}
 #map-shield .map-btn{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;
-  border:1px solid var(--gold);color:var(--gold);padding:10px 22px;border-radius:30px;transition:all .25s}
+  border:1px solid var(--gold);color:var(--gold);padding:12px 28px;border-radius:30px;transition:all .25s}
 #map-shield:hover .map-btn{background:var(--gold);color:var(--navy)}
 </style>
 </head>
@@ -1170,11 +1154,13 @@ function initLeaves(){
   if(!lf||!rf)return;
   let ticking=false;
   function update(){
-    const p=Math.min(1,scrollY/(window.innerHeight*0.7));
-    const shift=p*window.innerWidth*0.24;
+    const mob=window.innerWidth<=860;
+    const p=Math.min(1,scrollY/(window.innerHeight*(mob?0.45:0.7)));
+    const shift=p*window.innerWidth*(mob?0.6:0.24);
+    const sink=mob?p*window.innerHeight*0.2:0;
     const rot=p*5;
-    lf.style.transform=`translateX(${-shift}px) rotate(${-rot}deg)`;
-    rf.style.transform=`translateX(${ shift}px) rotate(${ rot}deg)`;
+    lf.style.transform=`translateX(${-shift}px) translateY(${sink}px) rotate(${-rot}deg)`;
+    rf.style.transform=`translateX(${ shift}px) translateY(${sink}px) rotate(${ rot}deg)`;
     if(cf){
       const drop=p*window.innerHeight*2.1;
       cf.style.transform=`translateX(-50%) translateY(${-drop}px) rotate(${p*3}deg)`;
