@@ -1,4 +1,4 @@
-/* Ceremonia — cookie consent banner + Google Consent Mode v2.
+/* Ceremonia cookie consent banner + Google Consent Mode v2.
    Loaded synchronously BEFORE the Google tag so the default consent state
    (denied) is set before gtag('config') runs. If the visitor declines or
    ignores the banner, GA4 keeps counting visits anonymously, without cookies. */
