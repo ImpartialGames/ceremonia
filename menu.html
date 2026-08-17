@@ -25,6 +25,21 @@
 <meta property="og:url" content="https://www.ceremonia-rooftop.com/menu">
 <meta property="og:image" content="https://www.ceremonia-rooftop.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Ceremonia Rooftop Ubud",
+  "url": "https://www.ceremonia-rooftop.com/",
+  "servesCuisine": ["Balinese", "Indonesian", "International"],
+  "address": {"@type": "PostalAddress", "addressLocality": "Ubud", "addressRegion": "Bali", "addressCountry": "ID"},
+  "hasMenu": [
+    {"@type": "Menu", "name": "Breakfast & Coffee", "url": "https://www.ceremonia-rooftop.com/BREAKFAST.pdf"},
+    {"@type": "Menu", "name": "Food", "url": "https://www.ceremonia-rooftop.com/FOOD.pdf"},
+    {"@type": "Menu", "name": "Drinks", "url": "https://www.ceremonia-rooftop.com/DRINKS.pdf"}
+  ]
+}
+</script>
 <link rel="stylesheet" href="fonts.css">
 <style>
 :root{--navy:#0F1B35;--navy-lt:#141F3A;--cream:#EDE8DF;--gold:#D4B896;--ivory:#F5F0E8;--umber:#8B6F47;--ease:cubic-bezier(0.16,1,0.3,1)}
@@ -73,65 +88,16 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
   color:var(--gold);background:rgba(15,27,53,.85);border:1px solid rgba(212,184,150,.4);backdrop-filter:blur(8px);
   transition:background .3s,color .3s}
 .card-close:hover{background:var(--gold);color:var(--navy)}
-.sheet{position:relative;max-width:720px;margin:34px auto 70px;background:var(--cream);color:var(--navy);
-  border-radius:6px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.6);animation:sheetIn .5s var(--ease)}
+.page-stack{position:relative;max-width:760px;margin:34px auto 70px;padding:0 12px;display:flex;flex-direction:column;gap:16px;
+  animation:sheetIn .5s var(--ease)}
 @keyframes sheetIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
-.sheet-head{position:relative;background:var(--navy);text-align:center;padding:32px 20px 28px}
-.sheet-head img{width:72px;display:block;margin:0 auto 10px}
-.sheet-head .wm{font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--ivory)}
-.sheet-head .loc{margin-top:7px;font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;color:rgba(212,184,150,.75)}
-.sheet-title{text-align:center;padding:34px 26px 4px}
-.sheet-title .eyebrow{font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--umber);margin-bottom:14px}
-.sheet-title h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,6vw,50px);line-height:1;color:var(--navy)}
-.sheet-title .stag{max-width:480px;margin:16px auto 0;font-weight:300;font-size:12.5px;line-height:1.8;color:rgba(15,27,53,.6)}
-.sheet-title .slegend{margin-top:12px;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--umber)}
-.sheet-title .orn{display:flex;align-items:center;justify-content:center;gap:14px;margin:22px auto 0;max-width:280px}
-.sheet-title .orn .l{flex:1;height:1px;background:rgba(139,111,71,.3)}
-.sheet-title .orn span{color:var(--umber);font-size:12px}
-.chips{position:sticky;top:0;z-index:6;display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;
-  padding:13px 20px;background:rgba(237,232,223,.93);backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,27,53,.08)}
-.chips::-webkit-scrollbar{display:none}
-.chip{flex:0 0 auto;font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(15,27,53,.6);background:transparent;border:1px solid rgba(15,27,53,.22);border-radius:30px;padding:8px 15px;cursor:pointer;
-  transition:color .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease);white-space:nowrap}
-.chip:hover{color:var(--navy);border-color:rgba(15,27,53,.5)}
-.chip.active{background:var(--navy);color:var(--gold);border-color:var(--navy);font-weight:600}
-.pgroup{padding:34px 38px 6px}
-.pgroup:last-of-type{padding-bottom:26px}
-.pg-head{display:flex;align-items:center;gap:16px;margin-bottom:8px}
-.pg-head .l{flex:1;height:1px;background:rgba(139,111,71,.25)}
-.pg-head h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(24px,4vw,31px);color:var(--navy);white-space:nowrap;max-width:78%;overflow:hidden;text-overflow:ellipsis}
-.pg-note{text-align:center;font-size:11.5px;font-weight:300;font-style:italic;color:rgba(15,27,53,.55);margin:2px 0 6px}
-.psec{margin:24px 0 6px}
-.psec-label{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-.psec-label span{font-size:9.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--umber);white-space:nowrap}
-.psec-label .l{flex:1;height:1px;background:rgba(15,27,53,.1)}
-.psec-note{font-size:11px;font-weight:300;font-style:italic;color:rgba(15,27,53,.5);margin:0 0 10px}
-.row{padding:9px 0;border-bottom:1px solid rgba(15,27,53,.045)}
-.row:last-child{border-bottom:none}
-.row .rt{display:flex;align-items:baseline;gap:10px}
-.row .nm{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:19px;color:var(--navy)}
-.leader{flex:1;min-width:26px;border-bottom:1px dotted rgba(15,27,53,.28);transform:translateY(-4px)}
-.pr{font-size:12px;letter-spacing:.05em;color:var(--umber);font-weight:600;white-space:nowrap}
-.pr small{font-size:9px;opacity:.7}
-.pr .pl{font-size:8px;letter-spacing:.12em;text-transform:uppercase;opacity:.6;margin-left:3px}
-.rd{font-weight:300;font-size:12px;line-height:1.65;color:rgba(15,27,53,.58);margin-top:3px;max-width:92%}
-.psub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13.5px;color:var(--umber);margin-top:2px}
-.pbtl{font-size:11px;font-weight:300;color:rgba(15,27,53,.55);margin-top:6px;letter-spacing:.03em}
-.pbtl b{color:var(--umber);font-weight:600}
-.pbadge{display:inline-block;font-size:7.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:var(--navy);border-radius:20px;padding:2px 8px;margin-left:8px;vertical-align:middle;font-weight:600}
-.pveg{color:#5c7d4f;font-size:10px;margin-left:6px;font-style:italic}
-.pextras{border:1px dashed rgba(139,111,71,.35);border-radius:12px;padding:14px 18px;margin-top:4px}
-.pextras li{list-style:none;display:flex;align-items:baseline;gap:10px;padding:5px 0;font-size:12.5px;font-weight:300;color:rgba(15,27,53,.68)}
-.pextras li b{color:var(--umber);font-weight:600;white-space:nowrap}
-.sheet-foot{text-align:center;padding:26px 34px 38px;border-top:1px solid rgba(15,27,53,.07);margin-top:22px}
-.sheet-foot .note{font-size:10.5px;font-weight:300;line-height:1.8;color:rgba(15,27,53,.5);max-width:460px;margin:0 auto 18px}
-.sheet-foot .orn{color:var(--umber);font-size:12px}
-.sheet-foot .tagline{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--umber);font-size:16px;margin-top:10px}
+.page-stack img{width:100%;display:block;border-radius:6px;box-shadow:0 24px 70px rgba(0,0,0,.55);background:var(--cream)}
+.stack-foot{text-align:center;padding:10px 0 4px}
+.stack-foot a{display:inline-block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);
+  padding:12px 28px;border-radius:30px;transition:background .3s,color .3s}
+.stack-foot a:hover{background:var(--gold);color:var(--navy)}
 @media(max-width:760px){
-  .sheet{margin:0;max-width:none;min-height:100%;border-radius:0}
-  .pgroup{padding:28px 22px 4px}
-  .row .nm{font-size:18px}
+  .page-stack{margin:64px auto 50px;padding:0 8px;gap:10px}
   .card-close{top:12px;right:12px}
 }
 </style>
@@ -177,455 +143,30 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
 <script src="menu-i18n.js"></script>
 <script>
 const MENUS={
-'breakfast-coffee':{
- label:"Breakfast & Coffee", eyebrow:"The Menu",
- tag:["In our house everything is fresh and homemade, cooked with care.","Relax and enjoy your time in our place."],
- NOTE:"Please inform us if you have any food allergies. All rates are in thousands (’000) IDR, subject to 11% government tax & 5% service.",
- MENU:[
- {group:"Breakfast", cls:"navy", note:"Start your day fresh with our homemade breakfast, served until 2 PM", sections:[
-   {label:"Breakfast", items:[
-     {name:"Pancakes", price:"60", desc:"3 pancakes, choose your topping: banana, strawberry jam, chocolate or sugar honey"},
-     {name:"Ceremonia Poached Egg", tag:"Best seller", price:"65", desc:"2 poached eggs on home-made toast, hummus, tomatoes, mashed avocado, mixed salad, black sesame"},
-     {name:"French Omelette Salad", price:"60", desc:"2-egg omelette, salad, braised tomatoes & honey mustard sauce + home-made toast"},
-     {name:"French Breakfast", price:"70", desc:"French baguette with unsalted butter & homemade strawberry jam"},
-     {name:"Scrambled on Toast", price:"60", desc:"2 scrambled eggs, tomatoes, cheese, mushrooms, salad, honey mustard sauce + home-made toast"},
-   ]},
-   {label:"Smoothie Bowls", items:[
-     {name:"Ceremonia Smoothie Bowl", veg:true, price:"95", desc:"Banana, dragon fruit, milk · granola, strawberry, pineapple, chia seeds, blueberries, goji berries, mint & edible flowers"},
-     {name:"Chocolate Smoothie Bowl", veg:true, price:"100", desc:"Chocolate, banana, milk, honey, peanut butter · granola, chia seeds, mint, cashew nut & edible flower"},
-     {name:"Tropical Smoothie Bowl", veg:true, price:"90", desc:"Banana, pineapple, papaya, coconut milk · granola, coconut flakes, chia seeds, mint & edible flowers"},
-   ]},
-   {label:"Add Extra", extras:[["2 home-made grilled toast","15"],["Sautéed garlic mushroom","20"],["Roast tomato","15"],["Half avocado","20"],["2 slices pork bacon","25"],["1 more egg, your style","7"],["Mozzarella cheese 50g","20"]]},
- ]},
- {group:"Desserts", cls:"lt", sections:[
-   {label:"Sweet", items:[
-     {name:"Lava Cake", tag:"Best seller 2025", price:"65", desc:"Chocolate fondant with fruits & a scoop of vanilla ice cream"},
-     {name:"Dadar Gulung Bali", price:"45", desc:"Soft pandan crepes filled with sweet coconut & palm sugar"},
-     {name:"Tiramisu", price:"75", desc:"Fully homemade: coffee, biscuits, creamy mascarpone & cacao"},
-     {name:"Ice Cream Cup", price:"30", desc:"Vanilla, chocolate or strawberry"},
-     {name:"Crème Brûlée Vanilla", price:"60", desc:"Smooth & flavorful cream with a thin caramelized sugar crust"},
-     {name:"Crepes Nutella", price:"60", desc:"Crepes filled with Nutella, topped with fresh fruit"},
-     {name:"Pisang Goreng", price:"60", desc:"Deep-fried crispy banana, vanilla ice cream, brown sugar, strawberry, coconut sugar & mint"},
-     {name:"Crepes", price:"55", desc:"Large crepes: banana & chocolate or strawberry jam, topped with fresh fruit"},
-   ]},
- ]},
- {group:"Coffee & More", cls:"navy", sections:[
-   {label:"Classic Coffees", note:"Replace cow's milk with oat milk +10 · Ice +5", items:[
-     {name:"Espresso / Double", price:"30/40"},
-     {name:"Café Latte", tag:"Best seller", price:"37"},
-     {name:"Flat White", price:"37"},
-     {name:"Americano", price:"35"},
-     {name:"Cold Brew Americano", price:"45"},
-     {name:"Cappuccino / Double", price:"39/49"},
-     {name:"Mochaccino", price:"35"},
-     {name:"Kopi Bali", price:"30"},
-   ]},
-   {label:"Signature Lattes", note:"Replace cow's milk with oat milk +10", items:[
-     {name:"Speculos Ice Latte", price:"65", desc:"Espresso, speculos, vanilla syrup, milk"},
-     {name:"Caramel Latte", price:"50", desc:"Espresso, speculos, caramel syrup, milk"},
-     {name:"Matcha Green Latte", price:"55", desc:"Matcha, milk, sugar"},
-     {name:"Hot Choco Latte", price:"50", desc:"Chocolate, milk, sugar"},
-     {name:"Golden Latte", price:"55", desc:"Espresso, turmeric, cinnamon, pepper, milk, honey"},
-   ]},
-   {label:"Ceremonial Boosters", items:[
-     {name:"Secret Ginger Booster", tag:"Spicy", price:"75", desc:"Hand-grated ginger, lime, honey-infused tea & secret spices"},
-     {name:"Golden Shooter", price:"50", desc:"Fresh blend turmeric, lime, honey"},
-   ]},
-   {label:"Teas & Infusions", items:[
-     {name:"Peach Ice Tea", price:"40"},
-     {name:"Famous Black Ice Tea", price:"35"},
-     {name:"Black Hot Tea Pot", price:"35"},
-     {name:"Jasmine / Green Tea Pot", price:"35"},
-     {name:"Fresh Infusion", price:"40", desc:"Choose 2-3: ginger, mint, lemon, lemongrass, blue butterfly pea, rosella"},
-   ]},
-   {label:"Smoothies & Energy", note:"Fresh blended for Bali mornings", items:[
-     {name:"Ceremonia Mix Berry", tag:"Best seller", price:"75", desc:"Strawberry, blueberry, yogurt, milk, honey"},
-     {name:"Gary's Smoothie", price:"65", desc:"Dates, pineapple, banana, milk, honey"},
-     {name:"Strawberry Smoothie", price:"85", desc:"Fresh strawberry, yogurt, milk, honey, strawberry syrup"},
-     {name:"Choco Banana Smoothie", price:"85", desc:"Chocolate, banana, milk, honey"},
-     {name:"Morning Coffee Smoothie", price:"70", desc:"Banana, espresso, oat milk, oat seeds"},
-   ]},
- ]},
- {group:"Smooth & Fresh", cls:"lt", sections:[
-   {label:"Squash", items:[
-     {name:"Ginger Lemon Mint Squash", price:"55", desc:"Ginger & lemon juice topped with soda water"},
-     {name:"Passion Fruit Squash", price:"80", desc:"Passion fruit juice topped with soda water"},
-   ]},
-   {label:"Milkshakes", note:"Each milkshake is made with ice cream blended with regular milk & ice", items:[
-     {name:"Vanilla", price:"45"},
-     {name:"Choco", price:"50"},
-     {name:"Banana", price:"55", desc:"Vanilla ice cream + fresh banana"},
-     {name:"Coffee", price:"60", desc:"Vanilla ice cream + double espresso"},
-     {name:"Matcha", price:"60", desc:"Vanilla ice cream + matcha powder"},
-   ]},
-   {label:"Elixirs of Ceremonia", items:[
-     {name:"Violette", price:"55", desc:"Dragon fruit, ginger, lime & honey"},
-     {name:"Bali", price:"60", desc:"Pineapple, green apple, spinach, celery, lime"},
-     {name:"Ceremonia Green Juice", price:"60", desc:"Spinach, cucumber, celery, lime, ginger, apple"},
-     {name:"Skincare", price:"55", desc:"Fresh carrot, orange, ginger"},
-   ]},
-   {label:"Pure Fresh Juice", items:[
-     {name:"Single Fruit", price:"50", desc:"Watermelon, pineapple, dragon fruit, papaya or soursop"},
-     {name:"Mixed Juice", price:"55", desc:"Please choose 2"},
-     {name:"Fresh Orange Juice", price:"60"},
-     {name:"Banana Juice", price:"50", desc:"Blended with milk"},
-   ]},
-   {label:"Softs", items:[
-     {name:"Coca-Cola · Normal / Zero 330ml", price:"35"},
-     {name:"Sprite 330ml", price:"35"},
-     {name:"Flavored Syrup", price:"30", desc:"Grenadine, strawberry, passion fruit, vanilla or peach"},
-     {name:"Mineral Water Pitcher 1L", price:"25"},
-     {name:"Sparkling Water · Polaris 330ml", price:"30"},
-   ]},
-   {label:"Beer", items:[
-     {name:"Small / Radler 330ml", price:"45"},
-     {name:"San Miguel · Pale Pilsner 330ml", price:"50"},
-   ]},
- ]},
- ]},
-'food':{
- label:"Food", eyebrow:"The Menu",
- tag:["Balinese soul, world flavours and plates made to share. Everything is homemade and cooked with care."],
- legend:"(V) Vegetarian · (V&VN) Vegetarian & Vegan",
- NOTE:"Please inform us if you have any food allergies. All rates are in thousands (’000) IDR, subject to 11% government tax & 5% service.",
- MENU:[
- {group:"Tapas", cls:"navy", note:"Small plates to share · 50 / item", sections:[
-   {label:"Balinese Tapas", note:"50 / item", items:[
-     {name:"Ceremonia Spring Roll", veg:"V", desc:"Deep-fried vegetable spring rolls, crispy & golden"},
-     {name:"Veggie Fry Roll Risoles", veg:"V", desc:"Crispy Indonesian roll with vegetables and egg"},
-     {name:"Crispy Tempeh Kering", veg:"V&VN", desc:"Grilled fermented soy tempeh marinated with peanut sauce"},
-     {name:"Mini Nasi Goreng Ball", desc:"Indonesian fried rice, vegetables and chicken"},
-     {name:"Bali Crispy Chicken Koloke", tag:"Best seller", desc:"Crispy fried chicken coated with a sweet & sour sauce"},
-     {name:"Corn Fritter Perkedel", veg:"V&VN", desc:"Crispy corn fritters mixed with spices and herbs"},
-     {name:"Chicken Roll Lumpia Goreng Ayam", desc:"Fried roll filled with chicken, seasoned vegetables and spices"},
-     {name:"Grilled Chicken Stick · Satay Ayam", desc:"Marinated grilled chicken on a wood stick with peanut sauce"},
-   ]},
-   {label:"World Flavour Tapas", note:"50 / item", items:[
-     {name:"Crispy Homemade French Fries", veg:"V-VN", desc:"Golden, crispy hand-cut fries with spices"},
-     {name:"Hummus Platter", veg:"V&VN", desc:"Creamy hummus served with soft pita bread"},
-     {name:"Greek Feta Bruschetta", veg:"V", desc:"Grilled bread, feta, black olives, cucumber, cherry tomatoes, basil & olive oil"},
-     {name:"Spanish Tortilla", veg:"V", desc:"Classic Spanish omelette with pan-fried potatoes and onions"},
-     {name:"Pan Con Tomate", veg:"V", desc:"Grilled garlic bread topped with fresh tomato, olive oil & salt"},
-     {name:"Baby Beef Burger · set of 2", desc:"Mini burgers with beef patty, cheese and a soft bun"},
-     {name:"Chicken Nuggets", desc:"Crispy homemade & fresh chicken nuggets"},
-     {name:"Lebanese Hummus Bruschetta", veg:"V", desc:"Grilled bread, hummus, tomatoes, onion, coriander & mixed salad"},
-     {name:"Falafel Platter", veg:"V&VN", desc:"Homemade crispy falafel served with hummus"},
-     {name:"Avocado Cream Cheese Rice Cake", veg:"V", desc:"Crispy fried rice cake topped with homemade cream cheese & avocado"},
-     {name:"Spanish Patatas Bravas Bowl", veg:"V&VN", desc:"Crispy deep-fried potatoes with aioli or spicy tomato sauce"},
-   ]},
- ]},
- {group:"Sharing Platters", cls:"lt", note:"Tapas mix · made to share", sections:[
-   {label:"Tapas Mix", items:[
-     {name:"Mix Lebanese", price:"145", desc:"3 Lebanese tapas: creamy hummus with pita, crispy homemade falafels, hummus bruschetta with tomatoes, onions & coriander"},
-     {name:"Mix Spanish", price:"135", desc:"3 Spanish tapas: patatas bravas with aioli or spicy tomato, Spanish tortilla, pan con tomate"},
-     {name:"Mix Vegan", price:"110", desc:"3 vegan tapas: corn fritter (perkedel jagung), crispy tempeh (satay tempeh), crispy mushroom tempura"},
-     {name:"Mix Tuna", price:"149", desc:"Two ways with tuna: Balinese spice tuna stick (satay lilit) & aromatic tuna wrap (pepes ikan), with tempeh stick"},
-     {name:"Bali Vegetarian Mix", price:"135", desc:"4 vegetarian tapas: risoles, satay tempeh, perkedel jagung & lumpia goreng"},
-     {name:"Ceremonia Meat Lovers", price:"780", desc:"Generous premium beef platter (500g) with crispy homemade fries & red wine sauce, perfect for 2"},
-     {name:"More Sauces", price:"10", desc:"Tartar, sweet & sour, aioli, chili mayo, green sambal (medium), peanut sauce, red sambal (spicy)"},
-   ]},
- ]},
- {group:"Main Courses", cls:"navy", sections:[
-   {label:"Mains", items:[
-     {name:"Grilled Salmon", price:"225", desc:"Salmon filet, steamed potato & carrot, sautéed pak choi, edible flower, savory lemon cream sauce"},
-     {name:"Balinese Nasi Campur", tag:"Best seller", price:"105", desc:"Balinese rice with shredded chicken, vegetables, boiled egg, tempeh, peanuts, sambal matah & sambal ulek"},
-     {name:"Tuna Tataki", price:"135", desc:"Pan-seared tuna with sesame, vegetables, rice, edible flower · teriyaki sauce on the side"},
-     {name:"Ceremonia Pizza", price:"110", desc:"Homemade dough, tomato sauce, tomato, onion, bacon, mushroom, capsicum, basil, oregano, mozzarella"},
-     {name:"Ceremonia Margherita", veg:"Vegetarian", price:"95", desc:"Homemade dough, flavorful tomato sauce, fresh tomatoes, basil, oregano & melted mozzarella"},
-     {name:"Beef Burger", price:"115", desc:"Homemade buns, beef patty 150g, tomato, lettuce, caramelized onion, cheese, bacon · salad & fries"},
-     {name:"Chicken Creamy", tag:"Best seller", price:"125", desc:"Grilled chicken breast, sautéed vegetables, mashed potato, cherry tomato, red radish, mushroom cream sauce"},
-     {name:"Croque Monsieur with Salad", price:"115", desc:"Golden pan-seared bread filled with ham & melted Emmental, a flavorful twist on the French classic"},
-   ]},
- ]},
- {group:"Indonesian & Fresh", cls:"lt", sections:[
-   {label:"Indonesian", items:[
-     {name:"Chicken Mie Goreng", price:"80", desc:"Stir-fried noodle, chicken, soy sauce & sambal, cabbage, carrot, caisin, fried egg, prawn crackers, pickles"},
-     {name:"Mie Goreng · Vegetarian (tempeh)", price:"70"},
-     {name:"Ceremonia Nasi Goreng", tag:"Best seller", price:"75", desc:"Stir-fried rice, soy sauce & sambal, long bean, carrot, egg omelet, pickle and chicken"},
-     {name:"Nasi Goreng · Vegetarian (tempeh)", price:"65"},
-     {name:"Curry Chicken Soup", price:"85", desc:"Indonesian spices, chicken, vegetables, coconut milk, served with steamed rice (vegetarian option possible)"},
-   ]},
-   {label:"Pasta", note:"Choose your pasta: penne or fettuccini", items:[
-     {name:"Bolognese", veg:"Beef", price:"100", desc:"Bolognaise sauce, basil, parmesan & garlic bread"},
-     {name:"Carbonara", veg:"Pork", price:"95", desc:"Bacon, onion, carbonara sauce, basil, mushroom, parmesan, cherry tomato & garlic bread"},
-     {name:"Napolitana", veg:"Vegetarian", price:"85", desc:"Tomato sauce, cherry tomato, basil, parmesan & garlic bread"},
-   ]},
-   {label:"Poke Bowl", note:"All poke bowls served with passion-fruit sauce or honey-mustard", items:[
-     {name:"Avocado / Tempeh Poke Bowl", veg:"V&VN", price:"90", desc:"Rice, avocado, tempeh, red cabbage, chickpeas, tomatoes, sweet corn, carrot, cauliflower, broccoli, sesame, coriander, balsamic dressing"},
-     {name:"Salmon Poke Bowl", price:"125", desc:"Rice, salmon, edamame, red cabbage, mango, carrot, radish, sesame, coriander"},
-     {name:"Chicken Poke Bowl", tag:"Best seller", price:"90", desc:"Rice, chicken, red onion, radish, tomatoes, sweet corn, carrot, broccoli, green beans, sesame, coriander"},
-     {name:"Tuna Poke Bowl", price:"100", desc:"Rice, tuna, edamame, red cabbage, mango, carrot, radish, sesame, coriander"},
-   ]},
-   {label:"Salad", items:[
-     {name:"Caesar Salad", price:"95", desc:"Baby romaine, chicken, boiled egg, tomato, red radish, edible flower, Caesar dressing"},
-     {name:"Tuna Avocado Salad", price:"90", desc:"Mixed salad with tuna, onion, cucumber, tomato, red radish, edible flower, balsamic dressing"},
-     {name:"Greek Salad", veg:"Vegetarian", price:"90", desc:"Mixed salad, feta, cucumber, tomato, capsicum, black olive, Greek dressing"},
-   ]},
- ]},
- {group:"Desserts", cls:"navy", sections:[
-   {label:"Sweet", items:[
-     {name:"Lava Cake", tag:"Best seller 2024", price:"65", desc:"Chocolate fondant with chopped fruits & a scoop of vanilla ice cream"},
-     {name:"Dadar Gulung Bali", price:"45", desc:"Soft pandan crepes filled with sweet coconut & palm sugar"},
-     {name:"Tiramisu", price:"80", desc:"Fully homemade: coffee, biscuits, creamy mascarpone & cacao"},
-     {name:"Ice Cream Cup", price:"40", desc:"Vanilla, chocolate or strawberry"},
-     {name:"Crème Brûlée Vanilla", price:"65", desc:"Smooth & flavorful cream with a thin caramelized sugar crust"},
-     {name:"Fruit Salad", price:"45", desc:"Mixed fruit, banana, watermelon, pineapple"},
-     {name:"Pisang Goreng", price:"55", desc:"Deep-fried crispy banana, vanilla ice cream, brown sugar, strawberry, coco sugar & mint"},
-     {name:"Crepes", price:"55", desc:"Large crepes: banana choco / strawberry jam / Nutella +5"},
-   ]},
- ]},
- ]},
-'drinks':{
- label:"Drinks", eyebrow:"The Bar",
- tag:["Specialty coffees, ceremonial boosters and house cocktails. Every Ceremonia cocktail is poured with 60 ml of alcohol, when the Ubud standard is just 45 ml."],
- NOTE:"Please inform us if you have any allergies. All rates are in thousands (’000) IDR, subject to 11% government tax & 5% service.",
- MENU:[
- {group:"Coffee & More", cls:"navy", sections:[
-   {label:"Classic Coffees", note:"Cow milk can be replaced with oat milk +10 · Iced +5", items:[
-     {name:"Espresso / Double Espresso", price:"30/40"},
-     {name:"Café Latte", price:"37"},
-     {name:"Flat White", price:"37"},
-     {name:"Americano", price:"35"},
-     {name:"Cold Brew Americano", price:"45"},
-     {name:"Cappuccino / Double", price:"39/49"},
-     {name:"Mochaccino", price:"35"},
-     {name:"Kopi Bali", price:"30"},
-   ]},
-   {label:"Signature Lattes", note:"Regular milk can be replaced with oat milk +10", items:[
-     {name:"Speculoos Ice Latte", price:"65", desc:"Espresso, speculoos, vanilla syrup, milk"},
-     {name:"Caramel Latte", price:"50", desc:"Espresso, speculoos, caramel syrup, milk"},
-     {name:"Matcha Green Latte", price:"55", desc:"Matcha, milk, sugar"},
-   ]},
-   {label:"Ceremonial Boosters", items:[
-     {name:"Secret Ginger Booster", veg:"spicy", price:"75", desc:"Hand-grated ginger, lime, honey-infused tea & other secret spices"},
-     {name:"Golden Shooter", price:"50", desc:"Fresh blend of turmeric, lime & honey"},
-   ]},
-   {label:"Teas & Infusions", items:[
-     {name:"Bali Ice Tea", price:"35", desc:"Iced black tea"},
-     {name:"Rosella Ice Tea", price:"40"},
-     {name:"Black Hot Tea Pot", price:"40"},
-     {name:"Jasmine & Green Tea Pot", price:"40"},
-     {name:"Fresh Infusion · Choose 2", price:"40", desc:"Ginger / mint / lemon / lemongrass / rosella / orange"},
-   ]},
-   {label:"Smoothies & Energy", note:"Fresh blended for Bali mornings", items:[
-     {name:"Ceremonia Mix Berry", tag:"Best seller", price:"75", desc:"Strawberry, blueberry, yogurt, milk, honey"},
-     {name:"Gary’s Smoothie", price:"65", desc:"Dates, pineapple, banana, milk, honey"},
-     {name:"Strawberry Smoothie", price:"85", desc:"Fresh strawberry, yogurt, milk, honey, strawberry syrup"},
-     {name:"Choco Banana Smoothie", price:"85", desc:"Chocolate, banana, milk, honey"},
-     {name:"Morning Coffee Smoothie", price:"70", desc:"Banana, espresso, oat milk, oat seeds"},
-   ]},
- ]},
- {group:"Ceremonia Cocktails", cls:"lt", note:"Poured with 60 ml of alcohol, when the Ubud standard is just 45 ml", sections:[
-   {label:"Signature Pours", items:[
-     {name:"Mojito Original", tag:"Best seller", price:"115", desc:"White rhum, soda water, mint leaf, sugar, fresh lime"},
-     {name:"Strawberry Mojito", price:"125", desc:"White rhum, fresh strawberry, mint leaf, strawberry syrup, soda water"},
-     {name:"Basil Gin Tonic", price:"120", desc:"Dry gin, basil leaves, Schweppes tonic, lime juice & pepper"},
-     {name:"Aperol Spritz", tag:"Best seller", price:"135", desc:"Orange aperitif, sparkling wine, soda · wine glass with ice & orange slices"},
-     {name:"Piña Colada", price:"120", desc:"White rhum, coconut cream, pineapple juice, simple syrup"},
-     {name:"Margarita", price:"110", desc:"Tequila, triple sec, lime juice & a salted rim"},
-     {name:"Banana Daïquiri", price:"115", desc:"White rhum, banana nectar, green lime juice, brown sugar"},
-     {name:"Espresso Martini", price:"110", desc:"Vodka, coffee liquor, simple syrup, fresh espresso topped with beans"},
-     {name:"Baligroni", price:"145", desc:"Dry gin, red vermouth, Campari, topped with a zest of orange · 90 ml pure alcohol"},
-     {name:"Long Island", price:"130", desc:"Gin, vodka, tequila, rhum, triple sec, lime juice, topped with cola · 75 ml pure alcohol"},
-   ]},
- ]},
- {group:"Ceremonia Signature", cls:"navy", note:"Poured with 60 ml of alcohol, when the Ubud standard is just 45 ml", sections:[
-   {label:"House Creations", items:[
-     {name:"Passion Fruit Swizzle", price:"130", desc:"White rhum, passion fruit syrup, fresh passion fruit, lime juice, soda"},
-     {name:"Passion Gin Tonic", price:"135", desc:"Dry gin, passion fruit, Schweppes tonic, lime juice"},
-     {name:"Coconut Sunset", price:"120", desc:"White rhum, pineapple & orange juice, coconut cream, strawberry syrup"},
-     {name:"Ceremonia Blue", price:"125", desc:"Gin, blue curaçao, ginger extract, lime juice, topped with ginger ale"},
-     {name:"Kaffir Garden", veg:"no added sugar", price:"125", desc:"White rhum, blue curaçao, pineapple, orange, kaffir essence"},
-     {name:"Mystic Violet", price:"125", desc:"Gin, triple sec, lime juice, simple syrup, purple butterfly pea flower"},
-     {name:"Love Spirit", price:"115", desc:"Vodka, elderflower liquor, pomegranate, kaffir, lime juice, simple syrup, soda"},
-     {name:"Elixir of Madeleine", price:"125", desc:"Almond liquor, triple sec, pineapple & lime juice, coconut cream"},
-     {name:"Peach Nectar", price:"120", desc:"Peach liquor, mango juice, simple syrup, lime juice, soda water, basil"},
-     {name:"Gin Daisy", price:"120", desc:"Gin, triple sec, grenadine, lime juice, topped with tonic"},
-   ]},
- ]},
- {group:"Fresh Drinks", cls:"lt", sections:[
-   {label:"Mocktails", items:[
-     {name:"Mint & Lemon", price:"55", desc:"Mint leaf, fresh lemon, topped with Sprite & soda"},
-     {name:"Lemongrass Fizz", price:"50", desc:"Lemongrass, lime, ginger, simple syrup, topped with soda water"},
-     {name:"Virgin Mojito", price:"55", desc:"Fresh mint, sugar, lime, topped with soda water"},
-     {name:"Virgin Strawberry Mojito", price:"70", desc:"Fresh strawberry, mint leaf, sugar, topped with soda water"},
-     {name:"Virgin Colada", price:"65", desc:"Fresh pineapple blended with coconut cream"},
-     {name:"Watermelon Breeze", price:"65", desc:"Watermelon, rosella tea extract, mint syrup, Sprite"},
-     {name:"Strawberry Fusion", price:"70", desc:"Fresh strawberry, pineapple juice, lime juice, mint leaf, Sprite"},
-     {name:"Passion Fruit Sweet & Sour", price:"70", desc:"Passion fruit, lime, honey, orange juice, topped with Sprite"},
-     {name:"Secret Ginger Booster", veg:"spicy", price:"75", desc:"Hand-grated ginger, lime, secret infused tea, sugar & other spices"},
-   ]},
-   {label:"Elixirs of Ceremonia", items:[
-     {name:"Skincare", price:"55", desc:"Fresh carrot, orange, ginger"},
-     {name:"Golden", price:"50", desc:"Fresh turmeric, lime & honey"},
-     {name:"Violette", price:"55", desc:"Dragon fruit, ginger, lime & honey"},
-     {name:"Garden", price:"55", desc:"Cucumber, celery, lime & honey"},
-     {name:"Bali", price:"60", desc:"Pineapple, green apple, spinach, celery, lime"},
-     {name:"Ceremonia Green Juice", price:"60", desc:"Spinach, cucumber, celery, lime, ginger, apple"},
-   ]},
- ]},
- {group:"More Drinks", cls:"navy", sections:[
-   {label:"Pure Fresh Juices", items:[
-     {name:"Single Fruit Juice", price:"50", desc:"One of your choice: watermelon, pineapple, dragon fruit or papaya (if available)"},
-     {name:"Mixed Juice", price:"55", desc:"Please choose 2"},
-     {name:"Fresh Orange Juice", price:"60"},
-     {name:"Fresh Strawberry Blend", price:"60"},
-     {name:"Banana Juice", price:"50", desc:"Blended with milk"},
-   ]},
-   {label:"Milkshakes", note:"Each milkshake is ice cream blended with regular milk & ice", items:[
-     {name:"Vanilla", price:"45"},
-     {name:"Choco", price:"50"},
-     {name:"Banana", price:"55", desc:"Vanilla ice cream + fresh banana"},
-     {name:"Coffee", price:"60", desc:"Vanilla ice cream + double espresso"},
-     {name:"Matcha", price:"60", desc:"Vanilla ice cream + matcha powder"},
-   ]},
-   {label:"Squash", items:[
-     {name:"Ginger Lemon Mint Squash", price:"55", desc:"Ginger & lemon juice, topped with soda water"},
-     {name:"Passion Fruit Squash", price:"80", desc:"Passion fruit juice, topped with soda water"},
-   ]},
-   {label:"Softs", items:[
-     {name:"Coca-Cola · Normal / Zero", price:"35"},
-     {name:"Sprite", price:"35"},
-     {name:"Tonic Water / Ginger Ale 250ml", price:"35"},
-     {name:"Flavored Syrup", price:"30", desc:"Grenadine, strawberry, passion fruit, lychee, vanilla, melon or peach"},
-     {name:"Mineral Water Pitcher 1L", price:"25"},
-     {name:"Sparkling Water · Polaris 330ml", price:"30"},
-   ]},
-   {label:"Beers", items:[
-     {name:"Small / Radler 330ml", price:"45"},
-     {name:"San Miguel · Pale Pilsner 330ml", price:"50"},
-     {name:"Large Bintang 620ml", price:"75"},
-     {name:"Sharing Bucket · 5 Bintang", tag:"Deal", price:"180", desc:"Five Bintang to share · special offer (regularly 225)"},
-   ]},
- ]},
- {group:"Spirits", cls:"lt", note:"All Ceremonia spirits are 45 ml · on the rocks or in a shooter glass · +15 to add a soft (Coca-Cola, Sprite, Indian tonic, ginger ale or sparkling water)", sections:[
-   {label:"Rhum", items:[
-     {name:"Bacardi White Rhum", price:"75"},
-     {name:"Manta Dark Rhum", price:"95"},
-     {name:"Captain Morgan Spiced Rhum", price:"75"},
-     {name:"Havana Club 3 Años · Cuba", price:"95"},
-     {name:"Barceló Gran Añejo · Dominican", price:"105"},
-   ]},
-   {label:"Gin", items:[
-     {name:"Gordon’s Gin", price:"75"},
-     {name:"Bombay Sapphire", price:"115"},
-   ]},
-   {label:"Tequila", items:[
-     {name:"Tequila Jose Cuervo", price:"120"},
-     {name:"Tequila Ranchitos Oro", price:"90"},
-   ]},
-   {label:"Vodka", items:[
-     {name:"Smirnoff Vodka", price:"75"},
-     {name:"Grey Goose", price:"135"},
-   ]},
-   {label:"Liquor & Bitters", items:[
-     {name:"Campari", price:"120"},
-     {name:"Amaretto · Disaronno", price:"120"},
-     {name:"Jägermeister", price:"95"},
-     {name:"Angostura Bitters · extra (2 dash)", price:"15"},
-   ]},
-   {label:"Whiskey & Bourbon", items:[
-     {name:"Jim Beam", price:"100"},
-     {name:"Jack Daniel’s", price:"130"},
-     {name:"Johnnie Walker · Red Label", price:"105"},
-     {name:"Johnnie Walker · Black Label", price:"140"},
-   ]},
-   {label:"Vermouth", items:[
-     {name:"Martini · Extra Dry", price:"90"},
-     {name:"Martini · Bianco", price:"90"},
-     {name:"Martini · Rosso", price:"90"},
-   ]},
- ]},
- {group:"Wines", cls:"navy", note:"All wine selections are 150 ml servings · prices shown per glass, with the full 750 ml bottle (about 5-6 glasses)", sections:[
-   {label:"Premium · Isola, Bali (Cantine Balita)", wide:true, items:[
-     {name:"Isola Syrah Riserva", tag:"N°1 best seller 2024", sub:"Syrah · 13.5% · gentle & soft in the mouth", glass:"135", bottle:"595", desc:"Aged in oak barrels to enrich flavour & texture. Elegant aromas of cherry, blackberry, blueberry & chocolate. Perfect with grilled meats & vegetarian dishes."},
-   ]},
-   {label:"Classic · Hatten, Bali", wide:true, items:[
-     {name:"Aga White", tag:"N°2 best seller 2024", sub:"Muscat St Vallier · 11.5%", glass:"90", bottle:"425", desc:"Lemon zest, green apple, apricots, vanilla custard & fresh herb. Perfect for seafood, vegetarian food & salads."},
-     {name:"Aga Rosé", sub:"Muscat St Vallier, Alphonse Lavallée · 11.5%", glass:"95", bottle:"435", desc:"Fresh & fruity, notes of strawberry, tropical fruit & a hint of citrus. Perfect with salads, grilled seafood & chicken."},
-     {name:"Aga Red", sub:"Alphonse Lavallée · 11.5%", glass:"95", bottle:"435", desc:"Fruity & refreshing, hints of orange zest, strawberry, tropical fruit, melon & plum. Perfect with grilled dishes & relax time."},
-   ]},
- ]},
- ]},
+  'breakfast-coffee':{label:'Breakfast & Coffee', slug:'breakfast', pages:5, pdf:'BREAKFAST.pdf'},
+  'food':{label:'Food', slug:'food', pages:7, pdf:'FOOD.pdf'},
+  'drinks':{label:'Drinks', slug:'drinks', pages:7, pdf:'DRINKS.pdf'},
 };
 
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
-function itemRow(it){
-  const veg = it.veg ? `<span class="pveg">(${esc(it.veg===true?'V':t(it.veg))})</span>` : '';
-  const badge = it.tag ? `<span class="pbadge">${esc(t(it.tag))}</span>` : '';
-  const price = it.glass!=null
-    ? `<span class="pr">${esc(it.glass)}<small>k</small><span class="pl">glass</span></span>`
-    : (it.price!=null?`<span class="pr">${esc(it.price)}<small>k</small></span>`:'');
-  return `<div class="row">
-    <div class="rt"><span class="nm">${esc(it.name)}${veg}${badge}</span><span class="leader"></span>${price}</div>
-    ${it.sub?`<p class="psub">${esc(t(it.sub))}</p>`:''}
-    ${it.desc?`<p class="rd">${esc(t(it.desc))}</p>`:''}
-    ${it.bottle!=null?`<p class="pbtl">Bottle 750ml · <b>${esc(it.bottle)}k</b></p>`:''}
-  </div>`;
-}
-function sectionHTML(sec){
-  const body = sec.extras
-    ? `<ul class="pextras">${sec.extras.map(e=>`<li><span>${esc(t(e[0]))}</span><span class="leader"></span><b>${esc(e[1])}k</b></li>`).join('')}</ul>`
-    : sec.items.map(itemRow).join('');
-  return `<div class="psec">
-    <div class="psec-label"><span>${esc(t(sec.label))}</span><span class="l"></span></div>
-    ${sec.note?`<p class="psec-note">${esc(t(sec.note))}</p>`:''}
-    ${body}
-  </div>`;
-}
 function cardHTML(key){
   const M=MENUS[key];
-  return `<div class="sheet grain">
-    <div class="sheet-head">
-      <img src="logo-ceremonia-beige.webp" alt="Ceremonia">
-      <p class="wm">Ceremonia</p>
-      <p class="loc">Rooftop · Ubud · Bali</p>
-    </div>
-    <div class="sheet-title">
-      <p class="eyebrow">${esc(t(M.eyebrow))}</p>
-      <h2>${esc(t(M.label))}</h2>
-      ${M.tag&&M.tag.length?`<p class="stag">${M.tag.map(s=>esc(t(s))).join('<br>')}</p>`:''}
-      ${M.legend?`<p class="slegend">${esc(t(M.legend))}</p>`:''}
-      <div class="orn"><span class="l"></span><span>✦</span><span class="l"></span></div>
-    </div>
-    <nav class="chips">${M.MENU.map((g,gi)=>`<button class="chip${gi===0?' active':''}" data-g="${gi}">${esc(t(g.group))}</button>`).join('')}</nav>
-    ${M.MENU.map((g,gi)=>`<section class="pgroup" id="pg-${gi}">
-      <div class="pg-head"><span class="l"></span><h3>${esc(t(g.group))}</h3><span class="l"></span></div>
-      ${g.note?`<p class="pg-note">${esc(t(g.note))}</p>`:''}
-      ${g.sections.map(sectionHTML).join('')}
-    </section>`).join('')}
-    <div class="sheet-foot">
-      <p class="note">${esc(t(M.NOTE))}</p>
-      <span class="orn">✦</span>
-      <p class="tagline">${esc(t("Under the Ubud Sky"))}</p>
-    </div>
+  const imgs=Array.from({length:M.pages},(_,i)=>{
+    const n=String(i+1).padStart(2,'0');
+    return `<img src="menu-pages/${M.slug}-${n}.webp" alt="Ceremonia ${M.label} menu, page ${i+1}"${i>0?' loading="lazy"':''} decoding="async">`;
+  }).join('');
+  return `<div class="page-stack">
+    ${imgs}
+    <div class="stack-foot"><a href="${M.pdf}" target="_blank" rel="noopener" data-dl>${t('Download the menu (PDF)')}</a></div>
   </div>`;
 }
 
 const overlay=document.getElementById('card');
-let openKey=null, openedInPage=false, spy=null;
-function bindCard(){
-  overlay.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
-    const g=overlay.querySelector('#pg-'+b.dataset.g);
-    if(g){const top=g.offsetTop-58;overlay.scrollTo({top:Math.max(0,top),behavior:'smooth'})}
-  }));
-  if(spy)spy.disconnect();
-  spy=new IntersectionObserver(es=>{
-    es.forEach(e=>{
-      if(e.isIntersecting){
-        const gi=e.target.id.replace('pg-','');
-        overlay.querySelectorAll('.chip').forEach(c=>c.classList.toggle('active',c.dataset.g===gi));
-      }
-    });
-  },{root:overlay,rootMargin:'-25% 0px -65% 0px'});
-  overlay.querySelectorAll('.pgroup').forEach(g=>spy.observe(g));
-  overlay.querySelector('.card-close').addEventListener('click',requestClose);
-}
+let openKey=null, openedInPage=false;
 function openCard(key){
   if(!MENUS[key])return;
   openKey=key;
   overlay.innerHTML=`<button class="card-close" aria-label="Close">✕</button>`+cardHTML(key);
-  bindCard();
+  overlay.querySelector('.card-close').addEventListener('click',requestClose);
   overlay.scrollTop=0;
   overlay.classList.add('open');
   document.body.style.overflow='hidden';
@@ -650,10 +191,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&openKey)requestClos
 
 window.__render=function(){
   if(openKey){
-    const st=overlay.scrollTop;
-    overlay.innerHTML=`<button class="card-close" aria-label="Close">✕</button>`+cardHTML(openKey);
-    bindCard();
-    overlay.scrollTop=st;
+    const dl=overlay.querySelector('[data-dl]');
+    if(dl)dl.textContent=t('Download the menu (PDF)');
   }
 };
 
