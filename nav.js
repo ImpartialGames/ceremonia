@@ -77,13 +77,11 @@
   }
   var html='<nav id="cnav">'
     +'<a class="cnav-brand" href="/"><img src="logo-ceremonia-beige.webp" alt="Ceremonia"><span>Ceremonia</span></a>'
-    +'<div class="cnav-links">'+linkHTML("cnav-link")
-    +'<a class="cnav-cta" href="/reserve" data-nav="reserve">'+NAV.reserve.en+'</a>'
-    +langSwitch()+'</div>'
+    +'<div class="cnav-links">'+linkHTML("cnav-link")+langSwitch()+'</div>'
     +'<button class="cnav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>'
     +'</nav>'
     +'<div id="cnav-menu">'+linkHTML("cnav-mlink")
-    +'<a class="cnav-mcta" href="/reserve" data-nav="reserve">'+NAV.reserve.en+'</a>'
+    +'<a class="cnav-mcta" href="https://wa.me/6285337107649" target="_blank" rel="noopener" data-nav="reserve">'+NAV.reserve.en+'</a>'
     +langSwitch()
     +'</div>';
 
