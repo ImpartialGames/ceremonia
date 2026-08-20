@@ -22,8 +22,10 @@ create table public.reservations (
   party_size int not null check (party_size between 1 and 20),
   notes text check (char_length(notes) <= 500),
   status text not null default 'pending'
-    check (status in ('pending','confirmed','cancelled','seated','no_show')),
-  table_assignment text check (char_length(table_assignment) <= 40)
+    check (status in ('pending','confirmed','cancelled','seated','completed','no_show')),
+  table_assignment text check (char_length(table_assignment) <= 40),
+  spend_amount integer check (spend_amount >= 0), -- thousands of IDR, menu convention
+  server_name text check (char_length(server_name) <= 60)
 );
 
 alter table public.reservations enable row level security;
@@ -35,6 +37,8 @@ create policy "public can request a table" on public.reservations
   with check (
     status = 'pending'
     and table_assignment is null
+    and spend_amount is null
+    and server_name is null
     and date >= (now() at time zone 'Asia/Makassar')::date
   );
 

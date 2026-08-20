@@ -14,7 +14,7 @@
 body{background:var(--navy);font-family:'Inter',sans-serif;color:var(--ivory);min-height:100vh}
 a{color:var(--gold);text-decoration:none}
 button{font-family:'Inter',sans-serif;cursor:pointer}
-.wrap{max-width:980px;margin:0 auto;padding:28px 18px 80px}
+.wrap{max-width:1060px;margin:0 auto;padding:28px 18px 80px}
 header.bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:30px}
 header.bar .brand{display:flex;align-items:center;gap:10px}
 header.bar img{width:34px}
@@ -38,28 +38,40 @@ header.bar h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2
 
 /* sections */
 #app{display:none}
-h2.sec{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:var(--gold);margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+h2.sec{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:var(--gold);margin:34px 0 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 h2.sec small{font-family:'Inter',sans-serif;font-size:11px;font-weight:300;color:rgba(245,240,232,.45);letter-spacing:0}
-.daynav{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:40px 0 16px}
+.tab{font-size:10px;letter-spacing:.16em;text-transform:uppercase;border:1px solid rgba(212,184,150,.4);color:rgba(245,240,232,.6);
+  background:none;padding:9px 20px;border-radius:30px;transition:all .25s}
+.tab:hover{color:var(--gold);border-color:var(--gold)}
+.tab.on{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:600}
+.daynav{display:none;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.daynav.show{display:flex}
 .daynav input[type=date]{background:rgba(11,18,38,.6);border:1px solid rgba(212,184,150,.25);border-radius:9px;color:var(--ivory);
   padding:8px 10px;font-family:'Inter',sans-serif;font-size:13px;color-scheme:dark;outline:none}
 .arrow{width:34px;height:34px;border-radius:50%;border:1px solid rgba(212,184,150,.4);background:none;color:var(--gold);font-size:14px}
 .arrow:hover{background:var(--gold);color:var(--navy)}
+#main-count{font-size:11px;font-weight:300;color:rgba(245,240,232,.45)}
+.datehdr{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:rgba(212,184,150,.85);margin:22px 0 10px;
+  border-bottom:1px solid rgba(212,184,150,.15);padding-bottom:6px}
 
 .card{border:1px solid rgba(212,184,150,.2);border-radius:12px;background:linear-gradient(160deg,rgba(20,31,58,.6),rgba(15,27,53,.85));
   padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.card.late{border-color:rgba(232,150,120,.65)}
 .card .time{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--gold);min-width:64px}
 .card .who{flex:1;min-width:180px}
 .card .who .nm{font-size:14px;font-weight:500}
 .card .who .ct{font-size:11px;font-weight:300;color:rgba(245,240,232,.5);margin-top:3px;word-break:break-all}
 .card .who .nt{font-size:11px;font-weight:300;color:rgba(212,184,150,.75);margin-top:5px;font-style:italic}
 .card .pax{font-size:12px;color:rgba(245,240,232,.7);white-space:nowrap}
-.badge{font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:20px;border:1px solid}
+.badge{font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:20px;border:1px solid;white-space:nowrap}
 .badge.pending{color:#E8C77D;border-color:rgba(232,199,125,.5)}
 .badge.confirmed{color:#8FCB9B;border-color:rgba(143,203,155,.5)}
 .badge.cancelled{color:#E2A9A0;border-color:rgba(226,169,160,.4)}
 .badge.seated{color:#9BB8E8;border-color:rgba(155,184,232,.5)}
+.badge.completed{color:var(--gold);border-color:rgba(212,184,150,.6)}
 .badge.no_show{color:rgba(245,240,232,.4);border-color:rgba(245,240,232,.25)}
+.badge.late{color:#E89678;border-color:rgba(232,150,120,.6)}
 .card .acts{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .mini{font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:7px 13px;border-radius:20px;border:1px solid rgba(212,184,150,.4);
   background:none;color:var(--gold);transition:all .2s}
@@ -68,13 +80,18 @@ h2.sec small{font-family:'Inter',sans-serif;font-size:11px;font-weight:300;color
 .mini.danger:hover{background:#E2A9A0;color:var(--navy)}
 select.st{background:rgba(11,18,38,.7);border:1px solid rgba(212,184,150,.3);border-radius:20px;color:var(--ivory);
   font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;outline:none}
-input.tbl{width:78px;background:rgba(11,18,38,.7);border:1px solid rgba(212,184,150,.3);border-radius:20px;color:var(--ivory);
+input.fld{background:rgba(11,18,38,.7);border:1px solid rgba(212,184,150,.3);border-radius:20px;color:var(--ivory);
   font-family:'Inter',sans-serif;font-size:11px;padding:6px 11px;outline:none}
-input.tbl:focus{border-color:var(--gold)}
+input.fld:focus{border-color:var(--gold)}
+input.tbl{width:76px}
+input.tbl.conflict{border-color:#E89678;color:#E89678}
+input.srv{width:104px}
+input.spd{width:96px}
 .empty{font-size:12px;font-weight:300;color:rgba(245,240,232,.35);padding:14px 4px}
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-size:12px;font-weight:500;
-  padding:10px 22px;border-radius:30px;opacity:0;pointer-events:none;transition:opacity .3s}
+  padding:10px 22px;border-radius:30px;opacity:0;pointer-events:none;transition:opacity .3s;max-width:90vw;text-align:center;z-index:50}
 #toast.on{opacity:1}
+#toast.warn{background:#E89678}
 @media(max-width:560px){.card .time{min-width:52px;font-size:20px}}
 </style>
 </head>
@@ -105,18 +122,23 @@ input.tbl:focus{border-color:var(--gold)}
     <h2 class="sec">New requests <small id="pending-count"></small></h2>
     <div id="pending-list"></div>
 
-    <h2 class="sec" style="margin-top:44px">Service
-      <span class="daynav">
-        <button class="arrow" id="prev">‹</button>
-        <input type="date" id="day">
-        <button class="arrow" id="next">›</button>
-      </span>
-      <small id="day-count"></small>
-    </h2>
-    <div id="day-list"></div>
+    <div class="tabs">
+      <button class="tab on" data-tab="day">Today's service</button>
+      <button class="tab" data-tab="upcoming">Upcoming</button>
+      <button class="tab" data-tab="past">Past</button>
+      <span id="main-count" style="align-self:center;margin-left:6px"></span>
+    </div>
+    <div class="daynav show" id="daynav">
+      <button class="arrow" id="prev">‹</button>
+      <input type="date" id="day">
+      <button class="arrow" id="next">›</button>
+      <button class="pill" id="today-btn" style="padding:7px 14px">Today</button>
+    </div>
+    <div id="main-list"></div>
   </div>
 
 </div>
+<datalist id="servers-dl"></datalist>
 <div id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -125,9 +147,12 @@ input.tbl:focus{border-color:var(--gold)}
 const sb=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_ANON_KEY);
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const STATUSES=["pending","confirmed","cancelled","seated","no_show"];
+const STATUSES=["pending","confirmed","seated","completed","cancelled","no_show"];
+const ACTIVE=["pending","confirmed","seated"];
+const LATE_MIN=15; /* grace period shown to guests on the booking form */
 const isoLocal=d=>{const p=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())};
-let day=isoLocal(new Date());
+let tab="day", day=isoLocal(new Date());
+const SERVERS=new Set();
 
 /* ── auth ── */
 async function boot(){
@@ -146,18 +171,28 @@ $("login-form").addEventListener("submit",async e=>{
 $("logout").addEventListener("click",async()=>{await sb.auth.signOut();boot();});
 
 /* ── data ── */
+function mainQuery(today){
+  const t=sb.from("reservations").select("*");
+  if(tab==="day")return t.eq("date",day).order("time_slot");
+  if(tab==="upcoming")return t.gt("date",today).order("date").order("time_slot").limit(500);
+  return t.lt("date",today).order("date",{ascending:false}).order("time_slot",{ascending:false}).limit(200); /* ponytail: last 200 only, add pagination if history grows */
+}
 async function load(){
   $("day").value=day;
+  $("daynav").classList.toggle("show",tab==="day");
   const today=isoLocal(new Date());
-  const [pend,dayRes]=await Promise.all([
+  const [pend,main]=await Promise.all([
     sb.from("reservations").select("*").eq("status","pending").gte("date",today).order("date").order("time_slot"),
-    sb.from("reservations").select("*").eq("date",day).order("time_slot")
+    mainQuery(today)
   ]);
-  if(pend.error||dayRes.error){toast("Load failed, check connection");return;}
-  renderPending(pend.data);
-  renderDay(dayRes.data);
+  if(pend.error||main.error){toast("Load failed, check connection",true);return;}
+  [...pend.data,...main.data].forEach(r=>{if(r.server_name)SERVERS.add(r.server_name)});
+  $("servers-dl").innerHTML=[...SERVERS].sort().map(s=>`<option value="${esc(s)}">`).join("");
+  renderPending(pend.data,today);
+  renderMain(main.data,today);
 }
 
+/* ── rendering ── */
 function contact(r){
   const bits=[];
   if(r.phone){
@@ -171,62 +206,107 @@ function who(r){
   return `<div class="who"><div class="nm">${esc(r.name)}</div><div class="ct">${contact(r)}</div>`
     +(r.notes?`<div class="nt">${esc(r.notes)}</div>`:"")+`</div>`;
 }
-
-function renderPending(rows){
+function isLate(r,today){
+  if(r.date!==today||!ACTIVE.slice(0,2).includes(r.status))return false; /* pending or confirmed, not yet seated */
+  const [h,m]=r.time_slot.split(":").map(Number);
+  const t=new Date();t.setHours(h,m+LATE_MIN,0,0);
+  return new Date()>t;
+}
+function conflictKeys(rows){
+  const seen={},dup=new Set();
+  rows.forEach(r=>{
+    if(!r.table_assignment||!ACTIVE.includes(r.status))return;
+    const k=r.date+"|"+r.time_slot+"|"+r.table_assignment.trim().toLowerCase();
+    if(seen[k])dup.add(k);seen[k]=1;
+  });
+  return dup;
+}
+function renderPending(rows,today){
   $("pending-count").textContent=rows.length?rows.length+" to review":"";
   $("pending-list").innerHTML=rows.length?rows.map(r=>`
-    <div class="card">
+    <div class="card${isLate(r,today)?" late":""}">
       <div class="time">${esc(r.time_slot)}</div>
       <div class="pax">${esc(r.date)} · ${r.party_size} guests</div>
       ${who(r)}
       <div class="acts">
+        ${isLate(r,today)?'<span class="badge late">late 15+ min</span>':""}
         <button class="mini" data-act="confirmed" data-id="${r.id}">Confirm</button>
         <button class="mini danger" data-act="cancelled" data-id="${r.id}">Decline</button>
       </div>
     </div>`).join(""):`<p class="empty">No pending requests. ✦</p>`;
 }
-
-function renderDay(rows){
-  const active=rows.filter(r=>r.status==="confirmed"||r.status==="seated"||r.status==="pending");
-  const covers=active.reduce((n,r)=>n+r.party_size,0);
-  $("day-count").textContent=rows.length?`${rows.length} reservations · ${covers} guests expected`:"";
-  $("day-list").innerHTML=rows.length?rows.map(r=>`
-    <div class="card">
+function card(r,today,dup){
+  const k=r.date+"|"+r.time_slot+"|"+(r.table_assignment||"").trim().toLowerCase();
+  const late=isLate(r,today);
+  return `
+    <div class="card${late?" late":""}">
       <div class="time">${esc(r.time_slot)}</div>
       <div class="pax">${r.party_size} guests</div>
       ${who(r)}
       <div class="acts">
+        ${late?'<span class="badge late">late 15+ min</span>':""}
         <span class="badge ${esc(r.status)}">${esc(r.status.replace("_"," "))}</span>
         <select class="st" data-id="${r.id}">
           ${STATUSES.map(s=>`<option value="${s}"${s===r.status?" selected":""}>${s.replace("_"," ")}</option>`).join("")}
         </select>
-        <input class="tbl" data-id="${r.id}" placeholder="Table" value="${esc(r.table_assignment||"")}" maxlength="40">
+        <input class="fld tbl${r.table_assignment&&dup.has(k)?" conflict":""}" data-id="${r.id}" placeholder="Table" title="Table" value="${esc(r.table_assignment||"")}" maxlength="40">
+        <input class="fld srv" data-id="${r.id}" placeholder="Server" title="Server" list="servers-dl" value="${esc(r.server_name||"")}" maxlength="60">
+        <input class="fld spd" data-id="${r.id}" type="number" min="0" step="1" placeholder="Spent '000" title="Amount spent, thousands of IDR" value="${r.spend_amount==null?"":r.spend_amount}">
       </div>
-    </div>`).join(""):`<p class="empty">No reservations for this day.</p>`;
+    </div>`;
+}
+function renderMain(rows,today){
+  const dup=conflictKeys(rows);
+  const active=rows.filter(r=>ACTIVE.includes(r.status));
+  const covers=active.reduce((n,r)=>n+r.party_size,0);
+  const spent=rows.reduce((n,r)=>n+(r.spend_amount||0),0);
+  let count="";
+  if(rows.length){
+    if(tab==="past")count=`${rows.length} shown · ${spent?("Rp "+spent.toLocaleString("en")+"k spent recorded"):"no spend recorded"}`;
+    else count=`${rows.length} reservations · ${covers} guests expected`;
+  }
+  $("main-count").textContent=count;
+  if(!rows.length){$("main-list").innerHTML=`<p class="empty">${tab==="day"?"No reservations for this day.":tab==="upcoming"?"No upcoming reservations.":"No past reservations."}</p>`;return;}
+  let html="",lastDate=null;
+  rows.forEach(r=>{
+    if(tab!=="day"&&r.date!==lastDate){lastDate=r.date;html+=`<h3 class="datehdr">${esc(r.date)}</h3>`;}
+    html+=card(r,today,dup);
+  });
+  $("main-list").innerHTML=html;
+  if(dup.size)toast("Warning: same table set twice on one time slot",true);
 }
 
 /* ── actions ── */
 async function setField(id,patch,okMsg){
   const {error}=await sb.from("reservations").update(patch).eq("id",id);
-  toast(error?"Update failed":okMsg);
+  toast(error?"Update failed":okMsg,!!error);
   if(!error)load();
 }
 document.addEventListener("click",e=>{
   const b=e.target.closest("[data-act]");
-  if(b)setField(b.dataset.id,{status:b.dataset.act},b.dataset.act==="confirmed"?"Confirmed":"Declined");
+  if(b){setField(b.dataset.id,{status:b.dataset.act},b.dataset.act==="confirmed"?"Confirmed":"Declined");return;}
+  const t=e.target.closest(".tab");
+  if(t){tab=t.dataset.tab;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===t));load();}
 });
 document.addEventListener("change",e=>{
-  if(e.target.matches("select.st"))setField(e.target.dataset.id,{status:e.target.value},"Status updated");
-  if(e.target.matches("input.tbl"))setField(e.target.dataset.id,{table_assignment:e.target.value.trim()||null},"Table saved");
-  if(e.target.id==="day"){day=e.target.value;load();}
+  const el=e.target;
+  if(el.matches("select.st"))setField(el.dataset.id,{status:el.value},"Status updated");
+  if(el.matches("input.tbl"))setField(el.dataset.id,{table_assignment:el.value.trim()||null},"Table saved");
+  if(el.matches("input.srv"))setField(el.dataset.id,{server_name:el.value.trim()||null},"Server saved");
+  if(el.matches("input.spd")){
+    const v=el.value===""?null:Math.max(0,Math.round(Number(el.value)));
+    setField(el.dataset.id,{spend_amount:v},"Spend saved");
+  }
+  if(el.id==="day"){day=el.value;load();}
 });
 $("prev").addEventListener("click",()=>{const d=new Date(day);d.setDate(d.getDate()-1);day=isoLocal(d);load();});
 $("next").addEventListener("click",()=>{const d=new Date(day);d.setDate(d.getDate()+1);day=isoLocal(d);load();});
+$("today-btn").addEventListener("click",()=>{day=isoLocal(new Date());load();});
 $("refresh").addEventListener("click",load);
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&$("app").style.display==="block")load();});
 
 let toastT;
-function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("on"),2200);}
+function toast(m,warn){const t=$("toast");t.textContent=m;t.classList.toggle("warn",!!warn);t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("on"),2600);}
 
 boot();
 </script>
