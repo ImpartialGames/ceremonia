@@ -211,8 +211,9 @@ gSel.value="2";
 const dateIn=document.getElementById("r-date");
 /* everything computed in Bali time, whatever the visitor's device clock says:
    the database refuses dates already past in Bali */
-const baliDate=days=>new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Makassar"}).format(new Date(Date.now()+(days||0)*864e5));
-const baliNow=()=>{const t=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Makassar",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(new Date()).split(":");return Number(t[0])*60+Number(t[1]);};
+let clockOff=0; /* server clock minus device clock, corrects wrong device clocks */
+const baliDate=days=>new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Makassar"}).format(new Date(Date.now()+clockOff+(days||0)*864e5));
+const baliNow=()=>{const t=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Makassar",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(new Date(Date.now()+clockOff)).split(":");return Number(t[0])*60+Number(t[1]);};
 const slotMin=s=>Number(s.slice(0,2))*60+Number(s.slice(3));
 function rebuildSlots(){
   const avail=dateIn.value===baliDate(0)?SLOTS.filter(s=>slotMin(s)>=baliNow()+LEAD_MIN):SLOTS;
@@ -221,11 +222,22 @@ function rebuildSlots(){
   if(avail.includes(prev))timeSel.value=prev;
   else if(avail.includes("19:00"))timeSel.value="19:00";
 }
-/* if today's service is over in Bali, open the calendar at tomorrow */
-const firstDay=slotMin(SLOTS[SLOTS.length-1])<baliNow()+LEAD_MIN?baliDate(1):baliDate(0);
-dateIn.min=firstDay;dateIn.max=baliDate(90);dateIn.value=firstDay;
-rebuildSlots();
+function initDates(){
+  /* if today's service is over in Bali, open the calendar at tomorrow */
+  const firstDay=slotMin(SLOTS[SLOTS.length-1])<baliNow()+LEAD_MIN?baliDate(1):baliDate(0);
+  dateIn.min=firstDay;dateIn.max=baliDate(90);
+  if(!dateIn.value||dateIn.value<firstDay)dateIn.value=firstDay;
+  rebuildSlots();
+}
+initDates();
 dateIn.addEventListener("change",rebuildSlots);
+/* sync with the server clock: protects visitors whose device clock is wrong */
+fetch(location.pathname,{method:"HEAD",cache:"no-store"}).then(r=>{
+  const s=r.headers.get("date");
+  if(!s)return;
+  const off=new Date(s).getTime()-Date.now();
+  if(Math.abs(off)>60000){clockOff=off;initDates();}
+}).catch(()=>{});
 
 /* ─── submit ─── */
 const CONFIGURED=!window.SUPABASE_URL.includes("YOUR-");
@@ -259,7 +271,7 @@ form.addEventListener("submit",async e=>{
     const d=document.getElementById("rsv-errd");
     const msg=(err&&(err.message||err.code))||String(err);
     d.textContent=/row-level security/i.test(msg)
-      ?"The selected date is already past in Bali time. Please choose today or a future date."
+      ?"The selected date ("+row.date+") is already past in Bali time (Bali date now: "+baliDate(0)+"). Please pick the date again."
       :msg;
     d.style.display="block";
     btn.disabled=false;
