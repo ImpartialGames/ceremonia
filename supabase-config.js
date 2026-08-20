@@ -5,4 +5,4 @@ window.SUPABASE_URL = "https://ibetmdrkbucjejaloahu.supabase.co";
 window.SUPABASE_ANON_KEY = "sb_publishable_Z8nN-L1u2osQSjawnTictQ_x3fu6GTK";
 /* Manager accounts: only these logins can open /analytics.
    Put here the email Alexandre Lemancel uses to sign in to /admin. */
-window.ADMIN_EMAILS = ["MANAGER-EMAIL@example.com"];
+window.ADMIN_EMAILS = ["alexandre.lemancel@gmail.com"];
