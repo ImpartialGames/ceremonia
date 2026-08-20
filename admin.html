@@ -120,13 +120,6 @@ header.bar h1{font-family:'Poppins',sans-serif;font-weight:500;font-size:26px}
 select.st{background:rgba(14,25,46,.7);border:1px solid rgba(240,227,215,.3);border-radius:20px;color:var(--ivory);
   font-family:'Poppins',sans-serif;font-size:11px;padding:8px 12px;outline:none}
 
-/* close-table box */
-.closebox{display:none;margin-top:14px;padding:14px;border:1px dashed rgba(240,227,215,.35);border-radius:11px;
-  align-items:end;gap:12px;flex-wrap:wrap}
-.closebox.show{display:flex}
-.closebox .af input{width:130px}
-.closebox .hint{font-size:10px;font-weight:300;color:rgba(245,240,232,.45);width:100%}
-
 .empty{font-size:13px;font-weight:300;color:rgba(245,240,232,.4);padding:22px 6px;text-align:center;line-height:1.8}
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;
   padding:11px 24px;border-radius:30px;opacity:0;pointer-events:none;transition:opacity .3s;max-width:90vw;text-align:center;z-index:50}
@@ -154,7 +147,6 @@ select.st{background:rgba(14,25,46,.7);border:1px solid rgba(240,227,215,.3);bor
     <header class="bar">
       <div class="brand"><img src="logo-ceremonia-beige.webp" alt=""><h1>Reservations</h1></div>
       <div style="display:flex;gap:8px">
-        <a class="pill" id="ana-link" href="/analytics" style="display:none">Analytics</a>
         <button class="pill" id="refresh">Refresh</button>
         <button class="pill" id="logout">Sign out</button>
       </div>
@@ -214,11 +206,7 @@ async function boot(){
   const {data:{session}}=await sb.auth.getSession();
   $("login").style.display=session?"none":"block";
   $("app").style.display=session?"block":"none";
-  if(session){
-    const mails=(window.ADMIN_EMAILS||[]).map(m=>m.toLowerCase());
-    $("ana-link").style.display=mails.includes((session.user.email||"").toLowerCase())?"":"none";
-    load();
-  }
+  if(session)load();
 }
 $("login-form").addEventListener("submit",async e=>{
   e.preventDefault();
@@ -303,8 +291,7 @@ function cardTop(r,today,showDate){
       ${late?'<span class="chip late">late 15+ min</span>':`<span class="chip ${esc(r.status)}">${LABEL[r.status]||esc(r.status)}</span>`}
     </div>
     <p class="c-ct">${contact(r)}</p>
-    ${r.notes?`<p class="c-nt">"${esc(r.notes)}"</p>`:""}
-    ${r.spend_amount!=null?`<p class="c-bill">Bill: Rp ${Number(r.spend_amount).toLocaleString("en")}k</p>`:""}`;
+    ${r.notes?`<p class="c-nt">"${esc(r.notes)}"</p>`:""}`;
 }
 
 /* ── requests banner ── */
@@ -336,7 +323,7 @@ function nextAction(r,today){
     if(isLate(r,today))h+=`<button class="act no" data-do="no_show" data-id="${r.id}">No show · free the table</button>`;
     return h;
   }
-  if(r.status==="seated")return `<button class="act main" data-close="${r.id}">Close table · enter bill</button>`;
+  if(r.status==="seated")return `<span style="font-size:10px;color:rgba(245,240,232,.35);letter-spacing:.06em">table frees automatically 2 hours after the booking time</span>`;
   if(r.status==="pending")return `<button class="act ok" data-do="confirmed" data-id="${r.id}">✓ Accept</button>
     <button class="act no" data-do="cancelled" data-id="${r.id}">✗ Refuse</button>`;
   return "";
@@ -350,17 +337,11 @@ function card(r,today,dup,showDate){
     <div class="c-acts">${acts}
       <button class="fixlink" data-fix="${r.id}">fix a mistake</button>
     </div>
-    <div class="closebox" id="close-${r.id}">
-      <p class="hint">Enter the total bill in thousands of IDR (350 = Rp 350,000). This closes the reservation.</p>
-      <div class="af"><label>Bill '000 IDR</label><input type="number" min="0" step="1" id="bill-${r.id}" placeholder="350"></div>
-      <button class="act main" data-doclose="${r.id}">Save &amp; close</button>
-    </div>
     <div class="fixrow" id="fix-${r.id}">
       <span>Set status</span>
       <select class="st" data-id="${r.id}">
         ${STATUSES.map(s=>`<option value="${s}"${s===r.status?" selected":""}>${LABEL[s]}</option>`).join("")}
       </select>
-      ${r.status==="completed"?`<div class="af"><label>Bill '000 IDR</label><input type="number" min="0" step="1" data-f="spend_amount" data-id="${r.id}" value="${r.spend_amount==null?"":r.spend_amount}" style="width:110px"></div>`:""}
     </div>
   </div>`;
 }
@@ -369,10 +350,9 @@ function renderMain(rows,today){
   const active=rows.filter(r=>ACTIVE.includes(r.status));
   const covers=active.reduce((n,r)=>n+r.party_size,0);
   const seated=rows.filter(r=>r.status==="seated").length;
-  const spent=rows.reduce((n,r)=>n+(r.spend_amount||0),0);
   let sum="";
   if(rows.length){
-    if(tab==="past")sum=`${rows.length} finished reservations shown · bills recorded: <b>Rp ${spent.toLocaleString("en")}k</b>`;
+    if(tab==="past")sum=`${rows.length} finished reservations shown`;
     else sum=`<b>${active.length}</b> reservations · <b>${covers}</b> guests expected`+(seated?` · <b>${seated}</b> at the table now`:"");
   }
   $("summary").innerHTML=sum;
@@ -403,14 +383,6 @@ document.addEventListener("click",e=>{
     const msg={confirmed:"Accepted ✓ You can send the WhatsApp confirmation",cancelled:"Refused",seated:"Welcome! Marked at the table",no_show:"Marked no show, table is free"}[doBtn.dataset.do];
     setField(doBtn.dataset.id,{status:doBtn.dataset.do},msg||"Saved");return;
   }
-  const cl=e.target.closest("[data-close]");
-  if(cl){const b=$("close-"+cl.dataset.close);b.classList.toggle("show");if(b.classList.contains("show"))$("bill-"+cl.dataset.close).focus();return;}
-  const dc=e.target.closest("[data-doclose]");
-  if(dc){
-    const v=$("bill-"+dc.dataset.doclose).value;
-    const amount=v===""?null:Math.max(0,Math.round(Number(v)));
-    setField(dc.dataset.doclose,{status:"completed",spend_amount:amount},"Table closed ✓");return;
-  }
   const fx=e.target.closest("[data-fix]");
   if(fx){$("fix-"+fx.dataset.fix).classList.toggle("show");return;}
   const t=e.target.closest(".tab");
@@ -420,9 +392,7 @@ document.addEventListener("change",e=>{
   const el=e.target;
   if(el.matches("select.st")){setField(el.dataset.id,{status:el.value},"Status changed");return;}
   if(el.dataset&&el.dataset.f){
-    let v=el.value.trim()||null;
-    if(el.dataset.f==="spend_amount")v=el.value===""?null:Math.max(0,Math.round(Number(el.value)));
-    setField(el.dataset.id,{[el.dataset.f]:v},"Saved");return;
+    setField(el.dataset.id,{[el.dataset.f]:el.value.trim()||null},"Saved");return;
   }
   if(el.id==="day"){day=el.value;load();}
 });
@@ -436,7 +406,7 @@ setInterval(()=>{
   if(document.hidden||$("app").style.display!=="block")return;
   const a=document.activeElement;
   if(a&&(a.tagName==="INPUT"||a.tagName==="SELECT"||a.tagName==="TEXTAREA"))return;
-  if(document.querySelector(".closebox.show,.fixrow.show"))return;
+  if(document.querySelector(".fixrow.show"))return;
   load();
 },60000);
 
