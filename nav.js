@@ -33,6 +33,9 @@
   +".cnav-link{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(245,240,232,.65);transition:color .25s;white-space:nowrap}"
   +".cnav-link:hover{color:var(--gold,#D4B896)}"
   +".cnav-link[aria-current=page]{color:var(--gold,#D4B896)}"
+  +".cnav-cta{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;"
+  +"border:1px solid var(--gold,#D4B896);color:var(--gold,#D4B896);padding:9px 20px;border-radius:30px;transition:background .3s,color .3s}"
+  +".cnav-cta:hover{background:var(--gold,#D4B896);color:var(--navy,#0F1B35)}"
   +"#cnav .lang-switch{display:flex;align-items:center;gap:6px}"
   +"#cnav .lang-btn{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.12em;color:rgba(245,240,232,.5);padding:2px;transition:color .25s}"
   +"#cnav .lang-btn:hover{color:var(--gold,#D4B896)}"
@@ -74,11 +77,13 @@
   }
   var html='<nav id="cnav">'
     +'<a class="cnav-brand" href="/"><img src="logo-ceremonia-beige.webp" alt="Ceremonia"><span>Ceremonia</span></a>'
-    +'<div class="cnav-links">'+linkHTML("cnav-link")+langSwitch()+'</div>'
+    +'<div class="cnav-links">'+linkHTML("cnav-link")
+    +'<a class="cnav-cta" href="/reserve" data-nav="reserve">'+NAV.reserve.en+'</a>'
+    +langSwitch()+'</div>'
     +'<button class="cnav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>'
     +'</nav>'
     +'<div id="cnav-menu">'+linkHTML("cnav-mlink")
-    +'<a class="cnav-mcta" href="https://wa.me/6285337107649" target="_blank" rel="noopener" data-nav="reserve">'+NAV.reserve.en+'</a>'
+    +'<a class="cnav-mcta" href="/reserve" data-nav="reserve">'+NAV.reserve.en+'</a>'
     +langSwitch()
     +'</div>';
 
