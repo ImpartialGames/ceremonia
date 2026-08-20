@@ -199,22 +199,33 @@ let saved="en";try{saved=localStorage.getItem("lang")||"en"}catch(e){}
 applyLang(saved);
 
 /* ─── form options ─── */
-/* ponytail: fixed 30 min slots 09:00 to 21:30; edit these two lines to change service hours */
-const OPEN=9, LAST=21.5;
+/* ponytail: fixed 30 min slots 09:00 to 21:30 and 30 min notice for the team;
+   edit these two lines to change service hours or lead time */
+const OPEN=9, LAST=21.5, LEAD_MIN=30;
+const SLOTS=[];
+for(let h=OPEN;h<=LAST;h+=0.5)SLOTS.push(String(Math.floor(h)).padStart(2,"0")+":"+(h%1?"30":"00"));
 const timeSel=document.getElementById("r-time");
-for(let h=OPEN;h<=LAST;h+=0.5){
-  const v=String(Math.floor(h)).padStart(2,"0")+":"+(h%1?"30":"00");
-  timeSel.insertAdjacentHTML("beforeend",`<option value="${v}">${v}</option>`);
-}
-timeSel.value="19:00";
 const gSel=document.getElementById("r-guests");
 for(let i=1;i<=12;i++)gSel.insertAdjacentHTML("beforeend",`<option value="${i}">${i}</option>`);
 gSel.value="2";
 const dateIn=document.getElementById("r-date");
-/* dates computed in Bali time, whatever the visitor's device clock says:
+/* everything computed in Bali time, whatever the visitor's device clock says:
    the database refuses dates already past in Bali */
 const baliDate=days=>new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Makassar"}).format(new Date(Date.now()+(days||0)*864e5));
-dateIn.min=baliDate(0);dateIn.max=baliDate(90);dateIn.value=baliDate(0);
+const baliNow=()=>{const t=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Makassar",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(new Date()).split(":");return Number(t[0])*60+Number(t[1]);};
+const slotMin=s=>Number(s.slice(0,2))*60+Number(s.slice(3));
+function rebuildSlots(){
+  const avail=dateIn.value===baliDate(0)?SLOTS.filter(s=>slotMin(s)>=baliNow()+LEAD_MIN):SLOTS;
+  const prev=timeSel.value;
+  timeSel.innerHTML=avail.map(v=>`<option value="${v}">${v}</option>`).join("");
+  if(avail.includes(prev))timeSel.value=prev;
+  else if(avail.includes("19:00"))timeSel.value="19:00";
+}
+/* if today's service is over in Bali, open the calendar at tomorrow */
+const firstDay=slotMin(SLOTS[SLOTS.length-1])<baliNow()+LEAD_MIN?baliDate(1):baliDate(0);
+dateIn.min=firstDay;dateIn.max=baliDate(90);dateIn.value=firstDay;
+rebuildSlots();
+dateIn.addEventListener("change",rebuildSlots);
 
 /* ─── submit ─── */
 const CONFIGURED=!window.SUPABASE_URL.includes("YOUR-");
