@@ -241,7 +241,10 @@ fetch(location.pathname,{method:"HEAD",cache:"no-store"}).then(r=>{
 
 /* ─── submit ─── */
 const CONFIGURED=!window.SUPABASE_URL.includes("YOUR-");
-const sb=CONFIGURED?window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_ANON_KEY):null;
+/* persistSession:false — staff logged in to /admin share this browser origin;
+   without it their session leaks here and inserts run as authenticated,
+   which the visitor-only RLS policy rejects */
+const sb=CONFIGURED?window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_ANON_KEY,{auth:{persistSession:false,autoRefreshToken:false}}):null;
 const form=document.getElementById("rsv-form");
 const btn=document.getElementById("rsv-submit");
 const errEl=document.getElementById("rsv-err");
