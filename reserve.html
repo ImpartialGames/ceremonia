@@ -16,8 +16,6 @@
 <title>Reserve a Table · Ceremonia Rooftop Ubud</title>
 <meta name="description" content="Reserve your table at Ceremonia Rooftop Ubud. Choose your date, time and number of guests, our team confirms every request by WhatsApp or email.">
 <meta name="theme-color" content="#0F1B35">
-<!-- Test phase: remove this noindex at launch -->
-<meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://www.ceremonia-rooftop.com/reserve">
@@ -146,6 +144,7 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
       <p class="f-note" data-i18n="r.latenote">Please arrive on time: your table is held for 15 minutes after the reservation time. After that, the reservation may be cancelled and the table released for other guests.</p>
       <button id="rsv-submit" type="submit" data-i18n="r.submit">Send my request</button>
       <p id="rsv-err" data-i18n-html="r.error">Something went wrong. Please try again, or reserve directly on <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>.</p>
+      <p id="rsv-errd" style="display:none;margin-top:6px;font-size:10px;color:rgba(245,240,232,.35);text-align:center;word-break:break-word"></p>
     </form>
     <div id="rsv-done">
       <p class="orn">✦</p>
@@ -245,6 +244,9 @@ form.addEventListener("submit",async e=>{
     showDone(row);
   }catch(err){
     errEl.style.display="block";
+    const d=document.getElementById("rsv-errd");
+    d.textContent=(err&&(err.message||err.code))||String(err);
+    d.style.display="block";
     btn.disabled=false;
   }
 });
