@@ -154,6 +154,7 @@ select.st{background:rgba(11,18,38,.7);border:1px solid rgba(212,184,150,.3);bor
     <header class="bar">
       <div class="brand"><img src="logo-ceremonia-beige.webp" alt=""><h1>Reservations</h1></div>
       <div style="display:flex;gap:8px">
+        <a class="pill" id="ana-link" href="/analytics" style="display:none">Analytics</a>
         <button class="pill" id="refresh">Refresh</button>
         <button class="pill" id="logout">Sign out</button>
       </div>
@@ -213,7 +214,11 @@ async function boot(){
   const {data:{session}}=await sb.auth.getSession();
   $("login").style.display=session?"none":"block";
   $("app").style.display=session?"block":"none";
-  if(session)load();
+  if(session){
+    const mails=(window.ADMIN_EMAILS||[]).map(m=>m.toLowerCase());
+    $("ana-link").style.display=mails.includes((session.user.email||"").toLowerCase())?"":"none";
+    load();
+  }
 }
 $("login-form").addEventListener("submit",async e=>{
   e.preventDefault();
@@ -229,7 +234,9 @@ function mainQuery(today){
   const t=sb.from("reservations").select("*");
   if(tab==="day")return t.eq("date",day).order("time_slot");
   if(tab==="upcoming")return t.gt("date",today).order("date").order("time_slot").limit(500);
-  return t.lt("date",today).order("date",{ascending:false}).order("time_slot",{ascending:false}).limit(200); /* ponytail: last 200 only, add pagination if history grows */
+  /* History: every finished reservation (closed, cancelled, no show), whatever the date, plus all past days */
+  return t.or(`date.lt.${today},status.in.(completed,cancelled,no_show)`)
+    .order("date",{ascending:false}).order("time_slot",{ascending:false}).limit(200); /* ponytail: last 200 only, add pagination if history grows */
 }
 async function load(){
   $("day").value=day;
@@ -365,14 +372,14 @@ function renderMain(rows,today){
   const spent=rows.reduce((n,r)=>n+(r.spend_amount||0),0);
   let sum="";
   if(rows.length){
-    if(tab==="past")sum=`${rows.length} past reservations shown · bills recorded: <b>Rp ${spent.toLocaleString("en")}k</b>`;
+    if(tab==="past")sum=`${rows.length} finished reservations shown · bills recorded: <b>Rp ${spent.toLocaleString("en")}k</b>`;
     else sum=`<b>${active.length}</b> reservations · <b>${covers}</b> guests expected`+(seated?` · <b>${seated}</b> at the table now`:"");
   }
   $("summary").innerHTML=sum;
   if(!rows.length){
     $("main-list").innerHTML=`<p class="empty">${
       tab==="day"?"Nothing booked for this day.<br>New website requests always appear in the box above.":
-      tab==="upcoming"?"No reservations on the coming days yet.":"No past reservations yet."}</p>`;
+      tab==="upcoming"?"No reservations on the coming days yet.":"No finished reservations yet. Closed, cancelled and no show reservations appear here."}</p>`;
     return;
   }
   let html="",lastDate=null;
