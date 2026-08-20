@@ -9,13 +9,13 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="stylesheet" href="fonts.css">
 <style>
-:root{--navy:#0F1B35;--navy-lt:#141F3A;--gold:#D4B896;--ivory:#F5F0E8;--ease:cubic-bezier(0.16,1,0.3,1)}
+:root{--navy:#0F1B35;--navy-lt:#141F3A;--gold:#D4B896;--ivory:#F5F0E8;--green:#8FCB9B;--blue:#9BB8E8;--red:#E2A9A0;--amber:#E89678;--ease:cubic-bezier(0.16,1,0.3,1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--navy);font-family:'Inter',sans-serif;color:var(--ivory);min-height:100vh}
 a{color:var(--gold);text-decoration:none}
 button{font-family:'Inter',sans-serif;cursor:pointer}
-.wrap{max-width:1060px;margin:0 auto;padding:28px 18px 80px}
-header.bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 90px}
+header.bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:26px}
 header.bar .brand{display:flex;align-items:center;gap:10px}
 header.bar img{width:34px}
 header.bar h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px}
@@ -34,65 +34,105 @@ header.bar h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2
   font-size:14px;font-weight:300;padding:13px 14px;margin-bottom:12px;outline:none;font-family:'Inter',sans-serif}
 #login input:focus{border-color:var(--gold)}
 #login .pill{width:100%;padding:13px}
-#login-err{display:none;color:#E2A9A0;font-size:12px;margin-top:12px}
-
-/* sections */
+#login-err{display:none;color:var(--red);font-size:12px;margin-top:12px}
 #app{display:none}
-h2.sec{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:var(--gold);margin:34px 0 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-h2.sec small{font-family:'Inter',sans-serif;font-size:11px;font-weight:300;color:rgba(245,240,232,.45);letter-spacing:0}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:40px 0 16px}
+
+/* requests banner */
+#req-box{border:1px solid rgba(232,199,125,.45);border-radius:14px;background:linear-gradient(160deg,rgba(43,36,24,.55),rgba(15,27,53,.9));
+  padding:18px 18px 8px;margin-bottom:30px}
+#req-box.quiet{border-color:rgba(212,184,150,.18);background:none;padding:14px 18px}
+#req-box h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#E8C77D;margin-bottom:4px;display:flex;gap:10px;align-items:center}
+#req-box .sub{font-size:11px;font-weight:300;color:rgba(245,240,232,.5);margin-bottom:14px}
+#req-box.quiet h2{color:rgba(245,240,232,.5);font-size:16px;margin:0}
+.count-dot{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:12px;
+  background:#E8C77D;color:var(--navy);font-family:'Inter',sans-serif;font-size:12px;font-weight:700}
+
+/* view switch */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px;align-items:center}
 .tab{font-size:10px;letter-spacing:.16em;text-transform:uppercase;border:1px solid rgba(212,184,150,.4);color:rgba(245,240,232,.6);
-  background:none;padding:9px 20px;border-radius:30px;transition:all .25s}
+  background:none;padding:10px 22px;border-radius:30px;transition:all .25s}
 .tab:hover{color:var(--gold);border-color:var(--gold)}
 .tab.on{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:600}
-.daynav{display:none;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
-.daynav.show{display:flex}
-.daynav input[type=date]{background:rgba(11,18,38,.6);border:1px solid rgba(212,184,150,.25);border-radius:9px;color:var(--ivory);
-  padding:8px 10px;font-family:'Inter',sans-serif;font-size:13px;color-scheme:dark;outline:none}
-.arrow{width:34px;height:34px;border-radius:50%;border:1px solid rgba(212,184,150,.4);background:none;color:var(--gold);font-size:14px}
+
+/* day header */
+#dayhead{display:none;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+#dayhead.show{display:flex}
+#dayhead .dh-l{display:flex;align-items:center;gap:10px}
+#dayhead h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:var(--ivory);min-width:150px;text-align:center}
+.arrow{width:38px;height:38px;border-radius:50%;border:1px solid rgba(212,184,150,.4);background:none;color:var(--gold);font-size:16px}
 .arrow:hover{background:var(--gold);color:var(--navy)}
-#main-count{font-size:11px;font-weight:300;color:rgba(245,240,232,.45)}
-.datehdr{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:rgba(212,184,150,.85);margin:22px 0 10px;
+#dayhead input[type=date]{background:rgba(11,18,38,.6);border:1px solid rgba(212,184,150,.25);border-radius:9px;color:var(--ivory);
+  padding:8px 10px;font-family:'Inter',sans-serif;font-size:12px;color-scheme:dark;outline:none;cursor:pointer}
+#summary{font-size:12px;font-weight:300;color:rgba(245,240,232,.55);margin:0 0 18px;min-height:16px}
+#summary b{color:var(--gold);font-weight:600}
+.datehdr{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:rgba(212,184,150,.85);margin:26px 0 10px;
   border-bottom:1px solid rgba(212,184,150,.15);padding-bottom:6px}
 
-.card{border:1px solid rgba(212,184,150,.2);border-radius:12px;background:linear-gradient(160deg,rgba(20,31,58,.6),rgba(15,27,53,.85));
-  padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.card.late{border-color:rgba(232,150,120,.65)}
-.card .time{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--gold);min-width:64px}
-.card .who{flex:1;min-width:180px}
-.card .who .nm{font-size:14px;font-weight:500}
-.card .who .ct{font-size:11px;font-weight:300;color:rgba(245,240,232,.5);margin-top:3px;word-break:break-all}
-.card .who .nt{font-size:11px;font-weight:300;color:rgba(212,184,150,.75);margin-top:5px;font-style:italic}
-.card .pax{font-size:12px;color:rgba(245,240,232,.7);white-space:nowrap}
-.badge{font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:20px;border:1px solid;white-space:nowrap}
-.badge.pending{color:#E8C77D;border-color:rgba(232,199,125,.5)}
-.badge.confirmed{color:#8FCB9B;border-color:rgba(143,203,155,.5)}
-.badge.cancelled{color:#E2A9A0;border-color:rgba(226,169,160,.4)}
-.badge.seated{color:#9BB8E8;border-color:rgba(155,184,232,.5)}
-.badge.completed{color:var(--gold);border-color:rgba(212,184,150,.6)}
-.badge.no_show{color:rgba(245,240,232,.4);border-color:rgba(245,240,232,.25)}
-.badge.late{color:#E89678;border-color:rgba(232,150,120,.6)}
-.card .acts{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.mini{font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:7px 13px;border-radius:20px;border:1px solid rgba(212,184,150,.4);
-  background:none;color:var(--gold);transition:all .2s}
-.mini:hover{background:var(--gold);color:var(--navy)}
-.mini.danger{border-color:rgba(226,169,160,.4);color:#E2A9A0}
-.mini.danger:hover{background:#E2A9A0;color:var(--navy)}
+/* cards */
+.card{border:1px solid rgba(212,184,150,.2);border-radius:14px;background:linear-gradient(160deg,rgba(20,31,58,.6),rgba(15,27,53,.85));
+  padding:16px;margin-bottom:12px}
+.card.late{border-color:rgba(232,150,120,.7)}
+.card.dim{opacity:.45}
+.c-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.c-top .time{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--gold)}
+.c-top .nm{font-size:15px;font-weight:600}
+.c-top .pax{font-size:12px;color:rgba(245,240,232,.65);white-space:nowrap}
+.c-top .when{font-size:11px;color:rgba(245,240,232,.45)}
+.chip{margin-left:auto;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:20px;border:1px solid;white-space:nowrap}
+.chip.pending{color:#E8C77D;border-color:rgba(232,199,125,.5)}
+.chip.confirmed{color:var(--green);border-color:rgba(143,203,155,.5)}
+.chip.seated{color:var(--blue);border-color:rgba(155,184,232,.5)}
+.chip.completed{color:var(--gold);border-color:rgba(212,184,150,.6)}
+.chip.cancelled{color:var(--red);border-color:rgba(226,169,160,.4)}
+.chip.no_show{color:rgba(245,240,232,.4);border-color:rgba(245,240,232,.25)}
+.chip.late{color:var(--amber);border-color:rgba(232,150,120,.6)}
+.c-ct{font-size:11px;font-weight:300;color:rgba(245,240,232,.5);margin-top:6px;word-break:break-all}
+.c-nt{font-size:12px;font-weight:300;color:rgba(212,184,150,.8);margin-top:6px;font-style:italic}
+.c-bill{font-size:12px;color:var(--gold);margin-top:8px}
+
+/* assignment fields */
+.c-assign{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.af{display:flex;flex-direction:column;gap:4px}
+.af label{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:rgba(212,184,150,.6)}
+.af input{background:rgba(11,18,38,.7);border:1px solid rgba(212,184,150,.3);border-radius:9px;color:var(--ivory);
+  font-family:'Inter',sans-serif;font-size:13px;padding:9px 12px;outline:none}
+.af input:focus{border-color:var(--gold)}
+.af input.tbl{width:92px}
+.af input.tbl.conflict{border-color:var(--amber);color:var(--amber)}
+.af input.srv{width:130px}
+
+/* action buttons */
+.c-acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;align-items:center}
+.act{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:12px 20px;border-radius:30px;border:1px solid;transition:all .25s}
+.act.ok{background:var(--green);border-color:var(--green);color:var(--navy)}
+.act.ok:hover{background:transparent;color:var(--green)}
+.act.main{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.act.main:hover{background:transparent;color:var(--gold)}
+.act.no{background:none;border-color:rgba(226,169,160,.5);color:var(--red)}
+.act.no:hover{background:var(--red);color:var(--navy)}
+.act.wa{background:none;border-color:rgba(143,203,155,.5);color:var(--green);display:inline-flex;align-items:center;gap:7px;text-decoration:none}
+.act.wa:hover{background:var(--green);color:var(--navy)}
+.fixlink{font-size:10px;color:rgba(245,240,232,.35);text-decoration:underline;text-underline-offset:3px;background:none;border:none;margin-left:auto}
+.fixlink:hover{color:var(--gold)}
+.fixrow{display:none;margin-top:12px;padding-top:12px;border-top:1px dashed rgba(212,184,150,.2);align-items:center;gap:10px;flex-wrap:wrap}
+.fixrow.show{display:flex}
+.fixrow span{font-size:10px;color:rgba(245,240,232,.45);letter-spacing:.1em;text-transform:uppercase}
 select.st{background:rgba(11,18,38,.7);border:1px solid rgba(212,184,150,.3);border-radius:20px;color:var(--ivory);
-  font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;outline:none}
-input.fld{background:rgba(11,18,38,.7);border:1px solid rgba(212,184,150,.3);border-radius:20px;color:var(--ivory);
-  font-family:'Inter',sans-serif;font-size:11px;padding:6px 11px;outline:none}
-input.fld:focus{border-color:var(--gold)}
-input.tbl{width:76px}
-input.tbl.conflict{border-color:#E89678;color:#E89678}
-input.srv{width:104px}
-input.spd{width:96px}
-.empty{font-size:12px;font-weight:300;color:rgba(245,240,232,.35);padding:14px 4px}
-#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-size:12px;font-weight:500;
-  padding:10px 22px;border-radius:30px;opacity:0;pointer-events:none;transition:opacity .3s;max-width:90vw;text-align:center;z-index:50}
+  font-family:'Inter',sans-serif;font-size:11px;padding:8px 12px;outline:none}
+
+/* close-table box */
+.closebox{display:none;margin-top:14px;padding:14px;border:1px dashed rgba(212,184,150,.35);border-radius:11px;
+  align-items:end;gap:12px;flex-wrap:wrap}
+.closebox.show{display:flex}
+.closebox .af input{width:130px}
+.closebox .hint{font-size:10px;font-weight:300;color:rgba(245,240,232,.45);width:100%}
+
+.empty{font-size:13px;font-weight:300;color:rgba(245,240,232,.4);padding:22px 6px;text-align:center;line-height:1.8}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;
+  padding:11px 24px;border-radius:30px;opacity:0;pointer-events:none;transition:opacity .3s;max-width:90vw;text-align:center;z-index:50}
 #toast.on{opacity:1}
-#toast.warn{background:#E89678}
-@media(max-width:560px){.card .time{min-width:52px;font-size:20px}}
+#toast.warn{background:var(--amber)}
+@media(max-width:560px){.c-top .time{font-size:22px}.act{width:100%;text-align:center;justify-content:center}.fixlink{margin-left:0}}
 </style>
 </head>
 <body>
@@ -119,21 +159,26 @@ input.spd{width:96px}
       </div>
     </header>
 
-    <h2 class="sec">New requests <small id="pending-count"></small></h2>
-    <div id="pending-list"></div>
+    <div id="req-box"></div>
 
     <div class="tabs">
-      <button class="tab on" data-tab="day">Today's service</button>
-      <button class="tab" data-tab="upcoming">Upcoming</button>
-      <button class="tab" data-tab="past">Past</button>
-      <span id="main-count" style="align-self:center;margin-left:6px"></span>
+      <button class="tab on" data-tab="day">Day by day</button>
+      <button class="tab" data-tab="upcoming">Coming days</button>
+      <button class="tab" data-tab="past">History</button>
     </div>
-    <div class="daynav show" id="daynav">
-      <button class="arrow" id="prev">‹</button>
-      <input type="date" id="day">
-      <button class="arrow" id="next">›</button>
-      <button class="pill" id="today-btn" style="padding:7px 14px">Today</button>
+
+    <div id="dayhead" class="show">
+      <div class="dh-l">
+        <button class="arrow" id="prev">‹</button>
+        <h2 id="day-title">Today</h2>
+        <button class="arrow" id="next">›</button>
+      </div>
+      <div class="dh-l">
+        <button class="pill" id="today-btn" style="padding:8px 16px">Today</button>
+        <input type="date" id="day" title="Pick a date">
+      </div>
     </div>
+    <p id="summary"></p>
     <div id="main-list"></div>
   </div>
 
@@ -148,11 +193,20 @@ const sb=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_ANON_K
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const STATUSES=["pending","confirmed","seated","completed","cancelled","no_show"];
+const LABEL={pending:"To answer",confirmed:"Confirmed",seated:"At the table",completed:"Closed",cancelled:"Cancelled",no_show:"No show"};
 const ACTIVE=["pending","confirmed","seated"];
 const LATE_MIN=15; /* grace period shown to guests on the booking form */
 const isoLocal=d=>{const p=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())};
 let tab="day", day=isoLocal(new Date());
 const SERVERS=new Set();
+
+function fmtDate(d){
+  const today=isoLocal(new Date());
+  const tomorrow=isoLocal(new Date(Date.now()+864e5));
+  if(d===today)return "Today";
+  if(d===tomorrow)return "Tomorrow";
+  return new Date(d+"T00:00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"});
+}
 
 /* ── auth ── */
 async function boot(){
@@ -179,20 +233,21 @@ function mainQuery(today){
 }
 async function load(){
   $("day").value=day;
-  $("daynav").classList.toggle("show",tab==="day");
+  $("dayhead").classList.toggle("show",tab==="day");
+  $("day-title").textContent=fmtDate(day);
   const today=isoLocal(new Date());
   const [pend,main]=await Promise.all([
     sb.from("reservations").select("*").eq("status","pending").gte("date",today).order("date").order("time_slot"),
     mainQuery(today)
   ]);
-  if(pend.error||main.error){toast("Load failed, check connection",true);return;}
+  if(pend.error||main.error){toast("Could not load, check the connection",true);return;}
   [...pend.data,...main.data].forEach(r=>{if(r.server_name)SERVERS.add(r.server_name)});
   $("servers-dl").innerHTML=[...SERVERS].sort().map(s=>`<option value="${esc(s)}">`).join("");
-  renderPending(pend.data,today);
+  renderRequests(pend.data,today);
   renderMain(main.data,today);
 }
 
-/* ── rendering ── */
+/* ── helpers ── */
 function contact(r){
   const bits=[];
   if(r.phone){
@@ -202,15 +257,18 @@ function contact(r){
   bits.push(`<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>`);
   return bits.join(" · ");
 }
-function who(r){
-  return `<div class="who"><div class="nm">${esc(r.name)}</div><div class="ct">${contact(r)}</div>`
-    +(r.notes?`<div class="nt">${esc(r.notes)}</div>`:"")+`</div>`;
-}
 function isLate(r,today){
-  if(r.date!==today||!ACTIVE.slice(0,2).includes(r.status))return false; /* pending or confirmed, not yet seated */
+  if(r.date!==today||(r.status!=="pending"&&r.status!=="confirmed"))return false;
   const [h,m]=r.time_slot.split(":").map(Number);
   const t=new Date();t.setHours(h,m+LATE_MIN,0,0);
   return new Date()>t;
+}
+function waConfirmLink(r){
+  if(!r.phone)return "";
+  const wa=r.phone.replace(/[^0-9]/g,"");
+  if(!wa)return "";
+  const txt=`Hello ${r.name}, your table at Ceremonia Rooftop Ubud is confirmed for ${fmtDate(r.date)} (${r.date}) at ${r.time_slot}, ${r.party_size} guests. Tables are held 15 minutes past the reservation time. See you soon under the Ubud sky!`;
+  return `<a class="act wa" href="https://wa.me/${wa}?text=${encodeURIComponent(txt)}" target="_blank" rel="noopener">Send WhatsApp confirmation</a>`;
 }
 function conflictKeys(rows){
   const seen={},dup=new Set();
@@ -221,81 +279,143 @@ function conflictKeys(rows){
   });
   return dup;
 }
-function renderPending(rows,today){
-  $("pending-count").textContent=rows.length?rows.length+" to review":"";
-  $("pending-list").innerHTML=rows.length?rows.map(r=>`
-    <div class="card${isLate(r,today)?" late":""}">
-      <div class="time">${esc(r.time_slot)}</div>
-      <div class="pax">${esc(r.date)} · ${r.party_size} guests</div>
-      ${who(r)}
-      <div class="acts">
-        ${isLate(r,today)?'<span class="badge late">late 15+ min</span>':""}
-        <button class="mini" data-act="confirmed" data-id="${r.id}">Confirm</button>
-        <button class="mini danger" data-act="cancelled" data-id="${r.id}">Decline</button>
-      </div>
-    </div>`).join(""):`<p class="empty">No pending requests. ✦</p>`;
-}
-function card(r,today,dup){
+function assignFields(r,dup){
   const k=r.date+"|"+r.time_slot+"|"+(r.table_assignment||"").trim().toLowerCase();
+  return `<div class="c-assign">
+    <div class="af"><label>Table</label><input class="tbl${r.table_assignment&&dup.has(k)?" conflict":""}" data-f="table_assignment" data-id="${r.id}" value="${esc(r.table_assignment||"")}" maxlength="40" placeholder="e.g. 12"></div>
+    <div class="af"><label>Server</label><input class="srv" data-f="server_name" data-id="${r.id}" list="servers-dl" value="${esc(r.server_name||"")}" maxlength="60" placeholder="name"></div>
+  </div>`;
+}
+function cardTop(r,today,showDate){
   const late=isLate(r,today);
-  return `
-    <div class="card${late?" late":""}">
-      <div class="time">${esc(r.time_slot)}</div>
-      <div class="pax">${r.party_size} guests</div>
-      ${who(r)}
-      <div class="acts">
-        ${late?'<span class="badge late">late 15+ min</span>':""}
-        <span class="badge ${esc(r.status)}">${esc(r.status.replace("_"," "))}</span>
-        <select class="st" data-id="${r.id}">
-          ${STATUSES.map(s=>`<option value="${s}"${s===r.status?" selected":""}>${s.replace("_"," ")}</option>`).join("")}
-        </select>
-        <input class="fld tbl${r.table_assignment&&dup.has(k)?" conflict":""}" data-id="${r.id}" placeholder="Table" title="Table" value="${esc(r.table_assignment||"")}" maxlength="40">
-        <input class="fld srv" data-id="${r.id}" placeholder="Server" title="Server" list="servers-dl" value="${esc(r.server_name||"")}" maxlength="60">
-        <input class="fld spd" data-id="${r.id}" type="number" min="0" step="1" placeholder="Spent '000" title="Amount spent, thousands of IDR" value="${r.spend_amount==null?"":r.spend_amount}">
+  return `<div class="c-top">
+      <span class="time">${esc(r.time_slot)}</span>
+      <span class="nm">${esc(r.name)}</span>
+      <span class="pax">${r.party_size} guests</span>
+      ${showDate?`<span class="when">${esc(fmtDate(r.date))}</span>`:""}
+      ${late?'<span class="chip late">late 15+ min</span>':`<span class="chip ${esc(r.status)}">${LABEL[r.status]||esc(r.status)}</span>`}
+    </div>
+    <p class="c-ct">${contact(r)}</p>
+    ${r.notes?`<p class="c-nt">"${esc(r.notes)}"</p>`:""}
+    ${r.spend_amount!=null?`<p class="c-bill">Bill: Rp ${Number(r.spend_amount).toLocaleString("en")}k</p>`:""}`;
+}
+
+/* ── requests banner ── */
+function renderRequests(rows,today){
+  const box=$("req-box");
+  if(!rows.length){
+    box.classList.add("quiet");
+    box.innerHTML=`<h2>No new requests right now ✦</h2>`;
+    return;
+  }
+  box.classList.remove("quiet");
+  box.innerHTML=`<h2><span class="count-dot">${rows.length}</span> New request${rows.length>1?"s":""}</h2>
+    <p class="sub">Guests are waiting for an answer. Accept or refuse, then confirm by WhatsApp.</p>`
+    +rows.map(r=>`
+    <div class="card${isLate(r,today)?" late":""}">
+      ${cardTop(r,today,true)}
+      <div class="c-acts">
+        <button class="act ok" data-do="confirmed" data-id="${r.id}">✓ Accept</button>
+        <button class="act no" data-do="cancelled" data-id="${r.id}">✗ Refuse</button>
       </div>
-    </div>`;
+    </div>`).join("");
+}
+
+/* ── main list ── */
+function nextAction(r,today){
+  if(r.status==="confirmed"){
+    let h=`<button class="act main" data-do="seated" data-id="${r.id}">Guests are here</button>`;
+    h+=waConfirmLink(r);
+    if(isLate(r,today))h+=`<button class="act no" data-do="no_show" data-id="${r.id}">No show · free the table</button>`;
+    return h;
+  }
+  if(r.status==="seated")return `<button class="act main" data-close="${r.id}">Close table · enter bill</button>`;
+  if(r.status==="pending")return `<button class="act ok" data-do="confirmed" data-id="${r.id}">✓ Accept</button>
+    <button class="act no" data-do="cancelled" data-id="${r.id}">✗ Refuse</button>`;
+  return "";
+}
+function card(r,today,dup,showDate){
+  const inactive=r.status==="cancelled"||r.status==="no_show";
+  const acts=nextAction(r,today);
+  return `<div class="card${isLate(r,today)?" late":""}${inactive?" dim":""}" data-card="${r.id}">
+    ${cardTop(r,today,showDate)}
+    ${ACTIVE.includes(r.status)?assignFields(r,dup):""}
+    <div class="c-acts">${acts}
+      <button class="fixlink" data-fix="${r.id}">fix a mistake</button>
+    </div>
+    <div class="closebox" id="close-${r.id}">
+      <p class="hint">Enter the total bill in thousands of IDR (350 = Rp 350,000). This closes the reservation.</p>
+      <div class="af"><label>Bill '000 IDR</label><input type="number" min="0" step="1" id="bill-${r.id}" placeholder="350"></div>
+      <button class="act main" data-doclose="${r.id}">Save &amp; close</button>
+    </div>
+    <div class="fixrow" id="fix-${r.id}">
+      <span>Set status</span>
+      <select class="st" data-id="${r.id}">
+        ${STATUSES.map(s=>`<option value="${s}"${s===r.status?" selected":""}>${LABEL[s]}</option>`).join("")}
+      </select>
+      ${r.status==="completed"?`<div class="af"><label>Bill '000 IDR</label><input type="number" min="0" step="1" data-f="spend_amount" data-id="${r.id}" value="${r.spend_amount==null?"":r.spend_amount}" style="width:110px"></div>`:""}
+    </div>
+  </div>`;
 }
 function renderMain(rows,today){
   const dup=conflictKeys(rows);
   const active=rows.filter(r=>ACTIVE.includes(r.status));
   const covers=active.reduce((n,r)=>n+r.party_size,0);
+  const seated=rows.filter(r=>r.status==="seated").length;
   const spent=rows.reduce((n,r)=>n+(r.spend_amount||0),0);
-  let count="";
+  let sum="";
   if(rows.length){
-    if(tab==="past")count=`${rows.length} shown · ${spent?("Rp "+spent.toLocaleString("en")+"k spent recorded"):"no spend recorded"}`;
-    else count=`${rows.length} reservations · ${covers} guests expected`;
+    if(tab==="past")sum=`${rows.length} past reservations shown · bills recorded: <b>Rp ${spent.toLocaleString("en")}k</b>`;
+    else sum=`<b>${active.length}</b> reservations · <b>${covers}</b> guests expected`+(seated?` · <b>${seated}</b> at the table now`:"");
   }
-  $("main-count").textContent=count;
-  if(!rows.length){$("main-list").innerHTML=`<p class="empty">${tab==="day"?"No reservations for this day.":tab==="upcoming"?"No upcoming reservations.":"No past reservations."}</p>`;return;}
+  $("summary").innerHTML=sum;
+  if(!rows.length){
+    $("main-list").innerHTML=`<p class="empty">${
+      tab==="day"?"Nothing booked for this day.<br>New website requests always appear in the box above.":
+      tab==="upcoming"?"No reservations on the coming days yet.":"No past reservations yet."}</p>`;
+    return;
+  }
   let html="",lastDate=null;
   rows.forEach(r=>{
-    if(tab!=="day"&&r.date!==lastDate){lastDate=r.date;html+=`<h3 class="datehdr">${esc(r.date)}</h3>`;}
-    html+=card(r,today,dup);
+    if(tab!=="day"&&r.date!==lastDate){lastDate=r.date;html+=`<h3 class="datehdr">${esc(fmtDate(r.date))} · ${esc(r.date)}</h3>`;}
+    html+=card(r,today,dup,false);
   });
   $("main-list").innerHTML=html;
-  if(dup.size)toast("Warning: same table set twice on one time slot",true);
+  if(dup.size)toast("Careful: the same table is set twice on one time slot",true);
 }
 
 /* ── actions ── */
 async function setField(id,patch,okMsg){
   const {error}=await sb.from("reservations").update(patch).eq("id",id);
-  toast(error?"Update failed":okMsg,!!error);
+  toast(error?"Could not save, try again":okMsg,!!error);
   if(!error)load();
 }
 document.addEventListener("click",e=>{
-  const b=e.target.closest("[data-act]");
-  if(b){setField(b.dataset.id,{status:b.dataset.act},b.dataset.act==="confirmed"?"Confirmed":"Declined");return;}
+  const doBtn=e.target.closest("[data-do]");
+  if(doBtn){
+    const msg={confirmed:"Accepted ✓ You can send the WhatsApp confirmation",cancelled:"Refused",seated:"Welcome! Marked at the table",no_show:"Marked no show, table is free"}[doBtn.dataset.do];
+    setField(doBtn.dataset.id,{status:doBtn.dataset.do},msg||"Saved");return;
+  }
+  const cl=e.target.closest("[data-close]");
+  if(cl){const b=$("close-"+cl.dataset.close);b.classList.toggle("show");if(b.classList.contains("show"))$("bill-"+cl.dataset.close).focus();return;}
+  const dc=e.target.closest("[data-doclose]");
+  if(dc){
+    const v=$("bill-"+dc.dataset.doclose).value;
+    const amount=v===""?null:Math.max(0,Math.round(Number(v)));
+    setField(dc.dataset.doclose,{status:"completed",spend_amount:amount},"Table closed ✓");return;
+  }
+  const fx=e.target.closest("[data-fix]");
+  if(fx){$("fix-"+fx.dataset.fix).classList.toggle("show");return;}
   const t=e.target.closest(".tab");
   if(t){tab=t.dataset.tab;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===t));load();}
 });
 document.addEventListener("change",e=>{
   const el=e.target;
-  if(el.matches("select.st"))setField(el.dataset.id,{status:el.value},"Status updated");
-  if(el.matches("input.tbl"))setField(el.dataset.id,{table_assignment:el.value.trim()||null},"Table saved");
-  if(el.matches("input.srv"))setField(el.dataset.id,{server_name:el.value.trim()||null},"Server saved");
-  if(el.matches("input.spd")){
-    const v=el.value===""?null:Math.max(0,Math.round(Number(el.value)));
-    setField(el.dataset.id,{spend_amount:v},"Spend saved");
+  if(el.matches("select.st")){setField(el.dataset.id,{status:el.value},"Status changed");return;}
+  if(el.dataset&&el.dataset.f){
+    let v=el.value.trim()||null;
+    if(el.dataset.f==="spend_amount")v=el.value===""?null:Math.max(0,Math.round(Number(el.value)));
+    setField(el.dataset.id,{[el.dataset.f]:v},"Saved");return;
   }
   if(el.id==="day"){day=el.value;load();}
 });
@@ -304,9 +424,17 @@ $("next").addEventListener("click",()=>{const d=new Date(day);d.setDate(d.getDat
 $("today-btn").addEventListener("click",()=>{day=isoLocal(new Date());load();});
 $("refresh").addEventListener("click",load);
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&$("app").style.display==="block")load();});
+/* gentle auto refresh during service, paused while typing in a field */
+setInterval(()=>{
+  if(document.hidden||$("app").style.display!=="block")return;
+  const a=document.activeElement;
+  if(a&&(a.tagName==="INPUT"||a.tagName==="SELECT"||a.tagName==="TEXTAREA"))return;
+  if(document.querySelector(".closebox.show,.fixrow.show"))return;
+  load();
+},60000);
 
 let toastT;
-function toast(m,warn){const t=$("toast");t.textContent=m;t.classList.toggle("warn",!!warn);t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("on"),2600);}
+function toast(m,warn){const t=$("toast");t.textContent=m;t.classList.toggle("warn",!!warn);t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("on"),2800);}
 
 boot();
 </script>
