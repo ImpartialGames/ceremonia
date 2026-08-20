@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ceremonia · Rooftop Restaurant &amp; Bar · Ubud</title>
 <meta name="description" content="Ceremonia, rooftop restaurant &amp; bar in Ubud, Bali. Local &amp; international tapas, house cocktails, open daily 9:00 AM to 11 PM.">
-<meta name="theme-color" content="#0F1B35">
+<meta name="theme-color" content="#12223d">
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="favicon.png">
@@ -43,8 +43,8 @@
 <style>
 /* ─── VARS ─────────────────────────────────────────────────────── */
 :root{
-  --navy:#0F1B35; --navy-lt:#141F3A; --cream:#EDE8DF;
-  --gold:#D4B896;  --ivory:#F5F0E8;  --umber:#8B6F47;
+  --navy:#12223d; --navy-lt:#172642; --cream:#EDE8DF;
+  --gold:#f0e3d7;  --ivory:#F5F0E8;  --umber:#8B6F47;
   --ease:cubic-bezier(0.16,1,0.3,1);
 }
 /* ─── RESET ────────────────────────────────────────────────────── */
@@ -90,7 +90,7 @@ a{text-decoration:none}
 }
 #cring{
   position:fixed;left:0;top:0;width:24px;height:24px;
-  border:1px solid rgba(212,184,150,.3);border-radius:50%;
+  border:1px solid rgba(240,227,215,.3);border-radius:50%;
   pointer-events:none;z-index:10000;transform:translate(-50%,-50%);
   transition:width .25s var(--ease),height .25s var(--ease),border-color .25s;
 }
@@ -111,7 +111,7 @@ body.cursor-active{cursor:none}
 }
 #loader-tag{
   font-family:'Poppins',sans-serif;font-size:9px;letter-spacing:.55em;
-  text-transform:uppercase;color:rgba(212,184,150,.38);margin-top:-6px;
+  text-transform:uppercase;color:rgba(240,227,215,.38);margin-top:-6px;
 }
 #loader-bird{
   position:absolute;top:50%;left:0;width:46px;height:auto;z-index:3;
@@ -152,10 +152,10 @@ body.cursor-active{cursor:none}
   border-bottom:1px solid transparent;
 }
 #a-nav.scrolled{
-  background:rgba(15,27,53,.88);
+  background:rgba(18,34,61,.88);
   backdrop-filter:blur(20px) saturate(150%);
   box-shadow:0 1px 30px rgba(0,0,0,.3);
-  border-bottom-color:rgba(212,184,150,.1);
+  border-bottom-color:rgba(240,227,215,.1);
 }
 .nav-logo{
   width:34px;height:34px;object-fit:contain;
@@ -175,7 +175,7 @@ body.menu-open .nav-burger span:nth-child(1){transform:translateY(6.5px) rotate(
 body.menu-open .nav-burger span:nth-child(2){opacity:0}
 body.menu-open .nav-burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 #mobile-menu{position:fixed;inset:0;z-index:1001;
-  background:rgba(11,18,38,.98);backdrop-filter:blur(22px) saturate(140%);
+  background:rgba(14,25,46,.98);backdrop-filter:blur(22px) saturate(140%);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
   opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
 body.menu-open #mobile-menu{opacity:1;pointer-events:auto}
@@ -207,9 +207,9 @@ body.menu-open{overflow:hidden}
   font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;
   padding:17px 42px;color:var(--navy);
   background:linear-gradient(135deg,#e9d3ad 0%,var(--gold) 55%,#c4a578 100%);
-  border:1px solid rgba(212,184,150,.7);
+  border:1px solid rgba(240,227,215,.7);
   border-radius:0 100% 0 100%/0 100% 0 100%;
-  box-shadow:0 12px 34px rgba(212,184,150,.28),inset 0 1px 0 rgba(255,255,255,.35);
+  box-shadow:0 12px 34px rgba(240,227,215,.28),inset 0 1px 0 rgba(255,255,255,.35);
   transition:transform .45s var(--ease),box-shadow .45s var(--ease),
              border-radius .55s var(--ease),color .4s var(--ease);
 }
@@ -221,7 +221,7 @@ body.menu-open{overflow:hidden}
 .btn-leaf:hover{
   transform:translateY(-4px);color:var(--gold);
   border-radius:100% 0 100% 0/100% 0 100% 0;
-  box-shadow:0 18px 46px rgba(212,184,150,.42),inset 0 1px 0 rgba(255,255,255,.15);
+  box-shadow:0 18px 46px rgba(240,227,215,.42),inset 0 1px 0 rgba(255,255,255,.15);
 }
 .btn-leaf:hover::after{transform:translateY(0)}
 .btn-leaf svg{transition:transform .45s var(--ease)}
@@ -281,8 +281,8 @@ body.menu-open{overflow:hidden}
   background:
     repeating-linear-gradient(0deg,rgba(0,0,0,.018) 0px,transparent 1px,transparent 2px),
     radial-gradient(ellipse at 30% 60%,rgba(139,94,60,.12) 0%,transparent 62%),
-    linear-gradient(to right,rgba(15,27,53,.8) 0%,rgba(15,27,53,.35) 50%,rgba(15,27,53,.05) 100%),
-    linear-gradient(to bottom,rgba(15,27,53,.05) 0%,rgba(15,27,53,.6) 100%);
+    linear-gradient(to right,rgba(18,34,61,.8) 0%,rgba(18,34,61,.35) 50%,rgba(18,34,61,.05) 100%),
+    linear-gradient(to bottom,rgba(18,34,61,.05) 0%,rgba(18,34,61,.6) 100%);
 }
 #hero-content{position:relative;z-index:6;padding:0 8vw;max-width:760px;text-align:center;display:flex;flex-direction:column;align-items:center;transform:translateY(-7vh)}
 .h-eyebrow{
@@ -344,16 +344,16 @@ body.menu-open{overflow:hidden}
 }
 .pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
 .pillar-card{
-  background:linear-gradient(135deg,rgba(15,27,53,.95) 0%,rgba(24,16,44,.98) 100%);
-  border:1px solid rgba(212,184,150,.12);
-  box-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(212,184,150,.08);
+  background:linear-gradient(135deg,rgba(18,34,61,.95) 0%,rgba(24,16,44,.98) 100%);
+  border:1px solid rgba(240,227,215,.12);
+  box-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(240,227,215,.08);
   backdrop-filter:blur(12px);
   padding:44px 32px;text-align:center;position:relative;overflow:hidden;
   transition:border-color .4s,box-shadow .4s,transform .4s var(--ease);
 }
 .pillar-card:hover{
-  border-color:rgba(212,184,150,.38);
-  box-shadow:0 20px 52px rgba(0,0,0,.5),inset 0 1px 0 rgba(212,184,150,.14),0 0 40px rgba(212,184,150,.04);
+  border-color:rgba(240,227,215,.38);
+  box-shadow:0 20px 52px rgba(0,0,0,.5),inset 0 1px 0 rgba(240,227,215,.14),0 0 40px rgba(240,227,215,.04);
   transform:translateY(-7px);
 }
 .pillar-icon{width:44px;height:44px;color:var(--gold);margin:0 auto 28px}
@@ -365,7 +365,7 @@ body.menu-open{overflow:hidden}
   object-fit:cover;object-position:center 40%;
   filter:brightness(.52) saturate(1.25);will-change:transform;
 }
-#jungle-overlay{position:absolute;inset:0;z-index:1;background:rgba(15,27,53,.38)}
+#jungle-overlay{position:absolute;inset:0;z-index:1;background:rgba(18,34,61,.38)}
 #jungle-text{position:relative;z-index:2;text-align:center;padding:0 8vw}
 
 /* ─── GALLERY ────────────────────────────────────────────────────── */
@@ -385,7 +385,7 @@ body.menu-open{overflow:hidden}
 .gal-item:hover img{filter:brightness(1.02) saturate(1.05) sepia(0);transform:scale(1.04)}
 .gal-caption{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(15,27,53,.82) 0%,transparent 55%);
+  background:linear-gradient(to top,rgba(18,34,61,.82) 0%,transparent 55%);
   display:flex;align-items:flex-end;padding:20px;
   transform:translateY(100%);opacity:0;
   transition:transform .32s var(--ease),opacity .32s var(--ease);pointer-events:none;
@@ -413,7 +413,7 @@ body.menu-open{overflow:hidden}
   display:block;
   width:auto!important;height:clamp(112px,12vw,184px)!important;
   object-fit:contain!important;
-  filter:drop-shadow(0 9px 12px rgba(15,27,53,.34))!important;
+  filter:drop-shadow(0 9px 12px rgba(18,34,61,.34))!important;
   transition:transform .4s var(--ease);
 }
 .gal-blacki:hover img.blacki-guard{transform:translateY(-5px) rotate(-2deg)}
@@ -435,7 +435,7 @@ body.menu-open{overflow:hidden}
 }
 .ticker-wave{width:100%;margin:0 0 48px;line-height:0}
 .ticker-wave svg{display:block;width:100%;height:140px;overflow:visible}
-.tw-band{fill:url(#tw-grad);stroke:rgba(212,184,150,.30);stroke-width:1}
+.tw-band{fill:url(#tw-grad);stroke:rgba(240,227,215,.30);stroke-width:1}
 .tw-text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:5px;
   text-transform:uppercase;fill:rgba(245,240,232,.82)}
 @media(max-width:860px){
@@ -443,11 +443,11 @@ body.menu-open{overflow:hidden}
   .tw-text{font-size:11px;letter-spacing:3px}
 }
 .soc-icon{
-  width:40px;height:40px;border:1px solid rgba(212,184,150,.2);
+  width:40px;height:40px;border:1px solid rgba(240,227,215,.2);
   border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
-  color:rgba(212,184,150,.45);transition:background .3s,border-color .3s,color .3s;
+  color:rgba(240,227,215,.45);transition:background .3s,border-color .3s,color .3s;
 }
-.soc-icon:hover{background:rgba(212,184,150,.1);border-color:var(--gold);color:var(--gold)}
+.soc-icon:hover{background:rgba(240,227,215,.1);border-color:var(--gold);color:var(--gold)}
 
 /* ─── LABEL ──────────────────────────────────────────────────────── */
 .lbl{font-family:'Poppins',sans-serif;font-size:10px;letter-spacing:.5em;text-transform:uppercase;font-weight:400}
@@ -457,20 +457,20 @@ body.menu-open{overflow:hidden}
 .rv-sky{position:absolute;inset:0;z-index:0;
   background:linear-gradient(180deg,#0b1428 0%,#13213c 25%,#2b2a48 46%,#5a4250 64%,#9c6f54 82%,#d49b67 100%);}
 .rv-sky::after{content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 56% 40% at 50% 70%,rgba(212,184,150,.30),transparent 70%);}
+  background:radial-gradient(ellipse 56% 40% at 50% 70%,rgba(240,227,215,.30),transparent 70%);}
 .rv-stage{position:absolute;inset:0;z-index:1;display:flex;justify-content:center;align-items:flex-start;
   -webkit-mask-image:linear-gradient(180deg,transparent 28%,#000 37%,#000 84%,transparent 95%);
           mask-image:linear-gradient(180deg,transparent 28%,#000 37%,#000 84%,transparent 95%);}
 .rv-stream{display:flex;flex-direction:column;width:min(248px,74vw);
   animation:rvRise 42s linear infinite;will-change:transform;}
 @keyframes rvRise{from{transform:translateY(0)}to{transform:translateY(-50%)}}
-.rv-card{background:linear-gradient(135deg,rgba(15,27,53,.84),rgba(22,33,60,.92));
-  border:1px solid rgba(212,184,150,.22);border-radius:12px;backdrop-filter:blur(8px);
-  box-shadow:0 10px 26px rgba(0,0,0,.45),inset 0 1px 0 rgba(212,184,150,.08);
+.rv-card{background:linear-gradient(135deg,rgba(18,34,61,.84),rgba(22,33,60,.92));
+  border:1px solid rgba(240,227,215,.22);border-radius:12px;backdrop-filter:blur(8px);
+  box-shadow:0 10px 26px rgba(0,0,0,.45),inset 0 1px 0 rgba(240,227,215,.08);
   padding:12px 14px;margin-bottom:14px;}
 .rv-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
 .rv-av{width:26px;height:26px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
-  font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;color:#0f1b35;}
+  font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;color:#12223d;}
 .rv-name{font-family:'Poppins',sans-serif;font-size:11px;color:var(--ivory);letter-spacing:.03em}
 .rv-stars-sm{color:var(--gold);font-size:8px;letter-spacing:1.5px;margin-top:2px}
 .rv-text{font-family:'Poppins',sans-serif;font-weight:300;font-size:11px;line-height:1.55;color:rgba(245,240,232,.66)}
@@ -559,7 +559,7 @@ body.menu-open{overflow:hidden}
   .about-stats>div>p:not(.lbl){font-size:34px!important}
 }
 /* ─── Google Maps click-to-load (no third-party cookies before consent) ─── */
-#map-shield{height:420px;border-radius:4px;border:1px dashed rgba(212,184,150,.35);background:rgba(20,31,58,.5);
+#map-shield{height:420px;border-radius:4px;border:1px dashed rgba(240,227,215,.35);background:rgba(23,38,66,.5);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;cursor:pointer;padding:24px}
 #map-shield .map-txt{font-family:'Poppins',sans-serif;font-weight:300;font-size:12px;line-height:1.8;color:rgba(245,240,232,.5);max-width:340px}
 #map-shield .map-btn{font-family:'Poppins',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;
@@ -677,12 +677,12 @@ body.menu-open{overflow:hidden}
   <div class="about-qmark">"</div>
   <!-- Monstera watermark -->
   <svg class="about-leaf" width="200" height="260" viewBox="0 0 200 260" fill="none">
-    <path d="M100 18 C100 18 34 58 26 138 C18 218 72 258 100 248 C128 258 182 218 174 138 C166 58 100 18 100 18Z" stroke="#0F1B35" stroke-width="1.4"/>
-    <line x1="100" y1="18" x2="100" y2="248" stroke="#0F1B35" stroke-width=".9"/>
-    <path d="M100 72 C82 84 46 96 36 122" stroke="#0F1B35" stroke-width=".7"/>
-    <path d="M100 102 C82 118 50 134 44 158" stroke="#0F1B35" stroke-width=".7"/>
-    <path d="M100 72 C118 84 154 96 164 122" stroke="#0F1B35" stroke-width=".7"/>
-    <path d="M100 102 C118 118 150 134 156 158" stroke="#0F1B35" stroke-width=".7"/>
+    <path d="M100 18 C100 18 34 58 26 138 C18 218 72 258 100 248 C128 258 182 218 174 138 C166 58 100 18 100 18Z" stroke="#12223d" stroke-width="1.4"/>
+    <line x1="100" y1="18" x2="100" y2="248" stroke="#12223d" stroke-width=".9"/>
+    <path d="M100 72 C82 84 46 96 36 122" stroke="#12223d" stroke-width=".7"/>
+    <path d="M100 102 C82 118 50 134 44 158" stroke="#12223d" stroke-width=".7"/>
+    <path d="M100 72 C118 84 154 96 164 122" stroke="#12223d" stroke-width=".7"/>
+    <path d="M100 102 C118 118 150 134 156 158" stroke="#12223d" stroke-width=".7"/>
   </svg>
 
   <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;max-width:1280px;margin:0 auto;position:relative;z-index:1;">
@@ -693,28 +693,28 @@ body.menu-open{overflow:hidden}
     </div>
     <!-- story -->
     <div style="position:relative;padding-top:20px;">
-      <p data-reveal class="lbl" style="color:var(--gold);margin-bottom:18px;" data-i18n="about.eyebrow">Our Story</p>
+      <p data-reveal class="lbl" style="color:var(--umber);margin-bottom:18px;" data-i18n="about.eyebrow">Our Story</p>
       <h2 data-reveal data-i18n-html="about.title" style="font-family:'Poppins',sans-serif;font-weight:500;font-size:clamp(44px,5vw,70px);color:var(--navy);line-height:.91;margin-bottom:30px;">
         Under<br>the Ubud<br><em style="color:var(--umber);font-weight:400;">Sky</em>
       </h2>
-      <p data-reveal data-i18n="about.p1" style="font-family:'Poppins',sans-serif;font-weight:300;color:rgba(15,27,53,.6);font-size:15px;line-height:1.85;margin-bottom:18px;">
+      <p data-reveal data-i18n="about.p1" style="font-family:'Poppins',sans-serif;font-weight:300;color:rgba(18,34,61,.6);font-size:15px;line-height:1.85;margin-bottom:18px;">
         At Ceremonia, we treat eating as something sacred. From our rooftop above Ubud, we cook local ingredients with techniques gathered from around the world.
       </p>
-      <p data-reveal data-i18n="about.p2" style="font-family:'Poppins',sans-serif;font-weight:300;color:rgba(15,27,53,.6);font-size:15px;line-height:1.85;margin-bottom:44px;">
+      <p data-reveal data-i18n="about.p2" style="font-family:'Poppins',sans-serif;font-weight:300;color:rgba(18,34,61,.6);font-size:15px;line-height:1.85;margin-bottom:44px;">
         From the first pour of Kintamani coffee at dawn to the last cocktail under the stars, we take our time. This is Bali, and nothing here is rushed.
       </p>
       <div data-reveal class="about-stats" style="display:flex;gap:40px;flex-wrap:wrap;">
         <div>
           <p style="font-family:'Poppins',sans-serif;font-size:50px;font-weight:500;color:var(--navy);line-height:1;">9:00</p>
-          <p class="lbl" style="color:rgba(15,27,53,.4);font-size:9px;margin-top:4px;" data-i18n="about.s1">Opens Daily</p>
+          <p class="lbl" style="color:rgba(18,34,61,.4);font-size:9px;margin-top:4px;" data-i18n="about.s1">Opens Daily</p>
         </div>
         <div>
           <p style="font-family:'Poppins',sans-serif;font-size:50px;font-weight:500;color:var(--navy);line-height:1;">11<small style="font-size:26px;font-weight:400;">PM</small></p>
-          <p class="lbl" style="color:rgba(15,27,53,.4);font-size:9px;margin-top:4px;" data-i18n="about.s2">Last Orders</p>
+          <p class="lbl" style="color:rgba(18,34,61,.4);font-size:9px;margin-top:4px;" data-i18n="about.s2">Last Orders</p>
         </div>
         <div>
           <p style="font-family:'Poppins',sans-serif;font-size:50px;font-weight:500;color:var(--navy);line-height:1;">3<small style="font-size:26px;font-weight:400;">fl.</small></p>
-          <p class="lbl" style="color:rgba(15,27,53,.4);font-size:9px;margin-top:4px;" data-i18n="about.s3">Rooftop</p>
+          <p class="lbl" style="color:rgba(18,34,61,.4);font-size:9px;margin-top:4px;" data-i18n="about.s3">Rooftop</p>
         </div>
       </div>
     </div>
@@ -789,7 +789,7 @@ body.menu-open{overflow:hidden}
   <img id="jungle-img" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1920&q=85" alt="">
   <div id="jungle-overlay"></div>
   <div id="jungle-text" data-reveal>
-    <p class="lbl" style="color:rgba(212,184,150,.65);margin-bottom:18px;letter-spacing:.6em;">Ubud · Bali</p>
+    <p class="lbl" style="color:rgba(240,227,215,.65);margin-bottom:18px;letter-spacing:.6em;">Ubud · Bali</p>
     <h2 data-i18n-html="jungle.title" style="font-family:'Poppins',sans-serif;font-style:italic;font-weight:400;font-size:clamp(44px,7vw,96px);color:var(--ivory);line-height:.93;letter-spacing:-.01em;">
       On Ubud's<br>main street
     </h2>
@@ -864,7 +864,7 @@ body.menu-open{overflow:hidden}
       </div>
     </div>
     <div data-reveal style="text-align:right;margin-top:16px;">
-      <a href="https://instagram.com/ceremonia_rooftop_ubud" target="_blank" class="lbl" style="color:rgba(15,27,53,.38);font-size:9px;transition:color .25s;" onmouseover="this.style.color='#8B6F47'" onmouseout="this.style.color='rgba(15,27,53,.38)'">@ceremonia_rooftop_ubud ↗</a>
+      <a href="https://instagram.com/ceremonia_rooftop_ubud" target="_blank" class="lbl" style="color:rgba(18,34,61,.38);font-size:9px;transition:color .25s;" onmouseover="this.style.color='#8B6F47'" onmouseout="this.style.color='rgba(18,34,61,.38)'">@ceremonia_rooftop_ubud ↗</a>
     </div>
   </div>
 </section>
@@ -888,7 +888,7 @@ body.menu-open{overflow:hidden}
         </div>
         <div>
           <p class="lbl" style="color:var(--gold);font-size:9px;margin-bottom:10px;" data-i18n="visit.contact">Contact</p>
-          <a href="mailto:ceremoniaubud@gmail.com" style="font-family:'Poppins',sans-serif;font-weight:300;color:rgba(245,240,232,.42);font-size:13px;transition:color .25s;" onmouseover="this.style.color='#D4B896'" onmouseout="this.style.color='rgba(245,240,232,.42)'">ceremoniaubud@gmail.com</a>
+          <a href="mailto:ceremoniaubud@gmail.com" style="font-family:'Poppins',sans-serif;font-weight:300;color:rgba(245,240,232,.42);font-size:13px;transition:color .25s;" onmouseover="this.style.color='#f0e3d7'" onmouseout="this.style.color='rgba(245,240,232,.42)'">ceremoniaubud@gmail.com</a>
         </div>
         <div style="display:flex;align-items:flex-end;">
           <a href="https://wa.me/6285337107649" target="_blank" class="btn-leaf">
@@ -918,8 +918,8 @@ body.menu-open{overflow:hidden}
         <path id="tw-path" fill="none"/>
         <linearGradient id="tw-grad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stop-color="#F5F0E8" stop-opacity=".14"/>
-          <stop offset=".5" stop-color="#D4B896" stop-opacity=".10"/>
-          <stop offset="1" stop-color="#D4B896" stop-opacity=".04"/>
+          <stop offset=".5" stop-color="#f0e3d7" stop-opacity=".10"/>
+          <stop offset="1" stop-color="#f0e3d7" stop-opacity=".04"/>
         </linearGradient>
       </defs>
       <path id="tw-band" class="tw-band"/>
@@ -942,13 +942,13 @@ body.menu-open{overflow:hidden}
       </svg>
     </a>
   </div>
-  <div style="border-top:1px solid rgba(212,184,150,.07);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+  <div style="border-top:1px solid rgba(240,227,215,.07);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
     <span class="lbl" style="color:rgba(245,240,232,.18);font-size:9px;">Ceremonia Rooftop Ubud</span>
-    <a href="/privacy" data-i18n="footer.legal" style="font-family:'Poppins',sans-serif;color:rgba(245,240,232,.3);font-size:10px;letter-spacing:.1em;text-decoration:underline;text-underline-offset:3px;transition:color .25s;" onmouseover="this.style.color='#D4B896'" onmouseout="this.style.color='rgba(245,240,232,.3)'">Privacy &amp; Legal Notice</a>
+    <a href="/privacy" data-i18n="footer.legal" style="font-family:'Poppins',sans-serif;color:rgba(245,240,232,.3);font-size:10px;letter-spacing:.1em;text-decoration:underline;text-underline-offset:3px;transition:color .25s;" onmouseover="this.style.color='#f0e3d7'" onmouseout="this.style.color='rgba(245,240,232,.3)'">Privacy &amp; Legal Notice</a>
     <span data-i18n="footer.rights" style="font-family:'Poppins',sans-serif;color:rgba(245,240,232,.14);font-size:10px;letter-spacing:.1em;">© 2025 · All rights reserved</span>
   </div>
   <div style="text-align:center;margin-top:20px;">
-    <a href="https://impartialgames.com" target="_blank" rel="noopener" style="font-family:'Poppins',sans-serif;font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:rgba(212,184,150,.5);text-decoration:underline;text-underline-offset:3px;transition:color .25s;" onmouseover="this.style.color='#D4B896'" onmouseout="this.style.color='rgba(212,184,150,.5)'">Crafted by Impartial Games</a>
+    <a href="https://impartialgames.com" target="_blank" rel="noopener" style="font-family:'Poppins',sans-serif;font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:rgba(240,227,215,.5);text-decoration:underline;text-underline-offset:3px;transition:color .25s;" onmouseover="this.style.color='#f0e3d7'" onmouseout="this.style.color='rgba(240,227,215,.5)'">Crafted by Impartial Games</a>
   </div>
 </footer>
 
@@ -1074,7 +1074,7 @@ function initParticles(){
       p.y-=p.spd;p.x+=Math.sin(p.ph+p.y*.009)*p.dx;p.ph+=.004;
       if(p.y<-8){Object.assign(p,make());p.x=Math.random()*W}
       ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(212,184,150,${p.a})`;ctx.fill();
+      ctx.fillStyle=`rgba(240,227,215,${p.a})`;ctx.fill();
     });
     requestAnimationFrame(draw);
   }
@@ -1097,8 +1097,8 @@ function initCursor(){
   document.addEventListener('mousedown',()=>dot.classList.add('clicked'));
   document.addEventListener('mouseup',()=>dot.classList.remove('clicked'));
   document.querySelectorAll('a,button,.btn').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px';ring.style.borderColor='rgba(212,184,150,.7)'});
-    el.addEventListener('mouseleave',()=>{ring.style.width='24px';ring.style.height='24px';ring.style.borderColor='rgba(212,184,150,.3)'});
+    el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px';ring.style.borderColor='rgba(240,227,215,.7)'});
+    el.addEventListener('mouseleave',()=>{ring.style.width='24px';ring.style.height='24px';ring.style.borderColor='rgba(240,227,215,.3)'});
   });
   (function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
 }
@@ -1117,13 +1117,13 @@ const REVIEWS=[
   {n:'Calista R.', i:'C', c:'#7d9a59', t:'Superb spot, warm and friendly staff. Lovely atmosphere with a beautiful rooftop, and the food is great too. Highly recommend in Ubud.'},
   {n:'Mathilde F.',i:'M', c:'#8b6f47', t:'An exceptional address. Ceremonia is a real gem: refined cuisine, a sublime setting, and attentive, professional, kind service.'},
   {n:'Andaine S.', i:'A', c:'#5a8f74', t:'Three weeks in Bali and this is where we ate the best! Everything excellent and beautifully presented, with a superb rooftop. A must-visit.'},
-  {n:'Vana L.',    i:'V', c:'#d4b896', t:'A wonderful find in the heart of Ubud. The dishes are as good as they are beautiful, the staff attentive, the owner adorable. Highly recommend!'},
+  {n:'Vana L.',    i:'V', c:'#f0e3d7', t:'A wonderful find in the heart of Ubud. The dishes are as good as they are beautiful, the staff attentive, the owner adorable. Highly recommend!'},
   {n:'Barbara A.', i:'B', c:'#6d894c', t:'A superb spot in Bali, a little haven of peace, cosy and warm. Delicious food, wonderful cocktails, and simply impeccable service.'},
   {n:'Emilia C.',  i:'E', c:'#c98a3c', t:'Magnificent restaurant on the main street. Warm welcome, friendly staff and food worthy of a gourmet table. The desserts are to die for!'},
   {n:'Louis D.',   i:'L', c:'#7d9a59', t:'Quite possibly the best restaurant in Ubud. Ideally located with an open terrace, warmth and delicious food. Highly recommend.'},
   {n:'Kina L.',    i:'K', c:'#8b6f47', t:'A beautiful discovery, such a friendly welcome. Everything is an explosion of flavor. A true haven of peace in the heart of Ubud.'},
   {n:'Céline R.',  i:'C', c:'#5a8f74', t:'Great address in Ubud. Every dish was a delight. Tasteful decor, attentive service, and a rooftop overlooking the street.'},
-  {n:'Rose H.',    i:'R', c:'#d4b896', t:'Excellent restaurant: elaborate cocktails, delicious and varied dishes in a chic, warm setting. I recommend it with my eyes closed.'},
+  {n:'Rose H.',    i:'R', c:'#f0e3d7', t:'Excellent restaurant: elaborate cocktails, delicious and varied dishes in a chic, warm setting. I recommend it with my eyes closed.'},
   {n:'Arnaud D.',  i:'A', c:'#6d894c', t:'Great cocktails and tasty snacks! The place is gorgeous, you feel wonderful on this rooftop.'},
 ];
 function initReviews(){
