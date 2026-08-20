@@ -211,9 +211,10 @@ const gSel=document.getElementById("r-guests");
 for(let i=1;i<=12;i++)gSel.insertAdjacentHTML("beforeend",`<option value="${i}">${i}</option>`);
 gSel.value="2";
 const dateIn=document.getElementById("r-date");
-const today=new Date(), max=new Date(Date.now()+90*864e5);
-const iso=d=>d.toISOString().slice(0,10);
-dateIn.min=iso(today);dateIn.max=iso(max);dateIn.value=iso(today);
+/* dates computed in Bali time, whatever the visitor's device clock says:
+   the database refuses dates already past in Bali */
+const baliDate=days=>new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Makassar"}).format(new Date(Date.now()+(days||0)*864e5));
+dateIn.min=baliDate(0);dateIn.max=baliDate(90);dateIn.value=baliDate(0);
 
 /* ─── submit ─── */
 const CONFIGURED=!window.SUPABASE_URL.includes("YOUR-");
@@ -245,7 +246,10 @@ form.addEventListener("submit",async e=>{
   }catch(err){
     errEl.style.display="block";
     const d=document.getElementById("rsv-errd");
-    d.textContent=(err&&(err.message||err.code))||String(err);
+    const msg=(err&&(err.message||err.code))||String(err);
+    d.textContent=/row-level security/i.test(msg)
+      ?"The selected date is already past in Bali time. Please choose today or a future date."
+      :msg;
     d.style.display="block";
     btn.disabled=false;
   }
