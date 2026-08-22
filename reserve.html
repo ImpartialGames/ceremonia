@@ -289,15 +289,8 @@ function showDone(row){
   if(typeof gtag==="function")gtag("event","reservation_request",{
     reservation_date:row.date,time_slot:row.time_slot,party_size:row.party_size
   });
-  /* Email ping to the team, fire and forget (same FormSubmit inbox as careers) */
-  try{
-    fetch("https://formsubmit.co/ajax/ceremoniaubud@gmail.com",{
-      method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
-      body:JSON.stringify({_subject:"✦ Table Reservation · Ceremonia",_template:"table",_captcha:"false",
-        Name:row.name,Email:row.email,WhatsApp:row.phone||"",Date:row.date,Time:row.time_slot,
-        Guests:String(row.party_size),Requests:row.notes||""})
-    }).catch(()=>{});
-  }catch(e){}
+  /* The "new request" email to the team is sent by the database trigger
+     (notify_new_request), nothing to do from the browser any more */
 }
 </script>
 </body>
