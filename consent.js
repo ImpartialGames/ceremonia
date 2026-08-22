@@ -42,9 +42,9 @@
         +'#ck-banner p{font-size:12px;font-weight:300;line-height:1.7;color:rgba(245,240,232,.75);margin:0 0 14px}'
         +'#ck-banner a{color:#f0e3d7;text-decoration:underline;text-underline-offset:3px}'
         +'#ck-banner .ck-row{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}'
-        +'#ck-banner button{font-family:Poppins,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;padding:10px 20px;border-radius:30px;transition:all .25s}'
-        +'#ck-accept{background:#f0e3d7;color:#12223d;border:1px solid #f0e3d7;font-weight:600}'
-        +'#ck-accept:hover{background:transparent;color:#f0e3d7}'
+        +'#ck-banner button{font-family:Poppins,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;padding:10px 20px;border-radius:6px;transition:all .25s}'
+        +'#ck-accept{background:transparent;color:#f0e3d7;border:1px solid #f0e3d7;font-weight:600}'
+        +'#ck-accept:hover{background:#f0e3d7;color:#12223d}'
         +'#ck-decline{background:transparent;color:rgba(245,240,232,.55);border:1px solid rgba(240,227,215,.3)}'
         +'#ck-decline:hover{color:#f0e3d7;border-color:#f0e3d7}';
       document.head.appendChild(css);
