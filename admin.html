@@ -117,6 +117,9 @@ header.bar h1{font-family:'Poppins',sans-serif;font-weight:500;font-size:26px}
 .fixrow{display:none;margin-top:12px;padding-top:12px;border-top:1px dashed rgba(240,227,215,.2);align-items:center;gap:10px;flex-wrap:wrap}
 .fixrow.show{display:flex}
 .fixrow span{font-size:10px;color:rgba(245,240,232,.45);letter-spacing:.1em;text-transform:uppercase}
+.rbtn{font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:999px;
+  border:1px solid rgba(240,227,215,.4);background:none;color:var(--gold);transition:all .2s}
+.rbtn:hover{background:var(--gold);color:var(--navy)}
 select.st{background:rgba(14,25,46,.7);border:1px solid rgba(240,227,215,.3);border-radius:20px;color:var(--ivory);
   font-family:'Poppins',sans-serif;font-size:11px;padding:8px 12px;outline:none}
 
@@ -304,14 +307,15 @@ function renderRequests(rows,today){
   }
   box.classList.remove("quiet");
   box.innerHTML=`<h2><span class="count-dot">${rows.length}</span> New request${rows.length>1?"s":""}</h2>
-    <p class="sub">Guests are waiting for an answer. Accept or refuse, then confirm by WhatsApp.</p>`
+    <p class="sub">Guests are waiting for an answer. Accept, or refuse with a reason: the guest is notified by email automatically.</p>`
     +rows.map(r=>`
     <div class="card${isLate(r,today)?" late":""}">
       ${cardTop(r,today,true)}
       <div class="c-acts">
         <button class="act ok" data-do="confirmed" data-id="${r.id}">✓ Accept</button>
-        <button class="act no" data-do="cancelled" data-id="${r.id}">✗ Refuse</button>
+        <button class="act no" data-decl="${r.id}">✗ Refuse</button>
       </div>
+      ${declineRow(r)}
     </div>`).join("");
 }
 
@@ -325,8 +329,24 @@ function nextAction(r,today){
   }
   if(r.status==="seated")return `<span style="font-size:10px;color:rgba(245,240,232,.35);letter-spacing:.06em">table frees automatically 2 hours after the booking time</span>`;
   if(r.status==="pending")return `<button class="act ok" data-do="confirmed" data-id="${r.id}">✓ Accept</button>
-    <button class="act no" data-do="cancelled" data-id="${r.id}">✗ Refuse</button>`;
+    <button class="act no" data-decl="${r.id}">✗ Refuse</button>`;
   return "";
+}
+function declineRow(r){
+  return `<div class="fixrow" id="decl-${r.id}">
+    <span>Reason sent to the guest</span>
+    <button class="rbtn" data-dodecl="fully_booked" data-id="${r.id}">Fully booked</button>
+    <button class="rbtn" data-dodecl="closed" data-id="${r.id}">Closed that day</button>
+    <button class="rbtn" data-dodecl="group" data-id="${r.id}">Group too large</button>
+    <button class="rbtn" data-dodecl="other" data-id="${r.id}">Other</button>
+  </div>`;
+}
+async function decline(id,reason){
+  let {error}=await sb.from("reservations").update({status:"cancelled",decline_reason:reason}).eq("id",id);
+  /* fallback if the decline_reason migration has not been run yet */
+  if(error&&/decline_reason/i.test(error.message||""))({error}=await sb.from("reservations").update({status:"cancelled"}).eq("id",id));
+  toast(error?"Could not save, try again":"Refused. The guest is being notified by email",!!error);
+  if(!error)load();
 }
 function card(r,today,dup,showDate){
   const inactive=r.status==="cancelled"||r.status==="no_show";
@@ -337,6 +357,7 @@ function card(r,today,dup,showDate){
     <div class="c-acts">${acts}
       <button class="fixlink" data-fix="${r.id}">fix a mistake</button>
     </div>
+    ${r.status==="pending"?declineRow(r):""}
     <div class="fixrow" id="fix-${r.id}">
       <span>Set status</span>
       <select class="st" data-id="${r.id}">
@@ -378,6 +399,10 @@ async function setField(id,patch,okMsg){
   if(!error)load();
 }
 document.addEventListener("click",e=>{
+  const dcl=e.target.closest("[data-decl]");
+  if(dcl){const b=dcl.closest(".card").querySelector('[id^="decl-"]');if(b)b.classList.toggle("show");return;}
+  const dr=e.target.closest("[data-dodecl]");
+  if(dr){decline(dr.dataset.id,dr.dataset.dodecl);return;}
   const doBtn=e.target.closest("[data-do]");
   if(doBtn){
     const msg={confirmed:"Accepted ✓ You can send the WhatsApp confirmation",cancelled:"Refused",seated:"Welcome! Marked at the table",no_show:"Marked no show, table is free"}[doBtn.dataset.do];
