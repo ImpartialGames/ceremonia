@@ -345,8 +345,20 @@ function assignFields(r,dup){
   </div>`;
 }
 function billField(r){
-  return `<div class="c-assign">
-    <div class="af"><label>Bill excl. tax (Rp)</label><input type="number" min="0" step="1000" inputmode="numeric" data-f="spend_amount" data-id="${r.id}" value="${r.spend_amount==null?"":r.spend_amount}" placeholder="e.g. 450000" style="width:140px"></div>
+  const set=r.spend_amount!=null;
+  return `<div class="c-assign" id="bill-${r.id}">
+    <div class="af bill-edit"${set?' style="display:none"':""}>
+      <label>Bill excl. tax (Rp)</label>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input type="number" min="0" step="1000" inputmode="numeric" class="bill-in" value="${set?r.spend_amount:""}" placeholder="e.g. 450000" style="width:140px">
+        <button class="act ok" data-billsave="${r.id}">✓ Validate</button>
+      </div>
+    </div>
+    <div class="af bill-view"${set?"":' style="display:none"'}>
+      <label>Bill excl. tax</label>
+      <span style="font-size:14px;color:var(--gold);display:flex;align-items:center;gap:10px">Rp ${set?Number(r.spend_amount).toLocaleString("en-US"):""}
+        <button class="fixlink" data-billfix="${r.id}">fix a mistake</button></span>
+    </div>
   </div>`;
 }
 function cardTop(r,today,showDate){
@@ -488,6 +500,18 @@ document.addEventListener("click",e=>{
     const msg={confirmed:"Accepted ✓ You can send the WhatsApp confirmation",cancelled:"Refused",seated:"Welcome! Marked at the table",no_show:"Marked no show, table is free"}[doBtn.dataset.do];
     setField(doBtn.dataset.id,{status:doBtn.dataset.do},msg||"Saved");return;
   }
+  const bs=e.target.closest("[data-billsave]");
+  if(bs){
+    const inp=$("bill-"+bs.dataset.billsave).querySelector(".bill-in");
+    const v=inp.value===""?null:Math.max(0,Math.round(Number(inp.value)));
+    setField(bs.dataset.billsave,{spend_amount:v},v==null?"Bill cleared":"Bill saved ✓");return;
+  }
+  const bf=e.target.closest("[data-billfix]");
+  if(bf){
+    const box=$("bill-"+bf.dataset.billfix);
+    box.querySelector(".bill-view").style.display="none";
+    const ed=box.querySelector(".bill-edit");ed.style.display="";ed.querySelector(".bill-in").focus();return;
+  }
   const fx=e.target.closest("[data-fix]");
   if(fx){$("fix-"+fx.dataset.fix).classList.toggle("show");return;}
   const t=e.target.closest("#filters .tab");
@@ -498,7 +522,6 @@ document.addEventListener("change",e=>{
   if(el.matches("select.st")){setField(el.dataset.id,{status:el.value},"Status changed");return;}
   if(el.dataset&&el.dataset.f){
     let v=el.value.trim()||null;
-    if(el.dataset.f==="spend_amount")v=el.value===""?null:Math.max(0,Math.round(Number(el.value)));
     setField(el.dataset.id,{[el.dataset.f]:v},"Saved");return;
   }
   if(el.id==="day"){day=el.value;load();}
