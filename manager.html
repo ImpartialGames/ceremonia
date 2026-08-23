@@ -58,6 +58,8 @@ header.bar h1{font-weight:500;font-size:26px}
 .rbtn:hover{background:var(--gold);color:var(--navy)}
 .rbtn.del{color:var(--red);border-color:rgba(226,169,160,.4)}
 .rbtn.del:hover{background:var(--red);color:var(--navy)}
+.archhdr{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,227,215,.55);
+  margin:34px 0 4px;border-top:1px solid rgba(240,227,215,.15);padding-top:20px}
 table.gt{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
 table.gt th{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,227,215,.6);text-align:left;padding:7px 8px;border-bottom:1px solid rgba(240,227,215,.2)}
 table.gt td{padding:8px;border-bottom:1px solid rgba(240,227,215,.08);color:rgba(245,240,232,.85);vertical-align:middle}
@@ -180,7 +182,7 @@ function render(guides,rows){
   const cameRows=rows.filter(came);
   const billTotal=cameRows.reduce((n,r)=>n+(r.spend_amount||0),0);
   $("summary").innerHTML=`<b>${esc(GMONTH)}</b> · ${cameRows.length} guide reservations came · ${cameRows.reduce((n,r)=>n+r.party_size,0)} guests · billed ${money(billTotal)} · total commissions <b>${money(billTotal*0.1)}</b>`;
-  let html=guides.map(x=>{
+  function gcard(x){
     const list=byCode[x.code.toUpperCase()]||[];
     const ok=list.filter(came);
     const bill=ok.reduce((n,r)=>n+(r.spend_amount||0),0);
@@ -190,8 +192,7 @@ function render(guides,rows){
         <span class="gcode">${esc(x.code)}</span>
         ${x.phone?`<a class="gph" href="https://wa.me/${esc(String(x.phone).replace(/[^0-9]/g,""))}" target="_blank" rel="noopener">${esc(x.phone)}</a>`:""}
         <button class="rbtn" data-copy="${esc(x.code)}" type="button">Copy link</button>
-        <button class="rbtn" data-gactive="${x.id}" data-to="${x.active?0:1}" type="button">${x.active?"Disable":"Enable"}</button>
-        <button class="rbtn del" data-gdel="${x.id}" data-gname="${esc(x.name)}" type="button">Delete</button>
+        <button class="rbtn${x.active?" del":""}" data-gactive="${x.id}" data-to="${x.active?0:1}" type="button">${x.active?"Archive":"Restore"}</button>
         <div class="gstats">
           <span><b>${ok.length}</b> came</span>
           <span><b>${ok.reduce((n,r)=>n+r.party_size,0)}</b> guests</span>
@@ -201,7 +202,9 @@ function render(guides,rows){
       </div>
       ${list.length?bookingRows(list):`<p class="empty">No reservations with this code in ${esc(GMONTH)}.</p>`}
     </div>`;
-  }).join("");
+  }
+  const act=guides.filter(x=>x.active),arch=guides.filter(x=>!x.active);
+  let html=act.map(gcard).join("");
   const unknown=Object.keys(byCode).filter(c=>!known.has(c));
   html+=unknown.map(c=>{
     const list=byCode[c],ok=list.filter(came),bill=ok.reduce((n,r)=>n+(r.spend_amount||0),0);
@@ -210,6 +213,11 @@ function render(guides,rows){
       <div class="gstats"><span><b>${ok.length}</b> came</span><span class="due">10% · ${money(bill*0.1)}</span></div>
     </div>${bookingRows(list)}</div>`;
   }).join("");
+  if(arch.length){
+    html+=`<h3 class="archhdr">Archive · ${arch.length}</h3>
+      <p class="empty">Archived guides: their referral code no longer works on the booking form. Restore to reactivate it.</p>`
+      +arch.map(gcard).join("");
+  }
   if(!guides.length&&!unknown.length)html=`<p class="empty">No guides yet. Add the first one above, then give them their referral link.</p>`;
   $("glist").innerHTML=html;
 }
@@ -218,12 +226,10 @@ document.addEventListener("click",e=>{
   const cp=e.target.closest("[data-copy]");
   if(cp){navigator.clipboard.writeText("https://www.ceremonia-rooftop.com/reserve?ref="+cp.dataset.copy).then(()=>toast("Referral link copied"));return;}
   const ga=e.target.closest("[data-gactive]");
-  if(ga){sb.from("guides").update({active:ga.dataset.to==="1"}).eq("id",ga.dataset.gactive).then(({error})=>{toast(error?"Could not save":"Saved");if(!error)load();});return;}
-  const gd=e.target.closest("[data-gdel]");
-  if(gd){
-    if(!confirm(`Delete guide ${gd.dataset.gname}?\n\nTheir code stops working for new bookings right away. Past reservations keep the code and show under "Unknown code".\n\nTip: use Disable instead to pause a guide without losing them.`))return;
-    sb.from("guides").delete().eq("id",gd.dataset.gdel).then(({error})=>{
-      toast(error?"Could not delete. Run migration 07 in Supabase first":"Guide deleted",!!error);
+  if(ga){
+    const restoring=ga.dataset.to==="1";
+    sb.from("guides").update({active:restoring}).eq("id",ga.dataset.gactive).then(({error})=>{
+      toast(error?"Could not save":(restoring?"Guide restored, the code works again":"Guide archived, the code is inactive"));
       if(!error)load();
     });
     return;
