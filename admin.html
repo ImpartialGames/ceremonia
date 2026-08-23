@@ -210,6 +210,7 @@ select.st{background:rgba(14,25,46,.7);border:1px solid rgba(240,227,215,.3);bor
 
 </div>
 <datalist id="servers-dl"></datalist>
+<datalist id="guides-dl"></datalist>
 <div id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -289,8 +290,13 @@ function mainQuery(today){
     .order("date",{ascending:false}).order("time_slot",{ascending:false}).limit(200); /* ponytail: last 200 only, add pagination if history grows */
   return t.eq("date",day).order("time_slot");
 }
+let GUIDES=[];
 async function load(){
   $("day").value=day;
+  if(!GUIDES.length){
+    const g=await sb.from("guide_codes").select("code");
+    if(g.data&&g.data.length){GUIDES=g.data.map(x=>x.code);$("guides-dl").innerHTML=GUIDES.sort().map(c=>`<option value="${esc(c)}">`).join("");}
+  }
   $("dayhead").classList.toggle("show",filt!=="history");
   $("day-title").textContent=fmtDate(day);
   const today=isoLocal(new Date());
@@ -358,6 +364,21 @@ function billField(r){
       <label>Bill excl. tax</label>
       <span style="font-size:14px;color:var(--gold);display:flex;align-items:center;gap:10px">Rp ${set?Number(r.spend_amount).toLocaleString("en-US"):""}
         <button class="fixlink" data-billfix="${r.id}">fix a mistake</button></span>
+    </div>
+  </div>`;
+}
+function guideField(r){
+  const set=!!r.guide_code;
+  return `<div class="c-assign" id="guide-${r.id}">
+    <div class="af guide-edit" style="display:none">
+      <label>Guide code</label>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input class="guide-in" list="guides-dl" value="${esc(r.guide_code||"")}" maxlength="24" placeholder="e.g. WAYAN-01" style="width:140px;text-transform:uppercase">
+        <button class="act ok" data-guidesave="${r.id}">✓ Validate</button>
+      </div>
+    </div>
+    <div class="af guide-view">
+      <button class="fixlink" data-guidefix="${r.id}">${set?"fix guide code":"+ add guide code"}</button>
     </div>
   </div>`;
 }
@@ -433,6 +454,7 @@ function card(r,today,dup,showDate){
     ${cardTop(r,today,showDate)}
     ${ACTIVE.includes(r.status)?assignFields(r,dup):""}
     ${r.status==="seated"||r.status==="completed"?billField(r):""}
+    ${inactive?"":guideField(r)}
     <div class="c-acts">${acts}
       <button class="fixlink" data-fix="${r.id}">fix a mistake</button>
     </div>
@@ -511,6 +533,24 @@ document.addEventListener("click",e=>{
     const box=$("bill-"+bf.dataset.billfix);
     box.querySelector(".bill-view").style.display="none";
     const ed=box.querySelector(".bill-edit");ed.style.display="";ed.querySelector(".bill-in").focus();return;
+  }
+  const gs=e.target.closest("[data-guidesave]");
+  if(gs){
+    const inp=$("guide-"+gs.dataset.guidesave).querySelector(".guide-in");
+    const c=inp.value.trim().toUpperCase().replace(/[^A-Z0-9-]/g,"").slice(0,24);
+    if(!c){setField(gs.dataset.guidesave,{guide_code:null},"Guide code removed");return;}
+    /* only codes registered in the manager space are accepted, same rule as the booking form */
+    sb.from("guide_codes").select("code").eq("code",c).limit(1).then(({data,error})=>{
+      if(!error&&(!data||!data.length)){toast("Unknown guide code. Check it in the manager space",true);return;}
+      setField(gs.dataset.guidesave,{guide_code:c},"Guide code saved ✓");
+    });
+    return;
+  }
+  const gf=e.target.closest("[data-guidefix]");
+  if(gf){
+    const box=$("guide-"+gf.dataset.guidefix);
+    box.querySelector(".guide-view").style.display="none";
+    const ed=box.querySelector(".guide-edit");ed.style.display="";ed.querySelector(".guide-in").focus();return;
   }
   const fx=e.target.closest("[data-fix]");
   if(fx){$("fix-"+fx.dataset.fix).classList.toggle("show");return;}
