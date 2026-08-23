@@ -79,6 +79,11 @@ a{text-decoration:none;color:inherit}
 .f-note a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
 /* honeypot: invisible to humans, tempting to bots */
 .f-web{position:absolute;left:-5000px;top:0;width:1px;height:1px;overflow:hidden}
+.f-seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;padding:11px 18px;border:1px solid rgba(240,227,215,.25);border-radius:999px;
+  font-size:12px;font-weight:300;color:rgba(245,240,232,.6);cursor:pointer;transition:all .2s}
+.seg input:checked+span{border-color:var(--gold);background:var(--gold);color:var(--navy);font-weight:500}
 #rsv-submit{display:block;width:100%;font-family:'Poppins',sans-serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;
   background:transparent;color:var(--gold);border:1px solid var(--gold);padding:16px 28px;border-radius:6px;
   transition:background .3s,color .3s}
@@ -143,6 +148,17 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
       </div>
       <p class="f-note" data-i18n-html="r.groupnote">More than 12 guests? Write to us on <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, we love big tables.</p>
       <div class="f-field">
+        <label data-i18n="r.bring">Booking with a guide or driver?</label>
+        <div class="f-seg">
+          <label class="seg"><input type="radio" name="r-src" value="direct" checked><span data-i18n="r.direct">No, directly</span></label>
+          <label class="seg"><input type="radio" name="r-src" value="guide"><span data-i18n="r.viaguide">Yes, with a guide</span></label>
+        </div>
+      </div>
+      <div class="f-field" id="f-ref" style="display:none">
+        <label for="r-ref" data-i18n="r.refcode">Guide reference code</label>
+        <input id="r-ref" type="text" maxlength="24" placeholder="WAYAN10" style="text-transform:uppercase">
+      </div>
+      <div class="f-field">
         <label for="r-notes" data-i18n="r.notes">Special requests (optional)</label>
         <textarea id="r-notes" maxlength="500"></textarea>
       </div>
@@ -184,6 +200,10 @@ const I18N={
  "r.guests":{en:"Guests",fr:"Nombre de personnes",id:"Jumlah tamu",es:"Personas"},
  "r.groupnote":{en:'More than 12 guests? Write to us on <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, we love big tables.',fr:'Plus de 12 personnes ? Écrivez-nous sur <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, nous adorons les grandes tablées.',id:'Lebih dari 12 tamu? Hubungi kami di <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, kami suka meja besar.',es:'¿Más de 12 personas? Escríbenos por <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, nos encantan las mesas grandes.'},
  "r.notes":{en:"Special requests (optional)",fr:"Demandes particulières (optionnel)",id:"Permintaan khusus (opsional)",es:"Peticiones especiales (opcional)"},
+ "r.bring":{en:"Booking with a guide or driver?",fr:"Réservation via un guide ou un chauffeur ?",id:"Reservasi melalui pemandu atau sopir?",es:"¿Reserva a través de un guía o conductor?"},
+ "r.direct":{en:"No, directly",fr:"Non, en direct",id:"Tidak, langsung",es:"No, directamente"},
+ "r.viaguide":{en:"Yes, with a guide",fr:"Oui, avec un guide",id:"Ya, dengan pemandu",es:"Sí, con un guía"},
+ "r.refcode":{en:"Guide reference code",fr:"Code référence du guide",id:"Kode referensi pemandu",es:"Código de referencia del guía"},
  "r.latenote":{en:"Please arrive on time: your table is held for 15 minutes after the reservation time. After that, the reservation may be cancelled and the table released for other guests.",fr:"Merci d'arriver à l'heure : votre table est gardée 15 minutes après l'heure de la réservation. Passé ce délai, la réservation peut être annulée et la table proposée à d'autres clients.",id:"Mohon datang tepat waktu: meja Anda ditahan selama 15 menit setelah jam reservasi. Setelah itu, reservasi dapat dibatalkan dan meja diberikan kepada tamu lain.",es:"Por favor llega a tiempo: tu mesa se mantiene reservada durante 15 minutos después de la hora de la reserva. Pasado ese tiempo, la reserva puede cancelarse y la mesa quedar libre para otros clientes."},
  "r.submit":{en:"Send my request",fr:"Envoyer ma demande",id:"Kirim permintaan",es:"Enviar mi solicitud"},
  "r.error":{en:'Something went wrong. Please try again, or reserve directly on <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>.',fr:'Une erreur est survenue. Réessayez, ou réservez directement sur <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>.',id:'Terjadi kesalahan. Silakan coba lagi, atau pesan langsung melalui <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>.',es:'Algo salió mal. Inténtalo de nuevo, o reserva directamente por <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>.'},
@@ -225,6 +245,16 @@ const CCS=[["🇮🇩","+62"],["🇦🇺","+61"],["🇫🇷","+33"],["🇬🇧",
 const ccSel=document.getElementById("r-cc");
 ccSel.innerHTML=CCS.map(c=>`<option value="${c[1]}">${c[0]} ${c[1]}</option>`).join("");
 ccSel.value="+62";
+/* guide referral: toggle the code field, and prefill from ?ref= links given to guides */
+document.querySelectorAll('input[name="r-src"]').forEach(x=>x.addEventListener("change",()=>{
+  document.getElementById("f-ref").style.display=document.querySelector('input[name="r-src"]:checked').value==="guide"?"":"none";
+}));
+const refParam=new URLSearchParams(location.search).get("ref");
+if(refParam){
+  document.querySelector('input[name="r-src"][value="guide"]').checked=true;
+  document.getElementById("f-ref").style.display="";
+  document.getElementById("r-ref").value=refParam.toUpperCase().replace(/[^A-Z0-9-]/g,"").slice(0,24);
+}
 const dateIn=document.getElementById("r-date");
 /* everything computed in Bali time, whatever the visitor's device clock says:
    the database refuses dates already past in Bali */
@@ -277,13 +307,23 @@ form.addEventListener("submit",async e=>{
     date:dateIn.value,
     time_slot:timeSel.value,
     party_size:parseInt(gSel.value,10),
-    notes:document.getElementById("r-notes").value.trim()||null
+    notes:document.getElementById("r-notes").value.trim()||null,
+    guide_code:(function(){
+      const via=document.querySelector('input[name="r-src"]:checked').value==="guide";
+      const c=document.getElementById("r-ref").value.trim().toUpperCase().replace(/[^A-Z0-9-]/g,"").slice(0,24);
+      return via&&c?c:null;
+    })()
   };
   if(document.getElementById("r-web").value){showDone(row);return;} /* bot filled the honeypot: pretend success */
   btn.disabled=true;
   try{
     if(!sb)throw new Error("not configured");
-    const {error}=await sb.from("reservations").insert(row);
+    let {error}=await sb.from("reservations").insert(row);
+    if(error&&row.guide_code&&/guide_code/i.test(error.message||"")){
+      /* guides migration not run yet: keep the booking, drop the code */
+      delete row.guide_code;
+      ({error}=await sb.from("reservations").insert(row));
+    }
     if(error)throw error;
     showDone(row);
   }catch(err){
@@ -304,7 +344,8 @@ function showDone(row){
   /* GA4 conversion event: mark "reservation_request" as a key event in GA4,
      then import it in Google Ads to measure ad conversion rates. */
   if(typeof gtag==="function")gtag("event","reservation_request",{
-    reservation_date:row.date,time_slot:row.time_slot,party_size:row.party_size
+    reservation_date:row.date,time_slot:row.time_slot,party_size:row.party_size,
+    guide:row.guide_code||"direct"
   });
   /* The "new request" email to the team is sent by the database trigger
      (notify_new_request), nothing to do from the browser any more */
