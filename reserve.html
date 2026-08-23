@@ -204,6 +204,7 @@ const I18N={
  "r.direct":{en:"No, directly",fr:"Non, en direct",id:"Tidak, langsung",es:"No, directamente"},
  "r.viaguide":{en:"Yes, with a guide",fr:"Oui, avec un guide",id:"Ya, dengan pemandu",es:"Sí, con un guía"},
  "r.refcode":{en:"Guide reference code",fr:"Code référence du guide",id:"Kode referensi pemandu",es:"Código de referencia del guía"},
+ "r.badcode":{en:"This guide code is not recognized. Please check it with your guide, or choose No, directly.",fr:"Ce code guide n'est pas reconnu. Vérifiez-le avec votre guide, ou choisissez Non, en direct.",id:"Kode pemandu ini tidak dikenali. Periksa dengan pemandu Anda, atau pilih Tidak, langsung.",es:"Este código de guía no se reconoce. Compruébalo con tu guía, o elige No, directamente."},
  "r.latenote":{en:"Please arrive on time: your table is held for 15 minutes after the reservation time. After that, the reservation may be cancelled and the table released for other guests.",fr:"Merci d'arriver à l'heure : votre table est gardée 15 minutes après l'heure de la réservation. Passé ce délai, la réservation peut être annulée et la table proposée à d'autres clients.",id:"Mohon datang tepat waktu: meja Anda ditahan selama 15 menit setelah jam reservasi. Setelah itu, reservasi dapat dibatalkan dan meja diberikan kepada tamu lain.",es:"Por favor llega a tiempo: tu mesa se mantiene reservada durante 15 minutos después de la hora de la reserva. Pasado ese tiempo, la reserva puede cancelarse y la mesa quedar libre para otros clientes."},
  "r.submit":{en:"Send my request",fr:"Envoyer ma demande",id:"Kirim permintaan",es:"Enviar mi solicitud"},
  "r.error":{en:'Something went wrong. Please try again, or reserve directly on <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>.',fr:'Une erreur est survenue. Réessayez, ou réservez directement sur <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>.',id:'Terjadi kesalahan. Silakan coba lagi, atau pesan langsung melalui <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>.',es:'Algo salió mal. Inténtalo de nuevo, o reserva directamente por <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>.'},
@@ -299,6 +300,8 @@ const errEl=document.getElementById("rsv-err");
 form.addEventListener("submit",async e=>{
   e.preventDefault();
   errEl.style.display="none";
+  document.getElementById("rsv-errd").style.display="none";
+  document.getElementById("r-ref").style.borderColor="";
   if(!form.reportValidity())return;
   const row={
     name:document.getElementById("r-name").value.trim(),
@@ -318,6 +321,22 @@ form.addEventListener("submit",async e=>{
   btn.disabled=true;
   try{
     if(!sb)throw new Error("not configured");
+    if(row.guide_code){
+      /* only codes registered by the restaurant are accepted */
+      const chk=await sb.from("guide_codes").select("code").eq("code",row.guide_code).limit(1);
+      if(!chk.error&&(!chk.data||!chk.data.length)){
+        const refEl=document.getElementById("r-ref");
+        refEl.style.borderColor="#E2A9A0";
+        errEl.style.display="block";
+        const d=document.getElementById("rsv-errd");
+        const L=document.documentElement.lang||"en";
+        d.textContent=(I18N["r.badcode"][L]||I18N["r.badcode"].en);
+        d.style.display="block";
+        btn.disabled=false;
+        refEl.focus();
+        return;
+      }
+    }
     let {error}=await sb.from("reservations").insert(row);
     if(error&&row.guide_code&&/guide_code/i.test(error.message||"")){
       /* guides migration not run yet: keep the booking, drop the code */

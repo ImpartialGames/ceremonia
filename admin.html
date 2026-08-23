@@ -53,6 +53,8 @@ header.bar h1{font-family:'Poppins',sans-serif;font-weight:500;font-size:26px}
   background:none;padding:10px 22px;border-radius:30px;transition:all .25s}
 .tab:hover{color:var(--gold);border-color:var(--gold)}
 .tab.on{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:600}
+.tab .tcount{display:inline-block;margin-left:6px;background:rgba(240,227,215,.22);border-radius:10px;padding:1px 7px;font-size:9px}
+.tab.on .tcount{background:rgba(18,34,61,.22)}
 
 /* day header */
 #dayhead{display:none;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
@@ -182,12 +184,6 @@ select.st{background:rgba(14,25,46,.7);border:1px solid rgba(240,227,215,.3);bor
 
     <div id="req-box"></div>
 
-    <div class="tabs">
-      <button class="tab on" data-tab="day">Day by day</button>
-      <button class="tab" data-tab="upcoming">Coming days</button>
-      <button class="tab" data-tab="past">History</button>
-    </div>
-
     <div id="dayhead" class="show">
       <div class="dh-l">
         <button class="arrow" id="prev">‹</button>
@@ -198,6 +194,15 @@ select.st{background:rgba(14,25,46,.7);border:1px solid rgba(240,227,215,.3);bor
         <button class="pill" id="today-btn" style="padding:8px 16px">Today</button>
         <input type="date" id="day" title="Pick a date">
       </div>
+    </div>
+
+    <div class="tabs" id="filters">
+      <button class="tab on" data-f="all" data-label="All">All</button>
+      <button class="tab" data-f="up" data-label="Upcoming">Upcoming</button>
+      <button class="tab" data-f="seated" data-label="At the table">At the table</button>
+      <button class="tab" data-f="done" data-label="Closed">Closed</button>
+      <button class="tab" data-f="cancelled" data-label="Cancelled">Cancelled</button>
+      <button class="tab" data-f="history" data-label="History">History</button>
     </div>
     <p id="summary"></p>
     <div id="main-list"></div>
@@ -218,7 +223,8 @@ const LABEL={pending:"To answer",confirmed:"Confirmed",seated:"At the table",com
 const ACTIVE=["pending","confirmed","seated"];
 const LATE_MIN=15; /* grace period shown to guests on the booking form */
 const isoLocal=d=>{const p=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())};
-let tab="day", day=isoLocal(new Date());
+let filt="all", day=isoLocal(new Date());
+const FGROUP={up:["pending","confirmed"],seated:["seated"],done:["completed"],cancelled:["cancelled","no_show"]};
 const SERVERS=new Set();
 
 function fmtDate(d){
@@ -278,15 +284,14 @@ $("logout").addEventListener("click",async()=>{await sb.auth.signOut();boot();})
 /* ── data ── */
 function mainQuery(today){
   const t=sb.from("reservations").select("*");
-  if(tab==="day")return t.eq("date",day).order("time_slot");
-  if(tab==="upcoming")return t.gt("date",today).order("date").order("time_slot").limit(500);
   /* History: every finished reservation (closed, cancelled, no show), whatever the date, plus all past days */
-  return t.or(`date.lt.${today},status.in.(completed,cancelled,no_show)`)
+  if(filt==="history")return t.or(`date.lt.${today},status.in.(completed,cancelled,no_show)`)
     .order("date",{ascending:false}).order("time_slot",{ascending:false}).limit(200); /* ponytail: last 200 only, add pagination if history grows */
+  return t.eq("date",day).order("time_slot");
 }
 async function load(){
   $("day").value=day;
-  $("dayhead").classList.toggle("show",tab==="day");
+  $("dayhead").classList.toggle("show",filt!=="history");
   $("day-title").textContent=fmtDate(day);
   const today=isoLocal(new Date());
   const [pend,main]=await Promise.all([
@@ -422,29 +427,42 @@ function card(r,today,dup,showDate){
     </div>
   </div>`;
 }
+function updateCounts(rows){
+  const cnt={all:rows?rows.length:0};
+  Object.keys(FGROUP).forEach(k=>cnt[k]=rows?rows.filter(r=>FGROUP[k].includes(r.status)).length:0);
+  document.querySelectorAll("#filters .tab").forEach(b=>{
+    const k=b.dataset.f;
+    b.innerHTML=esc(b.dataset.label)+(k!=="history"&&cnt[k]?` <span class="tcount">${cnt[k]}</span>`:"");
+  });
+}
 function renderMain(rows,today){
+  if(filt==="history"){
+    updateCounts(null);
+    $("summary").innerHTML=rows.length?`${rows.length} finished reservations shown`:"";
+    if(!rows.length){$("main-list").innerHTML=`<p class="empty">No finished reservations yet. Closed, cancelled and no show reservations appear here.</p>`;return;}
+    let html="",lastDate=null;
+    rows.forEach(r=>{
+      if(r.date!==lastDate){lastDate=r.date;html+=`<h3 class="datehdr">${esc(fmtDate(r.date))} · ${esc(r.date)}</h3>`;}
+      html+=card(r,today,conflictKeys(rows),false);
+    });
+    $("main-list").innerHTML=html;
+    return;
+  }
   const dup=conflictKeys(rows);
+  updateCounts(rows);
   const active=rows.filter(r=>ACTIVE.includes(r.status));
   const covers=active.reduce((n,r)=>n+r.party_size,0);
   const seated=rows.filter(r=>r.status==="seated").length;
-  let sum="";
-  if(rows.length){
-    if(tab==="past")sum=`${rows.length} finished reservations shown`;
-    else sum=`<b>${active.length}</b> reservations · <b>${covers}</b> guests expected`+(seated?` · <b>${seated}</b> at the table now`:"");
-  }
-  $("summary").innerHTML=sum;
-  if(!rows.length){
-    $("main-list").innerHTML=`<p class="empty">${
-      tab==="day"?"Nothing booked for this day.<br>New website requests always appear in the box above.":
-      tab==="upcoming"?"No reservations on the coming days yet.":"No finished reservations yet. Closed, cancelled and no show reservations appear here."}</p>`;
+  $("summary").innerHTML=rows.length?`<b>${active.length}</b> reservations · <b>${covers}</b> guests expected`+(seated?` · <b>${seated}</b> at the table now`:""):"";
+  const shown=filt==="all"?rows:rows.filter(r=>FGROUP[filt].includes(r.status));
+  if(!shown.length){
+    const empt={all:"Nothing booked for this day.<br>New website requests always appear in the box above.",
+      up:"No upcoming reservations on this day.",seated:"No guests at the table on this day.",
+      done:"No closed reservations on this day yet.",cancelled:"No cancelled reservations on this day."};
+    $("main-list").innerHTML=`<p class="empty">${empt[filt]}</p>`;
     return;
   }
-  let html="",lastDate=null;
-  rows.forEach(r=>{
-    if(tab!=="day"&&r.date!==lastDate){lastDate=r.date;html+=`<h3 class="datehdr">${esc(fmtDate(r.date))} · ${esc(r.date)}</h3>`;}
-    html+=card(r,today,dup,false);
-  });
-  $("main-list").innerHTML=html;
+  $("main-list").innerHTML=shown.map(r=>card(r,today,dup,false)).join("");
   if(dup.size)toast("Careful: the same table is set twice on one time slot",true);
 }
 
@@ -466,8 +484,8 @@ document.addEventListener("click",e=>{
   }
   const fx=e.target.closest("[data-fix]");
   if(fx){$("fix-"+fx.dataset.fix).classList.toggle("show");return;}
-  const t=e.target.closest(".tab");
-  if(t){tab=t.dataset.tab;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===t));load();}
+  const t=e.target.closest("#filters .tab");
+  if(t){filt=t.dataset.f;document.querySelectorAll("#filters .tab").forEach(x=>x.classList.toggle("on",x===t));load();}
 });
 document.addEventListener("change",e=>{
   const el=e.target;
