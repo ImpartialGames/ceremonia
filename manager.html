@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Guides · Ceremonia Manager</title>
+<meta name="theme-color" content="#12223d">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root{--navy:#12223d;--navy-lt:#172642;--gold:#f0e3d7;--ivory:#F5F0E8;--green:#8FCB9B;--red:#E2A9A0;--amber:#E89678}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);font-family:'Poppins',sans-serif;color:var(--ivory);min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+button{font-family:'Poppins',sans-serif;cursor:pointer}
+.wrap{max-width:960px;margin:0 auto;padding:24px 16px 90px}
+header.bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+header.bar .brand{display:flex;align-items:center;gap:10px}
+header.bar img{width:34px}
+header.bar h1{font-weight:500;font-size:26px}
+.pill{font-size:10px;letter-spacing:.18em;text-transform:uppercase;border:1px solid rgba(240,227,215,.5);color:var(--gold);
+  background:none;padding:9px 18px;border-radius:30px;transition:all .25s;display:inline-block}
+.pill:hover{background:var(--gold);color:var(--navy)}
+.pill.solid{background:var(--gold);color:var(--navy);font-weight:600}
+.pill.solid:hover{background:transparent;color:var(--gold)}
+#login,#denied{max-width:360px;margin:12vh auto 0;text-align:center;display:none}
+#login img,#denied img{width:72px;margin-bottom:16px}
+#login h1,#denied h1{font-weight:500;font-size:30px;margin-bottom:6px}
+#login p,#denied p{font-size:12px;font-weight:300;color:rgba(245,240,232,.5);margin-bottom:26px;line-height:1.8}
+#login input{width:100%;background:rgba(14,25,46,.6);border:1px solid rgba(240,227,215,.25);border-radius:9px;color:var(--ivory);
+  font-size:14px;font-weight:300;padding:13px 14px;margin-bottom:12px;outline:none;font-family:'Poppins',sans-serif}
+#login input:focus{border-color:var(--gold)}
+#login .pill{width:100%;padding:13px}
+#login-err{display:none;color:var(--red);font-size:12px;margin-top:12px}
+#app{display:none}
+.gform{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px;align-items:center}
+.gform input,input.bill{background:rgba(14,25,46,.7);border:1px solid rgba(240,227,215,.3);border-radius:9px;color:var(--ivory);
+  font-family:'Poppins',sans-serif;font-size:13px;padding:10px 12px;outline:none}
+.gform input:focus,input.bill:focus{border-color:var(--gold)}
+.addbtn{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:11px 20px;border-radius:30px;
+  border:1px solid var(--gold);background:var(--gold);color:var(--navy);transition:all .25s}
+.addbtn:hover{background:transparent;color:var(--gold)}
+#summary{font-size:12px;font-weight:300;color:rgba(245,240,232,.55);margin:0 0 22px}
+#summary b{color:var(--gold);font-weight:600}
+.gcard{border:1px solid rgba(240,227,215,.2);border-radius:14px;background:linear-gradient(160deg,rgba(23,38,66,.6),rgba(18,34,61,.85));
+  padding:18px;margin-bottom:14px}
+.gcard.off{opacity:.5}
+.ghead{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ghead .gname{font-size:17px;font-weight:600}
+.ghead .gcode{font-size:11px;letter-spacing:.14em;padding:5px 12px;border-radius:20px;border:1px solid rgba(240,227,215,.55);color:var(--gold)}
+.ghead .gph{font-size:11px;font-weight:300;color:rgba(245,240,232,.5)}
+.gstats{margin-left:auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:rgba(245,240,232,.7)}
+.gstats b{color:var(--gold);font-weight:600}
+.due{font-size:14px;color:var(--navy);background:var(--gold);padding:7px 14px;border-radius:20px;font-weight:600;white-space:nowrap}
+.rbtn{font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:999px;
+  border:1px solid rgba(240,227,215,.4);background:none;color:var(--gold);transition:all .2s}
+.rbtn:hover{background:var(--gold);color:var(--navy)}
+table.gt{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+table.gt th{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,227,215,.6);text-align:left;padding:7px 8px;border-bottom:1px solid rgba(240,227,215,.2)}
+table.gt td{padding:8px;border-bottom:1px solid rgba(240,227,215,.08);color:rgba(245,240,232,.85);vertical-align:middle}
+table.gt td.num,table.gt th.num{text-align:right;white-space:nowrap}
+table.gt tr.dim td{opacity:.45}
+.empty{font-size:12px;font-weight:300;color:rgba(245,240,232,.4);padding:10px 2px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;
+  padding:11px 24px;border-radius:30px;opacity:0;pointer-events:none;transition:opacity .3s;max-width:90vw;text-align:center;z-index:50}
+#toast.on{opacity:1}
+#toast.warn{background:var(--amber)}
+@media(max-width:640px){.gstats{margin-left:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="login">
+    <img src="logo-ceremonia-beige.webp" alt="Ceremonia">
+    <h1>Manager Access</h1>
+    <p>Guide referral program. Manager only.</p>
+    <form id="login-form">
+      <input id="l-email" type="email" placeholder="Email" required autocomplete="username">
+      <input id="l-pass" type="password" placeholder="Password" required autocomplete="current-password">
+      <button class="pill solid" type="submit">Sign in</button>
+      <p id="login-err">Wrong email or password.</p>
+    </form>
+  </div>
+
+  <div id="denied">
+    <img src="logo-ceremonia-beige.webp" alt="Ceremonia">
+    <h1>Manager only</h1>
+    <p>This area is reserved for the restaurant manager.<br>Your account can use the reservations back office.</p>
+    <a class="pill" href="/admin">Go to reservations</a>
+    <button class="pill" id="denied-out" style="margin-left:8px">Sign out</button>
+  </div>
+
+  <div id="app">
+    <header class="bar">
+      <div class="brand"><img src="logo-ceremonia-beige.webp" alt=""><h1>Guides</h1></div>
+      <div style="display:flex;gap:8px">
+        <a class="pill" href="/admin">Reservations</a>
+        <button class="pill" id="logout">Sign out</button>
+      </div>
+    </header>
+
+    <div class="gform">
+      <input id="g-name" placeholder="Guide name" maxlength="80">
+      <input id="g-code" placeholder="CODE (e.g. WAYAN10)" maxlength="24" style="text-transform:uppercase;width:170px">
+      <input id="g-phone" placeholder="WhatsApp (optional)" maxlength="40" style="width:170px">
+      <button class="addbtn" id="g-add" type="button">Add guide</button>
+      <input type="month" id="g-month" style="color-scheme:dark;margin-left:auto;background:rgba(14,25,46,.7);border:1px solid rgba(240,227,215,.3);border-radius:9px;color:var(--ivory);font-family:'Poppins',sans-serif;font-size:13px;padding:9px 11px;outline:none">
+    </div>
+    <p id="summary"></p>
+    <div id="glist"></div>
+    <p class="empty">Each guide has a personal referral link: https://www.ceremonia-rooftop.com/reserve?ref=CODE. When a client books through it, the booking is attached to the guide below, with the client's name. Only reservations that came (at the table or closed) count for the commission. Type the bill amounts ('000 IDR: 350 = Rp 350,000) to compute the 10% due.</p>
+  </div>
+
+</div>
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+const sb=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_ANON_KEY);
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LABEL={pending:"To answer",confirmed:"Confirmed",seated:"At the table",completed:"Closed",cancelled:"Cancelled",no_show:"No show"};
+const money=v=>"Rp "+Number(v||0).toLocaleString("en")+"k";
+const isoLocal=d=>{const p=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())};
+let GMONTH=isoLocal(new Date()).slice(0,7);
+
+function isManager(session){
+  const mails=(window.ADMIN_EMAILS||[]).map(m=>String(m).toLowerCase());
+  return mails.includes((session.user.email||"").toLowerCase());
+}
+async function boot(){
+  const {data:{session}}=await sb.auth.getSession();
+  $("login").style.display=session?"none":"block";
+  $("denied").style.display=session&&!isManager(session)?"block":"none";
+  $("app").style.display=session&&isManager(session)?"block":"none";
+  if(session&&isManager(session))load();
+}
+$("login-form").addEventListener("submit",async e=>{
+  e.preventDefault();
+  $("login-err").style.display="none";
+  const {error}=await sb.auth.signInWithPassword({email:$("l-email").value.trim(),password:$("l-pass").value});
+  if(error){$("login-err").style.display="block";return;}
+  boot();
+});
+$("logout").addEventListener("click",async()=>{await sb.auth.signOut();boot();});
+$("denied-out").addEventListener("click",async()=>{await sb.auth.signOut();boot();});
+
+async function load(){
+  $("g-month").value=GMONTH;
+  const start=GMONTH+"-01";
+  const [y,m]=GMONTH.split("-").map(Number);
+  const next=(m===12?(y+1)+"-01":y+"-"+String(m+1).padStart(2,"0"))+"-01";
+  const [g,r]=await Promise.all([
+    sb.from("guides").select("*").order("name"),
+    sb.from("reservations").select("*").not("guide_code","is",null).gte("date",start).lt("date",next).order("date").order("time_slot")
+  ]);
+  if(g.error){toast("Run the guides migration (SQL 10) in Supabase first",true);return;}
+  if(r.error){toast("Could not load, check the connection",true);return;}
+  render(g.data,r.data);
+}
+const came=r=>r.status==="completed"||r.status==="seated";
+function bookingRows(list){
+  return `<table class="gt"><tr><th>Date</th><th>Time</th><th>Client</th><th class="num">Guests</th><th>Status</th><th class="num">Bill '000 IDR</th><th class="num">10%</th></tr>
+    ${list.map(r=>`<tr class="${came(r)?"":"dim"}">
+      <td>${esc(r.date)}</td><td>${esc(r.time_slot)}</td><td><b>${esc(r.name)}</b></td>
+      <td class="num">${r.party_size}</td><td>${LABEL[r.status]||esc(r.status)}</td>
+      <td class="num"><input class="bill" data-bill="${r.id}" type="number" min="0" step="1" value="${r.spend_amount==null?"":r.spend_amount}" style="width:92px;text-align:right"></td>
+      <td class="num" style="color:var(--gold)">${came(r)&&r.spend_amount?money(r.spend_amount*0.1):""}</td>
+    </tr>`).join("")}</table>`;
+}
+function render(guides,rows){
+  const byCode={};
+  rows.forEach(r=>{const c=(r.guide_code||"").toUpperCase();(byCode[c]=byCode[c]||[]).push(r);});
+  const known=new Set(guides.map(x=>x.code.toUpperCase()));
+  const cameRows=rows.filter(came);
+  const billTotal=cameRows.reduce((n,r)=>n+(r.spend_amount||0),0);
+  $("summary").innerHTML=`<b>${esc(GMONTH)}</b> · ${cameRows.length} guide reservations came · ${cameRows.reduce((n,r)=>n+r.party_size,0)} guests · billed ${money(billTotal)} · total commissions <b>${money(billTotal*0.1)}</b>`;
+  let html=guides.map(x=>{
+    const list=byCode[x.code.toUpperCase()]||[];
+    const ok=list.filter(came);
+    const bill=ok.reduce((n,r)=>n+(r.spend_amount||0),0);
+    return `<div class="gcard${x.active?"":" off"}">
+      <div class="ghead">
+        <span class="gname">${esc(x.name)}</span>
+        <span class="gcode">${esc(x.code)}</span>
+        ${x.phone?`<a class="gph" href="https://wa.me/${esc(String(x.phone).replace(/[^0-9]/g,""))}" target="_blank" rel="noopener">${esc(x.phone)}</a>`:""}
+        <button class="rbtn" data-copy="${esc(x.code)}" type="button">Copy link</button>
+        <button class="rbtn" data-gactive="${x.id}" data-to="${x.active?0:1}" type="button">${x.active?"Disable":"Enable"}</button>
+        <div class="gstats">
+          <span><b>${ok.length}</b> came</span>
+          <span><b>${ok.reduce((n,r)=>n+r.party_size,0)}</b> guests</span>
+          <span>billed <b>${bill.toLocaleString("en")}</b>k</span>
+          <span class="due">10% · ${money(bill*0.1)}</span>
+        </div>
+      </div>
+      ${list.length?bookingRows(list):`<p class="empty">No reservations with this code in ${esc(GMONTH)}.</p>`}
+    </div>`;
+  }).join("");
+  const unknown=Object.keys(byCode).filter(c=>!known.has(c));
+  html+=unknown.map(c=>{
+    const list=byCode[c],ok=list.filter(came),bill=ok.reduce((n,r)=>n+(r.spend_amount||0),0);
+    return `<div class="gcard"><div class="ghead">
+      <span class="gname" style="color:var(--amber)">Unknown code</span><span class="gcode">${esc(c)}</span>
+      <div class="gstats"><span><b>${ok.length}</b> came</span><span class="due">10% · ${money(bill*0.1)}</span></div>
+    </div>${bookingRows(list)}</div>`;
+  }).join("");
+  if(!guides.length&&!unknown.length)html=`<p class="empty">No guides yet. Add the first one above, then give them their referral link.</p>`;
+  $("glist").innerHTML=html;
+}
+
+document.addEventListener("click",e=>{
+  const cp=e.target.closest("[data-copy]");
+  if(cp){navigator.clipboard.writeText("https://www.ceremonia-rooftop.com/reserve?ref="+cp.dataset.copy).then(()=>toast("Referral link copied"));return;}
+  const ga=e.target.closest("[data-gactive]");
+  if(ga){sb.from("guides").update({active:ga.dataset.to==="1"}).eq("id",ga.dataset.gactive).then(({error})=>{toast(error?"Could not save":"Saved");if(!error)load();});return;}
+  if(e.target.id==="g-add"){
+    const name=$("g-name").value.trim(),code=$("g-code").value.trim().toUpperCase().replace(/[^A-Z0-9-]/g,"");
+    if(!name||code.length<3){toast("Give a name and a code of at least 3 letters or digits",true);return;}
+    sb.from("guides").insert({name:name,code:code,phone:$("g-phone").value.trim()||null}).then(({error})=>{
+      toast(error?(/duplicate|unique/i.test(error.message||"")?"This code already exists":"Could not save"):"Guide added ✓",!!error);
+      if(!error){$("g-name").value="";$("g-code").value="";$("g-phone").value="";load();}
+    });
+    return;
+  }
+});
+document.addEventListener("change",e=>{
+  const el=e.target;
+  if(el.id==="g-month"){GMONTH=el.value;load();return;}
+  if(el.dataset&&el.dataset.bill){
+    const v=el.value===""?null:Math.max(0,Math.round(Number(el.value)));
+    sb.from("reservations").update({spend_amount:v}).eq("id",el.dataset.bill).then(({error})=>{toast(error?"Could not save":"Bill saved");if(!error)load();});
+  }
+});
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&$("app").style.display==="block")load();});
+
+let toastT;
+function toast(m,warn){const t=$("toast");t.textContent=m;t.classList.toggle("warn",!!warn);t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("on"),2600);}
+
+boot();
+</script>
+</body>
+</html>

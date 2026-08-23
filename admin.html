@@ -174,6 +174,7 @@ select.st{background:rgba(14,25,46,.7);border:1px solid rgba(240,227,215,.3);bor
     <header class="bar">
       <div class="brand"><img src="logo-ceremonia-beige.webp" alt=""><h1>Reservations</h1></div>
       <div style="display:flex;gap:8px">
+        <a class="pill" id="mgr-link" href="/manager" style="display:none">Guides</a>
         <button class="pill" id="refresh">Refresh</button>
         <button class="pill" id="logout">Sign out</button>
       </div>
@@ -185,7 +186,6 @@ select.st{background:rgba(14,25,46,.7);border:1px solid rgba(240,227,215,.3);bor
       <button class="tab on" data-tab="day">Day by day</button>
       <button class="tab" data-tab="upcoming">Coming days</button>
       <button class="tab" data-tab="past">History</button>
-      <button class="tab" data-tab="guides" id="guides-tab" style="display:none">Guides</button>
     </div>
 
     <div id="dayhead" class="show">
@@ -242,7 +242,7 @@ async function boot(){
   $("recover").style.display="none";
   if(session){
     const mails=(window.ADMIN_EMAILS||[]).map(m=>String(m).toLowerCase());
-    $("guides-tab").style.display=mails.includes((session.user.email||"").toLowerCase())?"":"none";
+    $("mgr-link").style.display=mails.includes((session.user.email||"").toLowerCase())?"":"none";
     load();
   }
 }
@@ -285,7 +285,6 @@ function mainQuery(today){
     .order("date",{ascending:false}).order("time_slot",{ascending:false}).limit(200); /* ponytail: last 200 only, add pagination if history grows */
 }
 async function load(){
-  if(tab==="guides")return loadGuides();
   $("day").value=day;
   $("dayhead").classList.toggle("show",tab==="day");
   $("day-title").textContent=fmtDate(day);
@@ -449,59 +448,6 @@ function renderMain(rows,today){
   if(dup.size)toast("Careful: the same table is set twice on one time slot",true);
 }
 
-/* ── guides (referral) view, manager only ── */
-let GMONTH=isoLocal(new Date()).slice(0,7);
-const money=v=>"Rp "+Number(v||0).toLocaleString("en")+"k";
-async function loadGuides(){
-  $("dayhead").classList.remove("show");
-  const start=GMONTH+"-01";
-  const [y,m]=GMONTH.split("-").map(Number);
-  const next=(m===12?(y+1)+"-01":y+"-"+String(m+1).padStart(2,"0"))+"-01";
-  const [g,r]=await Promise.all([
-    sb.from("guides").select("*").order("name"),
-    sb.from("reservations").select("*").not("guide_code","is",null).gte("date",start).lt("date",next).order("date").order("time_slot")
-  ]);
-  if(g.error||r.error){toast(g.error?"Run the guides migration in Supabase first":"Could not load, check the connection",true);return;}
-  renderGuides(g.data,r.data);
-}
-function renderGuides(guides,rows){
-  const came=r=>r.status==="completed"||r.status==="seated";
-  const inp='background:rgba(14,25,46,.7);border:1px solid rgba(240,227,215,.3);border-radius:9px;color:var(--ivory);font-family:\'Poppins\',sans-serif;font-size:12px;padding:7px 9px;outline:none';
-  const stat={};
-  rows.forEach(r=>{
-    const c=(r.guide_code||"").toUpperCase();
-    stat[c]=stat[c]||{b:0,g:0,bill:0};
-    if(came(r)){stat[c].b++;stat[c].g+=r.party_size;stat[c].bill+=(r.spend_amount||0);}
-  });
-  const known=new Set(guides.map(x=>x.code.toUpperCase()));
-  const unknown=Object.keys(stat).filter(c=>!known.has(c));
-  const totals=rows.filter(came);
-  $("summary").innerHTML=`<b>${esc(GMONTH)}</b> · ${totals.length} guide reservations came · ${totals.reduce((n,x)=>n+x.party_size,0)} guests`;
-  $("main-list").innerHTML=`
-    <div class="gform">
-      <input id="g-name" placeholder="Guide name" maxlength="80">
-      <input id="g-code" placeholder="CODE (e.g. WAYAN10)" maxlength="24" style="text-transform:uppercase;width:160px">
-      <input id="g-phone" placeholder="WhatsApp (optional)" maxlength="40" style="width:160px">
-      <button class="act main" id="g-add" type="button">Add guide</button>
-      <input type="month" id="g-month" value="${esc(GMONTH)}" style="${inp};color-scheme:dark;margin-left:auto">
-    </div>
-    <table class="gt"><tr><th>Guide</th><th>Code</th><th>Referral link</th><th class="num">Came</th><th class="num">Guests</th><th class="num">Billed '000</th><th class="num">10% due</th><th></th></tr>
-    ${guides.map(x=>{const s=stat[x.code.toUpperCase()]||{b:0,g:0,bill:0};
-      return `<tr class="${x.active?"":"dim2"}"><td>${esc(x.name)}</td><td><b>${esc(x.code)}</b></td>
-      <td><button class="rbtn" data-copy="${esc(x.code)}" type="button">Copy link</button></td>
-      <td class="num">${s.b}</td><td class="num">${s.g}</td><td class="num">${s.bill.toLocaleString("en")}</td>
-      <td class="num" style="color:var(--gold)">${money(s.bill*0.1)}</td>
-      <td><button class="rbtn" data-gactive="${x.id}" data-to="${x.active?0:1}" type="button">${x.active?"Disable":"Enable"}</button></td></tr>`;}).join("")}
-    ${unknown.map(c=>{const s=stat[c];return `<tr><td style="color:var(--amber)">Unknown code</td><td><b>${esc(c)}</b></td><td></td><td class="num">${s.b}</td><td class="num">${s.g}</td><td class="num">${s.bill.toLocaleString("en")}</td><td class="num">${money(s.bill*0.1)}</td><td></td></tr>`;}).join("")}
-    </table>
-    <h3 class="datehdr">Guide reservations · ${esc(GMONTH)}</h3>
-    ${rows.length?`<table class="gt"><tr><th>Date</th><th>Time</th><th>Booking name</th><th class="num">Guests</th><th>Code</th><th>Status</th><th class="num">Bill '000 IDR</th></tr>
-      ${rows.map(r=>`<tr class="${came(r)?"":"dim2"}"><td>${esc(r.date)}</td><td>${esc(r.time_slot)}</td><td>${esc(r.name)}</td><td class="num">${r.party_size}</td><td><b>${esc((r.guide_code||"").toUpperCase())}</b></td><td>${LABEL[r.status]||esc(r.status)}</td>
-      <td class="num"><input data-f="spend_amount" data-id="${r.id}" type="number" min="0" step="1" value="${r.spend_amount==null?"":r.spend_amount}" style="${inp};width:92px;text-align:right"></td></tr>`).join("")}</table>`
-    :`<p class="empty">No guide reservations this month yet.</p>`}
-    <p class="empty" style="text-align:left">Referral link: https://www.ceremonia-rooftop.com/reserve?ref=CODE · give each guide their own link or code. Only reservations that came (at the table or closed) count. Type the bill amounts here when settling the 10% commissions.</p>`;
-}
-
 /* ── actions ── */
 async function setField(id,patch,okMsg){
   const {error}=await sb.from("reservations").update(patch).eq("id",id);
@@ -520,26 +466,12 @@ document.addEventListener("click",e=>{
   }
   const fx=e.target.closest("[data-fix]");
   if(fx){$("fix-"+fx.dataset.fix).classList.toggle("show");return;}
-  const cp=e.target.closest("[data-copy]");
-  if(cp){navigator.clipboard.writeText("https://www.ceremonia-rooftop.com/reserve?ref="+cp.dataset.copy).then(()=>toast("Referral link copied"));return;}
-  const ga=e.target.closest("[data-gactive]");
-  if(ga){sb.from("guides").update({active:ga.dataset.to==="1"}).eq("id",ga.dataset.gactive).then(({error})=>{toast(error?"Could not save":"Saved");if(!error)load();});return;}
-  if(e.target.id==="g-add"){
-    const name=$("g-name").value.trim(),code=$("g-code").value.trim().toUpperCase().replace(/[^A-Z0-9-]/g,"");
-    if(!name||code.length<3){toast("Give a name and a code of at least 3 letters or digits",true);return;}
-    sb.from("guides").insert({name:name,code:code,phone:$("g-phone").value.trim()||null}).then(({error})=>{
-      toast(error?(/duplicate|unique/i.test(error.message||"")?"This code already exists":"Could not save"):"Guide added ✓",!!error);
-      if(!error)load();
-    });
-    return;
-  }
   const t=e.target.closest(".tab");
   if(t){tab=t.dataset.tab;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===t));load();}
 });
 document.addEventListener("change",e=>{
   const el=e.target;
   if(el.matches("select.st")){setField(el.dataset.id,{status:el.value},"Status changed");return;}
-  if(el.id==="g-month"){GMONTH=el.value;load();return;}
   if(el.dataset&&el.dataset.f){
     let v=el.value.trim()||null;
     if(el.dataset.f==="spend_amount")v=el.value===""?null:Math.max(0,Math.round(Number(el.value)));
