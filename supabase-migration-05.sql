@@ -23,3 +23,9 @@ alter table public.reservations
   add column if not exists guide_code text check (char_length(guide_code) <= 24);
 create index if not exists reservations_guide_idx
   on public.reservations (guide_code) where guide_code is not null;
+
+-- Public read-only list of ACTIVE codes so the booking form can refuse
+-- unknown codes. Exposes only the code column, nothing else.
+create or replace view public.guide_codes as
+  select code from public.guides where active;
+grant select on public.guide_codes to anon, authenticated;
