@@ -144,6 +144,19 @@ select.st{background:rgba(14,25,46,.7);border:1px solid rgba(240,227,215,.3);bor
       <button class="pill solid" type="submit">Sign in</button>
       <p id="login-err">Wrong email or password.</p>
     </form>
+    <p style="margin-top:16px"><button type="button" id="forgot" class="fixlink" style="margin:0">Forgot password?</button></p>
+  </div>
+
+  <div id="recover" style="display:none;max-width:360px;margin:12vh auto 0;text-align:center">
+    <img src="logo-ceremonia-beige.webp" alt="Ceremonia" style="width:72px;margin-bottom:16px">
+    <h1 style="font-family:'Poppins',sans-serif;font-weight:500;font-size:30px;margin-bottom:6px">New password</h1>
+    <p style="font-size:12px;font-weight:300;color:rgba(245,240,232,.5);margin-bottom:26px">Choose a new password for your staff account.</p>
+    <form id="recover-form">
+      <input id="rp-1" type="password" placeholder="New password" required minlength="8" autocomplete="new-password" style="width:100%;background:rgba(14,25,46,.6);border:1px solid rgba(240,227,215,.25);border-radius:9px;color:var(--ivory);font-size:14px;font-weight:300;padding:13px 14px;margin-bottom:12px;outline:none;font-family:'Poppins',sans-serif">
+      <input id="rp-2" type="password" placeholder="Repeat the password" required minlength="8" autocomplete="new-password" style="width:100%;background:rgba(14,25,46,.6);border:1px solid rgba(240,227,215,.25);border-radius:9px;color:var(--ivory);font-size:14px;font-weight:300;padding:13px 14px;margin-bottom:12px;outline:none;font-family:'Poppins',sans-serif">
+      <button class="pill solid" type="submit" style="width:100%;padding:13px">Save the new password</button>
+      <p id="recover-err" style="display:none;color:var(--red);font-size:12px;margin-top:12px"></p>
+    </form>
   </div>
 
   <div id="app">
@@ -205,17 +218,43 @@ function fmtDate(d){
 }
 
 /* ── auth ── */
+let RECOVERY=false;
 async function boot(){
+  if(RECOVERY){
+    $("login").style.display="none";$("app").style.display="none";$("recover").style.display="block";
+    return;
+  }
   const {data:{session}}=await sb.auth.getSession();
   $("login").style.display=session?"none":"block";
   $("app").style.display=session?"block":"none";
+  $("recover").style.display="none";
   if(session)load();
 }
+/* the password-reset email link lands here with a recovery token in the URL */
+sb.auth.onAuthStateChange(ev=>{if(ev==="PASSWORD_RECOVERY"){RECOVERY=true;boot();}});
 $("login-form").addEventListener("submit",async e=>{
   e.preventDefault();
   $("login-err").style.display="none";
   const {error}=await sb.auth.signInWithPassword({email:$("l-email").value.trim(),password:$("l-pass").value});
   if(error){$("login-err").style.display="block";return;}
+  boot();
+});
+$("forgot").addEventListener("click",async()=>{
+  const email=$("l-email").value.trim();
+  if(!email){toast("Type your email in the field above first",true);return;}
+  const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:"https://www.ceremonia-rooftop.com/admin"});
+  toast(error?"Could not send the reset email":"Reset email sent, check your inbox");
+});
+$("recover-form").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const err=$("recover-err");err.style.display="none";
+  const a=$("rp-1").value,b=$("rp-2").value;
+  if(a!==b){err.textContent="The two passwords do not match.";err.style.display="block";return;}
+  const {error}=await sb.auth.updateUser({password:a});
+  if(error){err.textContent=error.message;err.style.display="block";return;}
+  RECOVERY=false;
+  history.replaceState(null,"",location.pathname);
+  toast("Password updated ✓");
   boot();
 });
 $("logout").addEventListener("click",async()=>{await sb.auth.signOut();boot();});
