@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script>/* Supabase password-reset links land on the Site URL (this page): forward them to the back office */
+if(location.hash.indexOf("type=recovery")>-1)location.replace("/admin"+location.hash);</script>
 <script src="consent.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QKQ0R6NVG"></script>
