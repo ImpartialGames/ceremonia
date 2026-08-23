@@ -344,6 +344,11 @@ function assignFields(r,dup){
     <div class="af"><label>Server</label><input class="srv" data-f="server_name" data-id="${r.id}" list="servers-dl" value="${esc(r.server_name||"")}" maxlength="60" placeholder="name"></div>
   </div>`;
 }
+function billField(r){
+  return `<div class="c-assign">
+    <div class="af"><label>Bill excl. tax (Rp)</label><input type="number" min="0" step="1000" inputmode="numeric" data-f="spend_amount" data-id="${r.id}" value="${r.spend_amount==null?"":r.spend_amount}" placeholder="e.g. 450000" style="width:140px"></div>
+  </div>`;
+}
 function cardTop(r,today,showDate){
   const late=isLate(r,today);
   return `<div class="c-top">
@@ -415,6 +420,7 @@ function card(r,today,dup,showDate){
   return `<div class="card${isLate(r,today)?" late":""}${inactive?" dim":""}" data-card="${r.id}">
     ${cardTop(r,today,showDate)}
     ${ACTIVE.includes(r.status)?assignFields(r,dup):""}
+    ${r.status==="seated"||r.status==="completed"?billField(r):""}
     <div class="c-acts">${acts}
       <button class="fixlink" data-fix="${r.id}">fix a mistake</button>
     </div>
