@@ -226,9 +226,9 @@ let saved="en";try{saved=localStorage.getItem("lang")||"en"}catch(e){}
 applyLang(saved);
 
 /* ─── form options ─── */
-/* ponytail: fixed 30 min slots 09:00 to 21:30 and 30 min notice for the team;
+/* ponytail: fixed 30 min slots 10:30 to 21:30 and 30 min notice for the team;
    edit these two lines to change service hours or lead time */
-const OPEN=9, LAST=21.5, LEAD_MIN=30;
+const OPEN=10.5, LAST=21.5, LEAD_MIN=30;
 const SLOTS=[];
 for(let h=OPEN;h<=LAST;h+=0.5)SLOTS.push(String(Math.floor(h)).padStart(2,"0")+":"+(h%1?"30":"00"));
 const timeSel=document.getElementById("r-time");
