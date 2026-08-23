@@ -146,7 +146,7 @@ footer .home:hover{background:var(--gold);color:var(--navy)}
         <label for="r-guests" data-i18n="r.guests">Guests</label>
         <select id="r-guests"></select>
       </div>
-      <p class="f-note" data-i18n-html="r.groupnote">More than 12 guests? Write to us on <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, we love big tables.</p>
+      <p class="f-note" data-i18n-html="r.groupnote">More than 8 guests? Write to us on <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, we love big tables.</p>
       <div class="f-field">
         <label data-i18n="r.bring">Booking with a guide or driver?</label>
         <div class="f-seg">
@@ -198,7 +198,7 @@ const I18N={
  "r.date":{en:"Date",fr:"Date",id:"Tanggal",es:"Fecha"},
  "r.time":{en:"Time",fr:"Heure",id:"Jam",es:"Hora"},
  "r.guests":{en:"Guests",fr:"Nombre de personnes",id:"Jumlah tamu",es:"Personas"},
- "r.groupnote":{en:'More than 12 guests? Write to us on <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, we love big tables.',fr:'Plus de 12 personnes ? Écrivez-nous sur <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, nous adorons les grandes tablées.',id:'Lebih dari 12 tamu? Hubungi kami di <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, kami suka meja besar.',es:'¿Más de 12 personas? Escríbenos por <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, nos encantan las mesas grandes.'},
+ "r.groupnote":{en:'More than 8 guests? Write to us on <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, we love big tables.',fr:'Plus de 8 personnes ? Écrivez-nous sur <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, nous adorons les grandes tablées.',id:'Lebih dari 8 tamu? Hubungi kami di <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, kami suka meja besar.',es:'¿Más de 8 personas? Escríbenos por <a href="https://wa.me/6285337107649" target="_blank" rel="noopener">WhatsApp</a>, nos encantan las mesas grandes.'},
  "r.notes":{en:"Special requests (optional)",fr:"Demandes particulières (optionnel)",id:"Permintaan khusus (opsional)",es:"Peticiones especiales (opcional)"},
  "r.bring":{en:"Booking with a guide or driver?",fr:"Réservation via un guide ou un chauffeur ?",id:"Reservasi melalui pemandu atau sopir?",es:"¿Reserva a través de un guía o conductor?"},
  "r.direct":{en:"No, directly",fr:"Non, en direct",id:"Tidak, langsung",es:"No, directamente"},
@@ -233,7 +233,7 @@ const SLOTS=[];
 for(let h=OPEN;h<=LAST;h+=0.5)SLOTS.push(String(Math.floor(h)).padStart(2,"0")+":"+(h%1?"30":"00"));
 const timeSel=document.getElementById("r-time");
 const gSel=document.getElementById("r-guests");
-for(let i=1;i<=12;i++)gSel.insertAdjacentHTML("beforeend",`<option value="${i}">${i}</option>`);
+for(let i=1;i<=8;i++)gSel.insertAdjacentHTML("beforeend",`<option value="${i}">${i}</option>`);
 gSel.value="2";
 /* country dial codes: Bali's typical visitor origins first, then the rest */
 const CCS=[["🇮🇩","+62"],["🇦🇺","+61"],["🇫🇷","+33"],["🇬🇧","+44"],["🇩🇪","+49"],["🇳🇱","+31"],["🇺🇸","+1"],
