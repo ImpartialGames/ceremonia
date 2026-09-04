@@ -1,7 +1,10 @@
 /* Ceremonia cookie consent banner + Google Consent Mode v2.
    Loaded synchronously BEFORE the Google tag so the default consent state
    (denied) is set before gtag('config') runs. If the visitor declines or
-   ignores the banner, GA4 keeps counting visits anonymously, without cookies. */
+   ignores the banner, GA4 keeps counting visits anonymously, without cookies.
+   Accepting grants analytics_storage AND the ad_* signals (ad_storage,
+   ad_user_data, ad_personalization) together, since without them Google
+   never sets the _gcl_aw click-id cookie and Ads can't attribute conversions. */
 (function(){
   window.dataLayer=window.dataLayer||[];
   function gtag(){dataLayer.push(arguments)}
@@ -16,15 +19,21 @@
     wait_for_update:stored?0:500
   });
   var T={
-    en:{txt:'We use cookies to measure our audience (Google Analytics). If you decline, visits are counted anonymously, without cookies.',more:'Learn more',ok:'Accept',no:'Decline'},
-    fr:{txt:'Nous utilisons des cookies pour mesurer notre audience (Google Analytics). Si vous refusez, les visites sont comptées anonymement, sans cookies.',more:'En savoir plus',ok:'Accepter',no:'Refuser'},
-    id:{txt:'Kami menggunakan cookie untuk mengukur pengunjung (Google Analytics). Jika Anda menolak, kunjungan dihitung secara anonim, tanpa cookie.',more:'Selengkapnya',ok:'Terima',no:'Tolak'},
-    es:{txt:'Usamos cookies para medir nuestra audiencia (Google Analytics). Si las rechazas, las visitas se cuentan de forma anónima, sin cookies.',more:'Más información',ok:'Aceptar',no:'Rechazar'}
+    en:{txt:'We use cookies to measure our audience and the performance of our ads (Google Analytics, Google Ads). If you decline, visits are counted anonymously, without cookies.',more:'Learn more',ok:'Accept',no:'Decline'},
+    fr:{txt:'Nous utilisons des cookies pour mesurer notre audience et la performance de nos publicités (Google Analytics, Google Ads). Si vous refusez, les visites sont comptées anonymement, sans cookies.',more:'En savoir plus',ok:'Accepter',no:'Refuser'},
+    id:{txt:'Kami menggunakan cookie untuk mengukur pengunjung dan performa iklan kami (Google Analytics, Google Ads). Jika Anda menolak, kunjungan dihitung secara anonim, tanpa cookie.',more:'Selengkapnya',ok:'Terima',no:'Tolak'},
+    es:{txt:'Usamos cookies para medir nuestra audiencia y el rendimiento de nuestros anuncios (Google Analytics, Google Ads). Si las rechazas, las visitas se cuentan de forma anónima, sin cookies.',more:'Más información',ok:'Aceptar',no:'Rechazar'}
   };
   function decide(v){
     try{localStorage.setItem(KEY,v)}catch(e){}
     stored=v;
-    gtag('consent','update',{analytics_storage:v==='granted'?'granted':'denied'});
+    var g=v==='granted'?'granted':'denied';
+    gtag('consent','update',{
+      analytics_storage:g,
+      ad_storage:g,
+      ad_user_data:g,
+      ad_personalization:g
+    });
     var b=document.getElementById('ck-banner');
     if(b)b.remove();
   }
